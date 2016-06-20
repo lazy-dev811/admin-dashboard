@@ -1,13 +1,15 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-// import routes from 'routes';
 
-import Home from './components/Home.jsx';
+import Layout from './components/Layout.jsx';
+import RouteHome from './components/RouteHome.jsx';
+import RouteAbout from './components/RouteAbout.jsx';
 
 export default function Application({}) {
   return (
     <Router history={browserHistory}>
-      <Route path="/src/client" component={Home} />
+      <Route path="src/client" component={RouteHome}></Route>
+      <Route path="/about" component={RouteAbout}></Route>
     </Router>
   )
 }
