@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class PageHeader extends React.Component {
+class AppHeader extends React.Component {
 
   render() {
     return (
@@ -18,4 +18,4 @@ class PageHeader extends React.Component {
 
 }
 
-export default PageHeader;
+export default AppHeader;
