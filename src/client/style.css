@@ -1,0 +1,28 @@
+*, *:before, *:after { box-sizing: border-box; }
+body { margin: 0; font-family: sans-serif; }
+ul, li { margin: 0; padding: 0; list-style-type: none; }
+a { text-decoration: none; }
+
+
+.header {
+  padding: 0 10px;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #d4d2d2;
+  background-color: #e1e1e1;
+}
+
+  .header__link {
+    display: block;
+    float: left;
+    padding: 0 10px;
+    color: #444;
+  }
+  .header__link:hover {
+    background-color: #26c6ce;
+    color: #fff;
+  }
+
+.app-content {
+  padding: 0 20px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 class AwesomeComponent extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,8 +20,12 @@ class AwesomeComponent extends React.Component {
   render() {
     return (
       <div>
-        Likes: <span>{this.state.likesCount}</span>
-        <button onClick={this.onLike}>Like iiit</button>
+        <p>
+          <button onClick={this.onLike}>Like iiit</button>
+        </p>
+        <p>
+          Likes: <span>{this.state.likesCount}</span>
+        </p>
       </div>
     )
   }

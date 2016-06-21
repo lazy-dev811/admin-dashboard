@@ -26683,7 +26683,11 @@
 	    'div',
 	    null,
 	    _react2.default.createElement(_AppHeader2.default, null),
-	    children
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'app-content' },
+	      children
+	    )
 	  );
 	};
 	
@@ -26739,18 +26743,18 @@
 	        null,
 	        _react2.default.createElement(
 	          'header',
-	          { className: 'Header' },
+	          { className: 'header' },
 	          _react2.default.createElement(
 	            'nav',
 	            null,
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: '/src/client' },
+	              { className: 'header__link', to: '/src/client' },
 	              'Home'
 	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { to: 'about' },
+	              { className: 'header__link', to: 'about' },
 	              'About'
 	            )
 	          )
@@ -27933,16 +27937,24 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Likes: ',
 	        _react2.default.createElement(
-	          'span',
+	          'p',
 	          null,
-	          this.state.likesCount
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.onLike },
+	            'Like iiit'
+	          )
 	        ),
 	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.onLike },
-	          'Like iiit'
+	          'p',
+	          null,
+	          'Likes: ',
+	          _react2.default.createElement(
+	            'span',
+	            null,
+	            this.state.likesCount
+	          )
 	        )
 	      );
 	    }
@@ -28192,8 +28204,8 @@
 	      _configureStore2.default.dispatch((0, _index.addUser)());
 	    }
 	  }, {
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
 	      var _this2 = this;
 	
 	      _configureStore2.default.subscribe(function () {

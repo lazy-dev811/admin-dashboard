@@ -6,10 +6,10 @@ class AppHeader extends React.Component {
   render() {
     return (
       <div>
-        <header className="Header">
+        <header className="header">
           <nav>
-            <Link to="/src/client">Home</Link>
-            <Link to="about">About</Link>
+            <Link className="header__link" to="/src/client">Home</Link>
+            <Link className="header__link" to="about">About</Link>
           </nav>
         </header>
       </div>

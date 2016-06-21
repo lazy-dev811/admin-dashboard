@@ -16,7 +16,7 @@ class RouteAbout extends React.Component {
     store.dispatch(addUser());
   }
 
-  componentWillMount() {
+  componentDidMount() {
     store.subscribe(() => {
       let currentStore = store.getState();
       this.setState({
