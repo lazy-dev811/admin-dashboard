@@ -14,7 +14,7 @@ class RouteAboutContainer extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     fetch('https://api.myjson.com/bins/12s83')
       .then(reponse => {
         return reponse.json();

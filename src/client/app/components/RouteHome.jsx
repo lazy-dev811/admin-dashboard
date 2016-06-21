@@ -5,6 +5,7 @@ import GoalsList from './GoalsList.jsx';
 import SomeComponent from './SomeComponent.jsx';
 
 const RouteHome = ({ goals, info }) => {
+
   return (
     <div>
       <SomeComponent name='Vincent' children={<span>Children can be anything</span>} />
