@@ -1,35 +1,21 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import AwesomeComponent from './AwesomeComponent.jsx';
 import GoalsList from './GoalsList.jsx';
 import SomeComponent from './SomeComponent.jsx';
 
-const GOALS = [
-  {
-    id: 0,
-    name: 'learn react',
-  },{
-    id: 1,
-    name: 'learn webpack',
-  },{
-    id: 2,
-    name: 'learn redux',
-  },{
-    id: 3,
-    name: 'react hot loader',
-  }
-];
+const RouteHome = ({ goals }) => {
+  return (
+    <div>
+      <SomeComponent name='Vincent' children={<span>Children can be anything</span>} />
+      <AwesomeComponent />
+      <GoalsList goals={goals} />
+    </div>
+  )
+};
 
-class RouteHome extends React.Component{
-  render() {
-    return (
-      <div>
-        <SomeComponent name='Vincent' children={<span>Children can be anything</span>} />
-        <AwesomeComponent />
-        <GoalsList goals={GOALS} />
-      </div>
-    )
-  }
+RouteHome.propTypes = {
+  goals: PropTypes.array,
 };
 
 export default RouteHome;

@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-class RouteAbout extends React.Component{
+class RouteAbout extends React.Component {
+
   render() {
     return (
       <div>
-        This is the about page
+        <p>
+          Name: {this.props.name}
+        </p>
+        <p>
+          Age: {this.props.age}
+        </p>
+        <p>
+          Occupation: {this.props.occupation}
+        </p>
+        <p>
+          INFO: {this.props.info}
+        </p>
       </div>
     )
   }
-};
+}
 
 export default RouteAbout;
