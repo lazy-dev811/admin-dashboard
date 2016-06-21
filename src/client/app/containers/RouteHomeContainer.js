@@ -20,13 +20,23 @@ class RouteHomeContainer extends React.Component {
           id: 3,
           name: 'react hot loader',
         }
+      ],
+      info: [
+        {
+          id: 0,
+          desc: 'Note the difference between HomeContainer and AboutContainer. HomeContainer passes along attributes with properties and AboutContainer uses spread'
+        },
+        {
+          id: 1,
+          desc: 'Note the difference between RouteHome and RouteAbout. RouteHome is a pure function, while RouteAbout is a class'
+        }
       ]
     }
   }
 
   render() {
     return (
-      <RouteHome goals={this.state.goals} />
+      <RouteHome goals={this.state.goals} info={this.state.info} />
     );
   }
 

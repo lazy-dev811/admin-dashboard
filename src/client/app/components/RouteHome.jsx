@@ -4,18 +4,21 @@ import AwesomeComponent from './AwesomeComponent.jsx';
 import GoalsList from './GoalsList.jsx';
 import SomeComponent from './SomeComponent.jsx';
 
-const RouteHome = ({ goals }) => {
+const RouteHome = ({ goals, info }) => {
   return (
     <div>
       <SomeComponent name='Vincent' children={<span>Children can be anything</span>} />
       <AwesomeComponent />
       <GoalsList goals={goals} />
+
+      {info.map(x => <p key={x.id}>INFO: <b>{x.desc}</b></p>)}
     </div>
   )
 };
 
 RouteHome.propTypes = {
   goals: PropTypes.array,
+  info: PropTypes.array,
 };
 
 export default RouteHome;

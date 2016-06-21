@@ -26797,6 +26797,7 @@
 	
 	var RouteHome = function RouteHome(_ref) {
 	  var goals = _ref.goals;
+	  var info = _ref.info;
 	
 	  return _react2.default.createElement(
 	    'div',
@@ -26807,12 +26808,25 @@
 	        'Children can be anything'
 	      ) }),
 	    _react2.default.createElement(_AwesomeComponent2.default, null),
-	    _react2.default.createElement(_GoalsList2.default, { goals: goals })
+	    _react2.default.createElement(_GoalsList2.default, { goals: goals }),
+	    info.map(function (x) {
+	      return _react2.default.createElement(
+	        'p',
+	        { key: x.id },
+	        'INFO: ',
+	        _react2.default.createElement(
+	          'b',
+	          null,
+	          x.desc
+	        )
+	      );
+	    })
 	  );
 	};
 	
 	RouteHome.propTypes = {
-	  goals: _react.PropTypes.array
+	  goals: _react.PropTypes.array,
+	  info: _react.PropTypes.array
 	};
 	
 	exports.default = RouteHome;
@@ -27128,6 +27142,13 @@
 	      }, {
 	        id: 3,
 	        name: 'react hot loader'
+	      }],
+	      info: [{
+	        id: 0,
+	        desc: 'Note the difference between HomeContainer and AboutContainer. HomeContainer passes along attributes with properties and AboutContainer uses spread'
+	      }, {
+	        id: 1,
+	        desc: 'Note the difference between RouteHome and RouteAbout. RouteHome is a pure function, while RouteAbout is a class'
 	      }]
 	    };
 	    return _this;
@@ -27136,7 +27157,7 @@
 	  _createClass(RouteHomeContainer, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_RouteHome2.default, { goals: this.state.goals });
+	      return _react2.default.createElement(_RouteHome2.default, { goals: this.state.goals, info: this.state.info });
 	    }
 	  }]);
 	
