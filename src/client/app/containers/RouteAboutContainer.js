@@ -9,13 +9,27 @@ class RouteAboutContainer extends React.Component {
       name: 'Vincent',
       age: 27,
       occupation: 'Front-end developer',
-      info: 'Using React.Component. Not needed in this case but spicing things up'
+      info: 'Using React.Component. Not needed in this case but spicing things up',
+      apiData: {}
     }
+  }
+
+  componentWillMount() {
+    fetch('https://api.myjson.com/bins/12s83')
+      .then(reponse => {
+        return reponse.json();
+      }).then(data => {
+        this.setState({
+          apiData: data
+        });
+      })
   }
 
   render() {
     return (
-      <RouteAbout {...this.state} />
+      <div>
+        <RouteAbout {...this.state} />
+      </div>
     )
   }
 }

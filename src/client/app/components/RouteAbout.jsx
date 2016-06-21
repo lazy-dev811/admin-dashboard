@@ -15,6 +15,9 @@ class RouteAbout extends React.Component {
           Occupation: {this.props.occupation}
         </p>
         <p>
+          APIData: {this.props.apiData.title}
+        </p>
+        <p>
           INFO: <b>{this.props.info}</b>
         </p>
       </div>

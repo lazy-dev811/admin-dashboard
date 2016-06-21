@@ -26969,6 +26969,12 @@
 	        _react2.default.createElement(
 	          'p',
 	          null,
+	          'APIData: ',
+	          this.props.apiData.title
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
 	          'INFO: ',
 	          _react2.default.createElement(
 	            'b',
@@ -27104,15 +27110,33 @@
 	      name: 'Vincent',
 	      age: 27,
 	      occupation: 'Front-end developer',
-	      info: 'Using React.Component. Not needed in this case but spicing things up'
+	      info: 'Using React.Component. Not needed in this case but spicing things up',
+	      apiData: {}
 	    };
 	    return _this;
 	  }
 	
 	  _createClass(RouteAboutContainer, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      var _this2 = this;
+	
+	      fetch('https://api.myjson.com/bins/12s83').then(function (reponse) {
+	        return reponse.json();
+	      }).then(function (data) {
+	        _this2.setState({
+	          apiData: data
+	        });
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_RouteAbout2.default, this.state);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_RouteAbout2.default, this.state)
+	      );
 	    }
 	  }]);
 	
