@@ -27839,7 +27839,7 @@
 	var _index = __webpack_require__(/*! ../actions/index.js */ 251);
 	
 	var initialState = {
-	  userAdded: false
+	  user: ''
 	};
 	
 	var addUserReducer = function addUserReducer() {
@@ -27848,9 +27848,8 @@
 	
 	  switch (action.type) {
 	    case 'ADD_USER':
-	      console.log('IN REDUCER');
 	      var newState = Object.assign({}, state);
-	      newState.userAdded = true;
+	      newState.user = action.user;
 	      return newState;
 	
 	    default:
@@ -27872,12 +27871,19 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	var BUTTON_CLICKED = exports.BUTTON_CLICKED = 'BUTTON_CLICKED';
 	var ADD_USER = exports.ADD_USER = 'ADD_USER';
 	
-	var addUser = exports.addUser = function addUser() {
+	var buttonClicked = exports.buttonClicked = function buttonClicked() {
+	  return {
+	    type: BUTTON_CLICKED
+	  };
+	};
+	
+	var addUser = exports.addUser = function addUser(user) {
 	  return {
 	    type: ADD_USER,
-	    userAdded: true
+	    user: user
 	  };
 	};
 
@@ -28193,15 +28199,30 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(RouteAbout).call(this, props));
 	
 	    _this.state = {
-	      userAdded: false
+	      buttonClicked: false,
+	      user: '',
+	      users: []
 	    };
 	    return _this;
 	  }
 	
 	  _createClass(RouteAbout, [{
-	    key: 'testAddUser',
-	    value: function testAddUser() {
-	      _configureStore2.default.dispatch((0, _index.addUser)());
+	    key: 'addUser',
+	    value: function addUser() {
+	      _configureStore2.default.dispatch((0, _index.addUser)(this.state.user));
+	      this.state.users.push(this.state.user);
+	    }
+	  }, {
+	    key: 'buttonClicked',
+	    value: function buttonClicked() {
+	      _configureStore2.default.dispatch((0, _index.buttonClicked)());
+	    }
+	  }, {
+	    key: 'handleChange',
+	    value: function handleChange(e) {
+	      this.setState({
+	        user: e.target.value
+	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -28211,7 +28232,8 @@
 	      _configureStore2.default.subscribe(function () {
 	        var currentStore = _configureStore2.default.getState();
 	        _this2.setState({
-	          userAdded: currentStore.addUserReducer.userAdded
+	          buttonClicked: currentStore.buttonClickedReducer.buttonClicked,
+	          user: currentStore.addUserReducer.user
 	        });
 	      });
 	    }
@@ -28226,15 +28248,40 @@
 	          null,
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.testAddUser.bind(this) },
-	            'Dispatch'
+	            { onClick: this.buttonClicked.bind(this) },
+	            'Button click'
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'p',
 	          null,
-	          'Dispatched: ',
-	          '' + this.state.userAdded
+	          'Button clicked: ',
+	          '' + this.state.buttonClicked
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          _react2.default.createElement('input', { type: 'text', value: this.state.user, onChange: this.handleChange.bind(this) }),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.addUser.bind(this) },
+	            'Add user'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'User: ',
+	          this.state.user
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Users: [',
+	          this.state.users.map(function (x) {
+	            return ' ' + x + ' ';
+	          }),
+	          ']'
 	        ),
 	        _react2.default.createElement(
 	          'p',
@@ -28298,6 +28345,10 @@
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
+	var _buttonClickedReducer = __webpack_require__(/*! ../reducers/buttonClickedReducer.js */ 259);
+	
+	var _buttonClickedReducer2 = _interopRequireDefault(_buttonClickedReducer);
+	
 	var _addUserReducer = __webpack_require__(/*! ../reducers/addUserReducer.js */ 250);
 	
 	var _addUserReducer2 = _interopRequireDefault(_addUserReducer);
@@ -28305,13 +28356,52 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default);
+	
 	var reducers = (0, _redux.combineReducers)({
+	  buttonClickedReducer: _buttonClickedReducer2.default,
 	  addUserReducer: _addUserReducer2.default
 	});
 	
 	var store = (0, _redux.createStore)(reducers, createStoreWithMiddleware);
 	
 	exports.default = store;
+
+/***/ },
+/* 258 */,
+/* 259 */
+/*!*********************************************************!*\
+  !*** ./src/client/app/reducers/buttonClickedReducer.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _index = __webpack_require__(/*! ../actions/index.js */ 251);
+	
+	var initialState = {
+	  buttonClicked: false
+	};
+	
+	var buttonClickedReducer = function buttonClickedReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case 'BUTTON_CLICKED':
+	      var newState = Object.assign({}, state);
+	      newState.buttonClicked = true;
+	      return newState;
+	
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = buttonClickedReducer;
 
 /***/ }
 /******/ ]);

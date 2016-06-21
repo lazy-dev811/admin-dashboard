@@ -1,26 +1,40 @@
 import React, { PropTypes } from 'react';
 import store from '../store/configureStore.js';
 
-import { addUser } from '../actions/index.js';
+import { addUser, buttonClicked } from '../actions/index.js';
 
 class RouteAbout extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      userAdded: false
+      buttonClicked: false,
+      user: '',
+      users: [],
     }
   }
 
-  testAddUser() {
-    store.dispatch(addUser());
+  addUser() {
+    store.dispatch(addUser(this.state.user));
+    this.state.users.push(this.state.user)
+  }
+
+  buttonClicked() {
+    store.dispatch(buttonClicked());
+  }
+
+  handleChange(e) {
+    this.setState({
+      user: e.target.value
+    })
   }
 
   componentDidMount() {
     store.subscribe(() => {
       let currentStore = store.getState();
       this.setState({
-        userAdded: currentStore.addUserReducer.userAdded
+        buttonClicked: currentStore.buttonClickedReducer.buttonClicked,
+        user: currentStore.addUserReducer.user,
       })
     });
   }
@@ -29,10 +43,20 @@ class RouteAbout extends React.Component {
     return (
       <div>
         <p>
-          <button onClick={this.testAddUser.bind(this)}>Dispatch</button>
+          <button onClick={this.buttonClicked.bind(this)}>Button click</button>
         </p>
         <p>
-          Dispatched: {`${this.state.userAdded}`}
+          Button clicked: {`${this.state.buttonClicked}`}
+        </p>
+        <p>
+          <input type="text" value={this.state.user} onChange={this.handleChange.bind(this)}></input>
+          <button onClick={this.addUser.bind(this)}>Add user</button>
+        </p>
+        <p>
+          User: {this.state.user}
+        </p>
+        <p>
+          Users: [{this.state.users.map(x => ` ${x} `)}]
         </p>
         <p>
           Name: {this.props.name}
