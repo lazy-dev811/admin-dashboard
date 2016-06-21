@@ -26970,7 +26970,11 @@
 	          'p',
 	          null,
 	          'INFO: ',
-	          this.props.info
+	          _react2.default.createElement(
+	            'b',
+	            null,
+	            this.props.info
+	          )
 	        )
 	      );
 	    }
