@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import store from '../store/configureStore.js';
+import { connect } from 'react-redux';
 
 import { addUser, buttonClicked } from '../actions/index.js';
 
@@ -29,15 +30,15 @@ class RouteAbout extends React.Component {
     })
   }
 
-  componentDidMount() {
-    store.subscribe(() => {
-      let currentStore = store.getState();
-      this.setState({
-        buttonClicked: currentStore.buttonClickedReducer.buttonClicked,
-        user: currentStore.addUserReducer.user,
-      })
-    });
-  }
+  // componentDidMount() {
+  //   store.subscribe(() => {
+  //     let currentStore = store.getState();
+  //     this.setState({
+  //       buttonClicked: currentStore.buttonClickedReducer.buttonClicked,
+  //       user: currentStore.addUserReducer.user,
+  //     })
+  //   });
+  // }
 
   render() {
     return (
@@ -46,7 +47,7 @@ class RouteAbout extends React.Component {
           <button onClick={this.buttonClicked.bind(this)}>Button click</button>
         </p>
         <p>
-          Button clicked: {`${this.state.buttonClicked}`}
+          Button clicked: {`${this.props.buttonClicked}`}
         </p>
         <p>
           <input type="text" value={this.state.user} onChange={this.handleChange.bind(this)}></input>
@@ -78,4 +79,9 @@ class RouteAbout extends React.Component {
   }
 }
 
-export default RouteAbout;
+const storeSelector = (store) => ({
+  buttonClicked: store.buttonClickedReducer.buttonClicked,
+  user: store.addUserReducer.user,
+})
+
+export default connect(storeSelector)(RouteAbout);
