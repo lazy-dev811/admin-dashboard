@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 import AwesomeComponent from './AwesomeComponent.jsx';
 import GoalsList from './GoalsList.jsx';
 import SomeComponent from './SomeComponent.jsx';
+import TodoList from './TodoList.jsx';
 
 const RouteHome = ({ goals, info }) => {
 
@@ -13,6 +14,8 @@ const RouteHome = ({ goals, info }) => {
       <GoalsList goals={goals} />
 
       {info.map(x => <p key={x.id}>INFO: <b>{x.desc}</b></p>)}
+
+      <TodoList />
     </div>
   )
 };

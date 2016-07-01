@@ -15,7 +15,6 @@ class GoalsList extends React.Component {
       <ul>{item}</ul>
     )
   }
-
 }
 
 export default GoalsList;
