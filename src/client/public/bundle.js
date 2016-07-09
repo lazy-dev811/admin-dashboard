@@ -20934,7 +20934,7 @@
 	
 	var _RouteHomeContainer2 = _interopRequireDefault(_RouteHomeContainer);
 	
-	var _RouteAboutContainer = __webpack_require__(/*! ./containers/RouteAboutContainer.js */ 265);
+	var _RouteAboutContainer = __webpack_require__(/*! ./containers/RouteAboutContainer.js */ 266);
 	
 	var _RouteAboutContainer2 = _interopRequireDefault(_RouteAboutContainer);
 	
@@ -28624,25 +28624,6 @@
 	  return _react2.default.createElement(
 	    'div',
 	    null,
-	    _react2.default.createElement(_SomeComponent2.default, { name: 'Vincent', children: _react2.default.createElement(
-	        'span',
-	        null,
-	        'Children can be anything'
-	      ) }),
-	    _react2.default.createElement(_AwesomeComponent2.default, null),
-	    _react2.default.createElement(_GoalsList2.default, { goals: goals }),
-	    info.map(function (x) {
-	      return _react2.default.createElement(
-	        'p',
-	        { key: x.id },
-	        'INFO: ',
-	        _react2.default.createElement(
-	          'b',
-	          null,
-	          x.desc
-	        )
-	      );
-	    }),
 	    _react2.default.createElement(_TodoList2.default, null)
 	  );
 	};
@@ -28865,6 +28846,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _classnames = __webpack_require__(/*! classnames */ 265);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -28887,17 +28872,20 @@
 	      todos: [{
 	        name: 'learn react',
 	        order: 1,
+	        selected: false,
 	        done: false
 	      }, {
 	        name: 'learn redux',
 	        order: 2,
+	        selected: false,
 	        done: false
 	      }, {
 	        name: 'complete todos app',
 	        order: 3,
+	        selected: false,
 	        done: false
 	      }],
-	      todoOptions: ['don', 'rem', 'ren']
+	      filterDone: false
 	    };
 	    return _this;
 	  }
@@ -28905,6 +28893,19 @@
 	  _createClass(TodoList, [{
 	    key: 'selectTodo',
 	    value: function selectTodo(todo) {
+	      var todos = this.state.todos.map(function (x) {
+	        if (x === todo) {
+	          x.selected = !x.selected;
+	        }
+	        return x;
+	      });
+	      this.setState({
+	        todos: todos
+	      });
+	    }
+	  }, {
+	    key: 'setTodoDone',
+	    value: function setTodoDone(todo) {
 	      var todos = this.state.todos.map(function (x) {
 	        if (x === todo) {
 	          x.done = !x.done;
@@ -28919,12 +28920,47 @@
 	    key: 'addTodo',
 	    value: function addTodo() {
 	      var inputValue = document.querySelector('.input-field').value;
+	      if (!inputValue) return;
+	
 	      this.setState({
 	        todos: [].concat(_toConsumableArray(this.state.todos), [{
 	          name: inputValue,
 	          order: this.state.todos.length + 1,
+	          selected: false,
 	          done: false
 	        }])
+	      });
+	    }
+	  }, {
+	    key: 'removeTodos',
+	    value: function removeTodos() {
+	      this.setState({
+	        todos: this.state.todos.filter(function (x) {
+	          return !x.selected;
+	        })
+	      });
+	    }
+	  }, {
+	    key: 'sortTodos',
+	    value: function sortTodos() {}
+	  }, {
+	    key: 'filterSelected',
+	    value: function filterSelected() {
+	      var toggle = this.state.filterDone;
+	      var todos = void 0;
+	      console.log(toggle);
+	      if (toggle) {
+	        todos = this.state.todos.filter(function (x) {
+	          return !x.done;
+	        });
+	      } else {
+	        todos = this.state.todos.filter(function (x) {
+	          return x.done;
+	        });
+	      }
+	      this.setState({
+	        // todos,
+	        filterDone: !this.state.filterDone
 	      });
 	    }
 	  }, {
@@ -28942,28 +28978,59 @@
 	        ),
 	        _react2.default.createElement(
 	          'ul',
+	          { className: 'filters' },
+	          _react2.default.createElement(
+	            'li',
+	            { className: 'filters__filter', onClick: function onClick() {
+	                return _this2.sortTodos();
+	              } },
+	            'Name'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { className: 'filters__filter', onClick: function onClick() {
+	                return _this2.filterSelected();
+	              } },
+	            'DONE'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'ul',
 	          { className: 'todos' },
 	          this.state.todos.map(function (todo, index) {
+	            var baseClass = (0, _classnames2.default)('todos__todo', {
+	              'is-selected': todo.selected,
+	              'is-done': todo.done,
+	              'is-hidden': _this2.state.filterDone && todo.done
+	            });
 	            return _react2.default.createElement(
 	              'li',
-	              { className: 'todos__todo', draggable: 'true', onClick: function onClick() {
+	              { className: baseClass, key: index, draggable: 'true', onClick: function onClick() {
 	                  return _this2.selectTodo(todo);
 	                } },
 	              _react2.default.createElement(
 	                'ul',
 	                { className: 'todos__todo__options' },
-	                _this2.state.todoOptions.map(function (todoOption) {
-	                  return _react2.default.createElement(
-	                    'li',
-	                    { className: 'todos__todo__options__option' },
-	                    todoOption
-	                  );
-	                })
+	                _react2.default.createElement(
+	                  'li',
+	                  { className: 'todos__todo__options__option', onClick: function onClick() {
+	                      return _this2.setTodoDone(todo);
+	                    } },
+	                  'Done'
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  { className: 'todos__todo__options__option', onClick: function onClick() {
+	                      return _this2.removeTodo(todo);
+	                    } },
+	                  'Remove'
+	                )
 	              ),
 	              todo.name,
-	              ' (',
-	              '' + todo.done,
-	              ')'
+	              ' ',
+	              todo.selected && 'SELECTED',
+	              ' ',
+	              todo.done && 'DONE'
 	            );
 	          })
 	        ),
@@ -28980,7 +29047,9 @@
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'btn' },
+	            { type: 'submit', onClick: function onClick() {
+	                return _this2.removeTodos();
+	              }, className: 'btn' },
 	            'Remove selected'
 	          )
 	        )
@@ -28997,6 +29066,63 @@
 
 /***/ },
 /* 265 */
+/*!*******************************!*\
+  !*** ./~/classnames/index.js ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+	
+	(function () {
+		'use strict';
+	
+		var hasOwn = {}.hasOwnProperty;
+	
+		function classNames () {
+			var classes = [];
+	
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+	
+				var argType = typeof arg;
+	
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+	
+			return classes.join(' ');
+		}
+	
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 266 */
 /*!**********************************************************!*\
   !*** ./src/client/app/containers/RouteAboutContainer.js ***!
   \**********************************************************/
@@ -29014,7 +29140,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _RouteAbout = __webpack_require__(/*! ../components/RouteAbout.jsx */ 266);
+	var _RouteAbout = __webpack_require__(/*! ../components/RouteAbout.jsx */ 267);
 	
 	var _RouteAbout2 = _interopRequireDefault(_RouteAbout);
 	
@@ -29074,7 +29200,7 @@
 	exports.default = RouteAboutContainer;
 
 /***/ },
-/* 266 */
+/* 267 */
 /*!**************************************************!*\
   !*** ./src/client/app/components/RouteAbout.jsx ***!
   \**************************************************/

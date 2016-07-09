@@ -9,11 +9,11 @@ const RouteHome = ({ goals, info }) => {
 
   return (
     <div>
-      <SomeComponent name='Vincent' children={<span>Children can be anything</span>} />
+      {/*<SomeComponent name='Vincent' children={<span>Children can be anything</span>} />
       <AwesomeComponent />
       <GoalsList goals={goals} />
 
-      {info.map(x => <p key={x.id}>INFO: <b>{x.desc}</b></p>)}
+      {info.map(x => <p key={x.id}>INFO: <b>{x.desc}</b></p>)}*/}
 
       <TodoList />
     </div>
