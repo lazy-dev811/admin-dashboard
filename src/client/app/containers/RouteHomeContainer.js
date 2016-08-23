@@ -36,7 +36,9 @@ class RouteHomeContainer extends React.Component {
 
   render() {
     return (
-      <RouteHome goals={this.state.goals} info={this.state.info} />
+      <div>
+        <RouteHome goals={this.state.goals} info={this.state.info} />
+      </div>
     );
   }
 

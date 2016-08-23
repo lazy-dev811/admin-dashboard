@@ -6,6 +6,11 @@ import SomeComponent from './SomeComponent.jsx';
 import TodoList from './TodoList.jsx';
 
 const RouteHome = ({ goals, info }) => {
+  let showTodo = false;
+  const appTodoShow = () => {
+    showTodo = !showTodo;
+    return showTodo;
+  };
 
   return (
     <div>
@@ -15,7 +20,7 @@ const RouteHome = ({ goals, info }) => {
 
       {info.map(x => <p key={x.id}>INFO: <b>{x.desc}</b></p>)}*/}
 
-      <TodoList />
+      <TodoList appTodoShow={() => appTodoShow()} />
     </div>
   )
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import Todo from './Todo.jsx';
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -20,8 +21,24 @@ class TodoList extends React.Component {
         order: 3,
         selected: false,
         done: false,
+      },{
+        name: 'gym',
+        order: 4,
+        selected: false,
+        done: false,
+      },{
+        name: 'youve got this',
+        order: 5,
+        selected: false,
+        done: false,
+      },{
+        name: 'youre doing well',
+        order: 6,
+        selected: false,
+        done: false,
       }],
       filterDone: false,
+      show: this.props.appTodoShow(),
     };
   };
 
@@ -50,7 +67,7 @@ class TodoList extends React.Component {
   }
 
   addTodo() {
-    const inputValue = document.querySelector('.input-field').value;
+    const inputValue = this.refs.todoField.value;
     if (!inputValue) return;
 
     this.setState({
@@ -63,7 +80,8 @@ class TodoList extends React.Component {
           done: false,
         }
       ],
-    })
+    });
+    this.refs.todoField.value = '';
   }
 
   removeTodos() {
@@ -76,69 +94,62 @@ class TodoList extends React.Component {
 
   }
 
-  filterSelected() {
+  appTodoClose() {
+    this.setState({
+      show: this.props.appTodoShow()
+    });
+  }
+
+  filterDone() {
     const toggle = this.state.filterDone;
     let todos;
-    console.log(toggle)
     if (toggle) {
       todos = this.state.todos.filter((x) => !x.done)
     } else {
       todos = this.state.todos.filter((x) => x.done)
     }
     this.setState({
-      // todos,
       filterDone: !this.state.filterDone,
     })
   }
 
   render() {
     return (
-      <div className="todo-app">
-        <header className="header">
-          TODO APP WIP
-        </header>
+      <div>
+        {this.state.show &&
+          <div className="todo-app">
+            <header className="header todo__header">
+              <svg className="icon header__burger"><use xlinkHref="app/assets/icons/burger.svg"></use></svg>
+              <svg className="icon header__close" onClick={() => this.appTodoClose()}><use xlinkHref="app/assets/icons/close.svg#svg-sync"></use></svg>
+            </header>
 
-        <ul className="filters">
-          <li className="filters__filter" onClick={() => this.sortTodos()}>
-            Name
-          </li>
-          <li className="filters__filter" onClick={() => this.filterSelected()}>
-            DONE
-          </li>
-        </ul>
-
-        <ul className="todos">
-          {this.state.todos.map((todo, index) => {
-            const baseClass = classNames('todos__todo', {
-              'is-selected': todo.selected,
-              'is-done': todo.done,
-              'is-hidden': this.state.filterDone && todo.done,
-            })
-            return (
-              <li className={baseClass} key={index} draggable="true" onClick={() => this.selectTodo(todo)}>
-                <ul className="todos__todo__options">
-                  <li className="todos__todo__options__option" onClick={() => this.setTodoDone(todo)}>
-                    Done
-                  </li>
-                  <li className="todos__todo__options__option" onClick={() => this.removeTodo(todo)}>
-                    Remove
-                  </li>
-                </ul>
-
-                {todo.name} {todo.selected && 'SELECTED'} {todo.done && 'DONE'}
+            <ul className="filters">
+              <li className="filters__filter" onClick={() => this.sortTodos()}>
+                Name
               </li>
-            )
-          })}
-        </ul>
-        <footer className="footer">
-          <input type="text" className="input-field"></input>
-          <button type="submit" onClick={() => this.addTodo()} className="btn">
-            Add
-          </button>
-          <button type="submit" onClick={() => this.removeTodos()} className="btn">
-            Remove selected
-          </button>
-        </footer>
+              <li className="filters__filter" onClick={() => this.filterDone()}>
+                DONE
+              </li>
+            </ul>
+
+            <ul className="todos">
+              {this.state.todos.map((todo, index) => (
+                <Todo
+                  todo={todo}
+                  selectTodo={() => this.selectTodo(todo)}
+                  setTodoDone={() => this.setTodoDone(todo)}
+                  removeTodo={() => this.removeTodo(todo)}
+                  filterDone={this.state.filterDone}
+                />
+              ))}
+            </ul>
+            <footer className="footer todo__footer">
+              <input type="text" className="input-field" placeholder="Enter goal name" ref="todoField"></input>
+              <svg className="icon footer__btn btn__icon is-disabled" onClick={() => this.addTodo()}><use xlinkHref="app/assets/icons/add.svg#svg-sync"></use></svg>
+              <svg className="icon footer__btn btn__icon" onClick={() => this.removeTodos()}><use xlinkHref="app/assets/icons/delete.svg#svg-sync"></use></svg>
+            </footer>
+          </div>
+        }
       </div>
     )
   };
