@@ -1,79 +1,79 @@
 @import '../../scss/inc/_base.scss';
-
 $slider-arrow-w: 50px;
+
 .slider-wrap {
-    z-index: 2;
-    position: fixed;
-    bottom: 0;
-    padding: 0 $slider-arrow-w;
-    width: 100%;
-    height: $slider-h;
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(calc(100% - #{$spacing}));
-    transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  padding: 0 $slider-arrow-w;
+  width: 100%;
+  height: $slider-h;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(calc(100% - #{$spacing}));
+  transition: transform .3s ease, background-color .3s ease;
 
-    &:hover {
-        transform: translateY(0);
-        background-color: #fff;
-
-        .slider-arrow {
-            opacity: 1;
-        }
-    }
-}
+  &:hover {
+    transform: translateY(0);
+    background-color: #fff;
 
     .slider-arrow {
-        opacity: 0;
-        z-index: 1;
-        position: absolute;
-        height: $slider-h;
-        line-height: $slider-h;
-        width: $slider-arrow-w;
-        text-align: center;
-        font-size: 16px;
-        text-transform: uppercase;
-        background-color: #fff;
-        color: #ccc;
-        cursor: pointer;
-        transition: opacity 0.3s ease, color 0.3s ease;
+      opacity: 1;
+    }
+  }
+}
 
-        &--prev {
-            left: 0;
-        }
+.slider-arrow {
+  opacity: 0;
+  z-index: 1;
+  position: absolute;
+  height: $slider-h;
+  line-height: $slider-h;
+  width: $slider-arrow-w;
+  text-align: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: #ccc;
+  cursor: pointer;
+  transition: opacity .3s ease, color .3s ease;
 
-        &--next {
-            right: 0;
-            cursor: pointer;
+  &--prev {
+    left: 0;
+  }
 
-            &:hover {
-                color: $color;
-            }
-        }
+  &--next {
+    right: 0;
+    cursor: pointer;
 
-        &.disabled {
-            color: #eee;
-            cursor: not-allowed;
-        }
+    &:hover {
+      color: $color;
+    }
+  }
+
+  &.disabled {
+    color: #eee;
+    cursor: not-allowed;
+  }
+}
+
+.slider {
+  white-space: nowrap;
+  transition: transform .3s ease;
+
+  &__slide {
+    width: 25%;
+    text-align: center;
+    line-height: $slider-h;
+    cursor: pointer;
+
+    &.is-active {
+      color: $color;
     }
 
-    .slider {
-        white-space: nowrap;
-        transition: transform 0.3s ease;
-
-        &__slide {
-            width: 25%;
-            text-align: center;
-            line-height: $slider-h;
-            cursor: pointer;
-
-            &.is-active {
-                color: $color;
-            }
-
-            &:hover {
-                .slider__slide__title {
-                    color: $color;
-                }
-            }
-        }
+    &:hover {
+      .slider__slide__title {
+        color: $color;
+      }
     }
+  }
+}
