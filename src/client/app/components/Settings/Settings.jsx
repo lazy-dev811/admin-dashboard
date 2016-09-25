@@ -10,7 +10,7 @@ const Settings = ({ options }) => (
           <li className="pg-settings__options__option cf">
            {/* ng-className="{ 'is-active' : option.value }" */}
             <label className="label pg-settings__options__option__label"
-             for={`${option}-${index}`}>
+             htmlFor={`${option}-${index}`}>
               {option.label}
             </label>
             <div className="input-container input-container--switch">
@@ -19,7 +19,7 @@ const Settings = ({ options }) => (
               //  ng-change="options.update(option.id)"
                type="checkbox"
                id={`${option}-${index}`} />
-              <label for="option-{{ $index }}" />
+              <label htmlFor="option-{{ $index }}" />
             </div>
           </li>
         )

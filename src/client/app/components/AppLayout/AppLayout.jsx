@@ -6,6 +6,7 @@ import SliderContainer from '../../containers/SliderContainer.js';
 import ColorPickerContainer from '../../containers/ColorPickerContainer.js';
 import SettingsContainer from '../../containers/SettingsContainer.js';
 import ToastMessagesContainer from '../../containers/ToastMessagesContainer.js';
+import SliderDetailContainer from '../../containers/SliderDetailContainer.js';
 
 require('./AppLayout.scss');
 
@@ -18,6 +19,7 @@ const AppLayout = ({ children }) => {
       <ColorPickerContainer />
       <SettingsContainer />
       <ToastMessagesContainer />
+      <SliderDetailContainer />
 
       <div className="app-content">
         {children}

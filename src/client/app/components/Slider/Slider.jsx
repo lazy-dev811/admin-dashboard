@@ -18,8 +18,8 @@ const Slider = ({ apps }) => (
     <ul className="slider">
       {apps.map(app => {
         return (
-          <li ng-repeat="person in population track by $index"
-            className="slider__slide">
+          <li className="slider__slide">
+          {/* ng-repeat="person in population track by $index" */}
             {/* ng-className="{ 'is-active': person._id === selectedPerson._id }"
             ng-click="selectPerson(person)"> */}
             <div className="slider__slide__title">
