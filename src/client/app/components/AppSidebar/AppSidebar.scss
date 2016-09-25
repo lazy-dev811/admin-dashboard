@@ -1,0 +1,75 @@
+@import '../../scss/inc/_base.scss';
+
+$item-h: 40px;
+$item-spacing: 20px;
+.pgSidebar {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #444;
+    transform: translateX(calc(-100% + #{$item-spacing}));
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+        transform: translateY(0);
+        background-color: #fff;
+    }
+
+    &__list {
+        padding: 10px 0;
+
+        &__item {
+            display: block;
+            position: relative;
+            padding: 0 $item-spacing;
+            line-height: $item-h;
+            cursor: pointer;
+
+            &:hover {
+                color: $color;
+
+                .pgSidebar__sublist {
+                    opacity: 1;
+                    visibility: visible;
+                    color: #fff;
+                }
+            }
+
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
+    }
+
+    &__sublist {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        padding: $item-spacing 0;
+        border-left: 0 solid $color;
+        background-color: #444;
+        cursor: default;
+        transform: translateY(-$item-spacing);
+        transition: border-width 0.1s ease-out;
+
+        &:hover {
+            border-width: 5px;
+        }
+
+        &__item {
+            display: block;
+            padding: 0 $item-spacing;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color;
+            }
+        }
+    }
+}

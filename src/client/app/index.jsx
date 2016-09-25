@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-require("style!css!sass!./scss/style.scss");
+// require("!style!css!sass!./scss/style.scss");
 
 import Application from './Application.jsx';
 

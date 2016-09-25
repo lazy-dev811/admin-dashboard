@@ -1,33 +1,19 @@
 import React, { PropTypes } from 'react';
 
-import AwesomeComponent from './AwesomeComponent.jsx';
-import GoalsList from './GoalsList.jsx';
-import SomeComponent from './SomeComponent.jsx';
-import TodoList from './TodoList.jsx';
+import TodoListContainer from '../containers/TodoListContainer.js';
+import GreetContainer from '../containers/GreetContainer.js';
+import QuoteContainer from '../containers/QuoteContainer.js';
 
-const RouteHome = ({ goals, info }) => {
-  let showTodo = false;
-  const appTodoShow = () => {
-    showTodo = !showTodo;
-    return showTodo;
-  };
-
+const RouteHome = () => {
   return (
     <div>
-      {/*<SomeComponent name='Vincent' children={<span>Children can be anything</span>} />
-      <AwesomeComponent />
-      <GoalsList goals={goals} />
-
-      {info.map(x => <p key={x.id}>INFO: <b>{x.desc}</b></p>)}*/}
-
-      <TodoList appTodoShow={() => appTodoShow()} />
+      <TodoListContainer />
+      <GreetContainer />
+      <QuoteContainer />
     </div>
   )
 };
 
-RouteHome.propTypes = {
-  goals: PropTypes.array,
-  info: PropTypes.array,
-};
+RouteHome.propTypes = {};
 
 export default RouteHome;

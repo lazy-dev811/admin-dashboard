@@ -1,25 +1,17 @@
 // --------------------------------------------------------------------------
-// Main Sass file
-// --------------------------------------------------------------------------
-
-@charset "UTF-8";
-
-
 // Inc
 // --------------------------------------------------------------------------
-@import "./inc/_inc";
 
+@import "base";
 
-// Helpers
+// Fonts
 // --------------------------------------------------------------------------
-@import "./helpers/_helpers";
+@import "font";
+@import "font-icon";
+@import "fontello";
 
 
-// Globals
+// Highlighting
 // --------------------------------------------------------------------------
-@import "./globals/_globals";
-
-
-body {
-  color: red !important;
-}
+@import "highlighting";
+@import "scrollbars";

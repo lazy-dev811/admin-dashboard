@@ -3,7 +3,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store/configureStore';
 
-import AppLayout from './components/AppLayout.jsx';
+import AppLayout from './components/AppLayout/AppLayout.jsx';
 import RouteHomeContainer from './containers/RouteHomeContainer.js';
 import RouteAboutContainer from './containers/RouteAboutContainer.js';
 

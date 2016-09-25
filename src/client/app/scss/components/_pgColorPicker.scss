@@ -1,0 +1,105 @@
+$item-s: 20px;
+
+.pg-color-picker {
+    opacity: .3;
+    z-index: 1;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    padding: 20px;
+    background-color: #fff;
+    transform: translate(100%, -50%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    &:hover,
+    &.is-active {
+        opacity: 1;
+        transform: translate(0, -50%);
+
+        .icon-default {
+            transform: translate(-50%, -50%) rotate(90deg);
+            opacity: 0;
+            transition-delay: 0.4s, 0.3s;
+
+        }
+
+        .icon-active {
+            transform: translate(-50%, -50%) rotate(0deg);
+            opacity: 1;
+            transition-delay: 0.4s, 0.3s;
+        }
+    }
+
+    &__list {
+
+        &__item {
+            position: relative;
+            margin-top: 1px;
+            margin-right: 1px;
+            float: left;
+            width: $item-s;
+            height: $item-s;
+            background-color: #ddd;
+            cursor: pointer;
+
+            &:nth-child(-n + 4) {
+                margin-top: 0;
+            }
+
+            &:nth-child(4n) {
+                margin-right: 0;
+            }
+
+            &:nth-child(4n + 1) {
+                clear: left;
+            }
+
+            &.is-active {
+                z-index: 2;
+                box-shadow: 0 0 0 1px #444;
+
+                &:active {
+                    transition: box-shadow 1s ease;
+                    box-shadow: 0 0 0 1px #444,
+                                inset 0 0 0 10px #444;
+                }
+            }
+
+            &:active {
+                z-index: 1;
+                transition: box-shadow 1s ease;
+                box-shadow: 0 0 0 1px #444,
+                            inset 0 0 0 10px #444;
+            }
+        }
+    }
+
+    &__toggle {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 18px;
+            color: #444;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, opacity 0.2s ease;
+            transition-delay: 0.4s, 0.3s;
+        }
+
+        .icon-active {
+            transform: translate(-50%, -50%) rotate(90deg);
+            opacity: 0;
+            color: $b-color-primary;
+            transition-delay: 0.4s, 0.3s;
+        }
+    }
+}

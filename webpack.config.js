@@ -1,16 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
-// var css = require('style2.scss');
-// var css = require('!style!css!sass!./file.scss');
-// var css = require("!css!sass!./file.scss");
 
 
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 var SCSS_DIR = path.resolve(__dirname, 'src/client/app');
 var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 
-
-// var css = require("!raw!sass!/app/scss/style.scss");
 
 var config = {
   entry: [

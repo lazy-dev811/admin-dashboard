@@ -1,14 +1,24 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-const Todo = ({ todo, selectTodo, setTodoDone, removeTodo, filterDone }) => {
+const Todo = ({
+  todo,
+  selectTodo,
+  setTodoDone,
+  removeTodo,
+  filterDone,
+}) => {
   const baseClass = classNames('todos__todo cf', {
     'is-selected': todo.selected,
     'is-done': todo.done,
     'is-hidden': filterDone && todo.done,
   });
   return (
-    <li className={baseClass} key={todo.order} draggable="true" onClick={() => selectTodo(todo)}>
+    <li className={baseClass}
+      key={todo.order}
+      draggable="true"
+      onClick={() => selectTodo(todo)}
+    >
       <div className="todos__todo__toggle"></div>
       <div className="todos__todo__lel">
         <div className="todos__todo__options">
@@ -27,7 +37,7 @@ const Todo = ({ todo, selectTodo, setTodoDone, removeTodo, filterDone }) => {
         </div>
 
         <div className="todos__todo__title">
-          {todo.name}SSSSssss
+          {todo.name}
         </div>
       </div>
     </li>

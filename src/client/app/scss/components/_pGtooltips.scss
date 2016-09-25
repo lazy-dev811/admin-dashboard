@@ -1,0 +1,36 @@
+// --------------------------------------------------------------------------
+// Tooltips
+// --------------------------------------------------------------------------
+
+[data-title] {
+    &:after {
+        content: attr(data-title);
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        padding: 5px 10px;
+        white-space: nowrap;
+        font-size: 13px;
+        border-radius: 2px;
+        background-color: #444;
+        color: #fff;
+        transform: translate(-50%, -5px);
+        transition: opacity 0.2s ease;
+        transition-delay: 0.5s;
+    }
+
+    &:hover {
+        &:after {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &.is-noob {
+        .icon:last-child {
+            color: $b-color-dark;
+        }
+    }
+}
