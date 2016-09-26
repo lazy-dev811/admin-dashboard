@@ -4,3 +4,12 @@ export function selectBook(book) {
     payLoad: book,
   };
 }
+
+export const BOOKS_REQUESTED = 'BOOKS_REQUESTED';
+export const booksRequested = (data) => {
+  console.log('data', data);
+  return {
+    type: BOOKS_REQUESTED,
+    books: data,
+  };
+}

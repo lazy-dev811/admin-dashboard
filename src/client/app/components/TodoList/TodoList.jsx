@@ -99,6 +99,7 @@ class TodoList extends React.Component {
             {this.state.todos.map((todo, index) => (
               <Todo
                 todo={todo}
+                key={index}
                 selectTodo={() => this.selectTodo(todo)}
                 setTodoDone={() => this.setTodoDone(todo)}
                 removeTodo={() => this.removeTodo(todo)}

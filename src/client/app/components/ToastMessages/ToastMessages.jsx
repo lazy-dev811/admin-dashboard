@@ -4,9 +4,9 @@ require('./ToastMessages.scss');
 
 const ToastMessages = ({ toasts }) => (
   <ul className="toasts">
-    {toasts.map(toast => {
+    {toasts.map((toast, index) => {
       return (
-        <li className="toasts__toast is-{{ toast.type }}">
+        <li className="toasts__toast is-{{ toast.type }}" key={index}>
          {/* ng-repeat="toast in toasts"
          ng-className="{ 'toasted' : touchedToast }"
          ng-click="touchedToast = true"> */}

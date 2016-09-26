@@ -7,7 +7,7 @@ const Settings = ({ options }) => (
     <ul className="pg-settings__options">
       {options.map((option, index) => {
         return (
-          <li className="pg-settings__options__option cf">
+          <li className="pg-settings__options__option cf" key={index}>
            {/* ng-className="{ 'is-active' : option.value }" */}
             <label className="label pg-settings__options__option__label"
              htmlFor={`${option}-${index}`}>

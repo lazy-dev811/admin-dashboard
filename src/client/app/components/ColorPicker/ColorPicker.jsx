@@ -17,9 +17,9 @@ const ColorPicker = ({ colors }) => (
     </div>
 
     <ul className="pg-color-picker__list">
-      {colors.map(color => {
+      {colors.map((color, index) => {
         return (
-          <li className="pg-color-picker__list__item">
+          <li className="pg-color-picker__list__item" key={index}>
            {/* ng-repeat="color in colors track by $index"
            ng-className="{ 'is-active': color.code === currentBackground.code }"
            ng-mousedown="selectColor(color, $event, $index)"

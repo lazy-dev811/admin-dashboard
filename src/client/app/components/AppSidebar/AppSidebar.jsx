@@ -27,16 +27,16 @@ const AppSidebar = () => {
     {/* //  ng-className='{ 'is-active': showSidebar }'> */}
 
       <ul className='pgSidebar__list'>
-        {sidebarItems.map(item => {
+        {sidebarItems.map((item, index) => {
           return (
-            <li className='pgSidebar__list__item'>
+            <li className='pgSidebar__list__item' key={index}>
               {item.name}
               {
                 item.subItems &&
                 <ul className='pgSidebar__sublist'>
-                  {item.subItems.map(subItem => {
+                  {item.subItems.map((subItem, subItemIndex) => {
                     return (
-                      <li className='pgSidebar__sublist__item'>
+                      <li className='pgSidebar__sublist__item' key={subItemIndex}>
                         {subItem.name}
                       </li>
                     );

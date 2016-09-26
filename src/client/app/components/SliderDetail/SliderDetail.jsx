@@ -200,7 +200,7 @@ const SliderDetail = ({ activeState, selectedPerson, }) => {
                 <div className="input-container">
                   <input className="checkbox" //  ng-click=""
                     //  ng-model="model"
-                    checked type="checkbox" id="checkbox" />
+                    type="checkbox" id="checkbox" />
                   <label htmlFor="checkbox">
                     {/* ng-click=""> */}
                   </label>
