@@ -88,7 +88,8 @@ const SliderDetail = ({ activeState, selectedPerson, }) => {
             </li>
           </ul>
 
-          <span ng-click="generateRandomData()">
+          <span>
+            {/* ng-click="generateRandomData()"> */}
             Generate Random
           </span>
 

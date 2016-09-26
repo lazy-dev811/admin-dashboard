@@ -44,6 +44,11 @@ var config = {
     includePaths: SCSS_DIR,
   },
 
+  // devServer: {
+  //   historyApiFallback: true,
+  //   contentBase: './'
+  // },
+
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
