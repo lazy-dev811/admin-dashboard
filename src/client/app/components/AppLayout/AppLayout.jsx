@@ -19,13 +19,13 @@ const AppLayout = ({ children }) => {
     <div>
       {/* <YoutubePlayer /> */}
 
-      {/* <AppSidebar />
+      <AppSidebar />
       <AppHeader />
       <SliderContainer />
       <ColorPickerContainer />
       <SettingsContainer />
       <ToastMessagesContainer />
-      <SliderDetailContainer /> */}
+      <SliderDetailContainer />
 
       <SearchBarContainer />
 

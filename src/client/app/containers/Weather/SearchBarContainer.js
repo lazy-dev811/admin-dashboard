@@ -15,9 +15,13 @@ class SearchBarContainer extends Component {
     });
   }
 
+  onFormSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <form className="input-group">
+      <form onSubmit={this.onFormSubmit} className="input-group">
         <input
           className="input"
           placeholder="Get a 5 day forecast"
@@ -25,7 +29,7 @@ class SearchBarContainer extends Component {
           onChange={(event => this.onInputChange(event.target.value))}
         />
         <button type="submit" className="btn">
-          SearchSDSDSD
+          Search
         </button>
       </form>
     );
