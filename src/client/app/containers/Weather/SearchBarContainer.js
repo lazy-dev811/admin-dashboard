@@ -25,7 +25,7 @@ class SearchBarContainer extends Component {
           onChange={(event => this.onInputChange(event.target.value))}
         />
         <button type="submit" className="btn">
-          Search
+          SearchSDSDSD
         </button>
       </form>
     );
