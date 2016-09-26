@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "73ea597cad4302b6d77c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "1af7e311d6da14d7753b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -38747,6 +38747,8 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	__webpack_require__(396);
+
 	var TodoList = function (_React$Component) {
 	  _inherits(TodoList, _React$Component);
 
@@ -38847,15 +38849,15 @@
 	          { className: 'todo-app' },
 	          _react2.default.createElement(
 	            'header',
-	            { className: 'header todo__header' },
+	            { className: 'todo__header' },
 	            _react2.default.createElement(
 	              'svg',
-	              { className: 'icon header__burger' },
+	              { className: 'icon todo__header__burger' },
 	              _react2.default.createElement('use', { xlinkHref: 'app/assets/icons/burger.svg' })
 	            ),
 	            _react2.default.createElement(
 	              'svg',
-	              { className: 'icon header__close', onClick: function onClick() {
+	              { className: 'icon todo__header__close', onClick: function onClick() {
 	                  return _this2.appTodoClose();
 	                } },
 	              _react2.default.createElement('use', { xlinkHref: 'app/assets/icons/close.svg#svg-sync' })
@@ -38900,18 +38902,18 @@
 	          ),
 	          _react2.default.createElement(
 	            'footer',
-	            { className: 'footer todo__footer' },
+	            { className: 'todo__footer' },
 	            _react2.default.createElement('input', { type: 'text', className: 'input-field', placeholder: 'Enter goal name', ref: 'todoField' }),
 	            _react2.default.createElement(
 	              'svg',
-	              { className: 'icon footer__btn btn__icon is-disabled', onClick: function onClick() {
+	              { className: 'icon todo__footer__btn btn__icon is-disabled', onClick: function onClick() {
 	                  return _this2.addTodo();
 	                } },
 	              _react2.default.createElement('use', { xlinkHref: 'app/assets/icons/add.svg#svg-sync' })
 	            ),
 	            _react2.default.createElement(
 	              'svg',
-	              { className: 'icon footer__btn btn__icon', onClick: function onClick() {
+	              { className: 'icon todo__footer__btn btn__icon', onClick: function onClick() {
 	                  return _this2.removeTodos();
 	                } },
 	              _react2.default.createElement('use', { xlinkHref: 'app/assets/icons/delete.svg#svg-sync' })
@@ -39733,7 +39735,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(75), RootInstanceProvider = __webpack_require__(83), ReactMount = __webpack_require__(85), React = __webpack_require__(153); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -39745,276 +39747,278 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	__webpack_require__(398);
+
 	var SliderDetail = function SliderDetail(_ref) {
 	  var activeState = _ref.activeState;
 	  var selectedPerson = _ref.selectedPerson;
 
 	  return _react2.default.createElement(
-	    "div",
-	    { className: "slider-detail {activeState} docked is-active is-test" },
+	    'div',
+	    { className: 'slider-detail {activeState} docked is-active is-test' },
 	    _react2.default.createElement(
-	      "div",
-	      { className: "slider-detail__img-wrap" },
+	      'div',
+	      { className: 'slider-detail__img-wrap' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "slider-detail__img-wrap__overlay" },
-	        _react2.default.createElement("div", { className: "slider-detail__img-wrap__overlay__icon" })
+	        'div',
+	        { className: 'slider-detail__img-wrap__overlay' },
+	        _react2.default.createElement('div', { className: 'slider-detail__img-wrap__overlay__icon' })
 	      ),
-	      _react2.default.createElement("img", { className: "slider-detail__img-wrap__img" })
+	      _react2.default.createElement('img', { className: 'slider-detail__img-wrap__img' })
 	    ),
 	    _react2.default.createElement(
-	      "nav",
-	      { className: "slider-detail__nav" },
+	      'nav',
+	      { className: 'slider-detail__nav' },
 	      _react2.default.createElement(
-	        "ul",
-	        { className: "slider-detail__nav__list" },
+	        'ul',
+	        { className: 'slider-detail__nav__list' },
 	        _react2.default.createElement(
-	          "li",
-	          { className: "slider-detail__nav__list__item" },
-	          "Financials"
+	          'li',
+	          { className: 'slider-detail__nav__list__item' },
+	          'Financials'
 	        ),
 	        _react2.default.createElement(
-	          "li",
-	          { className: "slider-detail__nav__list__item" },
-	          "Relationships"
+	          'li',
+	          { className: 'slider-detail__nav__list__item' },
+	          'Relationships'
 	        ),
 	        _react2.default.createElement(
-	          "li",
-	          { className: "slider-detail__nav__list__item" },
-	          "Graphs"
+	          'li',
+	          { className: 'slider-detail__nav__list__item' },
+	          'Graphs'
 	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "div",
-	      { className: "slider-detail__wrap" },
+	      'div',
+	      { className: 'slider-detail__wrap' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "test" },
+	        'div',
+	        { className: 'test' },
 	        _react2.default.createElement(
-	          "header",
-	          { className: "slider-detail__header cf" },
-	          "Name: ",
+	          'header',
+	          { className: 'slider-detail__header cf' },
+	          'Name: ',
 	          selectedPerson.name,
 	          selectedPerson.name,
 	          _react2.default.createElement(
-	            "ul",
-	            { className: "slider-detail__header__states" },
+	            'ul',
+	            { className: 'slider-detail__header__states' },
 	            _react2.default.createElement(
-	              "li",
-	              { className: "slider-detail__header__state" },
-	              _react2.default.createElement("i", { className: "icon icon-cancel-1 slider-detail__header__state__icon" })
+	              'li',
+	              { className: 'slider-detail__header__state' },
+	              _react2.default.createElement('i', { className: 'icon icon-cancel-1 slider-detail__header__state__icon' })
 	            ),
 	            _react2.default.createElement(
-	              "li",
-	              { className: "slider-detail__header__state" },
-	              _react2.default.createElement("i", { className: "icon icon-resize-full slider-detail__header__state__icon" })
+	              'li',
+	              { className: 'slider-detail__header__state' },
+	              _react2.default.createElement('i', { className: 'icon icon-resize-full slider-detail__header__state__icon' })
 	            ),
 	            _react2.default.createElement(
-	              "li",
-	              { className: "slider-detail__header__state" },
-	              _react2.default.createElement("i", { className: "icon icon-resize-full-alt slider-detail__header__state__icon" })
+	              'li',
+	              { className: 'slider-detail__header__state' },
+	              _react2.default.createElement('i', { className: 'icon icon-resize-full-alt slider-detail__header__state__icon' })
 	            )
 	          )
 	        ),
 	        _react2.default.createElement(
-	          "ul",
-	          { className: "slider-detail__categories  cf" },
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" }),
-	          _react2.default.createElement("li", { className: "slider-detail__categories__item" })
+	          'ul',
+	          { className: 'slider-detail__categories  cf' },
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' }),
+	          _react2.default.createElement('li', { className: 'slider-detail__categories__item' })
 	        ),
 	        _react2.default.createElement(
-	          "span",
-	          { "ng-click": "generateRandomData()" },
-	          "Generate Random"
+	          'span',
+	          { 'ng-click': 'generateRandomData()' },
+	          'Generate Random'
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "field-container" },
-	          _react2.default.createElement("input", { className: "field lw-full", type: "text", name: "name", placeholder: "Labels" })
+	          'div',
+	          { className: 'field-container' },
+	          _react2.default.createElement('input', { className: 'field lw-full', type: 'text', name: 'name', placeholder: 'Labels' })
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "btn" },
-	          "Labels"
+	          'div',
+	          { className: 'btn' },
+	          'Labels'
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "field-container" },
-	          _react2.default.createElement("input", { className: "field lw-full", type: "text", name: "name", placeholder: "Main data" })
+	          'div',
+	          { className: 'field-container' },
+	          _react2.default.createElement('input', { className: 'field lw-full', type: 'text', name: 'name', placeholder: 'Main data' })
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "btn" },
-	          "Main data"
+	          'div',
+	          { className: 'btn' },
+	          'Main data'
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "field-container" },
-	          _react2.default.createElement("input", { className: "field lw-full", type: "text", name: "name", placeholder: "Compare data" })
+	          'div',
+	          { className: 'field-container' },
+	          _react2.default.createElement('input', { className: 'field lw-full', type: 'text', name: 'name', placeholder: 'Compare data' })
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "btn" },
-	          "Compare data"
+	          'div',
+	          { className: 'btn' },
+	          'Compare data'
 	        ),
 	        _react2.default.createElement(
-	          "ul",
-	          { className: "slider-detail__stats cf" },
+	          'ul',
+	          { className: 'slider-detail__stats cf' },
 	          _react2.default.createElement(
-	            "li",
-	            { className: "slider-detail__stats__item" },
-	            "Name:",
+	            'li',
+	            { className: 'slider-detail__stats__item' },
+	            'Name:',
 	            _react2.default.createElement(
-	              "div",
-	              { className: "slider-detail__stats__item__value" },
+	              'div',
+	              { className: 'slider-detail__stats__item__value' },
 	              selectedPerson.name,
 	              selectedPerson.name
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "li",
-	            { className: "slider-detail__stats__item" },
-	            "Gender:",
+	            'li',
+	            { className: 'slider-detail__stats__item' },
+	            'Gender:',
 	            _react2.default.createElement(
-	              "div",
-	              { className: "slider-detail__stats__item__value" },
+	              'div',
+	              { className: 'slider-detail__stats__item__value' },
 	              _react2.default.createElement(
-	                "label",
-	                { className: "label", htmlFor: "gender-m" },
-	                "male"
+	                'label',
+	                { className: 'label', htmlFor: 'gender-m' },
+	                'male'
 	              ),
 	              _react2.default.createElement(
-	                "div",
-	                { className: "input-container" },
-	                _react2.default.createElement("input", { className: "radio" //  ng-click="setGender()"
+	                'div',
+	                { className: 'input-container' },
+	                _react2.default.createElement('input', { className: 'radio' //  ng-click="setGender()"
 	                  //  ng-model="company.selected"
-	                  , type: "radio", id: "gender-m", name: "radio" }),
-	                _react2.default.createElement("label", { htmlFor: "gender-m" })
+	                  , type: 'radio', id: 'gender-m', name: 'radio' }),
+	                _react2.default.createElement('label', { htmlFor: 'gender-m' })
 	              ),
 	              _react2.default.createElement(
-	                "label",
-	                { className: "label", htmlFor: "gender-f" },
-	                "female"
+	                'label',
+	                { className: 'label', htmlFor: 'gender-f' },
+	                'female'
 	              ),
 	              _react2.default.createElement(
-	                "div",
-	                { className: "input-container" },
-	                _react2.default.createElement("input", { className: "radio" //  ng-click="setGender()"
+	                'div',
+	                { className: 'input-container' },
+	                _react2.default.createElement('input', { className: 'radio' //  ng-click="setGender()"
 	                  //  ng-model="company.selected"
-	                  , type: "radio", id: "gender-f", name: "radio" }),
-	                _react2.default.createElement("label", { htmlFor: "gender-f" })
+	                  , type: 'radio', id: 'gender-f', name: 'radio' }),
+	                _react2.default.createElement('label', { htmlFor: 'gender-f' })
 	              )
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "li",
-	            { className: "slider-detail__stats__item" },
-	            "Company:",
+	            'li',
+	            { className: 'slider-detail__stats__item' },
+	            'Company:',
 	            _react2.default.createElement(
-	              "div",
-	              { className: "slider-detail__stats__item__value" },
+	              'div',
+	              { className: 'slider-detail__stats__item__value' },
 	              selectedPerson.company
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "li",
-	            { className: "slider-detail__stats__item" },
-	            "Balance:",
+	            'li',
+	            { className: 'slider-detail__stats__item' },
+	            'Balance:',
 	            _react2.default.createElement(
-	              "div",
-	              { className: "slider-detail__stats__item__value" },
+	              'div',
+	              { className: 'slider-detail__stats__item__value' },
 	              selectedPerson.balance
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "li",
-	            { className: "slider-detail__stats__item" },
-	            "Age:",
+	            'li',
+	            { className: 'slider-detail__stats__item' },
+	            'Age:',
 	            _react2.default.createElement(
-	              "div",
-	              { className: "slider-detail__stats__item__value" },
+	              'div',
+	              { className: 'slider-detail__stats__item__value' },
 	              selectedPerson.age
 	            )
 	          ),
 	          _react2.default.createElement(
-	            "li",
-	            { className: "slider-detail__stats__item" },
-	            "Last:",
+	            'li',
+	            { className: 'slider-detail__stats__item' },
+	            'Last:',
 	            _react2.default.createElement(
-	              "div",
-	              { className: "slider-detail__stats__item__value" },
+	              'div',
+	              { className: 'slider-detail__stats__item__value' },
 	              _react2.default.createElement(
-	                "label",
-	                { className: "label", htmlFor: "checkbox" },
-	                "Checkbox"
+	                'label',
+	                { className: 'label', htmlFor: 'checkbox' },
+	                'Checkbox'
 	              ),
 	              _react2.default.createElement(
-	                "div",
-	                { className: "input-container" },
-	                _react2.default.createElement("input", { className: "checkbox" //  ng-click=""
+	                'div',
+	                { className: 'input-container' },
+	                _react2.default.createElement('input', { className: 'checkbox' //  ng-click=""
 	                  //  ng-model="model"
-	                  , checked: true, type: "checkbox", id: "checkbox" }),
-	                _react2.default.createElement("label", { htmlFor: "checkbox" })
+	                  , checked: true, type: 'checkbox', id: 'checkbox' }),
+	                _react2.default.createElement('label', { htmlFor: 'checkbox' })
 	              )
 	            )
 	          )
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "field-container cf" },
-	          _react2.default.createElement("input", { className: "range", type: "range", name: "name" }),
-	          " ",
-	          _react2.default.createElement("input", { className: "field field--range", type: "text", name: "name" }),
-	          " "
+	          'div',
+	          { className: 'field-container cf' },
+	          _react2.default.createElement('input', { className: 'range', type: 'range', name: 'name' }),
+	          ' ',
+	          _react2.default.createElement('input', { className: 'field field--range', type: 'text', name: 'name' }),
+	          ' '
 	        ),
 	        _react2.default.createElement(
-	          "p",
-	          { className: "slider-detail__section" },
+	          'p',
+	          { className: 'slider-detail__section' },
 	          selectedPerson.about
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "field-container" },
-	          _react2.default.createElement("input", { className: "field lw-full", type: "text", name: "name", placeholder: "placeholder input" })
+	          'div',
+	          { className: 'field-container' },
+	          _react2.default.createElement('input', { className: 'field lw-full', type: 'text', name: 'name', placeholder: 'placeholder input' })
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "field-container" },
-	          _react2.default.createElement("textarea", { className: "field lw-full", name: "name", rows: "5", placeholder: "placeholder input" })
+	          'div',
+	          { className: 'field-container' },
+	          _react2.default.createElement('textarea', { className: 'field lw-full', name: 'name', rows: '5', placeholder: 'placeholder input' })
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "field-container" },
+	          'div',
+	          { className: 'field-container' },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "field field--dd-toggle" },
-	            _react2.default.createElement("i", { className: "icon isAbs icon-down-open field__icon" }),
-	            "Active text"
+	            'div',
+	            { className: 'field field--dd-toggle' },
+	            _react2.default.createElement('i', { className: 'icon isAbs icon-down-open field__icon' }),
+	            'Active text'
 	          ),
 	          _react2.default.createElement(
-	            "ul",
-	            { className: "field__list" },
+	            'ul',
+	            { className: 'field__list' },
 	            _react2.default.createElement(
-	              "li",
-	              { className: "field__list__item" },
-	              "tets"
+	              'li',
+	              { className: 'field__list__item' },
+	              'tets'
 	            ),
 	            _react2.default.createElement(
-	              "li",
-	              { className: "field__list__item" },
-	              "tets"
+	              'li',
+	              { className: 'field__list__item' },
+	              'tets'
 	            )
 	          )
 	        ),
-	        _react2.default.createElement("div", { className: "slider-detail__placeholder" })
+	        _react2.default.createElement('div', { className: 'slider-detail__placeholder' })
 	      )
 	    )
 	  );
@@ -40026,6 +40030,86 @@
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(347); if (makeExportsHot(module, __webpack_require__(153))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "SliderDetail.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+
+/***/ },
+/* 396 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(397);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(356)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(397, function() {
+				var newContent = __webpack_require__(397);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 397 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(355)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "html {\n  height: 100%;\n  box-sizing: border-box; }\n\n*,\n*:after,\n*:before {\n  box-sizing: inherit; }\n\nbody {\n  margin: 0;\n  height: 100%;\n  width: 100%;\n  background-color: #e6e6e6;\n  color: #373636;\n  font-family: \"GillSans\", sans-serif;\n  font-size: 14px;\n  line-height: 1.4; }\n\nbutton {\n  font-family: \"GillSans\", sans-serif;\n  font-size: 14px; }\n\ndd,\ndt {\n  margin: 0;\n  width: 50%; }\n\ndt {\n  float: left;\n  clear: left; }\n\ndd {\n  float: right;\n  clear: right;\n  text-align: right; }\n\nol,\nul {\n  margin: 0;\n  padding: 0; }\n\ndl {\n  margin: 0; }\n\nli {\n  display: inline-block;\n  list-style: none; }\n\na {\n  color: #373636;\n  cursor: pointer;\n  text-decoration: none; }\n  a:hover {\n    color: #373636; }\n  a:active, a:focus {\n    outline: 0; }\n\np {\n  margin: 0; }\n\nem {\n  font-style: normal; }\n\nfigure img {\n  max-width: 100%; }\n\nimg {\n  display: block;\n  border: none; }\n\ntable {\n  border-spacing: 0;\n  table-layout: fixed; }\n\nth {\n  text-align: left;\n  font-weight: normal; }\n\nh1,\nh2,\nh3,\nh4,\nh5 {\n  margin: 0;\n  line-height: 1;\n  font-weight: normal; }\n\nbody,\ninput,\ntextarea {\n  color: #373636; }\n\nselect {\n  color: #373636;\n  cursor: pointer; }\n\ninput:focus,\nselect:focus,\ntextarea:focus {\n  outline: none; }\n\ntextarea {\n  resize: none; }\n\ninput::-ms-clear {\n  display: none; }\n\n.icon {\n  padding: 4px;\n  width: 20px;\n  height: 20px;\n  fill: #8c8c8c; }\n\n.todo__header,\n.tdoo__footer {\n  position: relative;\n  padding: 0 10px;\n  height: 50px;\n  line-height: 50px;\n  background-color: #b7b7b7; }\n\n.todo__footer {\n  position: fixed;\n  bottom: 0;\n  width: 100%; }\n\n.todo__header__link {\n  display: block;\n  float: left;\n  padding: 0 10px;\n  color: #444; }\n  .todo__header__link:hover {\n    background-color: #26c6ce;\n    color: #fff; }\n\n.todo__header__burger {\n  margin: 10px;\n  padding: 7px;\n  width: 30px;\n  height: 30px;\n  transition: padding .2s ease-out, fill .2s ease-out;\n  fill: rgba(255, 255, 255, 0.4); }\n  .todo__header__burger:hover {\n    padding: 5px;\n    fill: #fff;\n    cursor: pointer; }\n\n.todo__header__close {\n  position: absolute;\n  right: 10px;\n  top: 50%;\n  width: 30px;\n  transform: translateY(-50%);\n  height: 30px;\n  padding: 10px;\n  transition: padding .2s ease-out, fill .2s ease-out;\n  fill: rgba(255, 255, 255, 0.4); }\n  .todo__header__close:hover {\n    padding: 8px;\n    fill: #fff;\n    cursor: pointer; }\n\n.app-content {\n  padding: 70px 0; }\n\n.filters {\n  padding: 0 20px;\n  line-height: 25px;\n  font-size: 8px;\n  text-transform: uppercase;\n  background-color: #505050;\n  text-align: right;\n  color: #eaeaea; }\n  .filters__filter {\n    display: inline-block;\n    margin-left: 10px;\n    opacity: .4; }\n\n.btn {\n  padding: 0;\n  border: 0;\n  cursor: pointer;\n  background-color: transparent; }\n  .btn + .btn {\n    margin-left: 5px; }\n\n.input-field {\n  border: 0;\n  border-radius: 0;\n  background-color: transparent;\n  display: flex;\n  color: #444;\n  font-size: 13px;\n  width: 100%;\n  flex-basis: 70%; }\n\n.todo-app {\n  position: relative;\n  margin: 120px auto;\n  width: 250px;\n  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }\n\n.todo__header {\n  padding: 0;\n  background-color: #3aaae2;\n  color: #fff; }\n\n.todo__footer {\n  display: flex;\n  position: static;\n  align-items: center;\n  padding: 0 0 0 15px;\n  line-height: 50px;\n  background-color: #f1f1f1; }\n\n.todos {\n  position: relative;\n  font-size: 12px;\n  color: #8c8c8c; }\n  .todos__todo {\n    display: flex;\n    align-items: center;\n    position: relative;\n    line-height: 30px;\n    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.03);\n    background-color: #f9f9f9; }\n    .todos__todo.is-selected {\n      background-color: #f1f1f1; }\n      .todos__todo.is-selected .todos__todo__toggle {\n        flex-basis: 300px !important;\n        margin: 0;\n        height: 7px; }\n      .todos__todo.is-selected .todos__todo__title {\n        display: none; }\n      .todos__todo.is-selected .todos__todo__options {\n        display: none !important; }\n    .todos__todo.is-done {\n      padding: 0;\n      height: 5px;\n      background-color: #fff;\n      box-shadow: inset 0 1px 0 #f1f1f1; }\n      .todos__todo.is-done .todos__todo__toggle {\n        display: none; }\n      .todos__todo.is-done .todos__todo__title {\n        display: none; }\n    .todos__todo.is-hidden {\n      display: none; }\n    .todos__todo.is-over {\n      transition: transform .2s ease-out; }\n    .todos__todo:hover .todos__todo__toggle {\n      flex-basis: 20px; }\n    .todos__todo:hover .todos__todo__options {\n      display: block; }\n    .todos__todo:first-of-type * {\n      padding-top: 10px; }\n    .todos__todo:last-of-type * {\n      padding-bottom: 10px; }\n    .todos__todo__toggle {\n      float: left;\n      margin-right: 15px;\n      flex-basis: 10px;\n      height: 30px;\n      box-sizing: content-box;\n      background-color: #3aaae2;\n      box-shadow: inset -6px 0 10px -10px rgba(0, 0, 0, 0.84);\n      transition: box-shadow 0s ease-out, flex-basis .1s ease-out, height .2s ease-out; }\n    .todos__todo__title {\n      float: left; }\n    .todos__todo__options {\n      /*display: none;*/\n      position: absolute;\n      top: 0;\n      right: 0; }\n      .todos__todo__options:hover .todos__todo__options-list {\n        display: flex; }\n    .todos__todo__options-list {\n      display: none;\n      position: relative;\n      padding-right: 5px;\n      height: 30px;\n      background-color: #f9f9f9; }\n      .todos__todo__options-list:hover .todos__todo__options-list-toggle {\n        display: none; }\n      .todos__todo__options-list__option {\n        display: flex;\n        align-items: center; }\n    .todos__todo__options-list-toggle {\n      position: absolute;\n      top: 0;\n      right: 0;\n      padding: 10px;\n      width: 30px;\n      height: 30px;\n      fill: #dbdbdb; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 398 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(399);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(356)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(399, function() {
+				var newContent = __webpack_require__(399);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 399 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(355)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "html {\n  height: 100%;\n  box-sizing: border-box; }\n\n*,\n*:after,\n*:before {\n  box-sizing: inherit; }\n\nbody {\n  margin: 0;\n  height: 100%;\n  width: 100%;\n  background-color: #e6e6e6;\n  color: #373636;\n  font-family: \"GillSans\", sans-serif;\n  font-size: 14px;\n  line-height: 1.4; }\n\nbutton {\n  font-family: \"GillSans\", sans-serif;\n  font-size: 14px; }\n\ndd,\ndt {\n  margin: 0;\n  width: 50%; }\n\ndt {\n  float: left;\n  clear: left; }\n\ndd {\n  float: right;\n  clear: right;\n  text-align: right; }\n\nol,\nul {\n  margin: 0;\n  padding: 0; }\n\ndl {\n  margin: 0; }\n\nli {\n  display: inline-block;\n  list-style: none; }\n\na {\n  color: #373636;\n  cursor: pointer;\n  text-decoration: none; }\n  a:hover {\n    color: #373636; }\n  a:active, a:focus {\n    outline: 0; }\n\np {\n  margin: 0; }\n\nem {\n  font-style: normal; }\n\nfigure img {\n  max-width: 100%; }\n\nimg {\n  display: block;\n  border: none; }\n\ntable {\n  border-spacing: 0;\n  table-layout: fixed; }\n\nth {\n  text-align: left;\n  font-weight: normal; }\n\nh1,\nh2,\nh3,\nh4,\nh5 {\n  margin: 0;\n  line-height: 1;\n  font-weight: normal; }\n\nbody,\ninput,\ntextarea {\n  color: #373636; }\n\nselect {\n  color: #373636;\n  cursor: pointer; }\n\ninput:focus,\nselect:focus,\ntextarea:focus {\n  outline: none; }\n\ntextarea {\n  resize: none; }\n\ninput::-ms-clear {\n  display: none; }\n\n.slider-detail__wrap {\n  overflow: auto; }\n  .slider-detail__wrap::-webkit-scrollbar {\n    width: 10px;\n    height: 10px;\n    border: 0; }\n  .slider-detail__wrap::-webkit-scrollbar-track {\n    display: inline-block;\n    width: 10px;\n    border-radius: 10px;\n    background-color: #F0F0F0;\n    box-shadow: inset 0 0 2px rgba(68, 68, 68, 0.13); }\n  .slider-detail__wrap::-webkit-scrollbar-thumb {\n    background-color: #fff;\n    border: 1px solid #E8E8E8;\n    border-radius: 10px; }\n  .slider-detail__wrap::-webkit-scrollbar-button {\n    position: absolute;\n    height: 5px;\n    background-color: #fff; }\n\n.slider-detail.is-test .slider-detail__wrap::-webkit-scrollbar-track {\n  background-color: transparent;\n  box-shadow: none; }\n\n.slider-detail.is-test .slider-detail__wrap::-webkit-scrollbar-thumb {\n  border-color: transparent;\n  background-color: rgba(255, 255, 255, 0.5); }\n\n.slider-detail.is-test .slider-detail__wrap::-webkit-scrollbar-button {\n  background-color: transparent; }\n\n.slider-detail {\n  opacity: 0;\n  visibility: hidden;\n  z-index: 1;\n  position: absolute;\n  top: 50%;\n  left: 300px;\n  transform: translateY(-42%);\n  width: 470px;\n  height: 460px;\n  transition: opacity .2s ease, visibility .3s ease, transform .3s ease, top .3s ease; }\n  .slider-detail.is-active {\n    opacity: 1;\n    visibility: visible;\n    top: 50%;\n    transform: translateY(-50%); }\n  .slider-detail.is-test .slider-detail__wrap {\n    padding: 0;\n    border-right: 5px solid rgba(255, 255, 255, 0.3);\n    background-color: transparent;\n    box-shadow: inset -15px 0 0 rgba(255, 255, 255, 0.3); }\n  .slider-detail.is-test .test {\n    background-color: #fff;\n    padding: 20px 15px 20px 20px;\n    margin-right: 5px; }\n  .slider-detail__img-wrap {\n    position: absolute;\n    right: 100%;\n    width: 150px;\n    height: 150px;\n    background-color: #e1e1e1;\n    transform: translateX(100%);\n    transition: transform .3s ease; }\n    .is-active .slider-detail__img-wrap {\n      transform: translateX(0); }\n    .slider-detail__img-wrap__img {\n      border-top-left-radius: 2px; }\n    .slider-detail__img-wrap:hover .slider-detail__img-wrap__overlay {\n      opacity: 1; }\n      .slider-detail__img-wrap:hover .slider-detail__img-wrap__overlay .slider-detail__img-wrap__overlay__icon {\n        width: 20px;\n        height: 20px;\n        border-color: #fff;\n        background-color: transparent; }\n    .slider-detail__img-wrap__overlay {\n      opacity: 0;\n      position: absolute;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      background-color: rgba(0, 0, 0, 0.5);\n      cursor: pointer;\n      transition: oapcity .2s ease; }\n      .slider-detail__img-wrap__overlay__icon {\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        width: 10px;\n        height: 10px;\n        border: 2px solid transparent;\n        background-color: #fff;\n        border-radius: 50%;\n        transform: translate(-50%, -50%);\n        transition: width .3s ease, height .3s ease, border-color .3s ease, background-color .3s ease; }\n  .slider-detail__nav {\n    position: absolute;\n    top: 150px;\n    right: 100%;\n    padding: 10px 0;\n    background-color: #444;\n    border-right: 0 solid #12C3E4;\n    border-bottom-left-radius: 2px;\n    transform: translateX(100%);\n    transition: transform .4s ease;\n    transition: border-width .1s ease-out, transform .4s ease; }\n    .slider-detail__nav:hover {\n      transition-delay: 0s;\n      border-width: 5px; }\n    .is-active .slider-detail__nav {\n      transform: translateX(0); }\n    .slider-detail__nav__list__item {\n      color: #fff;\n      padding: 10px 15px;\n      width: 150px;\n      cursor: pointer; }\n      .slider-detail__nav__list__item:first-child {\n        border: none; }\n      .slider-detail__nav__list__item:hover {\n        background-color: #12C3E4; }\n  .slider-detail__wrap {\n    position: relative;\n    padding: 20px;\n    height: 100%;\n    border-right: 5px solid #fff;\n    border-top-right-radius: 2px;\n    border-bottom-right-radius: 2px;\n    background-color: #fff; }\n  .slider-detail__section {\n    margin-top: 20px; }\n  .slider-detail__header {\n    margin-bottom: 20px;\n    line-height: 1;\n    font-size: 18px; }\n    .slider-detail__header__states {\n      float: right; }\n    .slider-detail__header__state {\n      float: left; }\n      .slider-detail__header__state.is-active .icon {\n        color: #12C3E4; }\n      .slider-detail__header__state__icon {\n        margin-left: 10px;\n        font-size: 16px;\n        color: #444;\n        cursor: pointer; }\n        .slider-detail__header__state__icon:hover {\n          color: #12C3E4; }\n        .slider-detail__header__state__icon--is-docked {\n          color: #12C3E4; }\n  .slider-detail__categories {\n    padding-bottom: 20px;\n    border-bottom: 1px solid #E8E8E8; }\n    .slider-detail__categories__item {\n      position: relative;\n      float: left;\n      padding-top: calc(100% / 7);\n      width: calc(100% / 7);\n      border-top: 1px solid #fff;\n      border-right: 1px solid #fff;\n      background-color: #eee;\n      box-shadow: inset 0 0 0 1px #ddd;\n      cursor: pointer; }\n      .slider-detail__categories__item:nth-child(-n + 7) {\n        border-top: 0; }\n      .slider-detail__categories__item:nth-child(7n) {\n        border-right: 0; }\n      .slider-detail__categories__item:hover {\n        background-color: #ddd; }\n  .slider-detail__stats {\n    margin-top: 20px;\n    margin-right: -20px;\n    margin-left: -20px; }\n    .slider-detail__stats__item {\n      width: 50%;\n      float: left;\n      padding: 0 20px 10px;\n      line-height: 1; }\n      .slider-detail__stats__item:nth-child(2n) {\n        border: none;\n        border-left: 1px solid #eee; }\n      .slider-detail__stats__item:nth-last-of-type(1), .slider-detail__stats__item:nth-last-of-type(2) {\n        padding-bottom: 0; }\n      .slider-detail__stats__item__value {\n        display: inline-block;\n        margin-left: 5px;\n        color: #aaa; }\n  .slider-detail__placeholder {\n    margin-top: 20px;\n    background-color: #eee;\n    height: 200px; }\n\n.is-active.docked, .is-active.slider-detail.fullScreen,\n.is-active.fullScreen {\n  transform: none; }\n  .is-active.docked .slider-detail__nav, .is-active.slider-detail.fullScreen .slider-detail__nav,\n  .is-active.fullScreen .slider-detail__nav {\n    transition: transform .3s ease;\n    transition-delay: 0s; }\n  .is-active.docked .slider-detail__img-wrap, .is-active.slider-detail.fullScreen .slider-detail__img-wrap,\n  .is-active.docked .slider-detail__nav, .is-active.slider-detail.fullScreen .slider-detail__nav,\n  .is-active.fullScreen .slider-detail__img-wrap,\n  .is-active.fullScreen .slider-detail__nav {\n    transform: translateX(100%); }\n\n.slider-detail.docked, .slider-detail.fullScreen {\n  left: 20px;\n  top: 20px;\n  bottom: 20px;\n  height: calc(100% - 20px * 2); }\n\n.slider-detail.fullScreen {\n  right: 20px;\n  width: calc(100% - (20px * 2)); }\n", ""]);
+
+	// exports
+
 
 /***/ }
 /******/ ]);

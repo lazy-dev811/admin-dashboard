@@ -1,6 +1,8 @@
 import React from 'react';
 import Todo from './Todo.jsx';
 
+require('./TodoList.scss');
+
 class TodoList extends React.Component {
   constructor(props) {
     super(props);
@@ -79,9 +81,9 @@ class TodoList extends React.Component {
     return (
       <div>
         <div className="todo-app">
-          <header className="header todo__header">
-            <svg className="icon header__burger"><use xlinkHref="app/assets/icons/burger.svg"></use></svg>
-            <svg className="icon header__close" onClick={() => this.appTodoClose()}><use xlinkHref="app/assets/icons/close.svg#svg-sync"></use></svg>
+          <header className="todo__header">
+            <svg className="icon todo__header__burger"><use xlinkHref="app/assets/icons/burger.svg"></use></svg>
+            <svg className="icon todo__header__close" onClick={() => this.appTodoClose()}><use xlinkHref="app/assets/icons/close.svg#svg-sync"></use></svg>
           </header>
 
           <ul className="filters">
@@ -104,10 +106,10 @@ class TodoList extends React.Component {
               />
             ))}
           </ul>
-          <footer className="footer todo__footer">
+          <footer className="todo__footer">
             <input type="text" className="input-field" placeholder="Enter goal name" ref="todoField"></input>
-            <svg className="icon footer__btn btn__icon is-disabled" onClick={() => this.addTodo()}><use xlinkHref="app/assets/icons/add.svg#svg-sync"></use></svg>
-            <svg className="icon footer__btn btn__icon" onClick={() => this.removeTodos()}><use xlinkHref="app/assets/icons/delete.svg#svg-sync"></use></svg>
+            <svg className="icon todo__footer__btn btn__icon is-disabled" onClick={() => this.addTodo()}><use xlinkHref="app/assets/icons/add.svg#svg-sync"></use></svg>
+            <svg className="icon todo__footer__btn btn__icon" onClick={() => this.removeTodos()}><use xlinkHref="app/assets/icons/delete.svg#svg-sync"></use></svg>
           </footer>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+require('./SliderDetail.scss');
+
 const SliderDetail = ({ activeState, selectedPerson, }) => {
   return (
     <div className="slider-detail {activeState} docked is-active is-test">
