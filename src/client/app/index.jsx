@@ -1,18 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-// require("!style!css!sass!./scss/style.scss");
 import Application from './Application.jsx';
 
 require('./scss/style.scss');
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Application />
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Application />
+);
 
 render(<App />, document.getElementById('app'));

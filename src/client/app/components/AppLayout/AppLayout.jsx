@@ -14,30 +14,28 @@ import SearchBarContainer from '../../containers/Weather/SearchBarContainer';
 
 require('./AppLayout.scss');
 
-const AppLayout = ({ children }) => {
-  return (
-    <div>
-      {/* <YoutubePlayer /> */}
+const AppLayout = ({ children }) => (
+  <div>
+    {/* <YoutubePlayer /> */}
 
-      <AppSidebar />
-      <AppHeader />
-      <SliderContainer />
-      <ColorPickerContainer />
-      <SettingsContainer />
-      <ToastMessagesContainer />
-      <SliderDetailContainer />
+    {/* <AppSidebar />
+    <AppHeader />
+    <SliderContainer />
+    <ColorPickerContainer />
+    <SettingsContainer />
+    <ToastMessagesContainer />
+    <SliderDetailContainer /> */}
 
-      <SearchBarContainer />
+    <SearchBarContainer />
 
-      <div className="app-content">
-        {children}
-      </div>
+    <div className="app-content">
+      {children}
     </div>
-  );
-}
+  </div>
+);
 
 AppLayout.propTypes = {
   children: PropTypes.any,
-}
+};
 
 export default AppLayout;

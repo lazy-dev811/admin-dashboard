@@ -7,15 +7,15 @@ import AppLayout from './components/AppLayout/AppLayout.jsx';
 import RouteHomeContainer from './containers/RouteHomeContainer.js';
 import RouteAboutContainer from './containers/RouteAboutContainer.js';
 
-export default function Application({}) {
+export default function Application() {
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route component={AppLayout}>
-          <Route path="src/client" component={RouteHomeContainer}></Route>
-          <Route path="/about" component={RouteAboutContainer}></Route>
+          <Route path="src/client" component={RouteHomeContainer} />
+          <Route path="/about" component={RouteAboutContainer} />
         </Route>
       </Router>
     </Provider>
-  )
+  );
 }
