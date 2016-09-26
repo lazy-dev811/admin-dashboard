@@ -6,7 +6,7 @@
   "scripts": {
     "production": "webpack -p",
     "dev": "webpack --watch --port 80",
-    "start": "webpack-dev-server --progress --colors --port 80"
+    "start": "webpack-dev-server --progress --colors"
   },
   "author": "",
   "license": "ISC",

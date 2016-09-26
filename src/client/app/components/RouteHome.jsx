@@ -7,9 +7,9 @@ import QuoteContainer from '../containers/QuoteContainer.js';
 const RouteHome = () => {
   return (
     <div>
-      <TodoListContainer />
+      {/* <TodoListContainer />
       <GreetContainer />
-      <QuoteContainer />
+      <QuoteContainer /> */}
     </div>
   )
 };
