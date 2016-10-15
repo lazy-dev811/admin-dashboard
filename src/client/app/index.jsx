@@ -11,6 +11,8 @@ const store = configureStore({ history: browserHistory });
 // const history = syncHistoryWithStore(browserHistory, store);
 const history = browserHistory;
 
+require('./scss/style.scss');
+
 ReactDOM.render(
   <Application store={store} history={history} />,
   document.getElementById('app')
