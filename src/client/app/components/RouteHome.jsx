@@ -4,7 +4,7 @@ import React from 'react';
 import GreetContainer from './Greet/Container.js';
 // import QuoteContainer from '../containers/QuoteContainer.js';
 // import Widget from './Widget/Widget.jsx';
-import WeatherContainer from './Weather/Container.js';
+import WeatherContainer from './Weather/redux/Container.js';
 
 const RouteHome = () => (
   <div>

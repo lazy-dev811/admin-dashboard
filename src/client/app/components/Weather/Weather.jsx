@@ -1,14 +1,18 @@
 import React, { PropTypes } from 'react';
-import SearchBar from './parts/SearchBar.jsx';
 
-const Weather = ({ onSubmit }) => (
+import SearchBar from './parts/SearchBar.jsx';
+import List from './parts/List.jsx';
+
+const Weather = ({ weather, onSubmit }) => (
   <div>
-    KEY: 8b8fdbe46cc1b907383d8f937198939e
-    <button onClick={() => onSubmit()}>click me</button>
-    <SearchBar />
+    <SearchBar onSubmit={onSubmit} />
+    <List weather={weather} />
   </div>
 );
 
-Weather.propTypes = {};
+Weather.propTypes = {
+  weather: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default Weather;
