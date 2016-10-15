@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import books from './books';
-import activeBook from './activeBook';
+import greet from '../components/Greet/reducer';
 
 const rootReducer = combineReducers({
   books,
-  activeBook,
+  greet,
 });
 
 export default rootReducer;

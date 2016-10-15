@@ -10,8 +10,6 @@ import SettingsContainer from '../../containers/SettingsContainer.js';
 import ToastMessagesContainer from '../../containers/ToastMessagesContainer.js';
 import SliderDetailContainer from '../../containers/SliderDetailContainer.js';
 
-import SearchBarContainer from '../../containers/Weather/SearchBarContainer';
-
 require('./AppLayout.scss');
 
 const AppLayout = ({ children }) => {
@@ -19,15 +17,14 @@ const AppLayout = ({ children }) => {
     <div>
       {/* <YoutubePlayer /> */}
 
-      {/* <AppSidebar />
-      <AppHeader />
-      <SliderContainer />
-      <ColorPickerContainer />
-      <SettingsContainer />
-      <ToastMessagesContainer />
-      <SliderDetailContainer /> */}
+      {/* <AppSidebar /> */}
+      {/* <AppHeader /> */}
+      {/* <SliderContainer /> */}
+      {/* <ColorPickerContainer /> */}
+      {/* <SettingsContainer /> */}
+      {/* <ToastMessagesContainer /> */}
+      {/* <SliderDetailContainer /> */}
 
-      <SearchBarContainer />
 
       <div className="app-content">
         {children}
