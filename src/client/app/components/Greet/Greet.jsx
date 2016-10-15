@@ -5,7 +5,7 @@ require('./Greet.scss');
 const Greet = ({ person }) => (
   <div className="greet">
     <h1 className="greet__title">
-      Hi {person.name}
+      {/* Hi {person.name} */}
     </h1>
     <div>
       Today is a fierce mild

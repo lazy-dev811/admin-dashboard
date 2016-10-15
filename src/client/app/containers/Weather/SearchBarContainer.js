@@ -1,39 +1,18 @@
-import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { buttonClicked } from '../../actions';
+import SearchBar from '../../components/Weather/SearchBar.jsx';
 
-class SearchBarContainer extends Component {
-  constructor(props) {
-    super(props);
+const mapStateToProps = state => ({
+  buttonHasBeenClicked: state.buttonHasBeenClicked,
+});
 
-    this.state = {
-      searchTerm: '',
-    };
-  }
-  onInputChange(searchTerm) {
-    console.log(searchTerm);
-    this.setState({
-      searchTerm,
-    });
-  }
+const mapDispatchToProps = ({
+  buttonClicked,
+});
 
-  onFormSubmit(event) {
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
-        <input
-          className="input"
-          placeholder="Get a 5 day forecast"
-          value={this.state.searchTerm}
-          onChange={(event => this.onInputChange(event.target.value))}
-        />
-        <button type="submit" className="btn">
-          Search
-        </button>
-      </form>
-    );
-  }
-}
+const SearchBarContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchBar);
 
 export default SearchBarContainer;

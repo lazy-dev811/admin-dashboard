@@ -1,18 +1,19 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
-import TodoListContainer from '../containers/TodoListContainer.js';
+// import TodoListContainer from '../containers/TodoListContainer.js';
 import GreetContainer from '../containers/GreetContainer.js';
-import QuoteContainer from '../containers/QuoteContainer.js';
+// import QuoteContainer from '../containers/QuoteContainer.js';
+import Widget from './Widget/Widget.jsx';
 
-const RouteHome = () => {
-  return (
-    <div>
-      {/* <TodoListContainer />
-      <GreetContainer />
-      <QuoteContainer /> */}
-    </div>
-  )
-};
+const RouteHome = () => (
+  <div>
+    {/* <TodoListContainer /> */}
+    <GreetContainer />
+    {/* <QuoteContainer /> */}
+    <Widget title="Widget 1" xPos={100} yPos={100} />
+    <Widget title="Widget 2" xPos={400} yPos={300} />
+  </div>
+);
 
 RouteHome.propTypes = {};
 

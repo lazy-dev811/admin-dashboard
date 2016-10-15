@@ -1,21 +1,21 @@
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
-var SCSS_DIR = path.resolve(__dirname, 'src/client/app');
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
+const APP_DIR = path.resolve(__dirname, 'src/client/app');
+const SCSS_DIR = path.resolve(__dirname, 'src/client/app');
+const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 
 
-var config = {
+const config = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
-    APP_DIR + '/index.jsx'
+    `${APP_DIR}/index.jsx`,
   ],
 
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
 
   module: {
@@ -24,20 +24,21 @@ var config = {
         test: /\.jsx?/,
         include: APP_DIR,
         exclude: '/node_modules/',
-        loaders: ['react-hot','babel'],
+        loaders: ['react-hot', 'babel'],
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        loaders: ['style', 'css', 'sass'],
       },
-      // {
-      //   test: /\.(jpe?g|png|gif|svg)$/i,
-      //   loaders: [
-      //     'file?hash=sha512&digest=hex&name=[hash].[ext]',
-      //     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-      //   ]
-      // }
-    ]
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loaders: [
+          // 'file?name=[nature-1 sha512&digest=hex&name=[nature-1].[jpg]',
+          'file?name=nature-1.jpg',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
+        ],
+      },
+    ],
   },
 
   sassLoader: {
@@ -52,7 +53,7 @@ var config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-  ]
-}
+  ],
+};
 
 module.exports = config;

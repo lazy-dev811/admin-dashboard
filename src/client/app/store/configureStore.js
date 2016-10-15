@@ -1,13 +1,16 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-import buttonClickedReducer from '../reducers/buttonClickedReducer.js';
+import buttonClicked from '../reducers/buttonClicked.js';
+import greetRequested from '../reducers/greet.js';
 
 const reducers = combineReducers({
-  buttonClickedReducer: buttonClickedReducer,
+  buttonClicked,
+  greetRequested,
 });
 
 const store = createStore(
-  reducers
+  reducers,
+  window.devToolsExtension && window.devToolsExtension()
 );
 
 export default store;
