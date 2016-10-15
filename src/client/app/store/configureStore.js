@@ -22,11 +22,11 @@ export default function configureStore(params = {}) {
   );
   sagaMiddleware.run(mySaga);
 
-  // if (module.hot) {
-  //   module.hot.accept('reducers', () => {
-  //     store.replaceReducer(rootReducer);
-  //   });
-  // }
+  if (module.hot) {
+    module.hot.accept(rootReducer, () => {
+      store.replaceReducer(rootReducer);
+    });
+  }
 
   return store;
 }
