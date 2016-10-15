@@ -12,10 +12,9 @@ import SliderDetailContainer from '../../containers/SliderDetailContainer.js';
 
 require('./AppLayout.scss');
 
-const AppLayout = ({ children }) => {
-  return (
-    <div>
-      {/* <YoutubePlayer /> */}
+const AppLayout = ({ children }) => (
+  <div>
+    {/* <YoutubePlayer /> */}
 
       {/* <AppSidebar /> */}
       {/* <AppHeader /> */}
@@ -26,15 +25,14 @@ const AppLayout = ({ children }) => {
       {/* <SliderDetailContainer /> */}
 
 
-      <div className="app-content">
-        {children}
-      </div>
+    <div className="app-content">
+      {children}
     </div>
-  );
-}
+  </div>
+);
 
 AppLayout.propTypes = {
   children: PropTypes.any,
-}
+};
 
 export default AppLayout;
