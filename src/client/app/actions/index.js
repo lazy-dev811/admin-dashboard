@@ -1,3 +1,5 @@
+
+
 export function selectBook(book) {
   return {
     type: 'SELECT_BOOK',
@@ -13,19 +15,27 @@ export const booksRequested = (data) => {
   };
 };
 
-export const BUTTON_CLICKED = 'BUTTON_CLICKED';
-export const buttonClicked = (data) => {
-  console.log('data', data);
+export const FETCH_WEATHER = 'FETCH_WEATHER';
+export const FETCH_WEATHER_FAILED = 'FETCH_WEATHER_FAILED';
+export const FETCH_WEATHER_SUCCEEDED = 'FETCH_WEATHER_SUCCEEDED';
+export const FETCH_WEATHER_REQUESTED = 'FETCH_WEATHER_REQUESTED';
+
+export const fetchWeatherRequested = () => ({
+  type: FETCH_WEATHER_REQUESTED,
+});
+
+export const fetchWeatherSucceeded = (data) => {
+  console.log('success');
   return {
-    type: BUTTON_CLICKED,
-    buttonHasBeenClicked: true,
+    type: FETCH_WEATHER_SUCCEEDED,
+    data,
   };
 };
 
-export const GREET_REQUESTED = 'GREET_REQUESTED';
-export const greetRequested = () => {
-  console.log('greet requested ACTION');
+export const fetchWeatherFailed = (data) => {
+  console.log('failed', data);
   return {
-    type: GREET_REQUESTED,
+    type: FETCH_WEATHER_FAILED,
+    data,
   };
 };
