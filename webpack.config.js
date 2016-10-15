@@ -9,7 +9,8 @@ const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 
 const config = {
   entry: [
-    'webpack-dev-server/client?http://localhost:200',
+    'webpack-dev-server/client?http://localhost:3000',
+    `${APP_DIR}/index.jsx`,
   ],
 
   output: {
