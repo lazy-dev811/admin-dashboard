@@ -14,6 +14,6 @@ const AppHeader = () => (
 
 AppHeader.PropTypes = {
   //
-}
+};
 
 export default AppHeader;
