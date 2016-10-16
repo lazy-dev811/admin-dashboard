@@ -1,12 +1,8 @@
-@import '../../scss/inc/_base.scss';
+@import '../../scss/inc/_base';
 
 .pg-settings {
-  position: fixed;
-  top: $spacing;
-  left: 50%;
   padding: $spacing;
   max-width: 250px;
-  transform: translateX(-50%);
   background-color: #fff;
 
   &__options {

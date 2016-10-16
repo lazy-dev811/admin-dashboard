@@ -6,7 +6,7 @@ import AppSidebar from '../AppSidebar/AppSidebar.jsx';
 // import AppHeader from '../AppHeader/AppHeader.jsx';
 import SliderContainer from '../../containers/SliderContainer.js';
 import ColorPicker from '../ColorPicker/redux/container.js';
-// import SettingsContainer from '../../containers/SettingsContainer.js';
+import Settings from '../Settings/redux/container.js';
 import ToastMessagesContainer from '../../containers/ToastMessagesContainer.js';
 // import SliderDetailContainer from '../../containers/SliderDetailContainer.js';
 
@@ -21,7 +21,7 @@ const AppLayout = ({ children }) => (
     {/* <AppHeader /> */}
     <SliderContainer />
     <ColorPicker />
-    {/* <SettingsContainer /> */}
+    <Settings />
     <ToastMessagesContainer />
     {/* <SliderDetailContainer /> */}
 
