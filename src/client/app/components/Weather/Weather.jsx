@@ -3,15 +3,15 @@ import React, { PropTypes } from 'react';
 import SearchBar from './parts/SearchBar.jsx';
 import List from './parts/List.jsx';
 
-const Weather = ({ weather, onSubmit }) => (
+const Weather = ({ data: { weatherList }, onSubmit }) => (
   <div>
     <SearchBar onSubmit={onSubmit} />
-    <List weather={weather} />
+    <List weatherList={weatherList} />
   </div>
 );
 
 Weather.propTypes = {
-  weather: PropTypes.array.isRequired,
+  data: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
 };
 

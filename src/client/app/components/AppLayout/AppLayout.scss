@@ -1,6 +1,9 @@
-.pg-wrap {
-  min-height: 100%;
+#app {
   height: 100%;
+
+  [data-reactroot] {
+    height: 100%;
+  }
 }
 
 .app-content {

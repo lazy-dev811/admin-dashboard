@@ -2,22 +2,22 @@ import React, { PropTypes } from 'react';
 
 require('./Greet.scss');
 
-const Greet = ({ person }) => (
+const Greet = ({ data: { person, date, weather } }) => (
   <div className="greet">
     <h1 className="greet__title">
       Hi {person.name}
     </h1>
     <div>
-      Today is a fierce mild
+      Today's weather is {weather}
     </div>
     <div>
-      Date here
+      {date}
     </div>
   </div>
 );
 
 Greet.propTypes = {
-  person: PropTypes.object,
+  data: PropTypes.object,
 };
 
 export default Greet;

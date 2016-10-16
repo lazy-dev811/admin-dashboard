@@ -8,7 +8,7 @@ export const fetchWeatherRequested = searchQuery => ({
 });
 
 export const fetchWeatherSucceeded = (payload) => {
-  console.log('success');
+  console.log('success', payload);
   return {
     type: FETCH_WEATHER_SUCCEEDED,
     payload,

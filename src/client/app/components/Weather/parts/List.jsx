@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import Chart from './Chart.jsx';
 
-const List = ({ weather }) => {
+const List = ({ weatherList }) => {
   const renderWeather = (cityData) => {
     const cityName = cityData.city.name;
     const cityTemperatureList = cityData.list.map(data => data.main.temp);
@@ -39,8 +39,8 @@ const List = ({ weather }) => {
       </thead>
       <tbody>
         {
-          weather &&
-          weather.map(renderWeather)
+          weatherList &&
+          weatherList.map(renderWeather)
         }
       </tbody>
     </table>
@@ -48,7 +48,7 @@ const List = ({ weather }) => {
 };
 
 List.propTypes = {
-  weather: PropTypes.array.isRequired,
+  weatherList: PropTypes.array.isRequired,
 };
 
 export default List;
