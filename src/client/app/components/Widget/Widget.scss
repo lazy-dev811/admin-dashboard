@@ -1,37 +1,35 @@
 @import '../../scss/inc/_scrollbars.scss/';
 
 .widget {
-  position: absolute;
-  width: 300px;
+  float: left;
+  margin: 10px;
+  // position: absolute;
+  // width: 300px;
   background-color: rgba(255, 255, 255, 0.3);
   transition: background-color .3s ease;
 
   &:hover {
     background-color: #fff;
 
-    .widget__header {
-      opacity: 1;
-    }
+    // .widget__header {
+    //   opacity: 1;
+    // }
   }
 
-  &__header {
-    opacity: 0;
-    padding: 0 20px;
-    height: 50px;
-    line-height: 50px;
-    background-color: #fff;
-    width: 100%;
-    transition: opacity 0.3s ease;
-  }
+  // &__header {
+  //   opacity: 0;
+  //   padding: 0 20px;
+  //   height: 50px;
+  //   line-height: 50px;
+  //   background-color: #fff;
+  //   width: 100%;
+  //   transition: opacity 0.3s ease;
+  // }
 
   &__body {
     @extend %scrollbars-transparent;
     overflow: auto;
     padding: 20px;
-    height: 200px;
+    // height: 200px;
   }
-}
-
-.test {
-  // margin-right: 50px;
 }
