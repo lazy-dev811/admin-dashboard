@@ -5,7 +5,7 @@ import React, { PropTypes } from 'react';
 import AppSidebar from '../AppSidebar/AppSidebar.jsx';
 // import AppHeader from '../AppHeader/AppHeader.jsx';
 import SliderContainer from '../../containers/SliderContainer.js';
-import ColorPickerContainer from '../../containers/ColorPickerContainer.js';
+import ColorPickerContainer from '../ColorPicker/redux/Container.js';
 // import SettingsContainer from '../../containers/SettingsContainer.js';
 import ToastMessagesContainer from '../../containers/ToastMessagesContainer.js';
 // import SliderDetailContainer from '../../containers/SliderDetailContainer.js';

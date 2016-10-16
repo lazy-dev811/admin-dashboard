@@ -1,12 +1,12 @@
-@import '../../scss/inc/_base.scss';
+@import '../../scss/inc/base';
+@import '../../scss/helpers/clearfix';
+
 $item-s: 20px;
 
 .pg-color-picker {
+  @extend .cf;
   opacity: .3;
   z-index: 1;
-  position: fixed;
-  top: 50%;
-  right: 0;
   padding: 20px;
   background-color: #fff;
   transform: translate(100%, -50%);

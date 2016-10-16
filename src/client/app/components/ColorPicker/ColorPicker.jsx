@@ -1,39 +1,36 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 require('./ColorPicker.scss');
 
-const ColorPicker = ({ colors }) => (
+const ColorPicker = ({ data: { colors, activeColorName }, selectColor }) => (
   <div className="pg-color-picker">
-   {/* ng-className="{ 'is-active': options.model.showColorPicker.value }"> */}
-
     <div className="pg-color-picker__toggle is-noob">
-     {/* data-title="Hold down to set default and stop slider"> */}
-      <i className="icon icon-default isAbs icon-color-adjust"></i>
-      <i className="icon
-                icon-active
-                isAbs
-                icon-info">
-       </i>
+      <i className="icon icon-default isAbs icon-color-adjust" />
+      <i className="icon icon-active isAbs icon-info" />
     </div>
 
     <ul className="pg-color-picker__list">
-      {colors.map((color, index) => {
+      {colors.map((color) => {
+        const colorClass = classnames('pg-color-picker__list__item', { 'is-active': color.code === activeColorName });
+        const colorStyle = { backgroundColor: color.code };
+
         return (
-          <li className="pg-color-picker__list__item" key={index}>
-           {/* ng-repeat="color in colors track by $index"
-           ng-className="{ 'is-active': color.code === currentBackground.code }"
-           ng-mousedown="selectColor(color, $event, $index)"
-           ng-mouseup="selectColorMouseUp(color, $event, $index)"
-           ng-style="{ 'backgroundColor': color.code }"> */}
-          </li>
+          <li
+            className={colorClass}
+            key={color.code}
+            style={colorStyle}
+            onClick={() => selectColor(color.code)}
+          />
         );
       })}
     </ul>
   </div>
-)
+);
 
 ColorPicker.propTypes = {
-  colors: PropTypes.array,
+  data: PropTypes.object.isRequired,
+  selectColor: PropTypes.func,
 };
 
 export default ColorPicker;

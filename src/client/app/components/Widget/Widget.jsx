@@ -16,8 +16,6 @@ export default Component => class extends React.Component {
     });
 
     const widgetSyle = config && {
-      // const { position } = config;
-
       top: config.position.top,
       right: config.position.right,
       bottom: config.position.bottom,
