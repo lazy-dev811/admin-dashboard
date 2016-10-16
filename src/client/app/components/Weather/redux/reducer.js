@@ -7,8 +7,10 @@ const INITIAL_STATE = {
   config: {
     header: true,
     background: true,
-    posX: 200,
-    posY: 200,
+    position: {
+      top: 400,
+      left: 40,
+    },
   },
 };
 

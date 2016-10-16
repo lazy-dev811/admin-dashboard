@@ -15,7 +15,14 @@ export default Component => class extends React.Component {
       widget__body: config && config.header,
     });
 
-    const widgetSyle = config && { right: config.posX, bottom: config.posY };
+    const widgetSyle = config && {
+      // const { position } = config;
+
+      top: config.position.top,
+      right: config.position.right,
+      bottom: config.position.bottom,
+      left: config.position.left,
+    };
 
     return (
       <div className={widgetClass} style={widgetSyle}>

@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 
 require('./Quote.scss');
 
-const Quote = ({ quote }) => (
+const Quote = ({ data: { quote } }) => (
   <div className="quote">
     {quote}
   </div>
 );
 
 Quote.propTypes = {
-  quote: PropTypes.string,
+  data: PropTypes.object.isRequired,
 };
 
 export default Quote;

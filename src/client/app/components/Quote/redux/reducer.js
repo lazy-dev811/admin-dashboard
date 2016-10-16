@@ -1,18 +1,13 @@
 const INITIAL_STATE = {
   data: {
-    person: {
-      name: 'Vincent',
-      surname: 'Bollaert',
-    },
-    weather: 'a fierce mild',
-    date: '16 October 2016',
+    quote: 'I am a riddle, or a quote',
   },
   config: {
     header: false,
     background: false,
     position: {
-      right: 60,
       bottom: 60,
+      left: 60,
     },
   },
 };

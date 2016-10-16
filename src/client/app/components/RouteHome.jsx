@@ -2,7 +2,7 @@ import React from 'react';
 
 // import TodoListContainer from '../containers/TodoListContainer.js';
 import GreetContainer from './Greet/redux/Container.js';
-import QuoteContainer from '../containers/QuoteContainer.js';
+import QuoteContainer from './Quote/redux/Container.js';
 // import Widget from './Widget/Widget.jsx';
 import WeatherContainer from './Weather/redux/Container.js';
 
