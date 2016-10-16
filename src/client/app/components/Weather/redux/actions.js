@@ -7,18 +7,12 @@ export const fetchWeatherRequested = searchQuery => ({
   searchQuery,
 });
 
-export const fetchWeatherSucceeded = (payload) => {
-  console.log('success', payload);
-  return {
-    type: FETCH_WEATHER_SUCCEEDED,
-    payload,
-  };
-};
+export const fetchWeatherSucceeded = payload => ({
+  type: FETCH_WEATHER_SUCCEEDED,
+  payload,
+});
 
-export const fetchWeatherFailed = (payload) => {
-  console.log('failed', payload);
-  return {
-    type: FETCH_WEATHER_FAILED,
-    payload,
-  };
-};
+export const fetchWeatherFailed = payload => ({
+  type: FETCH_WEATHER_FAILED,
+  payload,
+});
