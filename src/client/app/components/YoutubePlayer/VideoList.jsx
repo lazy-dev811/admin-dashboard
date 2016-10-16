@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import VideoListItem from './VideoListItem';
+import VideoListItem from './VideoListItem.jsx';
 
 const VideoList = ({ videos, onVideoSelect }) => (
   <ul className="col-md-4 list-group">

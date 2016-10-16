@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-// import YoutubePlayer from '../YoutubePlayer/YoutubePlayer.jsx';
+import YoutubePlayer from '../YoutubePlayer/YoutubePlayer.jsx';
 
 import AppSidebar from '../AppSidebar/AppSidebar.jsx';
 // import AppHeader from '../AppHeader/AppHeader.jsx';
@@ -15,7 +15,7 @@ require('./AppLayout.scss');
 const AppLayout = ({ children }) => (
   <div>
     <img className="app__bg" src="public/nature-1.jpg" alt="dsds" />
-    {/* <YoutubePlayer /> */}
+    <YoutubePlayer />
 
     <AppSidebar />
     {/* <AppHeader /> */}

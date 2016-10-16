@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 
 import YTSearch from 'youtube-api-search';
 
-// import SearchBar from './SearchBar';
-// import VideoList from './VideoList';
-// import VideoDetail from './VideoDetail';
+import SearchBar from './SearchBar.jsx';
+import VideoList from './VideoList.jsx';
+import VideoDetail from './VideoDetail.jsx';
 
 const apiKey = 'AIzaSyBSoHvaEKzgtRp6vfUDlnRorIdieTPRmFc';
 
@@ -33,9 +33,9 @@ class YoutubePlayer extends Component {
     const delayedSearchQuery = _.debounce((searchQuery) => { this.videoSearch(searchQuery); }, 300);
     return (
       <div>
-        {/* <SearchBar onSearchQueryChange={delayedSearchQuery} /> */}
-        {/* <VideoDetail video={this.state.selectedVideo} /> */}
-        {/* <VideoList videos={this.state.videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} /> */}
+        <SearchBar onSearchQueryChange={delayedSearchQuery} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList videos={this.state.videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} />
       </div>
     );
   }
