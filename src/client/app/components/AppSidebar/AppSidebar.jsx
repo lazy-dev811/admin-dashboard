@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { Link } from 'react-router';
 
 require('./AppSidebar.scss');
 
@@ -18,37 +19,34 @@ const AppSidebar = () => {
         },
         {
           name: 'SubItem2',
-        }
-      ]
-    }
-  ]
-  return (
-    <div className='pgSidebar'>
-    {/* //  ng-className='{ 'is-active': showSidebar }'> */}
+        },
+      ],
+    },
+  ];
 
-      <ul className='pgSidebar__list'>
-        {sidebarItems.map((item, index) => {
-          return (
-            <li className='pgSidebar__list__item' key={index}>
-              {item.name}
-              {
-                item.subItems &&
-                <ul className='pgSidebar__sublist'>
-                  {item.subItems.map((subItem, subItemIndex) => {
-                    return (
-                      <li className='pgSidebar__sublist__item' key={subItemIndex}>
-                        {subItem.name}
-                      </li>
-                    );
-                  })}
+  return (
+    <div className="pgSidebar">
+      <ul className="pgSidebar__list">
+        {sidebarItems.map((item, index) => (
+          <li className="pgSidebar__list__item" key={index}>
+            {item.name}
+            {
+              item.subItems &&
+                <ul className="pgSidebar__sublist">
+                  {item.subItems.map((subItem, subItemIndex) => (
+                    <li className="pgSidebar__sublist__item" key={subItemIndex}>
+                      {subItem.name}
+                    </li>
+                  ))}
                 </ul>
-              }
-            </li>
-          );
-        })}
+            }
+          </li>
+        ))}
+        <Link className="header__link" to="/">Home</Link>
+        <Link className="header__link" to="about">About</Link>
       </ul>
     </div>
   );
-}
+};
 
 export default AppSidebar;
