@@ -1,17 +1,27 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
+
+import Close from '../Icon/Close.jsx';
 
 require('./ToastMessages.scss');
 
-const ToastMessages = ({ toasts }) => (
+// TODO: add toasted flag
+
+const ToastMessages = ({ data: { toasts }, onClick }) => (
   <ul className="toasts">
     {toasts.map((toast, index) => {
+      const toastClass = classnames([`toasts__toast is-${toast.type}`], {
+        toasted: toast.toasted,
+      });
+
       return (
-        <li className="toasts__toast is-{{ toast.type }}" key={index}>
-         {/* ng-repeat="toast in toasts"
-         ng-className="{ 'toasted' : touchedToast }"
-         ng-click="touchedToast = true"> */}
-          <div className="toasts__toast__icon-wrap">
-            <i className="icon icon-cancel"></i>
+        <li
+          className={toastClass}
+          key={index}
+          onClick={() => onClick(index)}
+        >
+          <div className="toasts__toast__marker">
+            <Close />
           </div>
           <div className="toasts__toast__copy">
             {toast.message}
@@ -22,6 +32,9 @@ const ToastMessages = ({ toasts }) => (
   </ul>
 );
 
-ToastMessages.propTypes = {};
+ToastMessages.propTypes = {
+  data: PropTypes.object,
+  onClick: PropTypes.func,
+};
 
 export default ToastMessages;
