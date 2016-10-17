@@ -18,6 +18,11 @@ const config = {
     filename: 'bundle.js',
   },
 
+  devServer: {
+    contentBase: './src/client',
+    hot: true,
+  },
+
   module: {
     loaders: [
       {
