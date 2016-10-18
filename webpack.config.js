@@ -20,7 +20,6 @@ const config = {
 
   devServer: {
     contentBase: './src/client',
-    hot: true,
   },
 
   module: {
