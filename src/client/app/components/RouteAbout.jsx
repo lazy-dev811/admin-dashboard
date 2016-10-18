@@ -1,23 +1,11 @@
 import React from 'react';
 
-class RouteAbout extends React.Component {
+// import Blog from './Blog/redux/container';
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      buttonClicked: false,
-      user: '',
-      users: [],
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        SDSDS
-      </div>
-    )
-  }
-}
+const RouteAbout = () => (
+  <div className="page">
+    {/* <Blog /> */}
+  </div>
+);
 
 export default RouteAbout;

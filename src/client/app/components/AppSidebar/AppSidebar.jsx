@@ -7,12 +7,15 @@ const AppSidebar = () => {
   const sidebarItems = [
     {
       name: 'Home',
+      url: '/',
     },
     {
       name: 'About',
+      url: '/about',
     },
     {
       name: 'More',
+      url: '',
       subItems: [
         {
           name: 'SubItem1',
@@ -29,7 +32,7 @@ const AppSidebar = () => {
       <ul className="pgSidebar__list">
         {sidebarItems.map((item, index) => (
           <li className="pgSidebar__list__item" key={index}>
-            {item.name}
+            <Link className="pgSidebar__list__item__link" to={item.url}>{item.name}</Link>
             {
               item.subItems &&
                 <ul className="pgSidebar__sublist">
@@ -42,8 +45,8 @@ const AppSidebar = () => {
             }
           </li>
         ))}
-        <Link className="header__link" to="/">Home</Link>
-        <Link className="header__link" to="about">About</Link>
+        {/* <Link className="header__link" to="/">Home</Link>
+        <Link className="header__link" to="about">About</Link> */}
       </ul>
     </div>
   );
