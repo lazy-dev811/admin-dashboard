@@ -25,12 +25,17 @@ $item-spacing: 20px;
     &__item {
       display: block;
       position: relative;
-      padding: 0 $item-spacing;
       line-height: $item-h;
-      cursor: pointer;
+
+      &__link {
+        display: block;
+        padding: 0 $item-spacing;
+      }
 
       &:hover {
-        color: $color;
+        .pgSidebar__list__item__link {
+          color: $color;
+        }
 
         .pgSidebar__sublist {
           opacity: 1;
