@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import {
   fetchPostsRequested,
+  fetchPostRequested,
   addPostRequested,
   removePostRequested,
 } from './actions';
@@ -16,11 +17,14 @@ const mergeProps = ({ data, config }, { dispatch }) => ({
   onFetchPosts(posts) {
     dispatch(fetchPostsRequested(posts));
   },
-  onAddPost(post) {
-    dispatch(addPostRequested(post));
+  onFetchPost(postId) {
+    dispatch(fetchPostRequested(postId));
   },
   onRemovePost(postId) {
     dispatch(removePostRequested(postId));
+  },
+  onSubmit(formValues) {
+    dispatch(addPostRequested(formValues));
   },
 });
 

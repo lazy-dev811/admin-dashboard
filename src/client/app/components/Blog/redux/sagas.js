@@ -7,6 +7,10 @@ import {
   fetchPostsSucceeded,
   fetchPostsFailed,
 
+  FETCH_POST_REQUESTED,
+  fetchPostSucceeded,
+  fetchPostFailed,
+
   ADD_POST_REQUESTED,
   addPostSucceeded,
   addPostFailed,
@@ -32,24 +36,37 @@ function* fetchPosts() {
   }
 }
 
-// function* addPost(post) {
-  // const url = `${URL}/${postId}${API_KEY}`;
-  //
-  // try {
-  //   const postsData = yield call(axios.delete, url);
-  //   yield put(removePostSucceeded(postsData));
-  // } catch (error) {
-  //   yield put(removePostFailed(error));
-  // }
-// }
+function* fetchPost(dispatch) {
+  const postId = dispatch.postId;
+  const url = `${URL}/${postId}${API_KEY}`;
+
+  try {
+    const postData = yield call(axios.get, url);
+    yield put(fetchPostSucceeded(postData.data));
+  } catch (error) {
+    yield put(fetchPostFailed(error));
+  }
+}
+
+function* addPost(dispatch) {
+  const url = `${URL}/${API_KEY}`;
+  const formValues = dispatch.formValues;
+
+  try {
+    const postsData = yield call(axios.post, url, formValues);
+    yield put(addPostSucceeded(postsData));
+  } catch (error) {
+    yield put(addPostFailed(error));
+  }
+}
 
 function* removePost(action) {
   const postId = action.postId;
   const url = `${URL}/${postId}${API_KEY}`;
 
   try {
-    const postsData = yield call(axios.delete, url);
-    yield put(removePostSucceeded(postsData));
+    yield call(axios.delete, url);
+    yield put(removePostSucceeded(postId));
   } catch (error) {
     yield put(removePostFailed(error));
   }
@@ -58,7 +75,8 @@ function* removePost(action) {
 export function* blogSagas() {
   yield* [
     takeEvery(FETCH_POSTS_REQUESTED, fetchPosts),
-    // takeEvery(ADD_POST_REQUESTED, addPost),
+    takeEvery(FETCH_POST_REQUESTED, fetchPost),
+    takeEvery(ADD_POST_REQUESTED, addPost),
     takeEvery(REMOVE_POST_REQUESTED, removePost),
   ];
 }

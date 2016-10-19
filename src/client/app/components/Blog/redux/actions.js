@@ -2,6 +2,10 @@ export const FETCH_POSTS_REQUESTED = 'FETCH_POSTS_REQUESTED';
 export const FETCH_POSTS_SUCCEEDED = 'FETCH_POSTS_SUCCEEDED';
 export const FETCH_POSTS_FAILED = 'FETCH_POSTS_FAILED';
 
+export const FETCH_POST_REQUESTED = 'FETCH_POST_REQUESTED';
+export const FETCH_POST_SUCCEEDED = 'FETCH_POST_SUCCEEDED';
+export const FETCH_POST_FAILED = 'FETCH_POST_FAILED';
+
 export const ADD_POST_REQUESTED = 'ADD_POST_REQUESTED';
 export const ADD_POST_SUCCEEDED = 'ADD_POST_SUCCEEDED';
 export const ADD_POST_FAILED = 'ADD_POST_FAILED';
@@ -25,19 +29,35 @@ export const fetchPostsFailed = blogPosts => ({
 });
 
 
-export const addPostRequested = addedPost => ({
+export const fetchPostRequested = postId => ({
+  type: FETCH_POST_REQUESTED,
+  postId,
+});
+
+export const fetchPostSucceeded = activePost => ({
+  type: FETCH_POST_SUCCEEDED,
+  activePost,
+});
+
+export const fetchPostFailed = error => ({
+  type: FETCH_POST_FAILED,
+  error,
+});
+
+
+export const addPostRequested = formValues => ({
   type: ADD_POST_REQUESTED,
-  addedPost,
+  formValues,
 });
 
-export const addPostSucceeded = addedPost => ({
+export const addPostSucceeded = formValues => ({
   type: ADD_POST_SUCCEEDED,
-  addedPost,
+  formValues,
 });
 
-export const addPostFailed = addedPost => ({
+export const addPostFailed = error => ({
   type: ADD_POST_FAILED,
-  addedPost,
+  error,
 });
 
 

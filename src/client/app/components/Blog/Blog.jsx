@@ -12,12 +12,12 @@ class Blog extends Component {
   }
 
   render() {
-    const { data: { blogPosts, activePost }, onAddPost, onRemovePost } = this.props;
+    const { data: { blogPosts, activePost }, onFetchPost, onRemovePost, onSubmit } = this.props;
 
     return (
       <div className="blog">
-        <List blogPosts={blogPosts} onRemovePost={onRemovePost} />
-        <reduxForm.test2 onAddPost={onAddPost} classCustom="blog__form" />
+        <List blogPosts={blogPosts} onFetchPost={onFetchPost} onRemovePost={onRemovePost} />
+        <reduxForm.form onSubmit={onSubmit} classCustom="blog__form" />
         {
           activePost &&
             <Detail activePost={activePost} classCustom="blog__detail" />
@@ -30,8 +30,9 @@ class Blog extends Component {
 Blog.propTypes = {
   data: PropTypes.object.isRequired,
   onFetchPosts: PropTypes.func.isRequired,
-  onAddPost: PropTypes.func.isRequired,
+  onFetchPost: PropTypes.func.isRequired,
   onRemovePost: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export default Blog;

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import widgetBlog from '../components/Blog/redux/reducer';
 import widgetColorPicker from '../components/ColorPicker/redux/reducer';
 import widgetGreet from '../components/Greet/redux/reducer';
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   widgetToastMessages,
   widgetWeather,
   widgetQuote,
+  form: formReducer,
 });
 
 export default rootReducer;

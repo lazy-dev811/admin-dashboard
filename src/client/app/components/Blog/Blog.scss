@@ -1,5 +1,15 @@
 .blog-posts__post {
   display: block;
+
+  &:hover {
+    .blog-posts__post__btn {
+      display: inline-block;
+    }
+  }
+}
+
+.blog-posts__post__btn {
+  display: none;
 }
 
 .blog__form {
@@ -8,4 +18,8 @@
 
 .blog__detail {
   background-color: #eee;
+}
+
+.error {
+  color: red;
 }

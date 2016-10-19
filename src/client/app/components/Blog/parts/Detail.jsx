@@ -1,8 +1,17 @@
 import React, { PropTypes } from 'react';
 
-const Detail = ({ activePost, classCustom }) => (
+const Detail = ({ activePost: { title, categories, content }, classCustom }) => (
   <div className={classCustom}>
-    this here is the detail {activePost.title}
+    DETAIL:
+    <p>
+      Title: {title}
+    </p>
+    <p>
+      Categories: {categories}
+    </p>
+    <p>
+      Content: {content}
+    </p>
   </div>
 );
 
