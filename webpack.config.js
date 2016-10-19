@@ -28,7 +28,7 @@ const config = {
         test: /\.jsx?/,
         include: APP_DIR,
         exclude: '/node_modules/',
-        loaders: ['react-hot', 'babel'],
+        loaders: ['babel'],
       },
       {
         test: /\.scss$/,
