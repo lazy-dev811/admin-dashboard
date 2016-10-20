@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import FormField from '../../FormElements/FormField/FormField.jsx';
+
 const validate = (values) => {
   const errors = {};
   if (!values.title) {
@@ -13,30 +15,6 @@ const validate = (values) => {
     errors.content = 'enter a content yo';
   }
   return errors;
-};
-
-const FormField = ({ input, type, label, id, meta: { touched, error } }) => (
-  <div>
-    <label htmlFor={id}>{label}</label>
-    <input
-      {...input}
-      type={type}
-      placeholder={label}
-      id={id}
-    />
-    {
-      touched && error &&
-        <div className="error">{error}</div>
-    }
-  </div>
-);
-
-FormField.propTypes = {
-  input: PropTypes.object,
-  type: PropTypes.string,
-  label: PropTypes.string,
-  id: PropTypes.string,
-  meta: PropTypes.object,
 };
 
 const Form = ({ classCustom, handleSubmit }) => (
