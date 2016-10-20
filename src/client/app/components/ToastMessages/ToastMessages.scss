@@ -20,7 +20,7 @@ $toast-h: 70px;
     transition: opacity .3s ease-out, filter .2s ease-out, height .2s ease-out, margin .2s ease-out;
     transition-delay: 0s, 0s, .3s, .3s;
 
-    &.toasted {
+    &-leave {
       opacity: 0;
       filter: blur(5px);
       margin: 0;
