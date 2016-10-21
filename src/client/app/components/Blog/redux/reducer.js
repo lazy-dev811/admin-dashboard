@@ -24,6 +24,7 @@ const INITIAL_STATE = {
     },
     // transparentBg: true,
     transparentScrollbar: true,
+    displaySettings: true,
   },
 };
 

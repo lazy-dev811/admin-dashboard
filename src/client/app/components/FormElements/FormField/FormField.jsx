@@ -9,7 +9,6 @@ const FormField = ({ input, type, label, id, meta: { touched, error } }) => {
 
   return (
     <div className="field-container">
-      <label htmlFor={id}>{label}</label>
       <input
         {...input}
         className={fieldClass}
@@ -19,7 +18,7 @@ const FormField = ({ input, type, label, id, meta: { touched, error } }) => {
       />
       {
         isError &&
-          <div className="error">{error}</div>
+          <div className="field__error">{error}</div>
       }
     </div>
   );

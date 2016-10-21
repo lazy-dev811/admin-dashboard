@@ -32,7 +32,7 @@ const INITIAL_STATE = {
   },
   config: {
     position: {
-      top: 60,
+      bottom: 200,
       left: 500,
     },
     components: {},

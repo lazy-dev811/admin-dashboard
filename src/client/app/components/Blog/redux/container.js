@@ -4,6 +4,7 @@ import {
   fetchPostRequested,
   addPostRequested,
   removePostRequested,
+  updateSettings,
 } from './actions';
 
 import Blog from '../Blog.jsx';
@@ -26,6 +27,9 @@ const mergeProps = ({ data, config }, { dispatch }) => ({
   onSubmit(formValues) {
     dispatch(addPostRequested(formValues));
   },
+  onSettingsUpdate(settingToUpdate) {
+    dispatch(updateSettings(settingToUpdate));
+  },
 });
 
-export default connect(mapStateToProps, null, mergeProps)(widgetHOC(Blog));
+export default connect(mapStateToProps, null, mergeProps)(widgetHOC(Blog, 'test'));

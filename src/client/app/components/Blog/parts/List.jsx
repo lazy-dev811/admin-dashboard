@@ -5,8 +5,8 @@ const List = ({ blogPosts, onFetchPost, onRemovePost }) => (
     {
       blogPosts && blogPosts.map(post => (
         <li className="blog-posts__post" key={post.id}>
-          <span>{post.title}</span>
-          <i>{post.categories}</i>
+          <span className="blog-posts__post__title">{post.title}</span>
+          <span className="blog-posts__post__category">{post.categories}</span>
           {/* <button className="btn blog-posts__post__btn" onClick={() => onRemovePost(post.id)}>Remove post</button>
           <button className="btn blog-posts__post__btn" onClick={() => onFetchPost(post.id)}>Load detail</button> */}
         </li>

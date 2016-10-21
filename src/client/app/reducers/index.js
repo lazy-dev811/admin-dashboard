@@ -8,6 +8,8 @@ import widgetToastMessages from '../components/ToastMessages/redux/reducer';
 import widgetWeather from '../components/Weather/redux/reducer';
 import widgetQuote from '../components/Quote/redux/reducer';
 
+// import hoc from '../components/Widget/redux/reducer';
+
 const rootReducer = combineReducers({
   widgetBlog,
   widgetColorPicker,
@@ -16,6 +18,7 @@ const rootReducer = combineReducers({
   widgetToastMessages,
   widgetWeather,
   widgetQuote,
+  // hoc,
   form: formReducer,
 });
 
