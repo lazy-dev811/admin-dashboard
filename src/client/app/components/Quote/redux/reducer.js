@@ -3,12 +3,12 @@ const INITIAL_STATE = {
     quote: 'I am a riddle, or a quote',
   },
   config: {
-    header: false,
-    background: false,
     position: {
       bottom: 60,
       left: 60,
     },
+    components: {},
+    dimensions: {},
   },
 };
 

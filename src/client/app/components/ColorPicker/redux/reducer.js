@@ -31,12 +31,12 @@ const INITIAL_STATE = {
     activeColorName: undefined,
   },
   config: {
-    header: false,
-    background: false,
     position: {
       right: 0,
       top: '50%',
     },
+    components: {},
+    dimensions: {},
   },
 };
 

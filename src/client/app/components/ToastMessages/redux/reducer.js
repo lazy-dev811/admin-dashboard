@@ -13,12 +13,12 @@ const INITIAL_STATE = {
     ],
   },
   config: {
-    header: false,
-    background: false,
     position: {
       right: 20,
       top: 20,
     },
+    components: {},
+    dimensions: {},
   },
 };
 

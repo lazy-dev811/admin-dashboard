@@ -22,22 +22,6 @@ $img-s: 150px;
     transform: translateY(-50%);
   }
 
-  &.is-test {
-    .slider-detail__wrap {
-      @extend %scrollbars-transparent;
-      padding: 0;
-      border-right: 5px solid rgba(255,255,255,.3);
-      background-color: transparent;
-      box-shadow: inset -15px 0 0 rgba(255,255,255,.3);
-    }
-
-    .test {
-      background-color: #fff;
-      padding: $spacing $spacing - 5px $spacing $spacing;
-      margin-right: 5px;
-    }
-  }
-
   &__img-wrap {
     position: absolute;
     right: 100%;
@@ -131,17 +115,6 @@ $img-s: 150px;
         }
       }
     }
-  }
-
-  &__wrap {
-    @extend %scrollbars;
-    position: relative;
-    padding: $spacing;
-    height: 100%;
-    border-right: 5px solid #fff;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-    background-color: #fff;
   }
 
   &__section {

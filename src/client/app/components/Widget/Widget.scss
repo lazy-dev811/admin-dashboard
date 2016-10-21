@@ -1,20 +1,8 @@
+@import '../../scss/inc/_base.scss/';
 @import '../../scss/inc/_scrollbars.scss/';
 
 .widget {
   position: absolute;
-
-  &--has-bg {
-    background-color: rgba(255, 255, 255, 0.3);
-    transition: background-color .3s ease;
-
-    &:hover {
-      background-color: #fff;
-
-      .widget__header {
-        opacity: 1;
-      }
-    }
-  }
 
   &__header {
     opacity: 0;
@@ -25,10 +13,35 @@
     width: 100%;
     transition: opacity 0.3s ease;
   }
+}
 
-  &__body {
+.widget__content {
+  position: relative;
+  padding: $spacing;
+  background-color: #fff;
+
+  &.has-transparent-bg {
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: background-color .3s ease;
+
+    &:hover {
+      background-color: #fff;
+    }
+  }
+}
+
+
+.has-set-height {
+  @extend %scrollbars;
+}
+
+.has-transparent-scrollbars {
+  .has-set-height {
     @extend %scrollbars-transparent;
-    overflow: auto;
-    padding: 20px;
+  }
+
+  .has-scroll {
+    padding: $spacing $spacing - 5px $spacing $spacing;
+    margin-right: 5px;
   }
 }

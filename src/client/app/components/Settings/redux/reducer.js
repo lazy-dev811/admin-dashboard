@@ -31,12 +31,12 @@ const INITIAL_STATE = {
     ],
   },
   config: {
-    header: false,
-    background: false,
     position: {
       top: 60,
       left: 500,
     },
+    components: {},
+    dimensions: {},
   },
 };
 

@@ -8,12 +8,12 @@ const INITIAL_STATE = {
     date: '16 October 2016',
   },
   config: {
-    header: false,
-    background: false,
     position: {
       right: 60,
       bottom: 60,
     },
+    components: {},
+    dimensions: {},
   },
 };
 

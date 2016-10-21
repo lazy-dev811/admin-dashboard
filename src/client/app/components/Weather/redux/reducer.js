@@ -5,12 +5,16 @@ const INITIAL_STATE = {
     weatherList: [],
   },
   config: {
-    header: true,
-    background: true,
+    components: {
+      header: true,
+      body: true,
+    },
     position: {
       top: 400,
       left: 40,
     },
+    dimensions: {},
+    transparent: true,
   },
 };
 

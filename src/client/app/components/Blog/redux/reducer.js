@@ -11,12 +11,19 @@ const INITIAL_STATE = {
     activePost: undefined,
   },
   config: {
-    header: true,
-    background: true,
+    components: {
+      body: true,
+    },
+    dimensions: {
+      width: 300,
+      height: 300,
+    },
     position: {
-      top: 20,
+      bottom: 100,
       left: 40,
     },
+    // transparentBg: true,
+    transparentScrollbar: true,
   },
 };
 

@@ -2,6 +2,11 @@ $scrollbar-w: 10px;
 
 %scrollbars {
   overflow: auto;
+  height: 100%;
+  border-right: 5px solid #fff;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  background-color: #fff;
 
   &::-webkit-scrollbar {
     width: $scrollbar-w;
@@ -31,6 +36,10 @@ $scrollbar-w: 10px;
 }
 
 %scrollbars-transparent {
+  border-right: 5px solid rgba(255,255,255,.3);
+  background-color: transparent;
+  box-shadow: inset -15px 0 0 rgba(255,255,255,.3);
+  
   &::-webkit-scrollbar-track {
     background-color: transparent;
     box-shadow: none;

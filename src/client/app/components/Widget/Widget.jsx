@@ -1,40 +1,72 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 import './Widget.scss';
 
 export default Component => class extends React.Component {
   render() {
-    const { config } = this.props;
+    const {
+      config: {
+        components: { header, body, footer },
+        dimensions: { width, height },
+        position: { top, right, bottom, left },
+        transparentBg,
+        transparentScrollbar,
+      },
+    } = this.props;
 
-    const widgetClass = classnames('widget', {
-      'widget--has-bg': config && config.background,
+    const Header = () => (
+      <div className="widget__header">
+        Header text
+      </div>
+    );
+
+    const Footer = () => (
+      <div className="widget__footer">
+        Footer text
+      </div>
+    );
+
+    const containerClass = classnames({
+      'has-transparent-scrollbars': transparentBg || transparentScrollbar,
     });
 
-    const bodyClass = classnames({
-      widget__body: config && config.header,
+    const wrapClass = classnames({
+      'has-set-height': height,
     });
 
-    const widgetSyle = config && {
-      top: config.position.top,
-      right: config.position.right,
-      bottom: config.position.bottom,
-      left: config.position.left,
+    const contentClass = classnames({
+      widget__content: body,
+      'has-transparent-bg': transparentBg,
+      'has-scroll': height,
+    });
+
+    const widgetSyle = {
+      top,
+      right,
+      bottom,
+      left,
+    };
+
+    const widgetBodySyle = {
+      width,
+      height,
     };
 
     return (
-      <div className={widgetClass} style={widgetSyle}>
+      <div className="widget" style={widgetSyle}>
+        <div className={containerClass} style={widgetBodySyle}>
+          <div className={wrapClass}>
+            <div className={contentClass}>
 
-        {config && config.header &&
-          <header className="widget__header">
-            Header text
-          </header>
-        }
+              {header && <Header />}
 
-        <div className={bodyClass}>
-          <Component {...this.state} {...this.props} />
+              <Component {...this.state} {...this.props} />
+
+              {footer && <Footer />}
+            </div>
+          </div>
         </div>
-
       </div>
     );
   }

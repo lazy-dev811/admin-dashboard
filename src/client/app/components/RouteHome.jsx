@@ -6,6 +6,7 @@ import Blog from './Blog/redux/container';
 import SliderContainer from '../containers/SliderContainer.js';
 import Greet from './Greet/redux/container.js';
 import Quote from './Quote/redux/container.js';
+// import SliderDetailContainer from '../containers/SliderDetailContainer.js';
 // import Widget from './Widget/Widget.jsx';
 // import Weather from './Weather/redux/container.js';
 
@@ -17,6 +18,7 @@ const RouteHome = () => (
     <SliderContainer />
     <Greet />
     <Quote />
+    {/* <SliderDetailContainer /> */}
     {/* <Weather /> */}
     {/* <Widget title="Widget 1" xPos={100} yPos={100} /> */}
   </div>

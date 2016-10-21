@@ -4,7 +4,7 @@ require('./SliderDetail.scss');
 
 const SliderDetail = ({ activeState, selectedPerson, }) => {
   return (
-    <div className="slider-detail {activeState} docked is-active is-test">
+    <div className="slider-detail {activeState} docked is-active has-transparent-scrollbars">
       {/* ng-className="{ 'is-active': selectedPerson, 'is-test': options.model.transparentScrollbars.value }"> */}
 
       <div className="slider-detail__img-wrap">
@@ -32,8 +32,8 @@ const SliderDetail = ({ activeState, selectedPerson, }) => {
         </ul>
       </nav>
 
-      <div className="slider-detail__wrap">
-        <div className="test">
+      <div className="slider-detail__wrap scroll-wrap">
+        <div className="scroll">
 
           <header className="slider-detail__header cf">
             Name: {selectedPerson.name}
