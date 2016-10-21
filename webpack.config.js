@@ -35,6 +35,11 @@ const config = {
         loaders: ['style', 'css', 'sass'],
       },
       {
+        test: /\.css$/,
+        loader: 'style!css?modules',
+        include: /flexboxgrid/,
+      },
+      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           // 'file?name=[nature-1 sha512&digest=hex&name=[nature-1].[jpg]',
