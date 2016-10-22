@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 
 
 import AppSidebar from '../AppSidebar/AppSidebar.jsx';
-import ColorPicker from '../ColorPicker/redux/container.js';
+// import ColorPicker from '../ColorPicker/redux/container.js';
 // import Settings from '../Settings/redux/container.js';
-import ToastMessages from '../ToastMessages/redux/container.js';
+// import ToastMessages from '../ToastMessages/redux/container.js';
 
 require('./AppLayout.scss');
 
@@ -13,9 +13,9 @@ const AppLayout = ({ children }) => (
     <img className="app__bg" src="public/nature-1.jpg" alt="dsds" />
     {children}
     <AppSidebar />
-    <ColorPicker />
+    {/* <ColorPicker /> */}
     {/* <Settings /> */}
-    <ToastMessages />
+    {/* <ToastMessages /> */}
   </div>
 );
 

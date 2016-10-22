@@ -2,47 +2,55 @@ import {
   UPDATE_WIDGET_CONFIG,
 } from './actions';
 
-
-//TODO NO LONGER HOOKED UP
-
-
-
-// import widgetBlog from '../../Blog/redux/reducer';
-
 const INITIAL_STATE = {
-  // data: {
-  //   blogPosts: [],
-  //   activePost: undefined,
-  // },
-  // config: {
-  //   components: {
-  //     body: true,
-  //   },
-  //   dimensions: {
-  //     width: 300,
-  //     height: 300,
-  //   },
-  //   position: {
-  //     bottom: 100,
-  //     left: 40,
-  //   },
-  //   transparentScrollbar: true,
-  //   displaySettings: true,
-  // },
-  lol: 'dfdsfds',
+  widgetBlog: {
+    components: {
+      body: true,
+    },
+    dimensions: {
+      width: 300,
+      height: 300,
+    },
+    position: {
+      bottom: 100,
+      left: 40,
+    },
+    // transparentBg: true,
+    transparentScrollbar: true,
+    displaySettings: true,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UPDATE_WIDGET_CONFIG: {
-      console.log('in action', action.widgetConfig.key, action.widgetConfig.value);
-      // console.log(widgetBlog());
+      const { widgetName, widgetConfig: { key, value, category } } = action;
+      let configToUpdate;
+
+      if (category) {
+        configToUpdate = {
+          [widgetName]: {
+            ...state[widgetName],
+            [category]: {
+              ...state[widgetName][category],
+              [key]: !value,
+            },
+          },
+        };
+      }
+
+      if (!category) {
+        configToUpdate = {
+          [widgetName]: {
+            ...state[widgetName],
+            [!category && key]: [!category] && !value,
+          },
+        };
+      }
+
       return {
         ...state,
-        lol: 'BOOOM',
-        // data: {
-        //   blogPosts: action.blogPosts.data,
-        // },
+        ...configToUpdate,
       };
     }
 

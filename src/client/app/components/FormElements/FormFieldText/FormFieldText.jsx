@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-require('./FormField.scss');
+require('./FormFieldText.scss');
 
-const FormField = ({ input, type, placeholder, id, meta: { touched, error } }) => {
+const FormFieldText = ({ input, type, placeholder, id, meta: { touched, error } }) => {
   const isError = touched && error;
   const fieldClass = classnames('field', { 'is-error': isError });
 
@@ -24,7 +24,7 @@ const FormField = ({ input, type, placeholder, id, meta: { touched, error } }) =
   );
 };
 
-FormField.propTypes = {
+FormFieldText.propTypes = {
   input: PropTypes.object,
   type: PropTypes.string,
   placeholder: PropTypes.string,
@@ -32,4 +32,4 @@ FormField.propTypes = {
   meta: PropTypes.object,
 };
 
-export default FormField;
+export default FormFieldText;

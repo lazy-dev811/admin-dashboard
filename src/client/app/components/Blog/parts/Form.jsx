@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import FormField from '../../FormElements/FormField/FormField.jsx';
+import Button from '../../Button/Button.jsx';
 
 const validate = (values) => {
   const errors = {};
@@ -25,7 +26,7 @@ const Form = ({ classCustom, handleSubmit }) => (
         name="title"
         component={FormField}
         id="title"
-        label="title"
+        placeholder="title"
         type="text"
       />
     </div>
@@ -34,7 +35,7 @@ const Form = ({ classCustom, handleSubmit }) => (
         name="categories"
         component={FormField}
         id="categories"
-        label="categories"
+        placeholder="categories"
         type="text"
       />
     </div>
@@ -43,11 +44,11 @@ const Form = ({ classCustom, handleSubmit }) => (
         name="content"
         component={FormField}
         id="content"
-        label="content"
+        placeholder="content"
         type="text"
       />
     </div>
-    <button type="submit" className="btn" onClick={handleSubmit}>Add post</button>
+    <Button handleSubmit={handleSubmit} label="Add post" />
   </form>
 );
 

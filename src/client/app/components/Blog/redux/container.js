@@ -10,11 +10,13 @@ import {
 import Blog from '../Blog.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
-const mapStateToProps = ({ widgetBlog }) => ({ ...widgetBlog });
+const mapStateToProps = ({ widgetBlog, config }) => ({ ...widgetBlog, ...config });
 
-const mergeProps = ({ data, config }, { dispatch }) => ({
-  data,
-  config,
+const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog }, { dispatch }) => ({
+  widgetName,
+  blogPosts,
+  activePost,
+  config: widgetBlog,
   onFetchPosts(posts) {
     dispatch(fetchPostsRequested(posts));
   },
@@ -32,4 +34,4 @@ const mergeProps = ({ data, config }, { dispatch }) => ({
   },
 });
 
-export default connect(mapStateToProps, null, mergeProps)(widgetHOC(Blog, 'test'));
+export default connect(mapStateToProps, null, mergeProps)(widgetHOC(Blog));

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+
 import widgetBlog from '../components/Blog/redux/reducer';
 import widgetColorPicker from '../components/ColorPicker/redux/reducer';
 import widgetGreet from '../components/Greet/redux/reducer';
@@ -7,8 +8,9 @@ import widgetSettings from '../components/Settings/redux/reducer';
 import widgetToastMessages from '../components/ToastMessages/redux/reducer';
 import widgetWeather from '../components/Weather/redux/reducer';
 import widgetQuote from '../components/Quote/redux/reducer';
+import widgetSliderDetail from '../components/SliderDetail/redux/reducer';
 
-// import hoc from '../components/Widget/redux/reducer';
+import config from '../components/Widget/redux/reducer';
 
 const rootReducer = combineReducers({
   widgetBlog,
@@ -18,7 +20,8 @@ const rootReducer = combineReducers({
   widgetToastMessages,
   widgetWeather,
   widgetQuote,
-  // hoc,
+  widgetSliderDetail,
+  config,
   form: formReducer,
 });
 

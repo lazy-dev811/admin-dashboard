@@ -1,4 +1,5 @@
 .btn {
+  display: inline-flex;
   padding: 0 10px;
   line-height: 30px;
   border: 0;
@@ -6,4 +7,11 @@
   border-radius: 2px;
   color: #fff;
   background-color: #444;
+  margin-top: 15px;
+  margin-right: 15px;
+
+  &.is-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }

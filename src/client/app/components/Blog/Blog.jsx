@@ -12,7 +12,7 @@ class Blog extends Component {
   }
 
   render() {
-    const { data: { blogPosts, activePost }, onFetchPost, onRemovePost, onSubmit } = this.props;
+    const { blogPosts, activePost, onFetchPost, onRemovePost, onSubmit } = this.props;
 
     return (
       <div className="blog">
@@ -28,7 +28,8 @@ class Blog extends Component {
 }
 
 Blog.propTypes = {
-  data: PropTypes.object.isRequired,
+  blogPosts: PropTypes.array.isRequired,
+  activePost: PropTypes.object,
   onFetchPosts: PropTypes.func.isRequired,
   onFetchPost: PropTypes.func.isRequired,
   onRemovePost: PropTypes.func.isRequired,

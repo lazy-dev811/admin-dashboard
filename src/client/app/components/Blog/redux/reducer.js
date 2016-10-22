@@ -1,3 +1,5 @@
+import { WIDGET_BLOG } from '../../../constants/widgets.js';
+
 import {
   FETCH_POSTS_SUCCEEDED,
   FETCH_POST_SUCCEEDED,
@@ -6,26 +8,9 @@ import {
 } from './actions';
 
 const INITIAL_STATE = {
-  data: {
-    blogPosts: [],
-    activePost: undefined,
-  },
-  config: {
-    components: {
-      body: true,
-    },
-    dimensions: {
-      width: 300,
-      height: 300,
-    },
-    position: {
-      bottom: 100,
-      left: 40,
-    },
-    // transparentBg: true,
-    transparentScrollbar: true,
-    displaySettings: true,
-  },
+  widgetName: WIDGET_BLOG,
+  blogPosts: [],
+  activePost: undefined,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -33,9 +18,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_POSTS_SUCCEEDED: {
       return {
         ...state,
-        data: {
-          blogPosts: action.blogPosts.data,
-        },
+        blogPosts: action.blogPosts.data,
       };
     }
 
@@ -44,10 +27,7 @@ export default (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        data: {
-          ...state.data,
-          activePost,
-        },
+        activePost,
       };
     }
 
@@ -56,13 +36,11 @@ export default (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        data: {
-          blogPosts: [
-            ...state.data.blogPosts,
-            newPost,
-          ],
-          activePost: newPost,
-        },
+        blogPosts: [
+          ...state.blogPosts,
+          newPost,
+        ],
+        activePost: newPost,
       };
     }
 
@@ -72,10 +50,7 @@ export default (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        data: {
-          ...state.data,
-          blogPosts,
-        },
+        blogPosts,
       };
     }
 
