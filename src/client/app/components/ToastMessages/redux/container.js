@@ -4,11 +4,11 @@ import { burnToast } from './actions';
 import ToastMessages from '../ToastMessages.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
-const mapStateToProps = ({ widgetToastMessages }) => ({ ...widgetToastMessages });
+const mapStateToProps = ({ widgetToastMessages, config }) => ({ ...widgetToastMessages, ...config });
 
-const mergeProps = ({ data, config }, { dispatch }) => ({
-  data,
-  config,
+const mergeProps = ({ toasts, widgetToastMessages }, { dispatch }) => ({
+  toasts,
+  config: widgetToastMessages,
   onClick(toastIndex) {
     dispatch(burnToast(toastIndex));
   },

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 require('./Greet.scss');
 
-const Greet = ({ data: { person, date, weather } }) => (
+const Greet = ({ person, date, weather }) => (
   <div className="greet">
     <h1 className="greet__title">
       Hi {person.name}
@@ -17,7 +17,9 @@ const Greet = ({ data: { person, date, weather } }) => (
 );
 
 Greet.propTypes = {
-  data: PropTypes.object,
+  person: PropTypes.object.isRequired,
+  date: PropTypes.string.isRequired,
+  weather: PropTypes.string.isRequired,
 };
 
 export default Greet;

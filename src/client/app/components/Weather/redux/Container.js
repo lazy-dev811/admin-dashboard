@@ -4,11 +4,11 @@ import { fetchWeatherRequested } from './actions';
 import Weather from '../Weather.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
-const mapStateToProps = ({ widgetWeather }) => ({ ...widgetWeather });
+const mapStateToProps = ({ widgetWeather, config }) => ({ ...widgetWeather, ...config });
 
-const mergeProps = ({ data, config }, { dispatch }) => ({
-  data,
-  config,
+const mergeProps = ({ weatherList, widgetWeather }, { dispatch }) => ({
+  weatherList,
+  config: widgetWeather,
   onSubmit(searchQuery) {
     dispatch(fetchWeatherRequested(searchQuery));
   },

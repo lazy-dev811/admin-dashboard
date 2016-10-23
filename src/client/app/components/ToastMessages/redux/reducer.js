@@ -1,25 +1,15 @@
 import { BURN_TOAST } from './actions';
 
 const INITIAL_STATE = {
-  data: {
-    toasts: [
-      {
-        type: 'bad',
-        message: 'This is an error message from api. The data could not be loaded',
-      }, {
-        type: 'info',
-        message: 'This is an info message. Use still to be decided',
-      },
-    ],
-  },
-  config: {
-    position: {
-      right: 20,
-      top: 20,
+  toasts: [
+    {
+      type: 'bad',
+      message: 'This is an error message from api. The data could not be loaded',
+    }, {
+      type: 'info',
+      message: 'This is an info message. Use still to be decided',
     },
-    components: {},
-    dimensions: {},
-  },
+  ],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -27,12 +17,10 @@ export default (state = INITIAL_STATE, action) => {
     case BURN_TOAST: {
       return {
         ...state,
-        data: {
-          toasts: [
-            ...state.data.toasts.slice(0, action.toastIndex),
-            ...state.data.toasts.slice(action.toastIndex + 1),
-          ],
-        },
+        toasts: [
+          ...state.toasts.slice(0, action.toastIndex),
+          ...state.toasts.slice(action.toastIndex + 1),
+        ],
       };
     }
 

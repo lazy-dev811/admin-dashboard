@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 require('./ColorPicker.scss');
 
-const ColorPicker = ({ data: { colors, activeColorName }, selectColor }) => (
+const ColorPicker = ({ colors, activeColorName, selectColor }) => (
   <div className="pg-color-picker">
     <div className="pg-color-picker__toggle is-noob">
       <i className="icon icon-default isAbs icon-color-adjust" />
@@ -29,7 +29,8 @@ const ColorPicker = ({ data: { colors, activeColorName }, selectColor }) => (
 );
 
 ColorPicker.propTypes = {
-  data: PropTypes.object.isRequired,
+  colors: PropTypes.array.isRequired,
+  activeColorName: PropTypes.string,
   selectColor: PropTypes.func,
 };
 

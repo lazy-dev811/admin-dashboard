@@ -1,16 +1,12 @@
 @import '../../scss/inc/_base';
 
 .pg-settings {
-  padding: $spacing;
-  max-width: 250px;
-  background-color: #fff;
-
   &__options {
     &__option {
-      display: block;
+      display: flex;
+      align-items: center;
       margin-bottom: 15px;
-      text-align: right;
-      line-height: 1;
+      line-height: 1.3;
 
       &.is-active {
         color: $color;

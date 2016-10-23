@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 
-import SearchBar from './parts/SearchBar.jsx';
+import reduxForm from './parts/SearchBar.jsx';
 import List from './parts/List.jsx';
 
-const Weather = ({ data: { weatherList }, onSubmit }) => (
+const Weather = ({ weatherList, onSubmit }) => (
   <div>
-    <SearchBar onSubmit={onSubmit} />
+    <reduxForm.form onSubmit={onSubmit} />
     <List weatherList={weatherList} />
   </div>
 );
 
 Weather.propTypes = {
-  data: PropTypes.object,
+  weatherList: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

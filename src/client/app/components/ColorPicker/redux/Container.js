@@ -4,13 +4,12 @@ import { colorPickerSelectColor } from './actions';
 import ColorPicker from '../ColorPicker.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
-const mapStateToProps = ({ widgetColorPicker }) => ({
-  ...widgetColorPicker,
-});
+const mapStateToProps = ({ widgetColorPicker, config }) => ({ ...widgetColorPicker, ...config });
 
-const mergeProps = ({ data, config }, { dispatch }) => ({
-  data,
-  config,
+const mergeProps = ({ colors, activeColorName, widgetColorPicker }, { dispatch }) => ({
+  colors,
+  activeColorName,
+  config: widgetColorPicker,
   selectColor(selectedColorName) {
     dispatch(colorPickerSelectColor(selectedColorName));
   },

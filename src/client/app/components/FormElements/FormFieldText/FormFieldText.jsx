@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 require('./FormFieldText.scss');
 
-const FormFieldText = ({ input, type, placeholder, id, meta: { touched, error } }) => {
+const FormFieldText = ({ input, placeholder, id, meta: { touched, error } }) => {
   const isError = touched && error;
   const fieldClass = classnames('field', { 'is-error': isError });
 
@@ -12,7 +12,7 @@ const FormFieldText = ({ input, type, placeholder, id, meta: { touched, error } 
       <input
         {...input}
         className={fieldClass}
-        type={type}
+        type="text"
         placeholder={placeholder}
         id={id}
       />
@@ -26,7 +26,6 @@ const FormFieldText = ({ input, type, placeholder, id, meta: { touched, error } 
 
 FormFieldText.propTypes = {
   input: PropTypes.object,
-  type: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,

@@ -3,6 +3,14 @@ import {
 } from './actions';
 
 const INITIAL_STATE = {
+  widgetGreet: {
+    position: {
+      right: 60,
+      bottom: 60,
+    },
+    components: {},
+    dimensions: {},
+  },
   widgetBlog: {
     components: {
       body: true,
@@ -18,6 +26,51 @@ const INITIAL_STATE = {
     // transparentBg: true,
     transparentScrollbar: true,
     displaySettings: true,
+  },
+  widgetQuote: {
+    position: {
+      bottom: 60,
+      left: 60,
+    },
+    components: {},
+    dimensions: {},
+  },
+  widgetWeather: {
+    components: {
+      body: true,
+    },
+    position: {
+      top: 400,
+      left: 40,
+    },
+    dimensions: {},
+    transparent: true,
+  },
+  widgetColorPicker: {
+    position: {
+      right: 0,
+      top: '50%',
+    },
+    components: {},
+    dimensions: {},
+  },
+  widgetToastMessages: {
+    position: {
+      right: 20,
+      top: 20,
+    },
+    components: {},
+    dimensions: {},
+  },
+  widgetSettings: {
+    components: {
+      body: true,
+    },
+    position: {
+      bottom: 200,
+      left: 500,
+    },
+    dimensions: {},
   },
 };
 

@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-require('./FormField.scss');
-
 const FormField = ({ input, type, placeholder, id, meta: { touched, error } }) => {
   const isError = touched && error;
   const fieldClass = classnames('field', { 'is-error': isError });

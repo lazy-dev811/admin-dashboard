@@ -8,7 +8,7 @@ require('./ToastMessages.scss');
 
 // TODO: add toasted flag
 
-const ToastMessages = ({ data: { toasts }, onClick }) => {
+const ToastMessages = ({ toasts, onClick }) => {
   const items = toasts.map((toast, index) => {
     const toastClass = classnames([`toasts__toast is-${toast.type}`], {
       toasted: toast.toasted,
@@ -46,7 +46,7 @@ const ToastMessages = ({ data: { toasts }, onClick }) => {
 };
 
 ToastMessages.propTypes = {
-  data: PropTypes.object,
+  toasts: PropTypes.array,
   onClick: PropTypes.func,
 };
 
