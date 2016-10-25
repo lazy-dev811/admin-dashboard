@@ -12,12 +12,12 @@ class Blog extends Component {
   }
 
   render() {
-    const { blogPosts, activePost, onFetchPost, onRemovePost, onSubmit } = this.props;
+    const { blogPosts, activePost, onFetchPost, onRemovePost, onSubmit, onChange } = this.props;
 
     return (
       <div className="blog">
         <List blogPosts={blogPosts} onFetchPost={onFetchPost} onRemovePost={onRemovePost} />
-        <reduxForm.form onSubmit={onSubmit} classCustom="blog__form" />
+        <reduxForm.form onSubmit={onSubmit} onChange={onChange} classCustom="blog__form" />
         {
           activePost &&
             <Detail activePost={activePost} classCustom="blog__detail" />

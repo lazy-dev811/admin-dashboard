@@ -4,15 +4,16 @@ import reduxForm from './parts/Form.jsx';
 
 require('./Settings.scss');
 
-const Settings = ({ settings, onUpdate }) => (
+const Settings = ({ settings, onChangeTest }) => (
   <div className="pg-settings">
-    <reduxForm.form settings={settings} onUpdate={onUpdate} />
+    <reduxForm.form settings={settings} onChangeTest={onChangeTest} />
   </div>
 );
 
 Settings.propTypes = {
   settings: PropTypes.array,
-  onUpdate: PropTypes.func.isRequired,
+  // onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export default Settings;

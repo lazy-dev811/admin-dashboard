@@ -67,8 +67,8 @@ const INITIAL_STATE = {
       body: true,
     },
     position: {
-      bottom: 200,
-      left: 500,
+      top: 20,
+      left: 40,
     },
     dimensions: {},
   },

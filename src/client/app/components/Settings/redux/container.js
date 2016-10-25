@@ -9,8 +9,8 @@ const mapStateToProps = ({ widgetSettings, config }) => ({ ...widgetSettings, ..
 const mergeProps = ({ settings, widgetSettings }, { dispatch }) => ({
   settings,
   config: widgetSettings,
-  onUpdate(settingToUpdate) {
-    dispatch(updateSettings(settingToUpdate));
+  onChangeTest(formValues) {
+    dispatch(updateSettings(formValues));
   },
 });
 

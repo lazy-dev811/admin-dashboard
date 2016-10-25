@@ -2,27 +2,29 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 require('../FormField.scss');
-require('./FormFieldCheckbox.scss');
+require('./FormFieldRadio.scss');
 
 const FormField = ({ input, label, id, onChangeTest, meta: { touched, error } }) => {
   const isError = touched && error;
-  const fieldClass = classnames('checkbox', { 'is-error': isError });
-  const labelClass = classnames('label', { 'is-active': input.value });
+  const fieldClass = classnames('radio', { 'is-error': isError });
 
   return (
-    <div className="checkbox-container">
-      <label
-        className={labelClass}
-        htmlFor={id}
-      >
-        {label}
-      </label>
+    <div className="radio-container">
+      {
+        label &&
+          <label
+            className="label"
+            htmlFor={id}
+          >
+            {label}
+          </label>
+      }
 
       <div className="input-container">
         <input
           {...input}
           className={fieldClass}
-          type="checkbox"
+          type="radio"
           id={id}
           onChange={(event) => {
             input.onChange(event);

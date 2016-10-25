@@ -1,0 +1,68 @@
+@import '../../../scss/inc/_base.scss';
+@import '../FormField.scss';
+
+
+$size: 20px;
+
+//TODO: TEMP STYLES
+
+.input-container {
+  position: relative;
+  margin-left: auto;
+  width: $size;
+  height: $size;
+}
+
+.radio-container {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+
+  .input-container {
+    margin-left: 5px;
+  }
+}
+
+.radio {
+  visibility: hidden;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+  & + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 2px #666;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      box-shadow: inset 0 0 0 2px #fff;
+      border-radius: 50%;
+    }
+
+    &:hover {
+      box-shadow: inset 0 0 0 2px $b-color-dark;
+    }
+  }
+
+  &:checked + label {
+    background-color: $b-color-dark;
+    box-shadow: none;
+
+    &:after {
+      opacity: 1;
+    }
+  }
+}

@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import FormFieldCheckbox from '../../FormElements/FormFieldCheckbox/FormFieldCheckbox.jsx';
+import FormFieldRadio from '../../FormElements/FormFieldRadio/FormFieldRadio.jsx';
 
-const Form = ({ settings, onUpdate }) => (
+const Form = ({ settings, onChangeTest }) => (
   <form>
     <ul className="pg-settings__options">
       {settings.map((setting, index) => {
@@ -19,33 +20,34 @@ const Form = ({ settings, onUpdate }) => (
               component={FormFieldCheckbox}
               id={uniqueId}
               label={setting.label}
-              onChange={() => onUpdate(setting)}
+              onChangeTest={onChangeTest}
             />
-            {/* <label
-              className="label pg-settings__options__option__label"
-              htmlFor={uniqueId}
-            >
-              {setting.label}
-            </label>
-            <div className="input-container input-container--switch">
-              <input
-                className="checkbox"
-                type="checkbox"
-                id={uniqueId}
-                onChange={() => onUpdate(setting)}
-              />
-              <label htmlFor={uniqueId} />
-            </div> */}
           </li>
         );
       })}
+
+      <Field
+        name="radio-test"
+        component={FormFieldRadio}
+        id="radio-test"
+        label="radio-test"
+        onChangeTest={onChangeTest}
+      />
+
+      <Field
+        name="radio-test"
+        component={FormFieldRadio}
+        id="radio-test2"
+        onChangeTest={onChangeTest}
+      />
     </ul>
   </form>
 );
 
 Form.propTypes = {
   settings: PropTypes.array,
-  onUpdate: PropTypes.func,
+  onChangeTest: PropTypes.func,
+  handleSubmit: PropTypes.func,
 };
 
 export default {

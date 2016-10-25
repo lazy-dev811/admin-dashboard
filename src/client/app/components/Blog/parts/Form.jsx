@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
+import FormFieldCheckbox from '../../FormElements/FormFieldCheckbox/FormFieldCheckbox.jsx';
 import Button from '../../Button/Button.jsx';
 
 const validate = (values) => {
@@ -18,8 +19,8 @@ const validate = (values) => {
   return errors;
 };
 
-const Form = ({ classCustom, handleSubmit }) => (
-  <form onSubmit={handleSubmit} className={classCustom}>
+const Form = ({ classCustom, handleSubmit, handleChange }) => (
+  <form onSubmit={handleSubmit} onChange={handleChange} className={classCustom}>
     This here is a Form
     <div>
       <Field
@@ -28,6 +29,13 @@ const Form = ({ classCustom, handleSubmit }) => (
         id="title"
         placeholder="title"
         type="text"
+      />
+    </div>
+    <div>
+      <Field
+        name="somecheckbo"
+        component={FormFieldCheckbox}
+        id="somecheckbo"
       />
     </div>
     <div>
