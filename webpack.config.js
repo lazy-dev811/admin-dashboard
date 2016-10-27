@@ -42,7 +42,6 @@ const config = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-          // 'file?name=[nature-1 sha512&digest=hex&name=[nature-1].[jpg]',
           'file?name=nature-1.jpg',
           'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
         ],
@@ -53,11 +52,6 @@ const config = {
   sassLoader: {
     includePaths: SCSS_DIR,
   },
-
-  // devServer: {
-  //   historyApiFallback: true,
-  //   contentBase: './'
-  // },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
