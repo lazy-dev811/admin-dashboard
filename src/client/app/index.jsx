@@ -8,8 +8,7 @@ import configureStore from './store/configureStore';
 import Application from './Application.jsx';
 
 const store = configureStore({ history: browserHistory });
-// const history = syncHistoryWithStore(browserHistory, store);
-const history = browserHistory;
+const history = syncHistoryWithStore(browserHistory, store);
 
 require('./scss/style.scss');
 

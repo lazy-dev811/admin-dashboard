@@ -1,10 +1,8 @@
-@import '../../scss/inc/base';
-@import '../../scss/helpers/clearfix';
+@import '../../scss/inc/variables';
 
 $item-s: 20px;
 
 .pg-color-picker {
-  @extend .cf;
   opacity: .3;
   z-index: 1;
   padding: 20px;
