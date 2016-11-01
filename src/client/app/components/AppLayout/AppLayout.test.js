@@ -1,9 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AppLayout from '../AppLayout/AppLayout.jsx';
 
-it('renders AppLayout', () => {
-  const wrapper = shallow(<AppLayout />);
+import AppLayout from './AppLayout.jsx';
+import AppSidebar from '../AppSidebar/AppSidebar.jsx';
 
-  expect(wrapper).toExist;
+describe('AppLayout component', () => {
+  let wrapper;
+
+  it('renders AppLayout', () => {
+    wrapper = shallow(<AppLayout />);
+
+    expect(wrapper).toExist;
+  });
+
+  it('renders AppLayout components', () => {
+    wrapper = shallow(<AppLayout />);
+
+    expect(wrapper.find(AppSidebar)).toExist;
+  });
 });
