@@ -7,3 +7,5 @@ globals:
   document: true
   foo: true
   window: true
+  it: true
+  expect: true
