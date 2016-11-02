@@ -8,11 +8,16 @@
     "dev": "webpack --watch --port 3000",
     "start": "webpack-dev-server --progress --colors --port 3000",
     "test": "jest",
-    "testNoCache": "jest --no-cache"
+    "test:coverage": "jest --coverage",
+    "test:noCache": "jest --no-cache"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/jest-css-modules",
-    "moduleFileExtensions": ["js", "json", "es6"]
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
   },
   "author": "",
   "license": "ISC",
