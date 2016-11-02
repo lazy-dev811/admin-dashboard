@@ -7,7 +7,17 @@
     "production": "webpack -p",
     "dev": "webpack --watch --port 3000",
     "start": "webpack-dev-server --progress --colors --port 3000",
-    "test": "ava"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:noCache": "jest --no-cache"
+  },
+  "jest": {
+    "scriptPreprocessor": "./node_modules/jest-css-modules",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +29,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
+    "enzyme": "^2.5.1",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^11.1.0",
     "eslint-plugin-import": "^1.15.0",
@@ -29,6 +40,7 @@
     "node-sass": "^3.8.0",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
+    "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-hot-loader": "^3.0.0-beta.6",
     "react-redux": "^4.4.5",
@@ -48,12 +60,17 @@
   },
   "devDependencies": {
     "babel-core": "^6.9.0",
+    "babel-jest": "^16.0.0",
     "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "css-loader": "^0.23.1",
     "html-webpack-plugin": "^2.17.0",
+    "jest": "^16.0.2",
+    "jest-css-modules": "^1.1.0",
     "node-sass": "^3.8.0",
+    "react-test-renderer": "^15.3.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",

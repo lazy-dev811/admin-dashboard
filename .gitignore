@@ -6,4 +6,5 @@ npm-debug.log*
 
 # Dependency directory
 node_modules
+coverage
 src/client/public
