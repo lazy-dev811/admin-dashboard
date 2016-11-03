@@ -13,9 +13,9 @@ const AppLayout = ({ children }) => (
     <img className="app__bg" src="app/assets/images/nature-1.jpg" alt="background" />
     {children}
     <AppSidebar />
-    <ColorPicker />
-    <Settings />
-    <ToastMessages />
+    {/* <ColorPicker /> */}
+    {/* <Settings /> */}
+    {/* <ToastMessages /> */}
   </div>
 );
 

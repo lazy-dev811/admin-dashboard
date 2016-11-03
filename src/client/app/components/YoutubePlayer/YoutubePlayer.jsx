@@ -1,44 +1,43 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 
 import YTSearch from 'youtube-api-search';
 
-import SearchBar from './SearchBar.jsx';
-import VideoList from './VideoList.jsx';
-import VideoDetail from './VideoDetail.jsx';
+import reduxForm from './parts/SearchBar.jsx';
+import VideoList from './parts/VideoList.jsx';
+import VideoDetail from './parts/VideoDetail.jsx';
 
 const apiKey = 'AIzaSyBSoHvaEKzgtRp6vfUDlnRorIdieTPRmFc';
 
-class YoutubePlayer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      videos: [],
-      selectedVideo: undefined,
-    };
+const YoutubePlayer = ({ videos, activeVideo, onChange, onSubmit }) => {
 
-    this.videoSearch(this.state.searchQuery);
-  }
+  const videoSearch = (searchQuery) => {
+    console.log('searching', searchQuery);
 
-  videoSearch(searchQuery) {
-    YTSearch({ key: apiKey, term: searchQuery }, (videos) => {
-      this.setState({
-        videos,
-        selectedVideo: videos[0],
-      });
-    });
-  }
+    onChange(searchQuery);
+    // YTSearch({ key: apiKey, term: searchQuery }, (videos) => {
+    //   this.setState({
+    //     videos,
+    //     selectedVideo: videos[0],
+    //   });
+    // });
+  };
 
-  render() {
-    const delayedSearchQuery = _.debounce((searchQuery) => { this.videoSearch(searchQuery); }, 300);
-    return (
-      <div>
-        <SearchBar onSearchQueryChange={delayedSearchQuery} />
-        <VideoDetail video={this.state.selectedVideo} />
-        <VideoList videos={this.state.videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} />
-      </div>
-    );
-  }
-}
+  const delayedSearchQuery = _.debounce((searchQuery) => { videoSearch(searchQuery); }, 300);
+  return (
+    <div>
+      <reduxForm.searchBar onChange={delayedSearchQuery} onSubmit={onSubmit} />
+      <VideoDetail video={activeVideo} />
+      <VideoList videos={videos} onVideoSelect={selectedVideo => this.setState({ selectedVideo })} />
+    </div>
+  );
+};
+
+YoutubePlayer.propTypes = {
+  videos: PropTypes.array,
+  activeVideo: PropTypes.object,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+};
 
 export default YoutubePlayer;

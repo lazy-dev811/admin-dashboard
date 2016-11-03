@@ -72,6 +72,20 @@ const INITIAL_STATE = {
     },
     dimensions: {},
   },
+  widgetYoutubePlayer: {
+    components: {
+      body: true,
+    },
+    dimensions: {
+      width: 500,
+      height: 650,
+    },
+    position: {
+      top: 20,
+      left: 40,
+    },
+    transparentScrollbar: true,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {
