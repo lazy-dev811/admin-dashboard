@@ -33,6 +33,7 @@ Blog.propTypes = {
   onFetchPosts: PropTypes.func.isRequired,
   onFetchPost: PropTypes.func.isRequired,
   onRemovePost: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   onSubmit: PropTypes.func,
 };
 

@@ -63,6 +63,7 @@ const Form = ({ classCustom, handleSubmit, handleChange }) => (
 Form.propTypes = {
   classCustom: PropTypes.string,
   handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
 };
 
 export default {
