@@ -14,7 +14,7 @@ const YoutubePlayer = ({ videos, activeVideo, onChange, onSubmit }) => {
   const videoSearch = (searchQuery) => {
     console.log('searching', searchQuery);
 
-    onChange(searchQuery);
+    // onChange(searchQuery);
     // YTSearch({ key: apiKey, term: searchQuery }, (videos) => {
     //   this.setState({
     //     videos,
@@ -23,7 +23,7 @@ const YoutubePlayer = ({ videos, activeVideo, onChange, onSubmit }) => {
     // });
   };
 
-  const delayedSearchQuery = _.debounce((searchQuery) => { videoSearch(searchQuery); }, 300);
+  const delayedSearchQuery = _.debounce((searchQuery) => { onChange(searchQuery); }, 300);
   return (
     <div>
       <reduxForm.searchBar onChange={delayedSearchQuery} onSubmit={onSubmit} />
@@ -36,7 +36,7 @@ const YoutubePlayer = ({ videos, activeVideo, onChange, onSubmit }) => {
 YoutubePlayer.propTypes = {
   videos: PropTypes.array,
   activeVideo: PropTypes.object,
-  onChange: PropTypes.func,
+  handleChange: PropTypes.func,
   onSubmit: PropTypes.func,
 };
 

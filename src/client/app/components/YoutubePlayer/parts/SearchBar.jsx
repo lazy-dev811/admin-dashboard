@@ -50,8 +50,8 @@ import Button from '../../Button/Button.jsx';
 //   return errors;
 // };
 
-const SearchBar = ({ handleChange, handleSubmit }) => (
-  <form onChange={handleChange} onSubmit={handleSubmit}>
+const SearchBar = ({ onChange, handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
     This here is a Form
     <div>
       <Field
@@ -60,6 +60,7 @@ const SearchBar = ({ handleChange, handleSubmit }) => (
         id="search"
         placeholder="search"
         type="text"
+        onChange={onChange}
       />
     </div>
     <Button handleSubmit={handleSubmit} label="Search" />
@@ -67,7 +68,7 @@ const SearchBar = ({ handleChange, handleSubmit }) => (
 );
 
 SearchBar.propTypes = {
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
   handleSubmit: PropTypes.func,
 };
 
