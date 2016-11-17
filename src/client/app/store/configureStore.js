@@ -20,7 +20,7 @@ export default function configureStore(params = {}) {
       window.devToolsExtension ? window.devToolsExtension() : f => f
     ),
   );
-  sagaMiddleware.run(...rootSagas);
+  sagaMiddleware.run(rootSagas);
 
   if (module.hot) {
     module.hot.accept(rootReducer, () => {

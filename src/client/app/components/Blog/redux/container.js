@@ -30,8 +30,7 @@ const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog }, { dispatc
     dispatch(addPostRequested(formValues));
   },
   onChange(formValues) {
-    console.log('sdsdsds')
-    dispatch(addPostRequested(formValues));
+    // dispatch(addPostRequested(formValues));
   },
   onSettingsUpdate(settingToUpdate) {
     dispatch(updateSettings(settingToUpdate));

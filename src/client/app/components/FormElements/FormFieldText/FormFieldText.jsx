@@ -33,7 +33,7 @@ FormFieldText.propTypes = {
   placeholder: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,
-  onChange: PropTypes.function,
+  onChange: PropTypes.func,
 };
 
 export default FormFieldText;
