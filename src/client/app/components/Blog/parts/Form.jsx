@@ -19,8 +19,8 @@ const validate = (values) => {
   return errors;
 };
 
-const Form = ({ classCustom, handleSubmit, handleChange }) => (
-  <form onSubmit={handleSubmit} onChange={handleChange} className={classCustom}>
+const Form = ({ classCustom, handleSubmit, onChange }) => (
+  <form onSubmit={handleSubmit} className={classCustom}>
     This here is a Form
     <div>
       <Field
@@ -29,13 +29,7 @@ const Form = ({ classCustom, handleSubmit, handleChange }) => (
         id="title"
         placeholder="title"
         type="text"
-      />
-    </div>
-    <div>
-      <Field
-        name="somecheckbo"
-        component={FormFieldCheckbox}
-        id="somecheckbo"
+        onChange={onChange}
       />
     </div>
     <div>
@@ -45,6 +39,7 @@ const Form = ({ classCustom, handleSubmit, handleChange }) => (
         id="categories"
         placeholder="categories"
         type="text"
+        onChange={onChange}
       />
     </div>
     <div>
@@ -54,6 +49,7 @@ const Form = ({ classCustom, handleSubmit, handleChange }) => (
         id="content"
         placeholder="content"
         type="text"
+        onChange={onChange}
       />
     </div>
     <Button handleSubmit={handleSubmit} label="Add post" />
@@ -63,7 +59,7 @@ const Form = ({ classCustom, handleSubmit, handleChange }) => (
 Form.propTypes = {
   classCustom: PropTypes.string,
   handleSubmit: PropTypes.func,
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 export default {

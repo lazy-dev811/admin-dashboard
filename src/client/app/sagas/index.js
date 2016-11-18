@@ -9,7 +9,7 @@ function* rootSagas() {
   yield* [
     fork(youtubePlayerSagas),
     fork(blogSagas),
-    weatherSagas,
+    fork(weatherSagas),
   ];
 }
 

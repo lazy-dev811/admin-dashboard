@@ -4,10 +4,17 @@ import classnames from 'classnames';
 require('../FormField.scss');
 require('./FormFieldCheckbox.scss');
 
-const FormField = ({ input, label, id, onChangeTest, meta: { touched, error } }) => {
+const FormFieldCheckbox = ({
+  input,
+  label,
+  id,
+  meta: { touched, error },
+  onChange,
+}) => {
   const isError = touched && error;
   const fieldClass = classnames('checkbox', { 'is-error': isError });
   const labelClass = classnames('label', { 'is-active': input.value });
+  console.log(input)
 
   return (
     <div className="checkbox-container">
@@ -24,9 +31,10 @@ const FormField = ({ input, label, id, onChangeTest, meta: { touched, error } })
           className={fieldClass}
           type="checkbox"
           id={id}
-          onChange={(event) => {
-            input.onChange(event);
-            onChangeTest(event.target.value);
+          onChange={(e) => {
+            console.log('change?')
+            onChange(e.target.value);
+            input.onChange(e.target.value);
           }}
         />
         <label htmlFor={id} />
@@ -39,11 +47,12 @@ const FormField = ({ input, label, id, onChangeTest, meta: { touched, error } })
   );
 };
 
-FormField.propTypes = {
+FormFieldCheckbox.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,
+  onChange: PropTypes.func,
 };
 
-export default FormField;
+export default FormFieldCheckbox;

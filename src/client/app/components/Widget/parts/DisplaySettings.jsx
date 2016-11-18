@@ -1,4 +1,8 @@
 import React, { PropTypes } from 'react';
+import { Field, reduxForm } from 'redux-form';
+
+import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
+import FormFieldCheckbox from '../../FormElements/FormFieldCheckbox/FormFieldCheckbox.jsx';
 
 const DisplaySettings = ({
   onSettingsUpdate,
@@ -47,33 +51,41 @@ const DisplaySettings = ({
       <div className="widget__settings__toggle">
         <div className="widget__settings__toggle__middle" />
       </div>
-      <ul className="widget__settings__list">
-        {
-          transparencyConfigs.map(setting => (
-            <li
-              className="widget__settings__list__item"
-              key={setting.label}
-              onClick={() => onSettingsUpdate(widgetName, setting)}
-            >
-              {setting.label}
-            </li>
-          ))
-        }
-      </ul>
 
-      <ul className="widget__settings__list">
-        {
-          componentConfigs.map(setting => (
-            <li
-              className="widget__settings__list__item"
-              key={setting.label}
-              onClick={() => onSettingsUpdate(widgetName, setting)}
-            >
-              {setting.label}
-            </li>
-          ))
-        }
-      </ul>
+      <form className="sdsdsds">
+        <ul className="widget__settings__list">
+          {
+            transparencyConfigs.map(setting => (
+              <li className="widget__settings__list__item" key={setting.label}>
+                <Field
+                  name={setting.label}
+                  component={FormFieldText}
+                  id={setting.label}
+                  placeholder={setting.label}
+                  type="text"
+                  onChange={() => onSettingsUpdate(widgetName, setting)}
+                />
+              </li>
+            ))
+          }
+        </ul>
+
+        <ul className="widget__settings__list">
+          {
+            componentConfigs.map(setting => (
+              <li className="widget__settings__list__item" key={setting.label}>
+                <Field
+                  name={setting.label}
+                  component={FormFieldCheckbox}
+                  id={setting.label}
+                  label={setting.label}
+                  onChange={() => onSettingsUpdate(widgetName, setting)}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </form>
     </div>
   );
 };
@@ -88,4 +100,8 @@ DisplaySettings.propTypes = {
   transparentScrollbar: PropTypes.bool,
 };
 
-export default DisplaySettings;
+export default {
+  form: reduxForm({
+    form: 'DisplaySettings',
+  })(DisplaySettings),
+};

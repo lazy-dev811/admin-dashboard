@@ -42,10 +42,10 @@
   top: 0;
   left: 0;
 
-  opacity: 0;
+  // opacity: 0;
   z-index: 1;
-  transform: translate(0, -100%);
-  transition: opacity .3s ease;
+  // transform: translate(0, -100%);
+  // transition: opacity .3s ease;
 
   &:hover {
     opacity: 1 !important;
@@ -94,8 +94,8 @@
 }
 
 .widget__settings__list {
-  visibility: hidden;
-  opacity: 0;
+  // visibility: hidden;
+  // opacity: 0;
   padding: 10px;
   background-color: #fff;
   transition: opacity .3s ease, margin-bottom 0.2s ease;

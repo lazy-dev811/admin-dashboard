@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import { updateWidgetConfig } from './redux/actions';
-import DisplaySettings from './parts/DisplaySettings.jsx';
+import reduxForm from './parts/DisplaySettings.jsx';
 
 import './Widget.scss';
 
@@ -55,25 +55,25 @@ const component2 = (Component) => {
         'has-scroll': height,
       });
 
-      const widgetSyle = {
+      const widgetStyle = {
         top,
         right,
         bottom,
         left,
       };
 
-      const widgetBodySyle = {
+      const widgetBodyStyle = {
         width,
         height,
       };
 
       return (
-        <div className="widget" style={widgetSyle}>
-          <div className={containerClass} style={widgetBodySyle}>
+        <div className="widget" style={widgetStyle}>
+          <div className={containerClass} style={widgetBodyStyle}>
 
             {
               displaySettings &&
-                <DisplaySettings
+                <reduxForm.form
                   widgetName={widgetName}
                   onSettingsUpdate={onSettingsUpdate}
                   header={header}
