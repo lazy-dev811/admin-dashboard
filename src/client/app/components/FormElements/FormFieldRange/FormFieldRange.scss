@@ -1,0 +1,61 @@
+@import '../../../scss/inc/variables';
+@import '../FormField.scss';
+
+
+$size: 20px;
+
+$slider-thumb-s: 20px;
+
+@mixin slider-track {
+  $slider-track-bg: #CCBCBC;
+
+  width: 100%;
+  height: 2px;
+  background-color: $slider-track-bg;
+}
+
+@mixin slider-thumb {
+  $slider-thumb-bg: #201E1E;
+
+  height: $slider-thumb-s;
+  width: $slider-thumb-s;
+  border-radius: 50%;
+  background-color: $slider-thumb-bg;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.range-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.range {
+  -webkit-appearance: none;
+  margin: 0;
+  width: 100%;
+  max-width: 230px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-moz-slider-runnable-track {
+    @include slider-track;
+  }
+
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    @include slider-track;
+  }
+
+  &::-moz-range-thumb {
+    @include slider-thumb;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include slider-thumb;
+  }
+}

@@ -21,8 +21,7 @@ const validate = (values) => {
 
 const Form = ({ classCustom, handleSubmit, onChange }) => (
   <form onSubmit={handleSubmit} className={classCustom}>
-    This here is a Form
-    <div>
+    <div className="row">
       <Field
         name="title"
         component={FormFieldText}
@@ -32,7 +31,7 @@ const Form = ({ classCustom, handleSubmit, onChange }) => (
         onChange={onChange}
       />
     </div>
-    <div>
+    <div className="row">
       <Field
         name="categories"
         component={FormFieldText}
@@ -42,7 +41,7 @@ const Form = ({ classCustom, handleSubmit, onChange }) => (
         onChange={onChange}
       />
     </div>
-    <div>
+    <div className="row">
       <Field
         name="content"
         component={FormFieldText}

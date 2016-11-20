@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 require('../FormField.scss');
-require('./FormFieldCheckbox.scss');
+require('./FormFieldRange.scss');
 
-const FormFieldCheckbox = ({
+const FormFieldRange = ({
   input,
   label,
   id,
@@ -12,12 +12,11 @@ const FormFieldCheckbox = ({
   onChange,
 }) => {
   const isError = touched && error;
-  const fieldClass = classnames('checkbox', { 'is-error': isError });
+  const fieldClass = classnames('range', { 'is-error': isError });
   const labelClass = classnames('label', { 'is-active': input.value });
-  // console.log(input)
 
   return (
-    <div className="checkbox-container">
+    <div className="range-container">
       <label
         className={labelClass}
         htmlFor={id}
@@ -25,19 +24,18 @@ const FormFieldCheckbox = ({
         {label}
       </label>
 
-      <div className="input-container">
+      <div>
         <input
           {...input}
           className={fieldClass}
-          type="checkbox"
+          type="range"
           id={id}
           onChange={(e) => {
-            console.log('change?', e.target.value, input)
+            console.log('RANGE COMPONENT', e.target.value);
             onChange(e.target.value);
             input.onChange(e.target.value);
           }}
         />
-        <label htmlFor={id} />
         {
           isError &&
             <div className="field__error">{error}</div>
@@ -47,7 +45,7 @@ const FormFieldCheckbox = ({
   );
 };
 
-FormFieldCheckbox.propTypes = {
+FormFieldRange.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
   id: PropTypes.string,
@@ -55,4 +53,4 @@ FormFieldCheckbox.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default FormFieldCheckbox;
+export default FormFieldRange;
