@@ -1,26 +1,59 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
 import FormFieldCheckbox from '../../FormElements/FormFieldCheckbox/FormFieldCheckbox.jsx';
+import FormFieldNumber from '../../FormElements/FormFieldNumber/FormFieldNumber.jsx';
+
+require('./DisplaySettings.scss');
 
 const DisplaySettings = ({
-  onSettingsUpdate,
+  onChange,
+  onSubmit,
   widgetName,
+  top,
+  right,
+  bottom,
+  left,
   header,
   body,
   footer,
   transparentBg,
   transparentScrollbar,
 }) => {
+  const positionConfigs = [
+    {
+      label: 'Top',
+      key: 'top',
+      category: 'position',
+      value: top,
+    },
+    {
+      label: 'Right',
+      key: 'right',
+      category: 'position',
+      value: right,
+    },
+    {
+      label: 'Bottom',
+      key: 'bottom',
+      category: 'position',
+      value: bottom,
+    },
+    {
+      label: 'Left',
+      key: 'left',
+      category: 'position',
+      value: left,
+    },
+  ];
   const transparencyConfigs = [
     {
-      label: 'Transparent background',
+      label: 'Background',
       key: 'transparentBg',
       value: transparentBg,
     },
     {
-      label: 'Transparent scrollbar',
+      label: 'Scrollbar',
       key: 'transparentScrollbar',
       value: transparentScrollbar,
     },
@@ -52,47 +85,77 @@ const DisplaySettings = ({
         <div className="widget__settings__toggle__middle" />
       </div>
 
-      <form className="sdsdsds">
-        <ul className="widget__settings__list">
-          {
-            transparencyConfigs.map(setting => (
-              <li className="widget__settings__list__item" key={setting.label}>
-                <Field
-                  name={setting.label}
-                  component={FormFieldText}
-                  id={setting.label}
-                  placeholder={setting.label}
-                  type="text"
-                  onChange={() => onSettingsUpdate(widgetName, setting)}
-                />
-              </li>
-            ))
-          }
-        </ul>
+      <form className="widget__settings__form" onSubmit={onSubmit}>
+        <div className="widget__settings__category">
+          <div className="widget__settings__category__content">
+            <div className="widget__settings__category__title">Position</div>
+            {
+              positionConfigs.map(setting => (
+                <div className="widget__settings__category__item" key={setting.label}>
+                  <Field
+                    name={setting.label}
+                    component={FormFieldNumber}
+                    placeholder={setting.label}
+                    id={setting.label}
+                    label={setting.label}
+                    onChange={() => onChange(widgetName, setting)}
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
 
-        <ul className="widget__settings__list">
-          {
-            componentConfigs.map(setting => (
-              <li className="widget__settings__list__item" key={setting.label}>
-                <Field
-                  name={setting.label}
-                  component={FormFieldCheckbox}
-                  id={setting.label}
-                  label={setting.label}
-                  onChange={() => onSettingsUpdate(widgetName, setting)}
-                />
-              </li>
-            ))
-          }
-        </ul>
+        <div className="widget__settings__category">
+          <div className="widget__settings__category__content">
+            <div className="widget__settings__category__title">Transparency</div>
+            {
+              transparencyConfigs.map(setting => (
+                <div className="widget__settings__category__item" key={setting.label}>
+                  <Field
+                    name={setting.label}
+                    component={FormFieldCheckbox}
+                    id={setting.label}
+                    label={setting.label}
+                    onChange={() => onChange(widgetName, setting)}
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div className="widget__settings__category">
+          <div className="widget__settings__category__content">
+            <div className="widget__settings__category__title">Components</div>
+            {
+              componentConfigs.map(setting => (
+                <div className="widget__settings__category__item" key={setting.label}>
+                  <Field
+                    name={setting.label}
+                    component={FormFieldCheckbox}
+                    id={setting.label}
+                    label={setting.label}
+                    onChange={() => onChange(widgetName, setting)}
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </form>
     </div>
   );
 };
 
 DisplaySettings.propTypes = {
-  onSettingsUpdate: PropTypes.func,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
   widgetName: PropTypes.string,
+  top: PropTypes.number,
+  right: PropTypes.number,
+  bottom: PropTypes.number,
+  left: PropTypes.number,
   header: PropTypes.bool,
   body: PropTypes.bool,
   footer: PropTypes.bool,

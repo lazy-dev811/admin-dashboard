@@ -15,7 +15,7 @@ const RouteHome = () => (
     {/* <YoutubePlayer /> */}
     <Blog />
     {/* <SliderContainer /> */}
-    {/* <Greet /> */}
+    <Greet />
     {/* <Quote /> */}
     {/* <SliderDetail /> */}
     {/* <Weather /> */}

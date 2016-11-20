@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   widgetBlog: {
     components: {
       body: true,
+      header: true,
     },
     dimensions: {
       width: 300,
@@ -91,7 +92,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UPDATE_WIDGET_CONFIG: {
+      // console.log('REDUCER', action)
       const { widgetName, widgetConfig: { key, value, category } } = action;
+      const valueTest = typeof value === 'boolean' ? !value : value;
       let configToUpdate;
 
       if (category) {
@@ -100,7 +103,7 @@ export default (state = INITIAL_STATE, action) => {
             ...state[widgetName],
             [category]: {
               ...state[widgetName][category],
-              [key]: !value,
+              [key]: valueTest,
             },
           },
         };
@@ -110,7 +113,7 @@ export default (state = INITIAL_STATE, action) => {
         configToUpdate = {
           [widgetName]: {
             ...state[widgetName],
-            [!category && key]: [!category] && !value,
+            [!category && key]: [!category] && valueTest,
           },
         };
       }

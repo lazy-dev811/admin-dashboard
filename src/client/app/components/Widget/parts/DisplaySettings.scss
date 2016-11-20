@@ -1,0 +1,121 @@
+@import '../../../scss/inc/variables';
+
+$toggle-size: 20px;
+$toggle-size-active: $toggle-size * 1.5;
+$toggle-bg: #444;
+
+$spacing: 10px;
+
+$category-bottom-border-color: rgba(255, 255, 255, 0.3);
+
+$transition-fast: 0.2s;
+$transition-medium: 0.3s;
+
+%visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+%show-form-and-animate-categories {
+  visibility: visible;
+  opacity: 1;
+
+  .widget__settings__category {
+    border-bottom-width: $spacing;
+    transition-delay: $transition-fast;
+  }
+}
+
+.widget__settings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  visibility: hidden;
+  transform: translate(0, -100%);
+  transition: opacity $transition-medium ease;
+
+  &:hover {
+    .widget__settings__toggle {
+      opacity: 1 !important;
+
+      &::before {
+        width: $toggle-size-active;
+        height: $toggle-size-active;
+      }
+    }
+  }
+}
+
+.widget__settings__toggle {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  opacity: 0;
+  top: 100%;
+  left: 0;
+  width: $toggle-size;
+  height: $toggle-size;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $toggle-size;
+    height: $toggle-size;
+    background-color: $toggle-bg;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width $transition-fast ease, height $transition-fast ease;
+  }
+
+  &:hover {
+    & + .widget__settings__form {
+      @extend %show-form-and-animate-categories;
+    }
+  }
+}
+
+.widget__settings__form {
+  visibility: hidden;
+  opacity: 0;
+  padding-bottom: $spacing;
+  white-space: nowrap;
+  font-size: 10px;
+  transition: opacity $transition-medium ease;
+
+  &:hover {
+    @extend %show-form-and-animate-categories;
+  }
+}
+
+.widget__settings__category {
+  border-bottom: 0 solid $category-bottom-border-color;
+  transition: border-bottom $transition-fast ease;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.widget__settings__category__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: $spacing;
+  background-color: #fff;
+}
+
+.widget__settings__category__title {
+  flex-grow: 1;
+  margin-right: $spacing;
+  color: #ccbcbc;
+  text-transform: uppercase;
+}
+
+.widget__settings__category__item {
+  padding: $spacing;
+}
