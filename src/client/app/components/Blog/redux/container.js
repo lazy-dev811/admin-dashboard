@@ -10,9 +10,9 @@ import {
 import Blog from '../Blog.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
-const mapStateToProps = ({ widgetBlog, config }) => ({ ...widgetBlog, ...config });
+const mapStateToProps = ({ widgetBlog, config, form: { BlogForm } }) => ({ ...widgetBlog, ...config, ...BlogForm });
 
-const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog }, { dispatch }) => ({
+const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog, values }, { dispatch }) => ({
   widgetName,
   blogPosts,
   activePost,
@@ -29,7 +29,8 @@ const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog }, { dispatc
   onSubmit(formValues) {
     dispatch(addPostRequested(formValues));
   },
-  onChange(formValues) {
+  onChange() {
+    console.log('FORM VALUES', values);
     // dispatch(addPostRequested(formValues));
   },
   onSettingsUpdate(settingToUpdate) {
