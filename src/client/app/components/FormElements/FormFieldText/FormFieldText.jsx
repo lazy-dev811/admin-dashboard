@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 require('./FormFieldText.scss');
 
-const FormFieldText = ({ input, placeholder, id, meta: { touched, error }, onChange }) => {
+const FormFieldText = ({ input, placeholder, id, meta: { touched, error } }) => {
   const isError = touched && error;
   const fieldClass = classnames('field', { 'is-error': isError });
 
@@ -15,10 +15,10 @@ const FormFieldText = ({ input, placeholder, id, meta: { touched, error }, onCha
         type="text"
         placeholder={placeholder}
         id={id}
-        onChange={(e) => {
-          onChange(e.target.value);
-          input.onChange(e.target.value);
-        }}
+        // onChange={(e) => {
+          // onChange(e.target.value);
+          // input.onChange(e.target.value);
+        // }}
       />
       {
         isError &&
@@ -33,7 +33,7 @@ FormFieldText.propTypes = {
   placeholder: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,
-  onChange: PropTypes.func,
+  // onChange: PropTypes.func,
 };
 
 export default FormFieldText;

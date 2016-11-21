@@ -7,8 +7,8 @@ import FormFieldNumber from '../../FormElements/FormFieldNumber/FormFieldNumber.
 require('./DisplaySettings.scss');
 
 const DisplaySettings = ({
-  onChange,
-  onSubmit,
+  onSettingsChange,
+  onSettingsSubmit,
   widgetName,
   top,
   right,
@@ -85,7 +85,7 @@ const DisplaySettings = ({
         <div className="widget__settings__toggle__middle" />
       </div>
 
-      <form className="widget__settings__form" onSubmit={onSubmit}>
+      <form className="widget__settings__form" onSubmit={onSettingsSubmit} onChange={onSettingsChange}>
         <div className="widget__settings__category">
           <div className="widget__settings__category__content">
             <div className="widget__settings__category__title">Position</div>
@@ -98,7 +98,7 @@ const DisplaySettings = ({
                     placeholder={setting.label}
                     id={setting.label}
                     label={setting.label}
-                    onChange={() => onChange(widgetName, setting)}
+                    // onChange={() => onSettingsChange(widgetName, setting)}
                   />
                 </div>
               ))
@@ -117,7 +117,8 @@ const DisplaySettings = ({
                     component={FormFieldCheckbox}
                     id={setting.label}
                     label={setting.label}
-                    onChange={() => onChange(widgetName, setting)}
+                    type="checkbox"
+                    // onChange={() => onSettingsChange(widgetName, setting)}
                   />
                 </div>
               ))
@@ -136,7 +137,8 @@ const DisplaySettings = ({
                     component={FormFieldCheckbox}
                     id={setting.label}
                     label={setting.label}
-                    onChange={() => onChange(widgetName, setting)}
+                    type="checkbox"
+                    // onChange={() => onSettingsChange(widgetName, setting)}
                   />
                 </div>
               ))
@@ -149,8 +151,8 @@ const DisplaySettings = ({
 };
 
 DisplaySettings.propTypes = {
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func,
+  onSettingsChange: PropTypes.func,
+  onSettingsSubmit: PropTypes.func,
   widgetName: PropTypes.string,
   top: PropTypes.number,
   right: PropTypes.number,

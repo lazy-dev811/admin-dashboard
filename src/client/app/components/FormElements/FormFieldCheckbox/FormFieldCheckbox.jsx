@@ -8,8 +8,8 @@ const FormFieldCheckbox = ({
   input,
   label,
   id,
+  type,
   meta: { touched, error },
-  onChange,
 }) => {
   const isError = touched && error;
   const fieldClass = classnames('checkbox', { 'is-error': isError });
@@ -29,13 +29,13 @@ const FormFieldCheckbox = ({
         <input
           {...input}
           className={fieldClass}
-          type="checkbox"
+          type={type}
           id={id}
-          onChange={(e) => {
-            console.log('change?', e.target.value, input)
-            onChange(e.target.value);
-            input.onChange(e.target.value);
-          }}
+          // onChange={(e) => {
+            // console.log('change?', e.target.value, input, e)
+            // onChange(e.target.value);
+            // input.onChange(e.target.value);
+          // }}
         />
         <label htmlFor={id} />
         {
@@ -52,7 +52,7 @@ FormFieldCheckbox.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,
-  onChange: PropTypes.func,
+  // onChange: PropTypes.func,
 };
 
 export default FormFieldCheckbox;
