@@ -9,24 +9,24 @@ import './Widget.scss';
 
 const component2 = (Component) => {
   const mapDispatchToProps = dispatch => ({
-    onChange(widget, setting, value) {
-      // console.log('LOLOLO', widget, setting, value);
-      const newValue = { value };
-      const updatedSetting = Object.assign(setting, newValue);
-      dispatch(updateWidgetConfig(widget, updatedSetting));
+    onSettingsChange(formFields) {
+      console.log('LOLOLO', formFields);
+      // const newValue = { value };
+      // const updatedSetting = Object.assign(setting, newValue);
+      // dispatch(updateWidgetConfig(widget, updatedSetting));
     },
-    onSubmit(formFields) {
+    onSettingsSubmit(formFields) {
       console.log('SUBMITTED', formFields);
     },
   });
 
   class WidgetComponent extends React.Component {
     render() {
-      console.log('RENDER IN WIDGET', this.props.config.components);
+      // console.log('RENDER IN WIDGET', this.props.config.components);
       const {
         widgetName,
-        onChange,
-        onSubmit,
+        onSettingsChange,
+        onSettingsSubmit,
         config: {
           components: { header, body, footer },
           dimensions: { width, height },
@@ -83,8 +83,8 @@ const component2 = (Component) => {
               displaySettings &&
                 <reduxForm.form
                   widgetName={widgetName}
-                  onChange={onChange}
-                  onSubmit={onSubmit}
+                  onSettingsChange={onSettingsChange}
+                  onSettingsSubmit={onSettingsSubmit}
                   top={top}
                   right={right}
                   bottom={bottom}
@@ -115,8 +115,8 @@ const component2 = (Component) => {
 
   WidgetComponent.propTypes = {
     widgetName: PropTypes.string,
-    onChange: PropTypes.func,
-    onSubmit: PropTypes.func,
+    onSettingsChange: PropTypes.func,
+    onSettingsSubmit: PropTypes.func,
     config: PropTypes.object.isRequired,
   };
 
