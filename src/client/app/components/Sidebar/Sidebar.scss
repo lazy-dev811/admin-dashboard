@@ -3,6 +3,9 @@ $item-h: 40px;
 $item-spacing: 20px;
 
 .pgSidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   z-index: 1;
   position: fixed;
   top: 0;
@@ -77,4 +80,14 @@ $item-spacing: 20px;
       }
     }
   }
+}
+
+.pgSidebar__login-options {
+  padding: 10px 0;
+}
+
+.pgSidebar__login-option {
+  padding: 0 20px;
+  line-height: 40px;
+  color: #999;
 }
