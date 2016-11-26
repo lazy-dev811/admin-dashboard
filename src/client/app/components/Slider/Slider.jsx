@@ -1,22 +1,25 @@
 import React, { PropTypes } from 'react';
 
+import ChevronLeft from '../Icon/ChevronLeft.jsx';
+import ChevronRight from '../Icon/ChevronRight.jsx';
+
 require('./Slider.scss');
 
-const Slider = ({ apps }) => (
+const Slider = ({ sliderItems }) => (
   <div className="slider-wrap">
     <div className="slider-arrow slider-arrow--prev js-slide-prev">
       {/* ng-className="{ 'disabled' : firstSlide }"
       ng-click="slideNavigate('prev')"> */}
-      <i className="icon icon-left-open slider-arrow__icon"></i>
+      <ChevronLeft className="slider-arrow__icon" />
     </div>
     <div className="slider-arrow slider-arrow--next js-slide-next">
      {/* ng-className="{ 'disabled' : lastSlide }"
      ng-click="slideNavigate('next')"> */}
-      <i className="icon icon-right-open slider-arrow__icon"></i>
+      <ChevronRight className="slider-arrow__icon" />
     </div>
 
     <ul className="slider">
-      {apps.map((app, index) => {
+      {sliderItems.map((app, index) => {
         return (
           <li className="slider__slide" key={index}>
           {/* ng-repeat="person in population track by $index" */}
@@ -32,6 +35,8 @@ const Slider = ({ apps }) => (
   </div>
 );
 
-Slider.propTypes = {}
+Slider.propTypes = {
+  sliderItems: PropTypes.array.isRequired,
+};
 
 export default Slider;

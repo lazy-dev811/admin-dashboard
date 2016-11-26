@@ -23,19 +23,18 @@ $slider-arrow-w: 50px;
 }
 
 .slider-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   opacity: 0;
   z-index: 1;
   position: absolute;
-  height: $slider-h;
-  line-height: $slider-h;
   width: $slider-arrow-w;
-  text-align: center;
-  font-size: 16px;
-  text-transform: uppercase;
   background-color: #fff;
-  color: #ccc;
+  fill: #ccc;
   cursor: pointer;
-  transition: opacity .3s ease, color .3s ease;
+  transition: opacity .3s ease, fill .3s ease;
 
   &--prev {
     left: 0;
@@ -46,8 +45,13 @@ $slider-arrow-w: 50px;
     cursor: pointer;
 
     &:hover {
-      color: $color;
+      fill: $color;
     }
+  }
+
+  svg {
+    width: 25px;
+    height: 100%;
   }
 
   &.disabled {
