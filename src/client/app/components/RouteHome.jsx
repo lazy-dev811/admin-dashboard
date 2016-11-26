@@ -3,7 +3,7 @@ import React from 'react';
 // import TodoListContainer from '../containers/TodoListContainer.js';
 // import YoutubePlayer from './YoutubePlayer/redux/container.js';
 // import Blog from './Blog/redux/container';
-import SliderContainer from '../containers/SliderContainer.js';
+import Slider from './Slider/redux/container.js';
 // import Greet from './Greet/redux/container.js';
 // import Quote from './Quote/redux/container.js';
 // import SliderDetail from './SliderDetail/redux/container.js';
@@ -14,7 +14,7 @@ const RouteHome = () => (
     {/* <TodoListContainer /> */}
     {/* <YoutubePlayer /> */}
     {/* <Blog /> */}
-    <SliderContainer />
+    <Slider />
     {/* <Greet /> */}
     {/* <Quote /> */}
     {/* <SliderDetail /> */}
