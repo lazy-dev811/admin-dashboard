@@ -9,6 +9,8 @@ import widgetSettings from '../components/Settings/redux/reducer';
 import widgetToastMessages from '../components/ToastMessages/redux/reducer';
 import widgetWeather from '../components/Weather/redux/reducer';
 import widgetQuote from '../components/Quote/redux/reducer';
+import widgetSidebar from '../components/Sidebar/redux/reducer';
+import widgetSlider from '../components/Slider/redux/reducer';
 import widgetSliderDetail from '../components/SliderDetail/redux/reducer';
 import widgetYoutubePlayer from '../components/YoutubePlayer/redux/reducer';
 
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   widgetToastMessages,
   widgetWeather,
   widgetQuote,
+  widgetSidebar,
+  widgetSlider,
   widgetSliderDetail,
   widgetYoutubePlayer,
   config,

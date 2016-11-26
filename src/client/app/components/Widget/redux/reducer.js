@@ -73,6 +73,32 @@ const INITIAL_STATE = {
     },
     dimensions: {},
   },
+  widgetSidebar: {
+    components: {
+      // body: true,
+    },
+    position: {
+      top: 0,
+      bottom: 0,
+      left: 0,
+    },
+    dimensions: {
+      // width: 200,
+    },
+  },
+  widgetSlider: {
+    components: {
+      // body: true,
+    },
+    position: {
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    dimensions: {
+      // height: 90,
+    },
+  },
   widgetYoutubePlayer: {
     components: {
       body: true,
