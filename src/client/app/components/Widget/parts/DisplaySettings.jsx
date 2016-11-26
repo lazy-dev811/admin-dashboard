@@ -98,7 +98,7 @@ const DisplaySettings = ({
                     placeholder={setting.label}
                     id={setting.label}
                     label={setting.label}
-                    // onChange={() => onSettingsChange(widgetName, setting)}
+                    // onSettingsChange={() => onSettingsChange(widgetName, setting)}
                   />
                 </div>
               ))
@@ -118,7 +118,7 @@ const DisplaySettings = ({
                     id={setting.label}
                     label={setting.label}
                     type="checkbox"
-                    // onChange={() => onSettingsChange(widgetName, setting)}
+                    // onSettingsChange={() => onSettingsChange(widgetName, setting)}
                   />
                 </div>
               ))
@@ -138,7 +138,7 @@ const DisplaySettings = ({
                     id={setting.label}
                     label={setting.label}
                     type="checkbox"
-                    // onChange={() => onSettingsChange(widgetName, setting)}
+                    // onSettingsChange={() => onSettingsChange(widgetName, setting)}
                   />
                 </div>
               ))

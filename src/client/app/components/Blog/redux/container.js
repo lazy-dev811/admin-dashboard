@@ -30,7 +30,7 @@ const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog, values }, {
     dispatch(addPostRequested(formValues));
   },
   onChange() {
-    console.log('FORM VALUES', values);
+    console.log('FORM VALUES CONTAINER', values);
     // dispatch(addPostRequested(formValues));
   },
   onSettingsUpdate(settingToUpdate) {

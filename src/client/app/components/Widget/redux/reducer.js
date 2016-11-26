@@ -25,7 +25,7 @@ const INITIAL_STATE = {
       left: 40,
     },
     // transparentBg: true,
-    transparentScrollbar: true,
+    // transparentScrollbar: true,
     displaySettings: true,
   },
   widgetQuote: {

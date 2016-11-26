@@ -8,9 +8,19 @@ import reduxForm from './parts/DisplaySettings.jsx';
 import './Widget.scss';
 
 const component2 = (Component) => {
-  const mapDispatchToProps = dispatch => ({
-    onSettingsChange(formFields) {
-      console.log('LOLOLO', formFields);
+  // TODO: Figure out htf to access the displaySettings form values from within this file
+  // TODO: mergeProps was causing the child component's mergeProps to not work or something - all of them were undefiend
+  // TODO: I need to be able to access the displaySettings form values from within mapDispatchToProps
+
+  // const mapStateToProps = ({ config, form: { DisplaySettings } }) => {
+  //   console.log('DisplaySettings', DisplaySettings);
+  //   return ({ ...config, ...DisplaySettings });
+  // };
+  // const mergeProps = ({ widgetBlog }) => ({ config: widgetBlog });
+  const mapDispatchToProps = (dispatch) => ({
+    onSettingsChange() {
+      // console.log('test', registeredFields);
+      // console.log('LOLOLO', this);
       // const newValue = { value };
       // const updatedSetting = Object.assign(setting, newValue);
       // dispatch(updateWidgetConfig(widget, updatedSetting));
@@ -22,7 +32,7 @@ const component2 = (Component) => {
 
   class WidgetComponent extends React.Component {
     render() {
-      // console.log('RENDER IN WIDGET', this.props.config.components);
+      console.log('RENDER IN WIDGET', this.props.config.components);
       const {
         widgetName,
         onSettingsChange,
@@ -120,7 +130,7 @@ const component2 = (Component) => {
     config: PropTypes.object.isRequired,
   };
 
-  return connect(null, mapDispatchToProps)(WidgetComponent);
+  return connect(null, mapDispatchToProps, null)(WidgetComponent);
 };
 
 export default component2;
