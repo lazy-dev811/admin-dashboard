@@ -1,0 +1,46 @@
+.card {
+  margin: 0 5px;
+  flex-grow: 1;
+  flex-basis: 0;
+  color: #444;
+  overflow: hidden;
+
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    line-height: 1.6;
+
+    &:hover {
+      * {
+        color: #12C3E4;
+      }
+    }
+
+    &__favicon {
+      flex-basis: 30px;
+      position: relative;
+
+      &::after {
+        content: "";
+        display: flex; // TODO: why does this need flex?
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #f06666;
+      }
+    }
+
+    &__title {
+      flex-grow: 1;
+      flex-basis: 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: inherit;
+    }
+  }
+}

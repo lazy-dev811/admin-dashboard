@@ -5,6 +5,7 @@ $item-s: 20px;
 .pg-color-picker {
   opacity: .3;
   z-index: 1;
+  display: flex;
   padding: 20px;
   background-color: #fff;
   transform: translate(100%, -50%);
@@ -33,6 +34,7 @@ $item-s: 20px;
       position: relative;
       margin-top: 1px;
       margin-right: 1px;
+      display: inline-flex;
       float: left;
       width: $item-s;
       height: $item-s;

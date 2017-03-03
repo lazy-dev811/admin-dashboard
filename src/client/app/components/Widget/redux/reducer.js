@@ -28,6 +28,22 @@ const INITIAL_STATE = {
     // transparentScrollbar: true,
     displaySettings: true,
   },
+  widgetBookmarks: {
+    components: {
+      body: true,
+      header: true,
+    },
+    dimensions: {
+      width: 700,
+      height: 400,
+    },
+    position: {
+      top: 100,
+      left: 100,
+    },
+    transparentBg: true,
+    transparentScrollbar: true,
+  },
   widgetQuote: {
     position: {
       bottom: 60,

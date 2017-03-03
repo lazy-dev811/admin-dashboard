@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 import widgetBlog from '../components/Blog/redux/reducer';
+import widgetBookmarks from '../components/Bookmarks/redux/reducer';
 import widgetColorPicker from '../components/ColorPicker/redux/reducer';
 import widgetGreet from '../components/Greet/redux/reducer';
 import widgetSettings from '../components/Settings/redux/reducer';
@@ -18,6 +19,7 @@ import config from '../components/Widget/redux/reducer';
 
 const rootReducer = combineReducers({
   widgetBlog,
+  widgetBookmarks,
   widgetColorPicker,
   widgetGreet,
   widgetSettings,

@@ -22,7 +22,6 @@
   "author": "Vincent Bollaert <vincentbollaert@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "ava": "^0.16.0",
     "axios": "^0.15.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-polyfill": "^6.16.0",
