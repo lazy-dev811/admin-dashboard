@@ -1,11 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 
-
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
 const SCSS_DIR = path.resolve(__dirname, 'src/client/app');
 const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-
 
 const config = {
   entry: [
@@ -25,10 +23,9 @@ const config = {
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
+        test: /\.(js|jsx)$/,
         include: APP_DIR,
-        exclude: '/node_modules/',
-        loaders: ['babel'],
+        loaders: ['babel-loader'],
       },
       {
         test: /\.scss$/,
