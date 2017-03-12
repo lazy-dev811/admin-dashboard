@@ -1,6 +1,9 @@
+import { ON_TAB_CHANGE } from './actions';
+
 const INITIAL_STATE = {
   widgetName: 'Bookmarks',
-  bookmarkCategories: [
+  pinnedCategories: [],
+  categories: [
     {
       category: 'web development',
       active: true,
@@ -117,15 +120,199 @@ const INITIAL_STATE = {
         },
       ],
     },
+    {
+      category: 'Life',
+      subCategories: [
+        {
+          subCategory: 'News',
+          bookmarks: [
+            {
+              title: 'CNN',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Liberal hippy bs',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+        {
+          subCategory: 'Comics',
+          bookmarks: [
+            {
+              title: 'Cyanide and Happiness',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Owlturd.com',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      category: 'Something else',
+      subCategories: [
+        {
+          subCategory: 'News',
+          bookmarks: [
+            {
+              title: 'CNN',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Liberal hippy bs',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+        {
+          subCategory: 'Comics',
+          bookmarks: [
+            {
+              title: 'Cyanide and Happiness',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Owlturd.com',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      category: 'Another thing',
+      subCategories: [
+        {
+          subCategory: 'News',
+          bookmarks: [
+            {
+              title: 'CNN',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Liberal hippy bs',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+        {
+          subCategory: 'Comics',
+          bookmarks: [
+            {
+              title: 'Cyanide and Happiness',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Owlturd.com',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      category: 'Almost Last thing',
+      subCategories: [
+        {
+          subCategory: 'News',
+          bookmarks: [
+            {
+              title: 'CNN',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Liberal hippy bs',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+        {
+          subCategory: 'Comics',
+          bookmarks: [
+            {
+              title: 'Cyanide and Happiness',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Owlturd.com',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      category: 'Last thing',
+      subCategories: [
+        {
+          subCategory: 'News',
+          bookmarks: [
+            {
+              title: 'CNN',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Liberal hippy bs',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+        {
+          subCategory: 'Comics',
+          bookmarks: [
+            {
+              title: 'Cyanide and Happiness',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+            {
+              title: 'Owlturd.com',
+              url: 'https://www.google.com',
+              favicon: 'FAV',
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // case expression:
-    //   return {
-    //     ...state,
-    //   };
+    case ON_TAB_CHANGE: {
+      const newState = state.categories.map((category) => {
+        const categoryClone = Object.assign(category, {});
+        categoryClone.active = categoryClone.category === action.label;
+        return categoryClone;
+      });
+      return {
+        ...state,
+        categories: [
+          ...newState,
+        ],
+      };
+    }
     default: {
       return state;
     }

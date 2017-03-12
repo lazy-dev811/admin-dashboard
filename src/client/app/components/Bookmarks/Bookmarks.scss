@@ -1,4 +1,35 @@
 .bookmarks {
   display: flex;
-  margin: 0 -5px;
+  flex-direction: column;
+
+  &__labels {
+    display: flex;
+    overflow: auto;
+    background-color: rgba(255, 255, 255, 0.3);
+
+    &__label {
+      padding: 10px 20px;
+      white-space: nowrap;
+
+      &:hover {
+        color: #12C3E4;
+        cursor: pointer;
+      }
+
+      &.active {
+        background-color: #fff;
+
+        &:hover {
+          cursor: default;
+        }
+      };
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 10px;
+    background-color: #fff;
+  }
 }

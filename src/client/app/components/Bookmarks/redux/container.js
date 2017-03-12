@@ -1,13 +1,16 @@
 import { connect } from 'react-redux';
 
+import { onTabPin, onTabChange } from './actions';
+
 import Bookmarks from '../Bookmarks.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetBookmarks, config }) => ({ ...widgetBookmarks, ...config });
 
-const mergeProps = ({ widgetName, bookmarkCategories, widgetBookmarks }, { dispatch }) => ({
+const mergeProps = ({ widgetName, categories, widgetBookmarks }, { dispatch }) => ({
   widgetName,
-  bookmarkCategories: bookmarkCategories.filter(category => category.active),
+  categories,
+  onTabChange: label => dispatch(onTabChange(label)),
   config: widgetBookmarks,
 });
 

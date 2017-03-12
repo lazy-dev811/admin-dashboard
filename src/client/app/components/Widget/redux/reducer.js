@@ -30,18 +30,18 @@ const INITIAL_STATE = {
   },
   widgetBookmarks: {
     components: {
-      body: true,
-      header: true,
+      // body: true,
+      // header: true,
     },
     dimensions: {
       width: 700,
-      height: 400,
+      // height: 400,
     },
     position: {
       top: 100,
       left: 100,
     },
-    transparentBg: true,
+    // transparentBg: true,
     transparentScrollbar: true,
   },
   widgetQuote: {
