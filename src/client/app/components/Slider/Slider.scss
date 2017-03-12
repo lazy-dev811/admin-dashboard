@@ -12,6 +12,10 @@ $slider-arrow-w: 50px;
   transform: translateY(calc(100% - #{$spacing}));
   transition: transform .3s ease, background-color .3s ease;
 
+  .slider-arrow {
+    opacity: 0;
+  }
+
   &:hover {
     transform: translateY(0);
     background-color: #fff;
@@ -36,6 +40,10 @@ $slider-arrow-w: 50px;
   cursor: pointer;
   transition: opacity .3s ease, fill .3s ease;
 
+  &:hover {
+    fill: $color;
+  }
+
   &--prev {
     left: 0;
   }
@@ -43,10 +51,6 @@ $slider-arrow-w: 50px;
   &--next {
     right: 0;
     cursor: pointer;
-
-    &:hover {
-      fill: $color;
-    }
   }
 
   svg {
@@ -54,9 +58,14 @@ $slider-arrow-w: 50px;
     height: 100%;
   }
 
-  &.disabled {
+  &.is-disabled {
     color: #eee;
     cursor: not-allowed;
+    pointer-events: none;
+
+    &:hover {
+      fill: #ccc;
+    }
   }
 }
 

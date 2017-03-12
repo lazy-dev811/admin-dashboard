@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { onTabPin, onTabChange } from './actions';
+import { onTabChange } from './actions';
 
 import Bookmarks from '../Bookmarks.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';

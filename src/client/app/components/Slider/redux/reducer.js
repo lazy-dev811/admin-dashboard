@@ -1,3 +1,5 @@
+import { SLIDE_ITEM_SELECT } from './actions';
+
 const INITIAL_STATE = {
   sliderItems: [
     'Todo',
@@ -15,7 +17,12 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, dispatch) => {
   switch (dispatch.type) {
-    // case expression:
+    case SLIDE_ITEM_SELECT: {
+      console.log('slide', dispatch.slideItem);
+      return {
+        ...state,
+      };
+    }
 
     default: {
       return state;

@@ -4,7 +4,7 @@ import React from 'react';
 // import YoutubePlayer from './YoutubePlayer/redux/container.js';
 // import Blog from './Blog/redux/container';
 import Slider from './Slider/redux/container.js';
-import Bookmarks from './Bookmarks/redux/container.js';
+// import Bookmarks from './Bookmarks/redux/container.js';
 // import Greet from './Greet/redux/container.js';
 // import Quote from './Quote/redux/container.js';
 // import SliderDetail from './SliderDetail/redux/container.js';
@@ -16,7 +16,7 @@ const RouteHome = () => (
     {/* <YoutubePlayer /> */}
     {/* <Blog /> */}
     <Slider />
-    <Bookmarks />
+    {/* <Bookmarks /> */}
     {/* <Greet /> */}
     {/* <Quote /> */}
     {/* <SliderDetail /> */}

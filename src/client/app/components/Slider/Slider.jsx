@@ -1,33 +1,73 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import ChevronLeft from '../Icon/ChevronLeft.jsx';
 import ChevronRight from '../Icon/ChevronRight.jsx';
 
 require('./Slider.scss');
 
-const Slider = ({ sliderItems }) => (
-  <div className="slider-wrap">
-    <div className="slider-arrow slider-arrow--prev js-slide-prev">
-      <ChevronLeft className="slider-arrow__icon" />
-    </div>
-    <div className="slider-arrow slider-arrow--next js-slide-next">
-      <ChevronRight className="slider-arrow__icon" />
-    </div>
+class Slider extends React.Component {
+  constructor(props) {
+    super(props);
 
-    <ul className="slider">
-      {sliderItems.map((app, index) => (
-        <li className="slider__slide" key={index}>
-          <div className="slider__slide__title">
-            {app}
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+    this.state = {
+      slideIndexTest: 0,
+      slideItemWidth: 0,
+      itemsInSlide: 4,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      slideItemWidth: document.querySelector('.slider__slide').clientWidth,
+    });
+  }
+  onSlide(slideIndex) {
+    console.log('on slide', slideIndex);
+    this.setState({
+      slideIndexTest: this.state.slideIndexTest + slideIndex,
+    });
+  }
+
+  render() {
+    const sliderStyle = {
+      transform: `translateX(${this.state.slideIndexTest * this.state.slideItemWidth}px)`,
+    };
+    const determineArrowClass = (direction) => {
+      const previousArrowCheck = direction === 'prev' && this.state.slideIndexTest === 0;
+      const nextArrowCheck = direction === 'next' && Math.abs(this.state.slideIndexTest) === this.props.sliderItems.length - 4;
+
+      return classnames('slider-arrow', `slider-arrow--${direction}`, {
+        'is-disabled': previousArrowCheck || nextArrowCheck,
+      });
+    };
+
+    return (
+      <div className="slider-wrap">
+        <div className={determineArrowClass('prev')} onClick={() => this.onSlide(1)}>
+          <ChevronLeft className="slider-arrow__icon" />
+        </div>
+        <div className={determineArrowClass('next')} onClick={() => this.onSlide(-1)}>
+          <ChevronRight className="slider-arrow__icon" />
+        </div>
+
+        <ul className="slider" style={sliderStyle}>
+          {this.props.sliderItems.map((app, index) => (
+            <li className="slider__slide" key={index}>
+              <div className="slider__slide__title" onClick={() => this.props.slideItemSelect(index)}>
+                {app}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 Slider.propTypes = {
   sliderItems: PropTypes.array.isRequired,
+  slideItemSelect: PropTypes.func.isRequired,
 };
 
 export default Slider;
