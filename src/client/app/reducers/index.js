@@ -14,6 +14,7 @@ import widgetSidebar from '../components/Sidebar/redux/reducer';
 import widgetSlider from '../components/Slider/redux/reducer';
 import widgetSliderDetail from '../components/SliderDetail/redux/reducer';
 import widgetYoutubePlayer from '../components/YoutubePlayer/redux/reducer';
+import RouteHome from '../components/Routes/Home/redux/reducer';
 
 import config from '../components/Widget/redux/reducer';
 
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   widgetSlider,
   widgetSliderDetail,
   widgetYoutubePlayer,
+  RouteHome,
   config,
   form: formReducer,
   routing: routerReducer,
