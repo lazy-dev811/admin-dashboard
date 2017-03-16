@@ -23,7 +23,7 @@ class Slider extends React.Component {
     });
   }
   onSlide(slideIndex) {
-    console.log('on slide', slideIndex);
+    // console.log('on slide', slideIndex);
     this.setState({
       slideIndexTest: this.state.slideIndexTest + slideIndex,
     });
@@ -52,13 +52,20 @@ class Slider extends React.Component {
         </div>
 
         <ul className="slider" style={sliderStyle}>
-          {this.props.sliderItems.map((app, index) => (
-            <li className="slider__slide" key={index}>
-              <div className="slider__slide__title" onClick={() => this.props.slideItemSelect(index)}>
-                {app}
-              </div>
-            </li>
-          ))}
+          {this.props.sliderItems.map((widgetName, index) => {
+            const determineSlideClass = name => (
+              classnames('slider__slide', {
+                'is-active': this.props.activeWidgets.includes(name),
+              })
+            );
+            return (
+              <li className={determineSlideClass(widgetName)} key={index}>
+                <div className="slider__slide__title" onClick={() => this.props.slideItemSelect(widgetName)}>
+                  {widgetName}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
@@ -67,6 +74,7 @@ class Slider extends React.Component {
 
 Slider.propTypes = {
   sliderItems: PropTypes.array.isRequired,
+  activeWidgets: PropTypes.array.isRequired,
   slideItemSelect: PropTypes.func.isRequired,
 };
 
