@@ -4,6 +4,8 @@ import {
 
 const INITIAL_STATE = {
   widgetGreet: {
+    name: 'greet',
+    type: 'widget',
     position: {
       right: 60,
       bottom: 60,
@@ -12,6 +14,8 @@ const INITIAL_STATE = {
     dimensions: {},
   },
   widgetBlog: {
+    name: 'blog',
+    type: 'widget',
     components: {
       body: true,
       header: true,
@@ -25,10 +29,12 @@ const INITIAL_STATE = {
       left: 40,
     },
     // transparentBg: true,
-    // transparentScrollbar: true,
+    transparentScrollbar: true,
     displaySettings: true,
   },
   widgetBookmarks: {
+    name: 'bookmarks',
+    type: 'widget',
     components: {
       // body: true,
       // header: true,
@@ -45,6 +51,8 @@ const INITIAL_STATE = {
     transparentScrollbar: true,
   },
   widgetQuote: {
+    name: 'quote',
+    type: 'widget',
     position: {
       bottom: 60,
       left: 60,
@@ -53,6 +61,8 @@ const INITIAL_STATE = {
     dimensions: {},
   },
   widgetWeather: {
+    name: 'weather',
+    type: 'widget',
     components: {
       body: true,
     },
@@ -64,6 +74,8 @@ const INITIAL_STATE = {
     transparent: true,
   },
   widgetColorPicker: {
+    name: 'color picker',
+    type: 'widget',
     position: {
       right: 0,
       top: '50%',
@@ -72,6 +84,8 @@ const INITIAL_STATE = {
     dimensions: {},
   },
   widgetToastMessages: {
+    name: 'toast messages',
+    type: 'component',
     position: {
       right: 20,
       top: 20,
@@ -80,6 +94,8 @@ const INITIAL_STATE = {
     dimensions: {},
   },
   widgetSettings: {
+    name: 'settings',
+    type: 'component',
     components: {
       body: true,
     },
@@ -90,6 +106,8 @@ const INITIAL_STATE = {
     dimensions: {},
   },
   widgetSidebar: {
+    name: 'sidebar',
+    type: 'component',
     components: {
       // body: true,
     },
@@ -103,6 +121,8 @@ const INITIAL_STATE = {
     },
   },
   widgetSlider: {
+    name: 'slider',
+    type: 'component',
     components: {
       // body: true,
     },
@@ -116,6 +136,8 @@ const INITIAL_STATE = {
     },
   },
   widgetYoutubePlayer: {
+    name: 'youtube player',
+    type: 'widget',
     components: {
       body: true,
     },
