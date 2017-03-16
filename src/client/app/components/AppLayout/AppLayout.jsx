@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 import Sidebar from '../Sidebar/redux/container.js';
-import ColorPicker from '../ColorPicker/redux/container.js';
 // import Settings from '../Settings/redux/container.js';
 // import ToastMessages from '../ToastMessages/redux/container.js';
 
@@ -12,7 +11,6 @@ const AppLayout = ({ children }) => (
     <img className="app__bg" src="app/assets/images/nature-1.jpg" alt="background" />
     {children}
     <Sidebar />
-    <ColorPicker />
     {/* <Settings /> */}
     {/* <ToastMessages /> */}
   </div>
