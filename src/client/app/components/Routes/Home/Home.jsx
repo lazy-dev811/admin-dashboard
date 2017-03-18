@@ -52,7 +52,7 @@ const widgets = [
 
 const Home = ({ activeWidgets }) => (
   <div className="page">
-    {widgets.map(widget => activeWidgets.includes(widget.name) && widget.component)}
+    {widgets.map((widget, i) => activeWidgets.includes(widget.name) && <div key={i}>{widget.component}</div>)}
     <Slider />
   </div>
 );
