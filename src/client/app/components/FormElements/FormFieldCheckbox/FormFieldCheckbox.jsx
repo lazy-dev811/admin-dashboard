@@ -14,7 +14,6 @@ const FormFieldCheckbox = ({
   const isError = touched && error;
   const fieldClass = classnames('checkbox', { 'is-error': isError });
   const labelClass = classnames('label', { 'is-active': input.value });
-  // console.log(input)
 
   return (
     <div className="checkbox-container">
@@ -31,11 +30,6 @@ const FormFieldCheckbox = ({
           className={fieldClass}
           type={type}
           id={id}
-          // onChange={(e) => {
-            // console.log('change?', e.target.value, input, e)
-            // onChange(e.target.value);
-            // input.onChange(e.target.value);
-          // }}
         />
         <label htmlFor={id} />
         {
@@ -52,7 +46,6 @@ FormFieldCheckbox.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,
-  // onChange: PropTypes.func,
 };
 
 export default FormFieldCheckbox;

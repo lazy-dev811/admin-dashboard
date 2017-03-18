@@ -3,7 +3,12 @@ import classnames from 'classnames';
 
 require('./FormFieldNumber.scss');
 
-const FormFieldNumber = ({ input, placeholder, id, meta: { touched, error }, onChange }) => {
+const FormFieldNumber = ({
+  input,
+  placeholder,
+  id,
+  meta: { touched, error },
+}) => {
   const isError = touched && error;
   const fieldClass = classnames('field field--number', { 'is-error': isError });
 
@@ -15,10 +20,6 @@ const FormFieldNumber = ({ input, placeholder, id, meta: { touched, error }, onC
         type="number"
         placeholder={placeholder}
         id={id}
-        onChange={(e) => {
-          onChange(e.target.value);
-          input.onChange(e.target.value);
-        }}
       />
       {
         isError &&
@@ -33,7 +34,6 @@ FormFieldNumber.propTypes = {
   placeholder: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,
-  onChange: PropTypes.func,
 };
 
 export default FormFieldNumber;
