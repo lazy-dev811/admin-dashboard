@@ -12,30 +12,34 @@ const component2 = (Component) => {
   // TODO: mergeProps was causing the child component's mergeProps to not work or something - all of them were undefiend
   // TODO: I need to be able to access the displaySettings form values from within mapDispatchToProps
 
-  // const mapStateToProps = ({ config, form: { DisplaySettings } }) => {
-  //   console.log('DisplaySettings', DisplaySettings);
-  //   return ({ ...config, ...DisplaySettings });
-  // };
+  const mapStateToProps = ({ config, form: { DisplaySettings } }) => {
+    // console.log('DisplaySettings', DisplaySettings);
+    return ({ ...config, ...DisplaySettings });
+  };
   // const mergeProps = ({ widgetBlog }) => ({ config: widgetBlog });
-  const mapDispatchToProps = (dispatch) => ({
-    onSettingsChange() {
-      // console.log('test', registeredFields);
-      // console.log('LOLOLO', this);
-      // const newValue = { value };
-      // const updatedSetting = Object.assign(setting, newValue);
-      // dispatch(updateWidgetConfig(widget, updatedSetting));
-    },
-    onSettingsSubmit(formFields) {
-      console.log('SUBMITTED', formFields);
-    },
-  });
+  const mapDispatchToProps = (dispatch) => {
+    return ({
+      handleChange(widgetName, widgetSetting) {
+        console.log('name and setting', widgetName, widgetSetting);
+        // console.log('test', dispatch());
+        // console.log('LOLOLO', this);
+        // const newValue = { value };
+        // const updatedSetting = Object.assign(setting, newValue);
+        // console.log('newValue', newValue);
+        dispatch(updateWidgetConfig(widgetName, widgetSetting));
+      },
+      // onSettingsSubmit(formFields) {
+        // console.log('SUBMITTED', formFields);
+      // },
+    });
+  };
 
   class WidgetComponent extends React.Component {
     render() {
-      console.log('RENDER IN WIDGET', this.props.config.components);
+      // console.log('RENDER IN WIDGET', this.props.config.components);
       const {
         widgetName,
-        onSettingsChange,
+        handleChange,
         onSettingsSubmit,
         config: {
           components: { header, body, footer },
@@ -93,7 +97,7 @@ const component2 = (Component) => {
               displaySettings &&
                 <reduxForm.form
                   widgetName={widgetName}
-                  onSettingsChange={onSettingsChange}
+                  handleChange={handleChange}
                   onSettingsSubmit={onSettingsSubmit}
                   top={top}
                   right={right}
@@ -125,12 +129,12 @@ const component2 = (Component) => {
 
   WidgetComponent.propTypes = {
     widgetName: PropTypes.string,
-    onSettingsChange: PropTypes.func,
+    handleChange: PropTypes.func,
     onSettingsSubmit: PropTypes.func,
     config: PropTypes.object.isRequired,
   };
 
-  return connect(null, mapDispatchToProps, null)(WidgetComponent);
+  return connect(mapStateToProps, mapDispatchToProps, null)(WidgetComponent);
 };
 
 export default component2;

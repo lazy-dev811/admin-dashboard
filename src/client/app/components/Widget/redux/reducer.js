@@ -158,7 +158,6 @@ export default (state = INITIAL_STATE, action) => {
     case UPDATE_WIDGET_CONFIG: {
       // console.log('REDUCER', action)
       const { widgetName, widgetConfig: { key, value, category } } = action;
-      const valueTest = typeof value === 'boolean' ? !value : value;
       let configToUpdate;
 
       if (category) {
@@ -167,7 +166,7 @@ export default (state = INITIAL_STATE, action) => {
             ...state[widgetName],
             [category]: {
               ...state[widgetName][category],
-              [key]: valueTest,
+              [key]: value,
             },
           },
         };
@@ -177,7 +176,7 @@ export default (state = INITIAL_STATE, action) => {
         configToUpdate = {
           [widgetName]: {
             ...state[widgetName],
-            [!category && key]: [!category] && valueTest,
+            [!category && key]: [!category] && value,
           },
         };
       }

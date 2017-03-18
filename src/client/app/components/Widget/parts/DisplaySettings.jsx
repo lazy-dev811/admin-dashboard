@@ -7,7 +7,7 @@ import FormFieldNumber from '../../FormElements/FormFieldNumber/FormFieldNumber.
 require('./DisplaySettings.scss');
 
 const DisplaySettings = ({
-  onSettingsChange,
+  handleChange,
   onSettingsSubmit,
   widgetName,
   top,
@@ -79,29 +79,45 @@ const DisplaySettings = ({
     },
   ];
 
+  const test = (name, setting, event, type) => {
+    const updatedSetting = Object.assign(setting, {});
+    if (type !== 'bool') {
+      const typeConverter = type === 'text' ? String : Number;
+      updatedSetting.value = typeConverter(event.target.value);
+    } else {
+      updatedSetting.value = event.target.value === 'true';
+    }
+    return handleChange(name, updatedSetting);
+  };
+
   return (
     <div className="widget__settings">
       <div className="widget__settings__toggle">
         <div className="widget__settings__toggle__middle" />
       </div>
 
-      <form className="widget__settings__form" onSubmit={onSettingsSubmit} onChange={onSettingsChange}>
+      <form className="widget__settings__form" onSubmit={() => onSettingsSubmit}>
         <div className="widget__settings__category">
           <div className="widget__settings__category__content">
             <div className="widget__settings__category__title">Position</div>
             {
-              positionConfigs.map(setting => (
-                <div className="widget__settings__category__item" key={setting.label}>
-                  <Field
-                    name={setting.label}
-                    component={FormFieldNumber}
-                    placeholder={setting.label}
-                    id={setting.label}
-                    label={setting.label}
-                    // onSettingsChange={() => onSettingsChange(widgetName, setting)}
-                  />
-                </div>
-              ))
+              positionConfigs.map(setting => {
+
+                console.log('setting.value', setting.value);
+                return (
+                  <div className="widget__settings__category__item" key={setting.label}>
+                    <Field
+                      value={setting.value}
+                      name={setting.label}
+                      component={FormFieldNumber}
+                      placeholder={setting.label}
+                      id={setting.label}
+                      label={setting.label}
+                      onChange={event => test(widgetName, setting, event, 'number')}
+                    />
+                  </div>
+                );
+              })
             }
           </div>
         </div>
@@ -118,7 +134,7 @@ const DisplaySettings = ({
                     id={setting.label}
                     label={setting.label}
                     type="checkbox"
-                    // onSettingsChange={() => onSettingsChange(widgetName, setting)}
+                    onChange={event => test(widgetName, setting, event, 'bool')}
                   />
                 </div>
               ))
@@ -138,7 +154,7 @@ const DisplaySettings = ({
                     id={setting.label}
                     label={setting.label}
                     type="checkbox"
-                    // onSettingsChange={() => onSettingsChange(widgetName, setting)}
+                    onChange={event => test(widgetName, setting, event, 'bool')}
                   />
                 </div>
               ))
@@ -151,7 +167,7 @@ const DisplaySettings = ({
 };
 
 DisplaySettings.propTypes = {
-  onSettingsChange: PropTypes.func,
+  handleChange: PropTypes.func,
   onSettingsSubmit: PropTypes.func,
   widgetName: PropTypes.string,
   top: PropTypes.number,
