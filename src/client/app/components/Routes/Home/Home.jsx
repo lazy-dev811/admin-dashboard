@@ -11,24 +11,51 @@ import Quote from '../../Quote/redux/container.js';
 import SliderDetail from '../../SliderDetail/redux/container.js';
 import Weather from '../../Weather/redux/container.js';
 
-const Home = ({ activeWidgets }) => {
-  console.log(Blog);
+const widgets = [
+  {
+    name: 'color picker',
+    component: <ColorPicker />,
+  },
+  {
+    name: 'todo list',
+    component: <TodoListContainer />,
+  },
+  {
+    name: 'youtube player',
+    component: <YoutubePlayer />,
+  },
+  {
+    name: 'weather',
+    component: <Weather />,
+  },
+  {
+    name: 'blog',
+    component: <Blog />,
+  },
+  {
+    name: 'bookmarks',
+    component: <Bookmarks />,
+  },
+  {
+    name: 'slider detail',
+    component: <SliderDetail />,
+  },
+  {
+    name: 'greet',
+    component: <Greet />,
+  },
+  {
+    name: 'quote',
+    component: <Quote />,
+  },
+];
 
-  return (
-    <div className="page">
-      {activeWidgets.includes('color picker') && <ColorPicker />}
-      {activeWidgets.includes('todo list') && <TodoListContainer />}
-      {activeWidgets.includes('youtube player') && <YoutubePlayer />}
-      {activeWidgets.includes('weather') && <Weather />}
-      {activeWidgets.includes('blog') && <Blog />}
-      {activeWidgets.includes('bookmarks') && <Bookmarks />}
-      {activeWidgets.includes('slider detail') && <SliderDetail />}
-      {activeWidgets.includes('greet') && <Greet />}
-      {activeWidgets.includes('quote') && <Quote />}
-      <Slider />
-    </div>
-  );
-};
+const Home = ({ activeWidgets }) => (
+  <div className="page">
+    {widgets.map(widget => activeWidgets.includes(widget.name) && widget.component)}
+    <Slider />
+  </div>
+);
 
 Home.propTypes = {
   activeWidgets: PropTypes.array.isRequired,
