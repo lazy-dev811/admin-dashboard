@@ -3,20 +3,6 @@ import {
 } from './actions';
 
 const INITIAL_STATE = {
-  widgetGreet: {
-    name: 'greet',
-    type: 'widget',
-    components: {
-      body: false,
-      header: false,
-    },
-    dimensions: {},
-    position: {
-      right: 60,
-      bottom: 60,
-    },
-    displaySettings: true,
-  },
   widgetBlog: {
     name: 'blog',
     type: 'widget',
@@ -34,6 +20,20 @@ const INITIAL_STATE = {
     },
     // transparentBg: true,
     transparentScrollbar: true,
+    displaySettings: true,
+  },
+  widgetGreet: {
+    name: 'greet',
+    type: 'widget',
+    components: {
+      body: false,
+      header: false,
+    },
+    dimensions: {},
+    position: {
+      right: 60,
+      bottom: 60,
+    },
     displaySettings: true,
   },
   widgetBookmarks: {
@@ -138,6 +138,24 @@ const INITIAL_STATE = {
     dimensions: {
       // height: 90,
     },
+  },
+  widgetSliderDetail: {
+    name: 'slider detail',
+    type: 'widget',
+    components: {
+      body: true,
+    },
+    dimensions: {
+      width: 470,
+      height: 600,
+    },
+    position: {
+      top: 20,
+      left: 40,
+    },
+    // transparentBg: true,
+    transparentScrollbar: true,
+    displaySettings: false,
   },
   widgetYoutubePlayer: {
     name: 'youtube player',

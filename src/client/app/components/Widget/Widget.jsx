@@ -3,27 +3,26 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import { updateWidgetConfig } from './redux/actions';
-import reduxForm from './parts/DisplaySettings.jsx';
+import TestFormBlog from './parts/BlogForm.jsx';
+import TestFormGreet from './parts/GreetForm.jsx';
 
 import './Widget.scss';
 
 const component2 = (Component) => {
-  const mapStateToProps = ({ config, form: { DisplaySettings } }) => {
-    return ({ ...config, ...DisplaySettings });
+  const mapStateToProps = ({ config }) => {
+    return ({ ...config });
   };
   const mapDispatchToProps = (dispatch) => {
     return ({
-      handleChange(widgetName, widgetSetting) {
-        dispatch(updateWidgetConfig(widgetName, widgetSetting));
+      handleChange(name, setting) {
+        dispatch(updateWidgetConfig(name, setting));
       },
-      // onSettingsSubmit(formFields) {
-        // console.log('SUBMITTED', formFields);
-      // },
     });
   };
 
   class WidgetComponent extends React.Component {
     render() {
+      // console.log('this', this.props.widgetName, this.props);
       const {
         widgetName,
         handleChange,
@@ -91,27 +90,39 @@ const component2 = (Component) => {
         height,
       };
 
+      const widgetProps = {
+        widgetName,
+        handleChange,
+        onSettingsSubmit,
+        top,
+        right,
+        bottom,
+        left,
+        header,
+        body,
+        footer,
+        transparentBg,
+        transparentScrollbar,
+        initialValues,
+      };
       return (
         <div className="widget" style={widgetStyle}>
           <div className={containerClass} style={widgetBodyStyle}>
 
             {
               displaySettings &&
-                <reduxForm.form
-                  widgetName={widgetName}
-                  handleChange={handleChange}
-                  onSettingsSubmit={onSettingsSubmit}
-                  top={top}
-                  right={right}
-                  bottom={bottom}
-                  left={left}
-                  header={header}
-                  body={body}
-                  footer={footer}
-                  transparentBg={transparentBg}
-                  transparentScrollbar={transparentScrollbar}
-                  initialValues={initialValues}
-                />
+                <div>
+                  {widgetName === 'widgetBlog' &&
+                    <TestFormBlog.form
+                      {...widgetProps}
+                    />
+                  }
+                  {widgetName === 'widgetGreet' &&
+                    <TestFormGreet.form
+                      {...widgetProps}
+                    />
+                  }
+                </div>
             }
 
             <div className={wrapClass}>
