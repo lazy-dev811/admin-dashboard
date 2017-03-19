@@ -8,7 +8,7 @@ const FormFieldCheckbox = ({
   input,
   label,
   id,
-  type,
+  type = 'checkbox',
   meta: { touched, error },
 }) => {
   const isError = touched && error;
@@ -30,6 +30,7 @@ const FormFieldCheckbox = ({
           className={fieldClass}
           type={type}
           id={id}
+          checked={input.value}
         />
         <label htmlFor={id} />
         {
@@ -45,6 +46,7 @@ FormFieldCheckbox.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
   id: PropTypes.string,
+  type: PropTypes.string,
   meta: PropTypes.object,
 };
 

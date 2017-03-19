@@ -4,7 +4,7 @@ import classnames from 'classnames';
 require('../FormField.scss');
 require('./FormFieldRadio.scss');
 
-const FormField = ({ input, label, id, onChangeTest, meta: { touched, error } }) => {
+const FormField = ({ input, label, id, meta: { touched, error } }) => {
   const isError = touched && error;
   const fieldClass = classnames('radio', { 'is-error': isError });
 
@@ -26,10 +26,7 @@ const FormField = ({ input, label, id, onChangeTest, meta: { touched, error } })
           className={fieldClass}
           type="radio"
           id={id}
-          onChange={(event) => {
-            input.onChange(event);
-            onChangeTest(event.target.value);
-          }}
+          checked={input.value}
         />
         <label htmlFor={id} />
         {
