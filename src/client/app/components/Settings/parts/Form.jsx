@@ -3,9 +3,10 @@ import { Field, reduxForm } from 'redux-form';
 
 import FormFieldCheckbox from '../../FormElements/FormFieldCheckbox/FormFieldCheckbox.jsx';
 import FormFieldRadio from '../../FormElements/FormFieldRadio/FormFieldRadio.jsx';
+import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
 
-const Form = ({ settings, onChangeTest }) => (
-  <form>
+const Form = ({ settings, handleChange, handleSubmit }) => (
+  <form onSubmit={() => handleSubmit}>
     <ul className="pg-settings__options">
       {settings.map((setting, index) => {
         const uniqueId = `${setting}-${index}`;
@@ -16,29 +17,37 @@ const Form = ({ settings, onChangeTest }) => (
             key={uniqueId}
           >
             <Field
-              name={setting.label}
+              name={setting.name}
               component={FormFieldCheckbox}
               id={uniqueId}
               label={setting.label}
-              onChangeTest={onChangeTest}
+              onChange={handleChange}
             />
           </li>
         );
       })}
 
       <Field
-        name="radio-test"
+        name="testRadio"
         component={FormFieldRadio}
-        id="radio-test"
-        label="radio-test"
-        onChangeTest={onChangeTest}
+        id="testRadio"
+        label="testRadio"
+        onChange={handleChange}
       />
 
       <Field
-        name="radio-test"
-        component={FormFieldRadio}
-        id="radio-test2"
-        onChangeTest={onChangeTest}
+        name="testCheckbox"
+        component={FormFieldCheckbox}
+        id="testCheckbox2"
+        label="testCheckboxo"
+        onChange={handleChange}
+      />
+
+      <Field
+        name="testText"
+        component={FormFieldText}
+        onChange={handleChange}
+        placeholder={'please work'}
       />
     </ul>
   </form>
@@ -46,7 +55,7 @@ const Form = ({ settings, onChangeTest }) => (
 
 Form.propTypes = {
   settings: PropTypes.array,
-  onChangeTest: PropTypes.func,
+  handleChange: PropTypes.func,
   handleSubmit: PropTypes.func,
 };
 

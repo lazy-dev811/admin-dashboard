@@ -6,11 +6,17 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetSettings, config }) => ({ ...widgetSettings, ...config });
 
-const mergeProps = ({ settings, widgetSettings }, { dispatch }) => ({
+const mergeProps = ({ settings, widgetSettings, initialValues }, { dispatch }) => ({
   settings,
   config: widgetSettings,
-  onChangeTest(formValues) {
+  initialValues,
+  handleChange(formValues) {
+    console.log('CHANGE')
     dispatch(updateSettings(formValues));
+  },
+  handleSubmit(formValues) {
+    console.log('SUBMIT')
+    // dispatch(updateSettings(formValues));
   },
 });
 

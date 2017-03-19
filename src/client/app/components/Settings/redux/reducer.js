@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     {
       name: 'optionDefaultUser',
       label: 'Load default user',
+      value: true,
     },
     {
       name: 'optionSlide',
@@ -23,6 +24,16 @@ const INITIAL_STATE = {
       label: 'transparent scrollbars',
     },
   ],
+  initialValues: {
+    optionDefaultUser: true,
+    optionSlide: true,
+    optionDefaultSlide: true,
+    optionShowColorPicker: false,
+    optionTransparentScrollbars: false,
+    testText: 'IT FUCKING WORKS BITCH',
+    testRadio: false,
+    testCheckbox: true,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {
