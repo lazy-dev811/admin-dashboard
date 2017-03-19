@@ -31,7 +31,7 @@ $transition-medium: 0.3s;
   top: 0;
   left: 0;
   z-index: 1;
-  // visibility: hidden;
+  visibility: hidden;
   transform: translate(0, -100%);
   transition: opacity $transition-medium ease;
 
@@ -79,8 +79,8 @@ $transition-medium: 0.3s;
 }
 
 .widget__settings__form {
-  // visibility: hidden;
-  // opacity: 0;
+  visibility: hidden;
+  opacity: 0;
   padding-bottom: $spacing;
   white-space: nowrap;
   font-size: 10px;
