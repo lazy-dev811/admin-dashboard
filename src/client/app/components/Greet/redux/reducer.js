@@ -1,4 +1,7 @@
+import { WIDGET_GREET } from '../../../constants/widgets.js';
+
 const INITIAL_STATE = {
+  widgetName: WIDGET_GREET,
   person: {
     name: 'Vincent',
     surname: 'Bollaert',

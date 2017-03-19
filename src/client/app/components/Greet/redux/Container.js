@@ -4,7 +4,8 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetGreet, config }) => ({ ...widgetGreet, ...config });
 
-const mergeProps = ({ person, date, weather, widgetGreet }) => ({
+const mergeProps = ({ widgetName, person, date, weather, widgetGreet }) => ({
+  widgetName,
   person,
   date,
   weather,
