@@ -10,22 +10,6 @@ const INITIAL_STATE = {
     },
     activeState: true,
   },
-  config: {
-    components: {
-      body: true,
-    },
-    dimensions: {
-      width: 470,
-      height: 600,
-    },
-    position: {
-      top: 20,
-      left: 40,
-    },
-    // transparentBg: true,
-    transparentScrollbar: true,
-    displaySettings: false,
-  },
 };
 
 export default (state = INITIAL_STATE, action) => {
