@@ -6,12 +6,16 @@ const INITIAL_STATE = {
   widgetGreet: {
     name: 'greet',
     type: 'widget',
+    components: {
+      body: false,
+      header: false,
+    },
+    dimensions: {},
     position: {
       right: 60,
       bottom: 60,
     },
-    components: {},
-    dimensions: {},
+    displaySettings: true,
   },
   widgetBlog: {
     name: 'blog',

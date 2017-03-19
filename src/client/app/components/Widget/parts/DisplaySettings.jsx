@@ -20,7 +20,7 @@ const DisplaySettings = ({
   transparentBg,
   transparentScrollbar,
 }) => {
-  const positionConfigs = [
+  const positionConfig = [
     {
       label: 'Top',
       key: 'top',
@@ -46,7 +46,7 @@ const DisplaySettings = ({
       value: left,
     },
   ];
-  const transparencyConfigs = [
+  const transparencyConfig = [
     {
       label: 'Background',
       key: 'transparentBg',
@@ -58,7 +58,7 @@ const DisplaySettings = ({
       value: transparentScrollbar,
     },
   ];
-  const componentConfigs = [
+  const componentConfig = [
     {
       label: 'Header',
       key: 'header',
@@ -85,8 +85,9 @@ const DisplaySettings = ({
       const typeConverter = type === 'text' ? String : Number;
       updatedSetting.value = typeConverter(event.target.value);
     } else {
-      updatedSetting.value = event.target.value === 'true';
+      updatedSetting.value = event.target.value === 'false' || event.target.value === ''; // toggling bool here too
     }
+    console.log('handlechange', name, updatedSetting);
     return handleChange(name, updatedSetting);
   };
 
@@ -101,14 +102,11 @@ const DisplaySettings = ({
           <div className="widget__settings__category__content">
             <div className="widget__settings__category__title">Position</div>
             {
-              positionConfigs.map(setting => {
-
-                console.log('setting.value', setting.value);
+              positionConfig.map((setting) => {
                 return (
                   <div className="widget__settings__category__item" key={setting.label}>
                     <Field
-                      value={setting.value}
-                      name={setting.label}
+                      name={setting.key}
                       component={FormFieldNumber}
                       placeholder={setting.label}
                       id={setting.label}
@@ -126,10 +124,10 @@ const DisplaySettings = ({
           <div className="widget__settings__category__content">
             <div className="widget__settings__category__title">Transparency</div>
             {
-              transparencyConfigs.map(setting => (
+              transparencyConfig.map(setting => (
                 <div className="widget__settings__category__item" key={setting.label}>
                   <Field
-                    name={setting.label}
+                    name={setting.key}
                     component={FormFieldCheckbox}
                     id={setting.label}
                     label={setting.label}
@@ -146,10 +144,10 @@ const DisplaySettings = ({
           <div className="widget__settings__category__content">
             <div className="widget__settings__category__title">Components</div>
             {
-              componentConfigs.map(setting => (
+              componentConfig.map(setting => (
                 <div className="widget__settings__category__item" key={setting.label}>
                   <Field
-                    name={setting.label}
+                    name={setting.key}
                     component={FormFieldCheckbox}
                     id={setting.label}
                     label={setting.label}
@@ -180,7 +178,6 @@ DisplaySettings.propTypes = {
   transparentBg: PropTypes.bool,
   transparentScrollbar: PropTypes.bool,
 };
-
 export default {
   form: reduxForm({
     form: 'DisplaySettings',

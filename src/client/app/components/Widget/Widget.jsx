@@ -8,24 +8,12 @@ import reduxForm from './parts/DisplaySettings.jsx';
 import './Widget.scss';
 
 const component2 = (Component) => {
-  // TODO: Figure out htf to access the displaySettings form values from within this file
-  // TODO: mergeProps was causing the child component's mergeProps to not work or something - all of them were undefiend
-  // TODO: I need to be able to access the displaySettings form values from within mapDispatchToProps
-
   const mapStateToProps = ({ config, form: { DisplaySettings } }) => {
-    // console.log('DisplaySettings', DisplaySettings);
     return ({ ...config, ...DisplaySettings });
   };
-  // const mergeProps = ({ widgetBlog }) => ({ config: widgetBlog });
   const mapDispatchToProps = (dispatch) => {
     return ({
       handleChange(widgetName, widgetSetting) {
-        console.log('name and setting', widgetName, widgetSetting);
-        // console.log('test', dispatch());
-        // console.log('LOLOLO', this);
-        // const newValue = { value };
-        // const updatedSetting = Object.assign(setting, newValue);
-        // console.log('newValue', newValue);
         dispatch(updateWidgetConfig(widgetName, widgetSetting));
       },
       // onSettingsSubmit(formFields) {
@@ -36,7 +24,6 @@ const component2 = (Component) => {
 
   class WidgetComponent extends React.Component {
     render() {
-      // console.log('RENDER IN WIDGET', this.props.config.components);
       const {
         widgetName,
         handleChange,
@@ -50,6 +37,21 @@ const component2 = (Component) => {
           displaySettings,
         },
       } = this.props;
+
+      const initialValues = {
+        header,
+        body,
+        footer,
+        width,
+        height,
+        top,
+        right,
+        bottom,
+        left,
+        transparentBg,
+        transparentScrollbar,
+        displaySettings,
+      };
 
       const Header = () => (
         <div className="widget__header">
@@ -108,6 +110,7 @@ const component2 = (Component) => {
                   footer={footer}
                   transparentBg={transparentBg}
                   transparentScrollbar={transparentScrollbar}
+                  initialValues={initialValues}
                 />
             }
 
