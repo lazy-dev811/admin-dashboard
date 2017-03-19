@@ -6,7 +6,7 @@ import FormFieldNumber from '../../FormElements/FormFieldNumber/FormFieldNumber.
 
 require('./DisplaySettings.scss');
 
-const DisplaySettings = ({
+const GreetForm = ({
   handleChange,
   onSettingsSubmit,
   widgetName,
@@ -80,6 +80,7 @@ const DisplaySettings = ({
   ];
 
   const test = (name, setting, event, type) => {
+    console.log('WTF', name)
     const updatedSetting = Object.assign(setting, {});
     if (type !== 'bool') {
       const typeConverter = type === 'text' ? String : Number;
@@ -87,10 +88,11 @@ const DisplaySettings = ({
     } else {
       updatedSetting.value = event.target.value === 'false' || event.target.value === ''; // toggling bool here too
     }
-    console.log('handlechange', name, updatedSetting);
+    console.log('greetForm WIDGET GREET', name, updatedSetting);
     return handleChange(name, updatedSetting);
   };
 
+  console.log('WIDGET GREET', widgetName, top, right, bottom, left);
   return (
     <div className="widget__settings">
       <div className="widget__settings__toggle">
@@ -109,7 +111,7 @@ const DisplaySettings = ({
                       name={setting.key}
                       component={FormFieldNumber}
                       placeholder={setting.label}
-                      id={setting.label}
+                      id={`${widgetName}-${setting.label}`}
                       label={setting.label}
                       onChange={event => test(widgetName, setting, event, 'number')}
                     />
@@ -129,7 +131,7 @@ const DisplaySettings = ({
                   <Field
                     name={setting.key}
                     component={FormFieldCheckbox}
-                    id={setting.label}
+                    id={`${widgetName}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
                     onChange={event => test(widgetName, setting, event, 'bool')}
@@ -149,7 +151,7 @@ const DisplaySettings = ({
                   <Field
                     name={setting.key}
                     component={FormFieldCheckbox}
-                    id={setting.label}
+                    id={`${widgetName}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
                     onChange={event => test(widgetName, setting, event, 'bool')}
@@ -164,7 +166,7 @@ const DisplaySettings = ({
   );
 };
 
-DisplaySettings.propTypes = {
+GreetForm.propTypes = {
   handleChange: PropTypes.func,
   onSettingsSubmit: PropTypes.func,
   widgetName: PropTypes.string,
@@ -178,8 +180,9 @@ DisplaySettings.propTypes = {
   transparentBg: PropTypes.bool,
   transparentScrollbar: PropTypes.bool,
 };
+
 export default {
   form: reduxForm({
-    form: 'DisplaySettings',
-  })(DisplaySettings),
+    form: 'GreetForm',
+  })(GreetForm),
 };
