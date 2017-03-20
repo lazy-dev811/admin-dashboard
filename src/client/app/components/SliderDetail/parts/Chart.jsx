@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import FormField from '../../FormElements/FormField/FormField.jsx';
-import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
 import Button from '../../Button/Button.jsx';
 
 const validate = (values) => {
@@ -27,11 +26,11 @@ const Chart = ({ handleSubmit }) => (
     </span>
 
     <Field
+      type="text"
       name="name"
-      component={FormFieldText}
+      component={FormField}
       id="name"
       placeholder="labels 1"
-      type="text"
     />
 
     {/* <!-- {inputData.labels.raw} --> */}
@@ -42,11 +41,11 @@ const Chart = ({ handleSubmit }) => (
     </div>
 
     <Field
+      type="text"
       name="main-data"
-      component={FormFieldText}
+      component={FormField}
       id="main-data"
       placeholder="labels"
-      type="text"
     />
 
     {/* <!-- {inputData.main.raw} --> */}
@@ -57,11 +56,11 @@ const Chart = ({ handleSubmit }) => (
     </div>
 
     <Field
+      type="text"
       name="compare-data"
-      component={FormFieldText}
+      component={FormField}
       id="compare-data"
       placeholder="labels"
-      type="text"
     />
 
     <Button label="Compare data" />

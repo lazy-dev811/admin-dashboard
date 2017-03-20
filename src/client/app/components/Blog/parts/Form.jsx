@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
+import FormField from '../../FormElements/FormField/FormField.jsx';
 import Button from '../../Button/Button.jsx';
 
 const validate = (values) => {
@@ -22,29 +22,29 @@ const Form = ({ classCustom, handleSubmit, onChange }) => (
   <form onSubmit={handleSubmit} onChange={onChange} className={classCustom}>
     <div className="row">
       <Field
+        type="text"
         name="title"
-        component={FormFieldText}
+        component={FormField}
         id="title"
         placeholder="title"
-        type="text"
       />
     </div>
     <div className="row">
       <Field
+        type="text"
         name="categories"
-        component={FormFieldText}
+        component={FormField}
         id="categories"
         placeholder="categories"
-        type="text"
       />
     </div>
     <div className="row">
       <Field
+        type="text"
         name="content"
-        component={FormFieldText}
+        component={FormField}
         id="content"
         placeholder="content"
-        type="text"
       />
     </div>
     <Button handleSubmit={handleSubmit} label="Add post" />

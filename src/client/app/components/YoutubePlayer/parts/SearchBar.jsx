@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
+import FormField from '../../FormElements/FormField/FormField.jsx';
 import Button from '../../Button/Button.jsx';
 
 const SearchBar = ({ onChange, handleSubmit }) => (
@@ -9,11 +9,11 @@ const SearchBar = ({ onChange, handleSubmit }) => (
     This here is a Form
     <div>
       <Field
+        type="text"
         name="search"
-        component={FormFieldText}
+        component={FormField}
         id="search"
         placeholder="search"
-        type="text"
         onChange={onChange}
       />
     </div>

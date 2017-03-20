@@ -5,7 +5,6 @@ const INITIAL_STATE = {
     {
       name: 'optionDefaultUser',
       label: 'Load default user',
-      value: true,
     },
     {
       name: 'optionSlide',
@@ -30,9 +29,12 @@ const INITIAL_STATE = {
     optionDefaultSlide: true,
     optionShowColorPicker: false,
     optionTransparentScrollbars: false,
-    testText: 'IT FUCKING WORKS BITCH',
+    testText: 'Content',
     testRadio: false,
+    testRadio2: false,
     testCheckbox: true,
+    testRange: 30,
+    testNumber: 30,
   },
 };
 

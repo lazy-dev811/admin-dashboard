@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
+import FormField from '../../FormElements/FormField/FormField.jsx';
 import Button from '../../Button/Button.jsx';
 
 const validate = (values) => {
@@ -31,11 +31,11 @@ class SearchBar extends Component {
     return (
       <form className="input-group" onSubmit={() => this.props.handleSubmit(this.state.searchTerm)}>
         <Field
+          type="text"
           name="search"
-          component={FormFieldText}
+          component={FormField}
           id="search"
           placeholder="search"
-          type="text"
         />
         {/* <input
           className="input"
@@ -70,7 +70,7 @@ export default {
 // import React, { PropTypes } from 'react';
 // import { Field, reduxForm } from 'redux-form';
 //
-// import FormFieldText from '../../FormElements/FormFieldText/FormFieldText.jsx';
+// import FormField from '../../FormElements/FormField/FormField.jsx';
 // import Button from '../../Button/Button.jsx';
 //
 // const validate = (values) => {
@@ -92,29 +92,29 @@ export default {
 //     This here is a Form
 //     <div>
 //       <Field
+//         type="text"
 //         name="title"
-//         component={FormFieldText}
+//         component={FormField}
 //         id="title"
 //         placeholder="title"
-//         type="text"
 //       />
 //     </div>
 //     <div>
 //       <Field
+//         type="text"
 //         name="categories"
-//         component={FormFieldText}
+//         component={FormField}
 //         id="categories"
 //         placeholder="categories"
-//         type="text"
 //       />
 //     </div>
 //     <div>
 //       <Field
+//         type="text"
 //         name="content"
-//         component={FormFieldText}
+//         component={FormField}
 //         id="content"
 //         placeholder="content"
-//         type="text"
 //       />
 //     </div>
 //     <Button handleSubmit={handleSubmit} label="Add post" />
