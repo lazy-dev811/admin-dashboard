@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import FormFieldCheckbox from '../../FormElements/FormFieldCheckbox/FormFieldCheckbox.jsx';
-import FormFieldNumber from '../../FormElements/FormFieldNumber/FormFieldNumber.jsx';
+import FormField from '../../FormElements/FormField/FormField.jsx';
 
 require('./DisplaySettings.scss');
 
@@ -79,8 +79,7 @@ const GreetForm = ({
     },
   ];
 
-  const test = (name, setting, event, type) => {
-    console.log('WTF', name)
+  const convertValue = (name, setting, event, type) => {
     const updatedSetting = Object.assign(setting, {});
     if (type !== 'bool') {
       const typeConverter = type === 'text' ? String : Number;
@@ -88,11 +87,9 @@ const GreetForm = ({
     } else {
       updatedSetting.value = event.target.value === 'false' || event.target.value === ''; // toggling bool here too
     }
-    console.log('greetForm WIDGET GREET', name, updatedSetting);
     return handleChange(name, updatedSetting);
   };
 
-  console.log('WIDGET GREET', widgetName, top, right, bottom, left);
   return (
     <div className="widget__settings">
       <div className="widget__settings__toggle">
@@ -108,12 +105,13 @@ const GreetForm = ({
                 return (
                   <div className="widget__settings__category__item" key={setting.label}>
                     <Field
+                      type="number"
                       name={setting.key}
-                      component={FormFieldNumber}
+                      component={FormField}
                       placeholder={setting.label}
                       id={`${widgetName}-${setting.label}`}
                       label={setting.label}
-                      onChange={event => test(widgetName, setting, event, 'number')}
+                      onChange={event => convertValue(widgetName, setting, event, 'number')}
                     />
                   </div>
                 );
@@ -134,7 +132,7 @@ const GreetForm = ({
                     id={`${widgetName}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
-                    onChange={event => test(widgetName, setting, event, 'bool')}
+                    onChange={event => convertValue(widgetName, setting, event, 'bool')}
                   />
                 </div>
               ))
@@ -154,7 +152,7 @@ const GreetForm = ({
                     id={`${widgetName}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
-                    onChange={event => test(widgetName, setting, event, 'bool')}
+                    onChange={event => convertValue(widgetName, setting, event, 'bool')}
                   />
                 </div>
               ))

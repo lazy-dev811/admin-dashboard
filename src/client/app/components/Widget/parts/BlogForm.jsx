@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import FormFieldCheckbox from '../../FormElements/FormFieldCheckbox/FormFieldCheckbox.jsx';
-import FormFieldNumber from '../../FormElements/FormFieldNumber/FormFieldNumber.jsx';
+import FormField from '../../FormElements/FormField/FormField.jsx';
 
 require('./DisplaySettings.scss');
 
@@ -79,7 +79,7 @@ const BlogForm = ({
     },
   ];
 
-  const test = (name, setting, event, type) => {
+  const convertValue = (name, setting, event, type) => {
     const updatedSetting = Object.assign(setting, {});
     if (type !== 'bool') {
       const typeConverter = type === 'text' ? String : Number;
@@ -105,12 +105,13 @@ const BlogForm = ({
                 return (
                   <div className="widget__settings__category__item" key={setting.label}>
                     <Field
+                      type="number"
                       name={setting.key}
-                      component={FormFieldNumber}
+                      component={FormField}
                       placeholder={setting.label}
                       id={`${widgetName}-${setting.label}`}
                       label={setting.label}
-                      onChange={event => test(widgetName, setting, event, 'number')}
+                      onChange={event => convertValue(widgetName, setting, event, 'number')}
                     />
                   </div>
                 );
@@ -131,7 +132,7 @@ const BlogForm = ({
                     id={`${widgetName}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
-                    onChange={event => test(widgetName, setting, event, 'bool')}
+                    onChange={event => convertValue(widgetName, setting, event, 'bool')}
                   />
                 </div>
               ))
@@ -151,7 +152,7 @@ const BlogForm = ({
                     id={`${widgetName}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
-                    onChange={event => test(widgetName, setting, event, 'bool')}
+                    onChange={event => convertValue(widgetName, setting, event, 'bool')}
                   />
                 </div>
               ))
