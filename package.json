@@ -1,7 +1,7 @@
 {
-  "name": "react-playground",
-  "version": "1.0.0",
-  "description": "A playground for react",
+  "name": "react-dashboard",
+  "version": "0.1.0",
+  "description": "An ES6 React dashboard",
   "main": "index.js",
   "scripts": {
     "production": "webpack -p",
@@ -36,6 +36,7 @@
     "eslint-plugin-react": "^6.2.1",
     "image-webpack-loader": "^2.0.0",
     "lodash": "^4.16.2",
+    "moment": "^2.18.0",
     "node-sass": "^3.8.0",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
