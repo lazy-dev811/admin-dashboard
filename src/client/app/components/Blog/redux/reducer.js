@@ -1,4 +1,4 @@
-import { WIDGET_BLOG } from '../../../constants/widgets.js';
+import { WIDGET_BLOG } from '../../../constants';
 
 import {
   FETCH_POSTS_SUCCEEDED,

@@ -6,3 +6,5 @@ export const WIDGET_TOAST_MESSAGES = 'widgetToastMessages';
 export const WIDGET_WEATHER = 'widgetWeather';
 export const WIDGET_QUOTE = 'widgetQuote';
 export const WIDGET_SLIDER_DETAIL = 'widgetSliderDetail';
+
+export const DATE_FORMAT = 'DD MMM YYYY';

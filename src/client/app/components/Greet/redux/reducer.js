@@ -1,4 +1,6 @@
-import { WIDGET_GREET } from '../../../constants/widgets.js';
+import moment from 'moment';
+
+import { WIDGET_GREET, DATE_FORMAT } from '../../../constants';
 
 const INITIAL_STATE = {
   widgetName: WIDGET_GREET,
@@ -7,7 +9,7 @@ const INITIAL_STATE = {
     surname: 'Bollaert',
   },
   weather: 'a fierce mild',
-  date: '16 October 2016',
+  date: moment().format(DATE_FORMAT),
 };
 
 export default (state = INITIAL_STATE) => state;
