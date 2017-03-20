@@ -1,56 +1,46 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
+import FormField from '../../FormElements/FormField/FormField.jsx';
 
-require('../FormField.scss');
-require('./FormFieldRange.scss');
+import './FormFieldRange.scss';
 
 const FormFieldRange = ({
+  displayValue,
   input,
   label,
   id,
-  meta: { touched, error },
-  onChange,
-}) => {
-  const isError = touched && error;
-  const fieldClass = classnames('range', { 'is-error': isError });
-  const labelClass = classnames('label', { 'is-active': input.value });
-
-  return (
-    <div className="range-container">
+  meta,
+}) => (
+  <div className="range-field-container">
+    {
+      label &&
       <label
-        className={labelClass}
+        className="label"
         htmlFor={id}
       >
         {label}
       </label>
+    }
 
-      <div>
-        <input
-          {...input}
-          className={fieldClass}
-          type="range"
-          id={id}
-          onChange={(e) => {
-            console.log('RANGE COMPONENT', e.target.value);
-            onChange(e.target.value);
-            input.onChange(e.target.value);
-          }}
-        />
-        {
-          isError &&
-            <div className="field__error">{error}</div>
-        }
-      </div>
-    </div>
-  );
-};
+    <input
+      {...input}
+      className="range-input"
+      type="range"
+      id={id}
+    />
+
+    {
+      displayValue &&
+      <FormField type="text" input={input} id={id} meta={meta} />
+    }
+  </div>
+);
 
 FormFieldRange.propTypes = {
+  displayValue: PropTypes.bool,
   input: PropTypes.object,
   label: PropTypes.string,
   id: PropTypes.string,
   meta: PropTypes.object,
-  onChange: PropTypes.func,
 };
 
 export default FormFieldRange;

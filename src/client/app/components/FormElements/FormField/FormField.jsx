@@ -1,12 +1,31 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-const FormField = ({ input, type, placeholder, id, meta: { touched, error } }) => {
+import './FormField.scss';
+
+const FormField = ({
+  input,
+  label,
+  placeholder,
+  id,
+  type = 'text',
+  meta: { touched, error },
+}) => {
   const isError = touched && error;
-  const fieldClass = classnames('field', { 'is-error': isError });
+  const fieldClass = classnames('text-input', { 'is-error': isError });
 
   return (
-    <div className="field-container">
+    <div className="text-field-container">
+      {
+        label &&
+        <label
+          className="label"
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      }
+
       <input
         {...input}
         className={fieldClass}
@@ -16,7 +35,7 @@ const FormField = ({ input, type, placeholder, id, meta: { touched, error } }) =
       />
       {
         isError &&
-          <div className="field__error">{error}</div>
+        <div className="field-error">{error}</div>
       }
     </div>
   );
@@ -24,9 +43,10 @@ const FormField = ({ input, type, placeholder, id, meta: { touched, error } }) =
 
 FormField.propTypes = {
   input: PropTypes.object,
-  type: PropTypes.string,
+  label: PropTypes.string,
   placeholder: PropTypes.string,
   id: PropTypes.string,
+  type: PropTypes.string,
   meta: PropTypes.object,
 };
 

@@ -1,44 +1,56 @@
-@import '../../../scss/inc/variables';
-@import '../FormField.scss';
+@import '../base.scss';
 
-
-$size: 20px;
-
-$slider-thumb-s: 20px;
+$thumb-size: 14px;
+$thumb-bg: #0ad;
+$track-bg: #E8E8E8;
 
 @mixin slider-track {
-  $slider-track-bg: #CCBCBC;
-
   width: 100%;
-  height: 2px;
-  background-color: $slider-track-bg;
+  height: 1px;
+  background-color: $track-bg;
 }
 
 @mixin slider-thumb {
-  $slider-thumb-bg: #201E1E;
-
-  height: $slider-thumb-s;
-  width: $slider-thumb-s;
+  height: $thumb-size;
+  width: $thumb-size;
   border-radius: 50%;
-  background-color: $slider-thumb-bg;
+  background-color: $thumb-bg;
   cursor: pointer;
   transform: translateY(-50%);
 }
 
-.range-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
+.range-field-container {
+  @extend %field-container;
+
+  .text-field-container {
+    flex-shrink: 2;
+  }
+
+  .text-input {
+    width: 30px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 10px;
+    box-shadow: inset 0 0px 0 1px $track-bg;
+  }
 }
 
-.range {
+.label {
+  @extend %label;
+}
+
+.range-input {
   -webkit-appearance: none;
   margin: 0;
   width: 100%;
-  max-width: 230px;
 
   &:focus {
     outline: none;
+
+    & + .text-field-container .text-input {
+      box-shadow: inset 0 0px 0 1px $thumb-bg;
+      color: $thumb-bg;
+    }
   }
 
   &::-moz-slider-runnable-track {

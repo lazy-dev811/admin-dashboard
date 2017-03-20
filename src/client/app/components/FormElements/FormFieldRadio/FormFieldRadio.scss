@@ -1,35 +1,32 @@
-@import '../../../scss/inc/variables';
-@import '../FormField.scss';
+@import '../base.scss';
 
+$unit: 20px;
+$color-border: #666;
+$color-bg: #fff;
+$color-border-active: #fff;
 
-$size: 20px;
+.radio-group-container {
+  @extend %field-container;
+}
 
-//TODO: TEMP STYLES
+.label {
+  @extend %label;
+}
 
-.input-container {
+.radio-input-container {
   position: relative;
-  margin-left: auto;
-  width: $size;
-  height: $size;
+  margin-left: 5px;
+  width: $unit;
+  height: $unit;
 }
 
-.radio-container {
-  display: inline-flex;
-  align-items: center;
-  vertical-align: top;
-
-  .input-container {
-    margin-left: 5px;
-  }
-}
-
-.radio {
+.radio-input {
   visibility: hidden;
   margin: 0;
   width: 100%;
   height: 100%;
 
-  & + label {
+  & + .radio-input-label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,8 +35,8 @@ $size: 20px;
     left: 0;
     width: 100%;
     height: 100%;
-    box-shadow: inset 0 0 0 2px #666;
-    background-color: #fff;
+    box-shadow: inset 0 0 0 2px $color-border;
+    background-color: $color-bg;
     cursor: pointer;
     border-radius: 50%;
 
@@ -48,7 +45,7 @@ $size: 20px;
       position: absolute;
       width: 16px;
       height: 16px;
-      box-shadow: inset 0 0 0 2px #fff;
+      box-shadow: inset 0 0 0 2px $color-border-active;
       border-radius: 50%;
     }
 
@@ -57,7 +54,7 @@ $size: 20px;
     }
   }
 
-  &:checked + label {
+  &:checked + .radio-input-label {
     background-color: $b-color-dark;
     box-shadow: none;
 
