@@ -108,7 +108,6 @@ const GreetForm = ({
                       type="number"
                       name={setting.key}
                       component={FormField}
-                      placeholder={setting.label}
                       id={`${widgetName}-${setting.label}`}
                       label={setting.label}
                       onChange={event => convertValue(widgetName, setting, event, 'number')}
