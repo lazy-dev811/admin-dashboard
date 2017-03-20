@@ -8,7 +8,6 @@ const INITIAL_STATE = {
     name: 'Vincent',
     surname: 'Bollaert',
   },
-  weather: 'a fierce mild',
   date: moment().format(DATE_FORMAT),
 };
 
