@@ -1,9 +1,10 @@
 import moment from 'moment';
 
-import { WIDGET_GREET, DATE_FORMAT } from '../../../constants';
+import { DATE_FORMAT } from '../../../constants';
 
 const INITIAL_STATE = {
-  widgetName: WIDGET_GREET,
+  widgetIdentifier: 'widgetGreet',
+  widgetName: 'Greet',
   person: {
     name: 'Vincent',
     surname: 'Bollaert',
