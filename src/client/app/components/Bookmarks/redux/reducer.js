@@ -1,6 +1,7 @@
 import { ON_TAB_CHANGE } from './actions';
 
 const INITIAL_STATE = {
+  widgetIdentifier: 'widgetBookmarks',
   widgetName: 'Bookmarks',
   pinnedCategories: [],
   categories: [
