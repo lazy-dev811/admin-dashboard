@@ -179,15 +179,15 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UPDATE_WIDGET_CONFIG: {
       // console.log('REDUCER', action)
-      const { widgetName, widgetConfig: { key, value, category } } = action;
+      const { widgetIdentifier, widgetConfig: { key, value, category } } = action;
       let configToUpdate;
 
       if (category) {
         configToUpdate = {
-          [widgetName]: {
-            ...state[widgetName],
+          [widgetIdentifier]: {
+            ...state[widgetIdentifier],
             [category]: {
-              ...state[widgetName][category],
+              ...state[widgetIdentifier][category],
               [key]: value,
             },
           },
@@ -196,8 +196,8 @@ export default (state = INITIAL_STATE, action) => {
 
       if (!category) {
         configToUpdate = {
-          [widgetName]: {
-            ...state[widgetName],
+          [widgetIdentifier]: {
+            ...state[widgetIdentifier],
             [!category && key]: [!category] && value,
           },
         };
