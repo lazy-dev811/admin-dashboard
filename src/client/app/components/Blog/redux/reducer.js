@@ -1,5 +1,3 @@
-import { WIDGET_BLOG } from '../../../constants';
-
 import {
   FETCH_POSTS_SUCCEEDED,
   FETCH_POST_SUCCEEDED,
@@ -8,7 +6,8 @@ import {
 } from './actions';
 
 const INITIAL_STATE = {
-  widgetName: WIDGET_BLOG,
+  widgetIdentifier: 'widgetBlog',
+  widgetName: 'Blog',
   blogPosts: [],
   activePost: undefined,
 };

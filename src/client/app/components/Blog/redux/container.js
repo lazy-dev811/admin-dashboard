@@ -12,8 +12,8 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetBlog, config, form: { BlogForm } }) => ({ ...widgetBlog, ...config, ...BlogForm });
 
-const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog, values }, { dispatch }) => ({
-  widgetName,
+const mergeProps = ({ widgetIdentifier, blogPosts, activePost, widgetBlog, values }, { dispatch }) => ({
+  widgetIdentifier,
   blogPosts,
   activePost,
   config: widgetBlog,
@@ -29,10 +29,7 @@ const mergeProps = ({ widgetName, blogPosts, activePost, widgetBlog, values }, {
   onSubmit(formValues) {
     dispatch(addPostRequested(formValues));
   },
-  onChange() {
-    console.log('FORM VALUES CONTAINER', values);
-    // dispatch(addPostRequested(formValues));
-  },
+  onChange() {},
   onSettingsUpdate(settingToUpdate) {
     dispatch(updateSettings(settingToUpdate));
   },

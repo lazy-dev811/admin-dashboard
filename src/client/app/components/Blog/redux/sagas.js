@@ -26,7 +26,6 @@ const URL = 'http://reduxblog.herokuapp.com/api/posts';
 
 
 function* fetchPosts() {
-  console.log('BLOG FETCH POSTS');
   const url = `${URL}${API_KEY}`;
 
   try {
