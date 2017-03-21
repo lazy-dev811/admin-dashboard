@@ -6,11 +6,14 @@ import { updateWidgetConfig } from './redux/actions';
 import TestFormBlog from './parts/BlogForm.jsx';
 import TestFormGreet from './parts/GreetForm.jsx';
 
+import Loader from '../Loader/Loader.jsx';
+import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
+
 import './Widget.scss';
 
 const component2 = (Component) => {
   const mapStateToProps = ({ config }) => {
-    return ({ ...config });
+    return { ...config };
   };
   const mapDispatchToProps = (dispatch) => {
     return ({
@@ -22,9 +25,9 @@ const component2 = (Component) => {
 
   class WidgetComponent extends React.Component {
     render() {
-      // console.log('this', this.props.widgetName, this.props);
+      // console.log('WIDGET', this.props.widgetIdentifier, this.props);
       const {
-        widgetName,
+        widgetIdentifier,
         handleChange,
         onSettingsSubmit,
         config: {
@@ -35,6 +38,7 @@ const component2 = (Component) => {
           transparentScrollbar,
           displaySettings,
         },
+        asyncStatus,
       } = this.props;
 
       const initialValues = {
@@ -54,7 +58,7 @@ const component2 = (Component) => {
 
       const Header = () => (
         <div className="widget__header">
-          {widgetName}
+          {widgetIdentifier}
         </div>
       );
 
@@ -91,7 +95,7 @@ const component2 = (Component) => {
       };
 
       const widgetProps = {
-        widgetName,
+        widgetIdentifier,
         handleChange,
         onSettingsSubmit,
         top,
@@ -112,12 +116,12 @@ const component2 = (Component) => {
             {
               displaySettings &&
                 <div>
-                  {widgetName === 'widgetBlog' &&
+                  {widgetIdentifier === 'widgetBlog' &&
                     <TestFormBlog.form
                       {...widgetProps}
                     />
                   }
-                  {widgetName === 'widgetGreet' &&
+                  {widgetIdentifier === 'widgetGreet' &&
                     <TestFormGreet.form
                       {...widgetProps}
                     />
@@ -129,6 +133,8 @@ const component2 = (Component) => {
               <div className={contentClass}>
 
                 {header && <Header />}
+                {asyncStatus && asyncStatus.inProgress && <Loader />}
+                {asyncStatus && asyncStatus.error && <ErrorMessage />}
 
                 <Component {...this.state} {...this.props} />
 
@@ -142,10 +148,11 @@ const component2 = (Component) => {
   }
 
   WidgetComponent.propTypes = {
-    widgetName: PropTypes.string,
+    widgetIdentifier: PropTypes.string,
     handleChange: PropTypes.func,
     onSettingsSubmit: PropTypes.func,
     config: PropTypes.object.isRequired,
+    asyncStatus: PropTypes.object,
   };
 
   return connect(mapStateToProps, mapDispatchToProps, null)(WidgetComponent);
