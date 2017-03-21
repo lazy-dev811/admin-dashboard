@@ -1,6 +1,8 @@
 import { COLOR_PICKER_SELECT_COLOR } from './actions';
 
 const INITIAL_STATE = {
+  widgetIdentifier: 'widgetColorPicker',
+  widgetName: 'Color picker',
   colors: [
     {
       name: 'red',

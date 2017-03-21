@@ -6,7 +6,7 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetColorPicker, config }) => ({ ...widgetColorPicker, ...config });
 
-const mergeProps = ({ colors, activeColorName, widgetColorPicker }, { dispatch }) => ({
+const mergeProps = ({ widgetIdentifier, colors, activeColorName, widgetColorPicker }, { dispatch }) => ({
   colors,
   activeColorName,
   config: widgetColorPicker,
