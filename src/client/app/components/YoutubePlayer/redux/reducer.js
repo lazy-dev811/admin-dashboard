@@ -4,6 +4,8 @@ import {
 } from './actions';
 
 const INITIAL_STATE = {
+  widgetIdentifier: 'widgetYoutubePlayer',
+  widgetName: 'Youtube player',
   videos: [],
   activeVideo: undefined,
 };
@@ -11,7 +13,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case YOUTUBE_SEARCH_SUCCEEDED: {
-      console.log('AHAHA')
       return {
         ...state,
         searched: true,

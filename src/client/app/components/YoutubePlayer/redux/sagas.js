@@ -16,7 +16,6 @@ function* youtubeSearch(dispatch) {
     const postsData = yield call(
       YTSearch, { key: API_KEY, term: dispatch.searchQuery }
     );
-    console.log('SDS', postsData)
     yield put(youtubeSearchSucceeded(postsData));
   } catch (error) {
     yield put(youtubeSearchFailed(error));

@@ -11,15 +11,12 @@ const mergeProps = ({ videos, activeVideo, widgetYoutubePlayer }, { dispatch }) 
   activeVideo,
   config: widgetYoutubePlayer,
   onChange(searchQuery) {
-    console.log('change in container 2', searchQuery);
     dispatch(youtubeSearchRequested(searchQuery));
   },
   thisWorks() {
-    console.log('actually workin', 'blah');
     dispatch(youtubeSearchRequested('blah'));
   },
   onSubmit(formValues) {
-    console.log('submit in container');
     dispatch(youtubeSearchRequested(formValues));
   },
 });

@@ -7,13 +7,10 @@ export const youtubeSearchRequested = searchQuery => ({
   searchQuery,
 });
 
-export const youtubeSearchSucceeded = data => {
-  console.log('DATA', data);
-  return ({
-    type: YOUTUBE_SEARCH_SUCCEEDED,
-    data,
-  });
-};
+export const youtubeSearchSucceeded = data => ({
+  type: YOUTUBE_SEARCH_SUCCEEDED,
+  data,
+});
 
 export const youtubeSearchFailed = error => ({
   type: YOUTUBE_SEARCH_FAILED,
