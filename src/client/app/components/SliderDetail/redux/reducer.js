@@ -1,4 +1,6 @@
 const INITIAL_STATE = {
+  widgetIdentifier: 'SliderDetail',
+  widgetName: 'Slider',
   data: {
     selectedPerson: {
       picture: '',

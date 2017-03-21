@@ -17,16 +17,13 @@ const Stats = ({ selectedPerson }) => (
         </label>
         <div className="input-container">
           <input
-            className="radio" //  ng-click="setGender()"
-            //  ng-model="company.selected"
+            className="radio"
             type="radio"
             id="gender-m"
             name="radio"
           />
 
-          <label htmlFor="gender-m">
-            {/* ng-click="setGender()"> */}
-          </label>
+          <label htmlFor="gender-m" />
         </div>
 
         <label className="label" htmlFor="gender-f">
@@ -34,16 +31,13 @@ const Stats = ({ selectedPerson }) => (
         </label>
         <div className="input-container">
           <input
-            className="radio" //  ng-click="setGender()"
-            //  ng-model="company.selected"
+            className="radio"
             type="radio"
             id="gender-f"
             name="radio"
           />
 
-          <label htmlFor="gender-f">
-            {/* ng-click="setGender()"> */}
-          </label>
+          <label htmlFor="gender-f" />
         </div>
       </div>
     </li>
@@ -74,14 +68,11 @@ const Stats = ({ selectedPerson }) => (
         </label>
         <div className="input-container">
           <input
-            className="checkbox" //  ng-click=""
-            //  ng-model="model"
+            className="checkbox"
             type="checkbox"
             id="checkbox"
           />
-          <label htmlFor="checkbox">
-            {/* ng-click=""> */}
-          </label>
+          <label htmlFor="checkbox" />
         </div>
       </div>
     </li>

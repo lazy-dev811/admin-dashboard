@@ -9,7 +9,7 @@ require('./DisplaySettings.scss');
 const BlogForm = ({
   handleChange,
   onSettingsSubmit,
-  widgetName,
+  widgetIdentifier,
   top,
   right,
   bottom,
@@ -108,9 +108,9 @@ const BlogForm = ({
                       type="number"
                       name={setting.key}
                       component={FormField}
-                      id={`${widgetName}-${setting.label}`}
+                      id={`${widgetIdentifier}-${setting.label}`}
                       label={setting.label}
-                      onChange={event => convertValue(widgetName, setting, event, 'number')}
+                      onChange={event => convertValue(widgetIdentifier, setting, event, 'number')}
                     />
                   </div>
                 );
@@ -128,10 +128,10 @@ const BlogForm = ({
                   <Field
                     name={setting.key}
                     component={FormFieldCheckbox}
-                    id={`${widgetName}-${setting.label}`}
+                    id={`${widgetIdentifier}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
-                    onChange={event => convertValue(widgetName, setting, event, 'bool')}
+                    onChange={event => convertValue(widgetIdentifier, setting, event, 'bool')}
                   />
                 </div>
               ))
@@ -148,10 +148,10 @@ const BlogForm = ({
                   <Field
                     name={setting.key}
                     component={FormFieldCheckbox}
-                    id={`${widgetName}-${setting.label}`}
+                    id={`${widgetIdentifier}-${setting.label}`}
                     label={setting.label}
                     type="checkbox"
-                    onChange={event => convertValue(widgetName, setting, event, 'bool')}
+                    onChange={event => convertValue(widgetIdentifier, setting, event, 'bool')}
                   />
                 </div>
               ))
@@ -166,7 +166,7 @@ const BlogForm = ({
 const blogProps = {
   handleChange: PropTypes.func,
   onSettingsSubmit: PropTypes.func,
-  widgetName: PropTypes.string,
+  widgetIdentifier: PropTypes.string,
   top: PropTypes.number,
   right: PropTypes.number,
   bottom: PropTypes.number,

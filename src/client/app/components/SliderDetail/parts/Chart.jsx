@@ -21,7 +21,6 @@ const validate = (values) => {
 const Chart = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <span>
-      {/* ng-click="generateRandomData()"> */}
       Generate Random
     </span>
 
@@ -33,10 +32,7 @@ const Chart = ({ handleSubmit }) => (
       placeholder="labels 1"
     />
 
-    {/* <!-- {inputData.labels.raw} --> */}
-
     <div className="btn">
-      {/* ng-click="updateInputData('labels')"> */}
       Labels
     </div>
 
@@ -48,10 +44,7 @@ const Chart = ({ handleSubmit }) => (
       placeholder="labels"
     />
 
-    {/* <!-- {inputData.main.raw} --> */}
-
     <div className="btn">
-      {/* ng-click="updateInputData('main')"> */}
       Main data
     </div>
 
@@ -64,13 +57,6 @@ const Chart = ({ handleSubmit }) => (
     />
 
     <Button label="Compare data" />
-
-    {/* <chart-line
-    chart-labels="inputData.labels.final"
-    chart-data="inputData.main.final || selectedPerson.balances.actualBalance"
-    chart-compare-data="inputData.compare.final || selectedPerson.balances.desiredBalance"
-    chart-colors="chartColors">
-    </chart-line> */}
   </form>
 );
 

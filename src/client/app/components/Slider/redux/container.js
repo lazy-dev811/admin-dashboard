@@ -16,9 +16,6 @@ const mergeProps = ({ sliderItems, activeWidgets, widgetSlider, config }, { disp
     .filter(widget => config[widget].type === 'widget')
     .map(index => config[index].name);
 
-  // console.log('config', config);
-  // console.log('widgetNames', widgetNames);
-
   return ({
     sliderItems: widgetNames,
     activeWidgets,

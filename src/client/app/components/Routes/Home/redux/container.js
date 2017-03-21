@@ -8,11 +8,8 @@ const mapStateToProps = ({ widgetSlider, config }) => ({
   config,
 });
 
-const mergeProps = ({ activeWidgets }, { dispatch }) => {
-
-  return ({
-    activeWidgets,
-  });
-};
+const mergeProps = ({ activeWidgets }) => ({
+  activeWidgets,
+});
 
 export default connect(mapStateToProps, null, mergeProps)(Home);

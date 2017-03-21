@@ -29,6 +29,5 @@ SearchBar.propTypes = {
 export default {
   searchBar: reduxForm({
     form: 'SearchBar',
-    // validate,
   })(SearchBar),
 };

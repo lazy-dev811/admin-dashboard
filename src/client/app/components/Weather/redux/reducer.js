@@ -1,6 +1,8 @@
 import { FETCH_WEATHER_SUCCEEDED } from './actions.js';
 
 const INITIAL_STATE = {
+  widgetIdentifier: 'widgetWeather',
+  widgetName: 'Weather',
   weatherList: [],
 };
 

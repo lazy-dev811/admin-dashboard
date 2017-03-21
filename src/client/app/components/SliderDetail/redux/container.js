@@ -5,8 +5,8 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetSliderDetail, config }) => ({ ...widgetSliderDetail, ...config });
 
-const mergeProps = ({ widgetName, data, widgetSliderDetail }) => ({
-  widgetName,
+const mergeProps = ({ widgetIdentifier, data, widgetSliderDetail }) => ({
+  widgetIdentifier,
   data,
   config: widgetSliderDetail,
 });

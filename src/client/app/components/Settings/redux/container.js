@@ -11,13 +11,9 @@ const mergeProps = ({ settings, widgetSettings, initialValues }, { dispatch }) =
   config: widgetSettings,
   initialValues,
   handleChange(formValues) {
-    console.log('CHANGE')
     dispatch(updateSettings(formValues));
   },
-  handleSubmit(formValues) {
-    console.log('SUBMIT')
-    // dispatch(updateSettings(formValues));
-  },
+  handleSubmit() {},
 });
 
 export default connect(mapStateToProps, null, mergeProps)(widgetHOC(Settings));

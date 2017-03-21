@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 const Navigation = () => (
   <nav className="slider-detail__nav">

@@ -5,7 +5,7 @@ import Sidebar from '../Sidebar.jsx';
 
 const mapStateToProps = ({ widgetSidebar, config }) => ({ ...widgetSidebar, ...config });
 
-const mergeProps = ({ loggedIn, sidebarItems, widgetSidebar }, { dispatch }) => ({
+const mergeProps = ({ loggedIn, sidebarItems, widgetSidebar }) => ({
   loggedIn,
   sidebarItems,
   config: widgetSidebar,

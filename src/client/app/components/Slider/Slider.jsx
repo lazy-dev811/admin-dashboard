@@ -23,7 +23,6 @@ class Slider extends React.Component {
     });
   }
   onSlide(slideIndex) {
-    // console.log('on slide', slideIndex);
     this.setState({
       slideIndexTest: this.state.slideIndexTest + slideIndex,
     });

@@ -12,13 +12,9 @@ const SliderDetail = ({ data: { selectedPerson, activeState } }) => {
 
   return (
     <div className={sliderDetailClass}>
-      {/* ng-className="{ 'is-active': selectedPerson, 'is-test': options.model.transparentScrollbars.value }"> */}
-
       <div className="slider-detail__img-wrap">
         <div className="slider-detail__img-wrap__overlay">
-          <div className="slider-detail__img-wrap__overlay__icon">
-            {/* data-title="change picture"> */}
-          </div>
+          <div className="slider-detail__img-wrap__overlay__icon" />
         </div>
         <img className="slider-detail__img-wrap__img" alt="something" />
       </div>
@@ -33,18 +29,12 @@ const SliderDetail = ({ data: { selectedPerson, activeState } }) => {
 
             <ul className="slider-detail__header__states">
               <li className="slider-detail__header__state">
-                {/* ng-className="{ 'is-active': 'closed' === activeState  }"
-                       ng-click="setState('closed')"> */}
                 <i className="icon icon-cancel-1 slider-detail__header__state__icon" />
               </li>
               <li className="slider-detail__header__state">
-                {/* ng-className="{ 'is-active': 'docked' === activeState  }"
-                       ng-click="setState('docked')"> */}
                 <i className="icon icon-resize-full slider-detail__header__state__icon" />
               </li>
               <li className="slider-detail__header__state">
-                {/* ng-className="{ 'is-active': 'fullScreen' === activeState  }"
-                       ng-click="setState('fullScreen')"> */}
                 <i className="icon icon-resize-full-alt slider-detail__header__state__icon" />
               </li>
             </ul>
@@ -67,11 +57,8 @@ const SliderDetail = ({ data: { selectedPerson, activeState } }) => {
           <Stats selectedPerson={selectedPerson} />
 
           <div className="field-container cf">
-            <input className="range" type="range" name="name" /> {/* ng-model="rangeModel"
-       ng-value="rangeModel"> */}
-
-            <input className="field field--range" type="text" name="name" /> {/* ng-model="rangeModel"
-       ng-value="rangeModel"> */}
+            <input className="range" type="range" name="name" />
+            <input className="field field--range" type="text" name="name" />
           </div>
 
           <p className="slider-detail__section">
@@ -88,8 +75,6 @@ const SliderDetail = ({ data: { selectedPerson, activeState } }) => {
 
           <div className="field-container">
             <div className="field field--dd-toggle">
-              {/* ng-click="showDropdown = !showDropdown"
-       ng-className="{ 'is-active': showDropdown }"> */}
               <i className="icon isAbs icon-down-open field__icon" />
               Active text
             </div>

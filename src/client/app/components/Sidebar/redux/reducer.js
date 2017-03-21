@@ -26,10 +26,6 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // case expression:
-    //   return {
-    //     ...state,
-    //   };
     default: {
       return state;
     }
