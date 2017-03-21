@@ -6,9 +6,11 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetQuote, config }) => ({ ...widgetQuote, ...config });
 
-const mergeProps = ({ quote, author, widgetQuote }, { dispatch }) => ({
+const mergeProps = ({ widgetIdentifier, quote, author, asyncStatus, widgetQuote }, { dispatch }) => ({
+  widgetIdentifier,
   quote,
   author,
+  asyncStatus,
   config: widgetQuote,
   getQuote(quoteData) {
     dispatch(getQuoteRequested(quoteData));

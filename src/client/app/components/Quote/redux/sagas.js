@@ -6,15 +6,9 @@ import {
   GET_QUOTE_REQUESTED,
   getQuoteSucceeded,
   getQuoteFailed,
-
 } from './actions';
 
 const URL = 'https://crossorigin.me/http://api.forismatic.com/api/1.0/';
-const params = {
-  method: 'method=getQuote',
-  format: 'json',
-  lang: 'en',
-};
 
 function* getQuote() {
   const url = `${URL}?method=getQuote&format=json&lang=en`;

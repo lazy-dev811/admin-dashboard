@@ -10,7 +10,7 @@ class Quote extends React.Component {
   render() {
     return (
       <div className="quote">
-        {this.props.quote} ~ {this.props.author}
+        {this.props.quote} {this.props.author}
       </div>
     );
   }

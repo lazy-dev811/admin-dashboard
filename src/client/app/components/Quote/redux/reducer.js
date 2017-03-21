@@ -1,29 +1,53 @@
 import {
+  GET_QUOTE_REQUESTED,
   GET_QUOTE_SUCCEEDED,
   GET_QUOTE_FAILED,
 } from './actions';
 
 const INITIAL_STATE = {
-  quote: 'I am a riddle, or a quote',
-  authoe: 'Some great guy',
-  failed: false,
+  widgetIdentifier: 'widgetGreet',
+  widgetName: 'Greet',
+  quote: '',
+  author: '',
+  asyncStatus: {
+    inProgress: false,
+    error: false,
+    errorMessage: undefined,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case GET_QUOTE_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: true,
+          error: false,
+        },
+      };
+    }
     case GET_QUOTE_SUCCEEDED: {
-      const { quoteText, authorText } = action.quote.data;
+      const { quoteText, quoteAuthor } = action.quote.data;
 
       return {
         ...state,
         quote: quoteText,
-        author: authorText,
+        author: quoteAuthor,
+        asyncStatus: {
+          inProgress: false,
+          error: false,
+        },
       };
     }
     case GET_QUOTE_FAILED: {
       return {
         ...state,
-        failed: true,
+        asyncStatus: {
+          inProgress: false,
+          error: true,
+          errorMessage: action.error.message,
+        },
       };
     }
 
