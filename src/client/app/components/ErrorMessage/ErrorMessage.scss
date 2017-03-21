@@ -1,0 +1,14 @@
+.error-message {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #F06666;
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    fill: #F06666;
+  }
+}
