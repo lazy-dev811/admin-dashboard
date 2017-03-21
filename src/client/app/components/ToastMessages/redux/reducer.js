@@ -1,25 +1,29 @@
-import { BURN_TOAST } from './actions';
+import { ADD_TOAST, BURN_TOAST } from './actions';
 
 const INITIAL_STATE = {
-  toasts: [
-    {
-      type: 'bad',
-      message: 'This is an error message from api. The data could not be loaded',
-    }, {
-      type: 'info',
-      message: 'This is an info message. Use still to be decided',
-    },
-  ],
+  toasts: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case BURN_TOAST: {
+    case ADD_TOAST: {
       return {
         ...state,
         toasts: [
-          ...state.toasts.slice(0, action.toastIndex),
-          ...state.toasts.slice(action.toastIndex + 1),
+          ...state.toasts,
+          action.toast,
+        ],
+      };
+    }
+    case BURN_TOAST: {
+      const newState = Object.assign(state, {});
+      const burntToast = newState.toasts[action.toastIndex];
+      burntToast.burnt = true;
+      return {
+        ...state,
+        toasts: [
+          ...state.toasts,
+          burntToast,
         ],
       };
     }

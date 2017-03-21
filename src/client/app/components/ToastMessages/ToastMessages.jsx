@@ -6,46 +6,55 @@ import Close from '../Icon/Close.jsx';
 
 require('./ToastMessages.scss');
 
-const ToastMessages = ({ toasts, onClick }) => {
-  const items = toasts.map((toast, index) => {
-    const toastClass = classnames([`toasts__toast is-${toast.type}`], {
-      toasted: toast.toasted,
+class ToastMessages extends React.Component {
+  componentDidMount() {
+    this.props.checkForToasts();
+  }
+  componentDidUpdate() {
+    this.props.checkForToasts();
+  }
+  render() {
+    const items = this.props.toasts.filter(toast => !toast.burnt).map((toast, index) => {
+      const toastClass = classnames('toasts__toast', {
+        toasted: toast.toasted,
+      });
+
+      return (
+        <li
+          className={toastClass}
+          key={index}
+          onClick={() => this.props.onClick(index)}
+        >
+          <div className="toasts__toast__marker">
+            <Close />
+          </div>
+          <div className="toasts__toast__copy">
+            {toast.widgetName}: {toast.widgetErrorMessage}
+          </div>
+        </li>
+      );
     });
 
+    const transition = {
+      transitionName: 'toasts__toast',
+      transitionEnterTimeout: 600,
+      transitionLeaveTimeout: 600,
+    };
+
     return (
-      <li
-        className={toastClass}
-        key={index}
-        onClick={() => onClick(index)}
-      >
-        <div className="toasts__toast__marker">
-          <Close />
-        </div>
-        <div className="toasts__toast__copy">
-          {toast.message}
-        </div>
-      </li>
+      <ul className="toasts">
+        <ReactCSSTransitionGroup {...transition}>
+          {items}
+        </ReactCSSTransitionGroup>
+      </ul>
     );
-  });
-
-  const transition = {
-    transitionName: 'toasts__toast',
-    transitionEnterTimeout: 600,
-    transitionLeaveTimeout: 600,
-  };
-
-  return (
-    <ul className="toasts">
-      <ReactCSSTransitionGroup {...transition}>
-        {items}
-      </ReactCSSTransitionGroup>
-    </ul>
-  );
-};
+  }
+}
 
 ToastMessages.propTypes = {
   toasts: PropTypes.array,
   onClick: PropTypes.func,
+  checkForToasts: PropTypes.func.isRequired,
 };
 
 export default ToastMessages;

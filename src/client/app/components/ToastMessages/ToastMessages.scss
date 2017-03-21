@@ -39,14 +39,7 @@ $toast-h: 70px;
 
       .svg {
         width: 15px;
-
-        .is-bad & {
-          fill: #F06666;
-        }
-
-        .is-info & {
-          fill: #8ED58E;
-        }
+        fill: #F06666;
       }
     }
 
