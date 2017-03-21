@@ -1,10 +1,10 @@
 import React from 'react';
 
 // <!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL -->
-const Loader = () => (
+const Spinner = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="svg svg-loader"
+    className="svg svg-spinner"
     viewBox="0 0 38 38"
     stroke="#fff"
   >
@@ -26,4 +26,4 @@ const Loader = () => (
   </svg>
 );
 
-export default Loader;
+export default Spinner;
