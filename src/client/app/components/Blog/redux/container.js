@@ -4,15 +4,14 @@ import {
   fetchPostRequested,
   addPostRequested,
   removePostRequested,
-  updateSettings,
 } from './actions';
 
 import Blog from '../Blog.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
-const mapStateToProps = ({ widgetBlog, config, form: { BlogForm } }) => ({ ...widgetBlog, ...config, ...BlogForm });
+const mapStateToProps = ({ widgetBlog, config }) => ({ ...widgetBlog, ...config });
 
-const mergeProps = ({ widgetIdentifier, blogPosts, activePost, widgetBlog, values }, { dispatch }) => ({
+const mergeProps = ({ widgetIdentifier, blogPosts, activePost, widgetBlog }, { dispatch }) => ({
   widgetIdentifier,
   blogPosts,
   activePost,
@@ -30,9 +29,6 @@ const mergeProps = ({ widgetIdentifier, blogPosts, activePost, widgetBlog, value
     dispatch(addPostRequested(formValues));
   },
   onChange() {},
-  onSettingsUpdate(settingToUpdate) {
-    dispatch(updateSettings(settingToUpdate));
-  },
 });
 
 export default connect(mapStateToProps, null, mergeProps)(widgetHOC(Blog));
