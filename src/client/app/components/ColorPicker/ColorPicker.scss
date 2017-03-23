@@ -3,6 +3,9 @@
 $item-s: 20px;
 
 .pg-color-picker {
+  position: fixed;
+  top: 50%;
+  right: 0;
   opacity: .3;
   z-index: 1;
   display: flex;
