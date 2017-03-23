@@ -3,6 +3,25 @@ import {
 } from './actions';
 
 const INITIAL_STATE = {
+  widgetFirebaseExample: {
+    name: 'firebaseExample',
+    type: 'widget',
+    components: {
+      body: true,
+      header: true,
+    },
+    dimensions: {
+      width: 300,
+      height: 300,
+    },
+    position: {
+      bottom: 100,
+      left: 40,
+    },
+    // transparentBg: true,
+    transparentScrollbar: true,
+    displaySettings: true,
+  },
   widgetBlog: {
     name: 'blog',
     type: 'widget',
@@ -77,26 +96,6 @@ const INITIAL_STATE = {
     dimensions: {},
     transparent: true,
   },
-  widgetColorPicker: {
-    name: 'color picker',
-    type: 'widget',
-    position: {
-      right: 0,
-      top: '50%',
-    },
-    components: {},
-    dimensions: {},
-  },
-  widgetToastMessages: {
-    name: 'toast messages',
-    type: 'component',
-    position: {
-      right: 20,
-      top: 20,
-    },
-    components: {},
-    dimensions: {},
-  },
   widgetSettings: {
     name: 'settings',
     type: 'component',
@@ -108,36 +107,6 @@ const INITIAL_STATE = {
       left: 40,
     },
     dimensions: {},
-  },
-  widgetSidebar: {
-    name: 'sidebar',
-    type: 'component',
-    components: {
-      // body: true,
-    },
-    position: {
-      top: 0,
-      bottom: 0,
-      left: 0,
-    },
-    dimensions: {
-      // width: 200,
-    },
-  },
-  widgetSlider: {
-    name: 'slider',
-    type: 'component',
-    components: {
-      // body: true,
-    },
-    position: {
-      right: 0,
-      bottom: 0,
-      left: 0,
-    },
-    dimensions: {
-      // height: 90,
-    },
   },
   widgetSliderDetail: {
     name: 'slider detail',
