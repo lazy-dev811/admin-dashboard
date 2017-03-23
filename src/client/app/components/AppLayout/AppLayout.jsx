@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 
+import ColorPicker from '../ColorPicker/redux/container.js';
 import Sidebar from '../Sidebar/redux/container.js';
 // import Settings from '../Settings/redux/container.js';
-// import ToastMessages from '../ToastMessages/redux/container.js';
+import ToastMessages from '../ToastMessages/redux/container.js';
 
 require('./AppLayout.scss');
 
@@ -12,7 +13,8 @@ const AppLayout = ({ children }) => (
     {children}
     <Sidebar />
     {/* <Settings /> */}
-    {/* <ToastMessages /> */}
+    <ToastMessages />
+    <ColorPicker />
   </div>
 );
 

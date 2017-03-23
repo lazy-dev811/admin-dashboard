@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import ColorPicker from '../../ColorPicker/redux/container.js';
-import TodoListContainer from '../../../containers/TodoListContainer.js';
-import YoutubePlayer from '../../YoutubePlayer/redux/container.js';
+import FirebaseExample from '../../FirebaseExample/redux/container';
 import Blog from '../../Blog/redux/container';
 import Slider from '../../Slider/redux/container.js';
 import Bookmarks from '../../Bookmarks/redux/container.js';
@@ -10,23 +8,12 @@ import Greet from '../../Greet/redux/container.js';
 import Quote from '../../Quote/redux/container.js';
 import SliderDetail from '../../SliderDetail/redux/container.js';
 import Weather from '../../Weather/redux/container.js';
+import YoutubePlayer from '../../YoutubePlayer/redux/container.js';
 
 const widgets = [
   {
-    name: 'color picker',
-    component: <ColorPicker />,
-  },
-  {
-    name: 'todo list',
-    component: <TodoListContainer />,
-  },
-  {
-    name: 'youtube player',
-    component: <YoutubePlayer />,
-  },
-  {
-    name: 'weather',
-    component: <Weather />,
+    name: 'firebaseExample',
+    component: <FirebaseExample />,
   },
   {
     name: 'blog',
@@ -47,6 +34,14 @@ const widgets = [
   {
     name: 'quote',
     component: <Quote />,
+  },
+  {
+    name: 'youtube player',
+    component: <YoutubePlayer />,
+  },
+  {
+    name: 'weather',
+    component: <Weather />,
   },
 ];
 

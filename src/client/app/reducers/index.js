@@ -2,6 +2,7 @@ import { routerReducer } from 'react-router-redux';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
+import widgetFirebaseExample from '../components/FirebaseExample/redux/reducer';
 import widgetBlog from '../components/Blog/redux/reducer';
 import widgetBookmarks from '../components/Bookmarks/redux/reducer';
 import widgetColorPicker from '../components/ColorPicker/redux/reducer';
@@ -19,6 +20,7 @@ import RouteHome from '../components/Routes/Home/redux/reducer';
 import config from '../components/Widget/redux/reducer';
 
 const rootReducer = combineReducers({
+  widgetFirebaseExample,
   widgetBlog,
   widgetBookmarks,
   widgetColorPicker,
