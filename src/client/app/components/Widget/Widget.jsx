@@ -94,6 +94,9 @@ const component2 = (Component) => {
         height,
       };
 
+      const TestForm = TestFormBlog('testy');
+      const TestForm2 = TestFormBlog('testy2');
+
       const widgetProps = {
         widgetIdentifier,
         handleChange,
@@ -117,12 +120,12 @@ const component2 = (Component) => {
               displaySettings &&
                 <div>
                   {widgetIdentifier === 'widgetBlog' &&
-                    <TestFormBlog.form
+                    <TestForm
                       {...widgetProps}
                     />
                   }
                   {widgetIdentifier === 'widgetGreet' &&
-                    <TestFormGreet.form
+                    <TestForm2
                       {...widgetProps}
                     />
                   }

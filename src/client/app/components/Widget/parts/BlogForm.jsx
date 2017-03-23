@@ -181,8 +181,6 @@ BlogForm.propTypes = {
   ...blogProps,
 };
 
-export default {
-  form: reduxForm({
-    form: 'BlogForm',
-  })(BlogForm),
-};
+export default name => reduxForm({
+  form: name,
+})(BlogForm);
