@@ -10,11 +10,12 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetTodo, config }) => ({ ...widgetTodo, ...config });
 
-const mergeProps = ({ widgetIdentifier, todos, activeTodo, widgetTodo }, { dispatch }) => ({
+const mergeProps = ({ widgetIdentifier, todos, activeTodo, widgetTodo, asyncStatus }, { dispatch }) => ({
   widgetIdentifier,
   todos,
   activeTodo,
   config: widgetTodo,
+  asyncStatus,
   onFetchTodos(todosToFetch) {
     dispatch(fetchTodosRequested(todosToFetch));
   },
