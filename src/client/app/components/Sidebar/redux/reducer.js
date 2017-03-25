@@ -14,10 +14,10 @@ const INITIAL_STATE = {
       url: '',
       subItems: [
         {
-          name: 'SubItem1',
+          name: 'Add',
         },
         {
-          name: 'SubItem2',
+          name: 'Remove',
         },
       ],
     },
