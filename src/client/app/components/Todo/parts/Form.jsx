@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import FormField from '../../FormElements/FormField/FormField.jsx';
-import Button from '../../Button/Button.jsx';
 
 const validate = (values) => {
   const errors = {};
@@ -38,7 +37,6 @@ const Form = ({ classCustom, handleSubmit, onChange }) => (
         placeholder="categories"
       />
     </div>
-    <Button handleSubmit={handleSubmit} label="Add task" />
   </form>
 );
 
