@@ -21,6 +21,7 @@ const component2 = (Component) => {
   class WidgetComponent extends React.Component {
     render() {
       // console.log('WIDGET', this.props.widgetIdentifier, this.props);
+
       const {
         widgetIdentifier,
         handleChange,
@@ -131,7 +132,7 @@ const component2 = (Component) => {
               <div className={contentClass}>
 
                 {header && <Header />}
-                {asyncStatus && asyncStatus.inProgress && <Loader />}
+                {asyncStatus && asyncStatus.inProgress && <Loader showOverlay={body} />}
                 {asyncStatus && asyncStatus.error && <ErrorMessage />}
 
                 <Component {...this.state} {...this.props} />
