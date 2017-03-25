@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
 import Todo from '../../Todo/redux/container';
-import Slider from '../../Slider/redux/container.js';
 import Bookmarks from '../../Bookmarks/redux/container.js';
 import Greet from '../../Greet/redux/container.js';
 import Quote from '../../Quote/redux/container.js';
@@ -43,7 +42,6 @@ const widgets = [
 const Home = ({ activeWidgets }) => (
   <div className="page">
     {widgets.map((widget, i) => activeWidgets.includes(widget.name) && <div key={i}>{widget.component}</div>)}
-    <Slider />
   </div>
 );
 
