@@ -20,6 +20,10 @@ firebase.initializeApp({
   storageBucket: 'new-tab-dashboard-162413.appspot.com',
 });
 
+// BUG ReferenceError: firebase is not defined
+// https://github.com/szaranger/firebase-saga/issues/14
+window.firebase = firebase;
+
 require('./scss/style.scss');
 
 ReactDOM.render(
