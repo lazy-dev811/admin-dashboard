@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import { updateWidgetConfig } from './redux/actions';
-import TestFormBlog from './parts/BlogForm.jsx';
-import TestFormGreet from './parts/GreetForm.jsx';
+import form from './parts/SettingsForm.jsx';
 
 import Loader from '../Loader/Loader.jsx';
 import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
@@ -12,16 +11,12 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import './Widget.scss';
 
 const component2 = (Component) => {
-  const mapStateToProps = ({ config }) => {
-    return { ...config };
-  };
-  const mapDispatchToProps = (dispatch) => {
-    return ({
-      handleChange(name, setting) {
-        dispatch(updateWidgetConfig(name, setting));
-      },
-    });
-  };
+  const mapStateToProps = ({ config }) => ({ ...config });
+  const mapDispatchToProps = dispatch => ({
+    handleChange(name, setting) {
+      dispatch(updateWidgetConfig(name, setting));
+    },
+  });
 
   class WidgetComponent extends React.Component {
     render() {
@@ -94,8 +89,8 @@ const component2 = (Component) => {
         height,
       };
 
-      const TestForm = TestFormBlog('testy');
-      const TestForm2 = TestFormBlog('testy2');
+      const TodoForm = form('todo');
+      const GreetForm = form('greet');
 
       const widgetProps = {
         widgetIdentifier,
@@ -119,13 +114,13 @@ const component2 = (Component) => {
             {
               displaySettings &&
                 <div>
-                  {widgetIdentifier === 'widgetBlog' &&
-                    <TestForm
+                  {widgetIdentifier === 'widgetTodo' &&
+                    <TodoForm
                       {...widgetProps}
                     />
                   }
                   {widgetIdentifier === 'widgetGreet' &&
-                    <TestForm2
+                    <GreetForm
                       {...widgetProps}
                     />
                   }

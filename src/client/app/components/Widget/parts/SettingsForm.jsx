@@ -6,7 +6,7 @@ import FormField from '../../FormElements/FormField/FormField.jsx';
 
 require('./DisplaySettings.scss');
 
-const BlogForm = ({
+const SettingsForm = ({
   handleChange,
   onSettingsSubmit,
   widgetIdentifier,
@@ -101,20 +101,18 @@ const BlogForm = ({
           <div className="widget__settings__category__content">
             <div className="widget__settings__category__title">Position</div>
             {
-              positionConfig.map((setting) => {
-                return (
-                  <div className="widget__settings__category__item" key={setting.label}>
-                    <Field
-                      type="number"
-                      name={setting.key}
-                      component={FormField}
-                      id={`${widgetIdentifier}-${setting.label}`}
-                      label={setting.label}
-                      onChange={event => convertValue(widgetIdentifier, setting, event, 'number')}
-                    />
-                  </div>
-                );
-              })
+              positionConfig.map(setting => (
+                <div className="widget__settings__category__item" key={setting.label}>
+                  <Field
+                    type="number"
+                    name={setting.key}
+                    component={FormField}
+                    id={`${widgetIdentifier}-${setting.label}`}
+                    label={setting.label}
+                    onChange={event => convertValue(widgetIdentifier, setting, event, 'number')}
+                  />
+                </div>
+              ))
             }
           </div>
         </div>
@@ -163,7 +161,7 @@ const BlogForm = ({
   );
 };
 
-const blogProps = {
+SettingsForm.propTypes = {
   handleChange: PropTypes.func,
   onSettingsSubmit: PropTypes.func,
   widgetIdentifier: PropTypes.string,
@@ -177,10 +175,7 @@ const blogProps = {
   transparentBg: PropTypes.bool,
   transparentScrollbar: PropTypes.bool,
 };
-BlogForm.propTypes = {
-  ...blogProps,
-};
 
 export default name => reduxForm({
   form: name,
-})(BlogForm);
+})(SettingsForm);
