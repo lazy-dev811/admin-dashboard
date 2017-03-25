@@ -1,7 +1,7 @@
 import { SLIDE_ITEM_SELECT } from './actions';
 
 const INITIAL_STATE = {
-  activeWidgets: ['firebaseExample'],
+  activeWidgets: ['todo'],
 };
 
 export default (state = INITIAL_STATE, dispatch) => {

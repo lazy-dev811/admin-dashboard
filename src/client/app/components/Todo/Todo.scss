@@ -1,6 +1,6 @@
 @import '../../scss/helpers/ellipse';
 
-.blog-posts__post {
+.todos__todo {
   display: flex;
   align-items: center;
   padding-bottom: 10px;
@@ -8,24 +8,24 @@
   color: #444;
 
   &:hover {
-    .blog-posts__post__btn {
+    .todos__todo__btn {
       display: inline-block;
     }
   }
 }
 
-.blog-posts__post__title {
+.todos__todo__title {
   @extend %ellipse;
 }
 
-.blog-posts__post__category {
+.todos__todo__category {
   @extend %ellipse;
   margin-left: auto;
   font-size: 12px;
   color: #ccc;
 }
 
-.blog-posts__post__btn {
+.todos__todo__btn {
   display: none;
 }
 

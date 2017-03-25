@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import FirebaseExample from '../../FirebaseExample/redux/container';
-import Blog from '../../Blog/redux/container';
+import Todo from '../../Todo/redux/container';
 import Slider from '../../Slider/redux/container.js';
 import Bookmarks from '../../Bookmarks/redux/container.js';
 import Greet from '../../Greet/redux/container.js';
@@ -12,12 +11,8 @@ import YoutubePlayer from '../../YoutubePlayer/redux/container.js';
 
 const widgets = [
   {
-    name: 'firebaseExample',
-    component: <FirebaseExample />,
-  },
-  {
-    name: 'blog',
-    component: <Blog />,
+    name: 'todo',
+    component: <Todo />,
   },
   {
     name: 'bookmarks',

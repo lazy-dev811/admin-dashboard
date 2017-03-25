@@ -1,7 +1,6 @@
 import { fork } from 'redux-saga/effects';
 
-import { firebaseExampleSagas } from '../components/FirebaseExample/redux/sagas';
-import { blogSagas } from '../components/Blog/redux/sagas';
+import { todoSagas } from '../components/Todo/redux/sagas';
 import { quoteSagas } from '../components/Quote/redux/sagas';
 import { youtubePlayerSagas } from '../components/YoutubePlayer/redux/sagas';
 
@@ -9,8 +8,7 @@ import weatherSagas from '../components/Weather/redux/sagas';
 
 function* rootSagas() {
   yield* [
-    fork(firebaseExampleSagas),
-    fork(blogSagas),
+    fork(todoSagas),
     fork(quoteSagas),
     fork(youtubePlayerSagas),
     fork(weatherSagas),

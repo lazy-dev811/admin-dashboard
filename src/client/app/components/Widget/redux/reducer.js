@@ -3,27 +3,8 @@ import {
 } from './actions';
 
 const INITIAL_STATE = {
-  widgetFirebaseExample: {
-    name: 'firebaseExample',
-    type: 'widget',
-    components: {
-      body: true,
-      header: true,
-    },
-    dimensions: {
-      width: 300,
-      height: 300,
-    },
-    position: {
-      bottom: 100,
-      left: 40,
-    },
-    // transparentBg: true,
-    transparentScrollbar: true,
-    displaySettings: true,
-  },
-  widgetBlog: {
-    name: 'blog',
+  widgetTodo: {
+    name: 'todo',
     type: 'widget',
     components: {
       body: true,

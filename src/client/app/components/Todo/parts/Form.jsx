@@ -38,16 +38,7 @@ const Form = ({ classCustom, handleSubmit, onChange }) => (
         placeholder="categories"
       />
     </div>
-    <div className="row">
-      <Field
-        type="text"
-        name="content"
-        component={FormField}
-        id="content"
-        placeholder="content"
-      />
-    </div>
-    <Button handleSubmit={handleSubmit} label="Add post" />
+    <Button handleSubmit={handleSubmit} label="Add task" />
   </form>
 );
 
@@ -59,7 +50,7 @@ Form.propTypes = {
 
 export default {
   form: reduxForm({
-    form: 'BlogForm',
+    form: 'TodoForm',
     validate,
   })(Form),
 };
