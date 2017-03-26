@@ -5,10 +5,8 @@ import * as firebase from 'firebase';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
-import configureStore from './store/configureStore';
-import Application from './Application.jsx';
-
-// messagingSenderId: '625973064212',
+import configureStore from './root/store';
+import Application from './root/Application.jsx';
 
 const store = configureStore({ history: browserHistory });
 const history = syncHistoryWithStore(browserHistory, store);
