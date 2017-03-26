@@ -5,6 +5,7 @@ import React from 'react';
 const RouteAbout = () => (
   <div className="page">
     {/* <Blog /> */}
+    This is the about page. To be removed
   </div>
 );
 
