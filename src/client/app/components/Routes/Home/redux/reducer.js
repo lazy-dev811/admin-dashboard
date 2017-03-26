@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import activeWidgets from '../../../Slider/redux/reducer.js';
+import { reducer as activeWidgets } from '../../../Slider';
 
 
 const testReducer = combineReducers({
