@@ -6,3 +6,43 @@
     font-size: 70px;
   }
 }
+
+.weather {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  &__average {
+    font-size: 35px;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    font-size: 11px;
+
+    &__item {
+      display: flex;
+      justify-content: space-between;
+
+      &__detail {
+        color: #f4a71d;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__blurb {
+    flex-basis: 100%;
+
+    .em {
+      color: #f4a71d;
+    }
+  }
+}
+
+.svg-weather {
+  flex-grow: 2;
+  margin: 0 20px;
+}

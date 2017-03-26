@@ -6,12 +6,11 @@ import { FETCH_WEATHER_REQUESTED, fetchWeatherSucceeded, fetchWeatherFailed } fr
 
 
 const API_KEY = '8b8fdbe46cc1b907383d8f937198939e';
-const URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`;
-
+const URL = `http://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}`;
 
 function* fetchWeather(action) {
-  const city = action.searchQuery;
-  const url = `${URL}&q=${city}`;
+  const city = 'capetown';
+  const url = `${URL}&q=${city}&units=metric`;
 
   try {
     const weatherData = yield call(axios.get, url);
@@ -21,8 +20,8 @@ function* fetchWeather(action) {
   }
 }
 
-function* weatherSagas() {
+function* greetSagas() {
   yield* takeEvery(FETCH_WEATHER_REQUESTED, fetchWeather);
 }
 
-export default weatherSagas;
+export default greetSagas;
