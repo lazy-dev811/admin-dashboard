@@ -1,10 +1,9 @@
 import { fork } from 'redux-saga/effects';
 
-import { todoSagas } from '../components/Todo/redux/sagas';
-import { quoteSagas } from '../components/Quote/redux/sagas';
-import { youtubePlayerSagas } from '../components/YoutubePlayer/redux/sagas';
-
-import greetSagas from '../components/Greet/redux/sagas';
+import { saga as todoSagas } from '../components/Todo';
+import { saga as quoteSagas } from '../components/Quote';
+import { saga as youtubePlayerSagas } from '../components/YoutubePlayer';
+import { saga as greetSagas } from '../components/Greet';
 
 function* rootSagas() {
   yield* [

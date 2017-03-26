@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
-import Todo from '../../Todo/redux/container';
-import Bookmarks from '../../Bookmarks/redux/container.js';
-import Greet from '../../Greet/redux/container.js';
-import Quote from '../../Quote/redux/container.js';
-import SliderDetail from '../../SliderDetail/redux/container.js';
-import YoutubePlayer from '../../YoutubePlayer/redux/container.js';
+import Todo from '../../Todo';
+import Bookmarks from '../../Bookmarks';
+import Greet from '../../Greet/';
+import Quote from '../../Quote';
+import SliderDetail from '../../SliderDetail';
+import YoutubePlayer from '../../YoutubePlayer';
 
 const widgets = [
   {

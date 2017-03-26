@@ -51,7 +51,7 @@ function* removeTodo(action) {
   }
 }
 
-export function* todoSagas() {
+function* todoSagas() {
   yield* [
     takeEvery(FETCH_TODOS_REQUESTED, fetchTodos),
     takeEvery(ADD_TODO_REQUESTED, addTodo),

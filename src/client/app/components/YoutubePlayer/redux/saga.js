@@ -22,7 +22,7 @@ function* youtubeSearch(dispatch) {
   }
 }
 
-export function* youtubePlayerSagas() {
+function* youtubePlayerSagas() {
   yield* [
     takeLatest(YOUTUBE_SEARCH_REQUESTED, youtubeSearch),
   ];

@@ -21,7 +21,7 @@ function* getQuote() {
   }
 }
 
-export function* quoteSagas() {
+function* quoteSagas() {
   yield* [
     takeEvery(GET_QUOTE_REQUESTED, getQuote),
   ];
