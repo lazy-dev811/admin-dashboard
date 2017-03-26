@@ -1,5 +1,6 @@
 import React from 'react';
 
+/* eslint max-len: 0 */
 const ChevronLeft = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
