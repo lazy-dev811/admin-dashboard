@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 
-import ColorPicker from '../ColorPicker/redux/container.js';
-import Sidebar from '../Sidebar/redux/container.js';
-// import Settings from '../Settings/redux/container.js';
-import Slider from '../Slider/redux/container.js';
-import ToastMessages from '../ToastMessages/redux/container.js';
+import ColorPicker from '../ColorPicker';
+import Sidebar from '../Sidebar';
+// import Settings from '../Settings';
+import Slider from '../Slider';
+import ToastMessages from '../ToastMessages';
 
 require('./AppLayout.scss');
 
