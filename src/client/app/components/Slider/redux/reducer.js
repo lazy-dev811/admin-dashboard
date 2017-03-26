@@ -1,7 +1,7 @@
 import { SLIDE_ITEM_SELECT } from './actions';
 
 const INITIAL_STATE = {
-  activeWidgets: ['todo'],
+  activeWidgets: ['greet'],
 };
 
 export default (state = INITIAL_STATE, dispatch) => {

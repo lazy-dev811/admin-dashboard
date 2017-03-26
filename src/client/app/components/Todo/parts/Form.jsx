@@ -11,9 +11,6 @@ const validate = (values) => {
   if (!values.categories) {
     errors.categories = 'enter a categories yo';
   }
-  if (!values.content) {
-    errors.content = 'enter a content yo';
-  }
   return errors;
 };
 
@@ -37,6 +34,9 @@ const Form = ({ classCustom, handleSubmit, onChange }) => (
         placeholder="categories"
       />
     </div>
+
+    {/* TODO: ReduxForm needs a button for submission. Find out how to circumvent this properly */}
+    <button type="submit" className="is-hidden">submit</button>
   </form>
 );
 
