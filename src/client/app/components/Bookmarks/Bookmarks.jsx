@@ -15,13 +15,13 @@ const Bookmarks = ({ categories, onTabChange }) => {
   return (
     <div className="bookmarks">
       <div className="bookmarks__labels">
-        {categoryTitles.map((category) => {
+        {categoryTitles.map((category, key) => {
           const titlesClass = classnames('bookmarks__labels__label', {
             active: category.active,
           });
 
           return (
-            <div className={titlesClass} onClick={() => onTabChange(category.label)}>
+            <div className={titlesClass} onClick={() => onTabChange(category.label)} key={key}>
               {category.label}
             </div>
           );
