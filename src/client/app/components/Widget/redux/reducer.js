@@ -64,19 +64,6 @@ const INITIAL_STATE = {
     components: {},
     dimensions: {},
   },
-  widgetWeather: {
-    name: 'weather',
-    type: 'widget',
-    components: {
-      body: true,
-    },
-    position: {
-      top: 400,
-      left: 40,
-    },
-    dimensions: {},
-    transparent: true,
-  },
   widgetSettings: {
     name: 'settings',
     type: 'component',
