@@ -6,6 +6,38 @@
 $t-normal: 400;
 $t-bold: 700;
 
+@font-face {
+  font-family: "Raleway Light";
+  src: url("../assets/fonts/raleway/Raleway-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway Regular";
+  src: url("../assets/fonts/raleway/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway Bold";
+  src: url("../assets/fonts/raleway/Raleway-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway SemiBold";
+  src: url("../assets/fonts/raleway/Raleway-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway ExtraBold";
+  src: url("../assets/fonts/raleway/Raleway-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway Black";
+  src: url("../assets/fonts/raleway/Raleway-Black.ttf") format("truetype");
+}
+
+
+
 .t-normal {
   font-weight: normal;
 }
