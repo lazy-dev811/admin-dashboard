@@ -2,15 +2,11 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-// const APP_DIR = path.resolve(__dirname, 'src/client/app');
 const entryPath = './src/client/app/index.jsx';
-// const SCSS_DIR = path.resolve(__dirname, 'src/client/app');
 const outputPath = './src/client/public';
-// const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 
 const config = {
   entry: {
-    // 'webpack-dev-server/client?http://localhost:3000',
     main: path.resolve(__dirname, entryPath),
   },
 
@@ -55,31 +51,6 @@ const config = {
           'sass-loader',
         ],
       },
-      // {
-      //   test: /\.(jpe?g|png|gif|svg)$/i,
-      //   loaders: [
-      //     'file?name=nature-1.jpg',
-      //     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
-      //   ],
-      // },
-      // {
-      //   test: /\.(png|jpe?g)$/i,
-      //   loaders: [
-      //     'file-loader',
-      //     {
-      //       loader: 'image-webpack-loader',
-      //       query: {
-      //         progressive: true,
-      //         optimizationLevel: 7,
-      //         interlaced: false,
-      //         pngquant: {
-      //           quality: '65-90',
-      //           speed: 4,
-      //         },
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.md$/,
         use: [
@@ -100,17 +71,13 @@ const config = {
           {
             loader: 'file-loader',
             options: {
-              name: 'src/client/app/assets/fonts/[path][name].[ext]',
+              name: 'font/[name].[ext]',
             },
           },
         ],
       },
     ],
   },
-
-  // sassLoader: {
-  //   includePaths: SCSS_DIR,
-  // },
 
   plugins: [
     new HtmlWebPackPlugin({
