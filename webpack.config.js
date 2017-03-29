@@ -3,7 +3,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const entryPath = './src/client/app/index.jsx';
-const outputPath = './src/client/public';
+const outputPath = './public';
 
 const config = {
   entry: {
@@ -85,13 +85,6 @@ const config = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
   ],
 };
 

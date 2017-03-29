@@ -9,7 +9,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:noCache": "jest --no-cache",
-    "production": "webpack -p"
+    "postinstall": "webpack --config webpack.prod.config.js"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/jest-css-modules",
@@ -40,6 +40,7 @@
     "lodash": "^4.16.2",
     "moment": "^2.18.0",
     "node-sass": "^3.8.0",
+    "optimize-js-plugin": "^0.0.4",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
@@ -57,6 +58,7 @@
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-merge": "^0.14.1",
+    "webpack-parallel-uglify-plugin": "^0.4.1",
     "youtube-api-search": "0.0.5"
   },
   "devDependencies": {
@@ -75,6 +77,8 @@
     "react-test-renderer": "^15.3.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
+    "uglifyjs-webpack-plugin": "^0.3.1",
     "webpack-dev-server": "^2.4.2"
   },
   "repository": "https://github.com/vincentbollaert/react-playground.git"
