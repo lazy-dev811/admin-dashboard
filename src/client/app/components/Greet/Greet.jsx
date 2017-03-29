@@ -4,7 +4,7 @@ import './Greet.scss';
 
 class Greet extends React.Component {
   componentDidMount() {
-    this.props.getWeather();
+    // this.props.getWeather();
   }
 
   render() {
