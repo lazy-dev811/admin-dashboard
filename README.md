@@ -8,7 +8,6 @@ An ES6 React dashboard
 
 ### To do
 * Fix broken widgets
-* Extract widgets and components to separate repos
 * Implement CSS Modules
 * Refactor SCSS
 * Add CSS grids
