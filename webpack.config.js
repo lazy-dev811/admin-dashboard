@@ -12,6 +12,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, outputPath),
+    publicPath: '/',
     filename: 'bundle.js',
   },
 
@@ -75,6 +76,13 @@ const config = {
             },
           },
         ],
+      },
+      {
+        test: /\.(jpe?g|png)$/i,
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[ext]',
+        },
       },
     ],
   },

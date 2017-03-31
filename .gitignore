@@ -1,3 +1,17 @@
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tags
+.tmproj
+nbproject
+Thumbs.db
+tags
+
+# Node Modules folder
+node_modules/
+
 # Logs
 logs
 *.log
@@ -5,6 +19,17 @@ npm-debug.log*
 
 
 # Dependency directory
-node_modules
 coverage
-src/client/public
+
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache

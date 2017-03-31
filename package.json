@@ -6,10 +6,11 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --progress --watch",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:noCache": "jest --no-cache",
-    "postinstall": "webpack --config webpack.prod.config.js"
+    "lint": "eslint src",
+    "test": "npm run lint && mocha-webpack",
+    "test:watch": "mocha-webpack --watch",
+    "postinstall": "webpack --config webpack.prod.config.js",
+    "start": "node server.js"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/jest-css-modules",
@@ -26,9 +27,11 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
+    "chai": "^3.5.0",
+    "chai-enzyme": "^0.6.1",
     "classnames": "^2.2.5",
     "css-loader": "^0.23.1",
-    "enzyme": "^2.5.1",
+    "enzyme": "^2.8.0",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^11.1.0",
     "eslint-plugin-import": "^1.15.0",
@@ -39,6 +42,8 @@
     "firebase-saga": "^1.1.2",
     "image-webpack-loader": "^2.0.0",
     "lodash": "^4.16.2",
+    "mocha": "^3.2.0",
+    "mocha-webpack": "^0.7.0",
     "moment": "^2.18.0",
     "node-sass": "^3.8.0",
     "optimize-js-plugin": "^0.0.4",
