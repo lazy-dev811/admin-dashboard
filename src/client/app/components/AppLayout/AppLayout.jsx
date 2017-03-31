@@ -7,11 +7,10 @@ import Slider from '../Slider';
 import ToastMessages from '../ToastMessages';
 
 require('./AppLayout.scss');
-require('../../assets/images/nature-1.jpg');
 
 const AppLayout = ({ children }) => (
   <div className="app-content">
-    <img className="app__bg" src="src/client/app/assets/images/nature-1.jpg" alt="background" />
+    <img className="app__bg" src={require('../../assets/images/nature-1.jpg')} alt="background" />
     {children}
     <Sidebar />
     {/* <Settings /> */}
