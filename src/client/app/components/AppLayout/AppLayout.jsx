@@ -7,6 +7,7 @@ import Slider from '../Slider';
 import ToastMessages from '../ToastMessages';
 
 require('./AppLayout.scss');
+require('../../assets/images/nature-1.jpg');
 
 const AppLayout = ({ children }) => (
   <div className="app-content">
