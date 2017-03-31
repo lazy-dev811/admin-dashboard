@@ -12,6 +12,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, outputPath),
+    publicPath: '/',
     filename: 'bundle.js',
   },
 

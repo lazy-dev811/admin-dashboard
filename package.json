@@ -6,10 +6,9 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --progress --watch",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
     "test:noCache": "jest --no-cache",
-    "postinstall": "webpack --config webpack.prod.config.js"
+    "postinstall": "webpack --config webpack.prod.config.js",
+    "start": "node server.js"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/jest-css-modules",
@@ -34,6 +33,7 @@
     "eslint-plugin-import": "^1.15.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.2.1",
+    "express": "^4.15.2",
     "firebase": "^3.7.3",
     "firebase-saga": "^1.1.2",
     "image-webpack-loader": "^2.0.0",
