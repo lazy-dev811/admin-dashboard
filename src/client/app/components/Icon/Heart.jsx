@@ -4,7 +4,7 @@ import React from 'react';
 const Heart = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="svg svg-heart"
+    className="svg svg-heart svg-heart-line"
     x="0px"
     y="0px"
     viewBox="0 0 472 415"
