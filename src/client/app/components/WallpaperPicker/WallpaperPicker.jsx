@@ -6,6 +6,8 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 
 import Wallpaper from '../Icon/Wallpaper.jsx';
 import Tick from '../Icon/Tick.jsx';
+import Heart from '../Icon/Heart.jsx';
+import HeartFill from '../Icon/HeartFill.jsx';
 
 require('./WallpaperPicker.scss');
 
@@ -15,7 +17,7 @@ class WallpaperPicker extends React.Component {
   }
 
   render() {
-    const item = (wallpaper = {}, index, loaded) => {
+    const item = (wallpaper = {}, index) => {
       const active = wallpaper.id && wallpaper.id === this.props.selectedWallpaperId;
       const itemClass = classnames('pg-color-picker__list__item', { active });
 
@@ -28,7 +30,14 @@ class WallpaperPicker extends React.Component {
 
           {this.props.asyncStatus.inProgress && <Loader />}
           {this.props.asyncStatus.error && <ErrorMessage position="absolute" />}
-          {active && <Tick />}
+          {
+            active &&
+            <div className="item__icons">
+              <Tick />
+              <Heart />
+              <HeartFill />
+            </div>
+          }
 
           {
             wallpaper.thumbUrl &&
@@ -46,7 +55,7 @@ class WallpaperPicker extends React.Component {
 
         <ul className="pg-color-picker__list">
           {/* {item(this.props.loadedWallpaper, 1, true)} */}
-          {this.props.wallpapers.map((wallpaper, index) => item(wallpaper, index, false))}
+          {this.props.wallpapers.map((wallpaper, index) => item(wallpaper, index))}
         </ul>
       </div>
     );
