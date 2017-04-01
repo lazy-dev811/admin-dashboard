@@ -4,7 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 
 import { reducer as widgetTodo } from '../components/Todo';
 import { reducer as widgetBookmarks } from '../components/Bookmarks';
-import { reducer as widgetColorPicker } from '../components/ColorPicker';
+import { reducer as widgetWallpaperPicker } from '../components/WallpaperPicker';
 import { reducer as widgetGreet } from '../components/Greet';
 import { reducer as widgetSettings } from '../components/Settings';
 import { reducer as widgetToastMessages } from '../components/ToastMessages';
@@ -20,7 +20,7 @@ import { reducer as config } from '../components/Widget';
 const rootReducer = combineReducers({
   widgetTodo,
   widgetBookmarks,
-  widgetColorPicker,
+  widgetWallpaperPicker,
   widgetGreet,
   widgetSettings,
   widgetToastMessages,

@@ -6,9 +6,9 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 
 import Wallpaper from '../Icon/Wallpaper.jsx';
 
-require('./ColorPicker.scss');
+require('./WallpaperPicker.scss');
 
-class ColorPicker extends React.Component {
+class WallpaperPicker extends React.Component {
   componentDidMount() {
     this.props.getWallpapers();
   }
@@ -50,7 +50,7 @@ class ColorPicker extends React.Component {
   }
 }
 
-ColorPicker.propTypes = {
+WallpaperPicker.propTypes = {
   selectedWallpaper: PropTypes.object,
   wallpapers: PropTypes.array,
   getWallpapers: PropTypes.func,
@@ -58,4 +58,4 @@ ColorPicker.propTypes = {
   asyncStatus: PropTypes.object,
 };
 
-export default ColorPicker;
+export default WallpaperPicker;

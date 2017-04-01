@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import ColorPicker from '../ColorPicker';
+import WallpaperPicker from '../WallpaperPicker';
 import Sidebar from '../Sidebar';
 // import Settings from '../Settings';
 import Slider from '../Slider';
@@ -16,7 +16,7 @@ const AppLayout = ({ children }) => (
     {/* <Settings /> */}
     <Slider />
     <ToastMessages />
-    <ColorPicker />
+    <WallpaperPicker />
   </div>
 );
 

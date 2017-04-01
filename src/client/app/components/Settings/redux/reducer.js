@@ -15,8 +15,8 @@ const INITIAL_STATE = {
       label: 'slide automatically',
     },
     {
-      name: 'optionShowColorPicker',
-      label: 'show color picker',
+      name: 'optionShowWallpaperPicker',
+      label: 'show wallpaper picker',
     },
     {
       name: 'optionTransparentScrollbars',
@@ -27,7 +27,7 @@ const INITIAL_STATE = {
     optionDefaultUser: true,
     optionSlide: true,
     optionDefaultSlide: true,
-    optionShowColorPicker: false,
+    optionShowWallpaperPicker: false,
     optionTransparentScrollbars: false,
     testText: 'Content',
     testRadio: false,

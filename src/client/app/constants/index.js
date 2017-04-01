@@ -1,5 +1,5 @@
 export const WIDGET_BLOG = 'widgetBlog';
-export const WIDGET_COLOR_PICKER = 'widgetColorPicker';
+export const WIDGET_COLOR_PICKER = 'widgetWallpaperPicker';
 export const WIDGET_GREET = 'widgetGreet';
 export const WIDGET_SETTINGS = 'widgetSettings';
 export const WIDGET_TOAST_MESSAGES = 'widgetToastMessages';

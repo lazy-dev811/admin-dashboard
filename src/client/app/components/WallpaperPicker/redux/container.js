@@ -4,9 +4,9 @@ import {
   getWallpapersRequested,
 } from './actions';
 
-import ColorPicker from '../ColorPicker.jsx';
+import WallpaperPicker from '../WallpaperPicker.jsx';
 
-const mapStateToProps = ({ widgetColorPicker, config }) => ({ ...widgetColorPicker, ...config });
+const mapStateToProps = ({ widgetWallpaperPicker, config }) => ({ ...widgetWallpaperPicker, ...config });
 
 const mergeProps = ({ widgetIdentifier, colors, selectedWallpaper, wallpapers, asyncStatus }, { dispatch }) => ({
   colors,
@@ -21,4 +21,4 @@ const mergeProps = ({ widgetIdentifier, colors, selectedWallpaper, wallpapers, a
   },
 });
 
-export default connect(mapStateToProps, null, mergeProps)(ColorPicker);
+export default connect(mapStateToProps, null, mergeProps)(WallpaperPicker);

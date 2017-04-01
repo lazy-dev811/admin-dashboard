@@ -4,7 +4,7 @@ import { saga as todoSagas } from '../components/Todo';
 import { saga as quoteSagas } from '../components/Quote';
 import { saga as youtubePlayerSagas } from '../components/YoutubePlayer';
 import { saga as greetSagas } from '../components/Greet';
-import { saga as wallpaperSagas } from '../components/ColorPicker';
+import { saga as wallpaperSagas } from '../components/WallpaperPicker';
 
 function* rootSagas() {
   yield* [
