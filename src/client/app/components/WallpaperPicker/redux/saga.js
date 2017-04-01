@@ -14,7 +14,7 @@ import {
 
 
 function* getWallpapers() {
-  const URL = 'https://api.desktoppr.co/1/wallpapers?page=206';
+  const URL = 'https://api.desktoppr.co/1/wallpapers?page=208';
 
   try {
     const wallpaperData = yield call(axios.get, URL);
