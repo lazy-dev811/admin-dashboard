@@ -15,6 +15,12 @@
     margin-top: 0;
   }
 
+  &:hover {
+    .svg-heart-line {
+      display: block;
+    }
+  }
+
   &.is-active {
     &::before {
       position: absolute;
@@ -35,26 +41,26 @@
     width: 25px;
   }
 
-  .svg-tick {
+  .svg {
     position: absolute;
     fill: #fff;
+  }
+
+  .svg-tick {
     width: 24px;
   }
 
-  &__icons {
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+  .svg-heart {
+    bottom: 10px;
+    right: 10px;
+    width: 13px;
+  }
 
-    .svg-heart {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 13px;
-      fill: $b-color-dark;
-    }
+  .svg-heart-line {
+    display: none;
+  }
+
+  .svg-heart-fill {
+    fill: $b-color-dark;
   }
 }

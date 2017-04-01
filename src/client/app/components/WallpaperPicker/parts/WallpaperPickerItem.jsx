@@ -9,7 +9,7 @@ import HeartFill from '../../Icon/HeartFill.jsx';
 
 import './WallpaperPickerItem.scss';
 
-const WallpaperPickerItem = ({ wallpaperObj, selectedWallpaperId, setWallpaper, asyncStatus }) => {
+const WallpaperPickerItem = ({ wallpaperObj, selectedWallpaperId, isSaved = false, setWallpaper, asyncStatus }) => {
   const isActive = wallpaperObj.id && wallpaperObj.id === selectedWallpaperId;
   const itemClass = classnames('wallpaper-picker-item', { 'is-active': isActive });
 
@@ -17,24 +17,22 @@ const WallpaperPickerItem = ({ wallpaperObj, selectedWallpaperId, setWallpaper, 
     <li
       className={itemClass}
       key={wallpaperObj.id}
-      onClick={() => setWallpaper(wallpaperObj.id)}
     >
 
       {asyncStatus.inProgress && <Loader />}
       {asyncStatus.error && <ErrorMessage position="absolute" />}
 
-      {
-        isActive &&
-        <div className="wallpaper-picker-item__icons">
-          <Tick />
-          <Heart />
-          <HeartFill />
-        </div>
-      }
+      {isActive && <Tick />}
+      {!isSaved && <Heart /> }
+      {isSaved && <HeartFill />}
 
       {
         wallpaperObj.thumbUrl &&
-        <img className="wallpaper-picker-item__img" src={wallpaperObj.thumbUrl} alt="yeah yeah" />
+        <img
+          className="wallpaper-picker-item__img"
+          src={wallpaperObj.thumbUrl} alt="yeah yeah"
+          onClick={() => setWallpaper(wallpaperObj.id)}
+        />
       }
     </li>
   );
@@ -43,6 +41,7 @@ const WallpaperPickerItem = ({ wallpaperObj, selectedWallpaperId, setWallpaper, 
 WallpaperPickerItem.propTypes = {
   wallpaperObj: PropTypes.object,
   selectedWallpaperId: PropTypes.number,
+  isSaved: PropTypes.bool,
   setWallpaper: PropTypes.func,
   asyncStatus: PropTypes.object,
 };
