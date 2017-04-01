@@ -1,44 +1,71 @@
-import { COLOR_PICKER_SELECT_COLOR } from './actions';
+import {
+  SELECT_WALLPAPER,
+
+  GET_WALLPAPERS_REQUESTED,
+  GET_WALLPAPERS_SUCCEEDED,
+  GET_WALLPAPERS_FAILED,
+} from './actions';
 
 const INITIAL_STATE = {
   widgetIdentifier: 'widgetColorPicker',
   widgetName: 'Color picker',
-  colors: [
-    {
-      name: 'red',
-      code: 'red',
-    },
-    {
-      name: 'yellow',
-      code: 'yellow',
-    },
-    {
-      name: 'green',
-      code: 'green',
-    },
-    {
-      name: 'blue',
-      code: 'blue',
-    },
-    {
-      name: 'orange',
-      code: 'orange',
-    },
-    {
-      name: 'purple',
-      code: 'purple',
-    },
-  ],
-  activeColorName: undefined,
+  selectedWallpaper: undefined,
+  wallpapers: Array(20).fill({}),
+  asyncStatus: {
+    inProgress: false,
+    error: false,
+    errorMessage: undefined,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case COLOR_PICKER_SELECT_COLOR: {
+    case SELECT_WALLPAPER: {
       return {
         ...state,
-        colors: [...state.colors],
-        activeColorName: action.selectedColorName,
+        selectedWallpaper: action.selectedWallpaper,
+      };
+    }
+
+    case GET_WALLPAPERS_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: true,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_WALLPAPERS_SUCCEEDED: {
+      const mappedWallpapers = action.data.data.response.map(d => ({
+        id: d.id,
+        url: d.image.url,
+        thumbUrl: d.image.thumb.url,
+      }));
+
+      return {
+        ...state,
+        wallpapers: [
+          ...mappedWallpapers,
+        ],
+        asyncStatus: {
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_WALLPAPERS_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: false,
+          error: true,
+          errorMessage: 'Couldn\'t load image',
+        },
       };
     }
 

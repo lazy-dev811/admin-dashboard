@@ -1,37 +1,61 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
+import Loader from '../Loader/Loader.jsx';
+import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
+
+import Wallpaper from '../Icon/Wallpaper.jsx';
+
 require('./ColorPicker.scss');
 
-const ColorPicker = ({ colors, activeColorName, selectColor }) => (
-  <div className="pg-color-picker">
-    <div className="pg-color-picker__toggle is-noob">
-      <i className="icon icon-default isAbs icon-color-adjust" />
-      <i className="icon icon-active isAbs icon-info" />
-    </div>
+class ColorPicker extends React.Component {
+  componentDidMount() {
+    this.props.getWallpapers();
+  }
 
-    <ul className="pg-color-picker__list">
-      {colors.map((color) => {
-        const colorClass = classnames('pg-color-picker__list__item', { 'is-active': color.code === activeColorName });
-        const colorStyle = { backgroundColor: color.code };
+  render() {
+    const item = (wallpaper = {}, index, active) => {
+      const itemClass = classnames('pg-color-picker__list__item', { active });
 
-        return (
-          <li
-            className={colorClass}
-            key={color.code}
-            style={colorStyle}
-            onClick={() => selectColor(color.code)}
-          />
-        );
-      })}
-    </ul>
-  </div>
-);
+      return (
+        <li
+          className={itemClass}
+          key={index}
+          onClick={() => this.props.setWallpaper(wallpaper)}
+        >
+
+          {this.props.asyncStatus.inProgress && <Loader />}
+          {this.props.asyncStatus.error && <ErrorMessage position="absolute" />}
+
+          {
+            wallpaper.thumbUrl &&
+            <img className="pg-color-picker__list__item__img" src={wallpaper.thumbUrl} alt="yeah yeah" />
+          }
+        </li>
+      );
+    };
+
+    return (
+      <div className="pg-color-picker">
+        <div className="pg-color-picker__toggle is-noob">
+          <Wallpaper />
+        </div>
+
+        <ul className="pg-color-picker__list">
+          {/* {item(this.props.selectedWallpaper, 1, true)} */}
+          {this.props.wallpapers.map((wallpaper, index) => item(wallpaper, index, false))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 ColorPicker.propTypes = {
-  colors: PropTypes.array.isRequired,
-  activeColorName: PropTypes.string,
-  selectColor: PropTypes.func,
+  selectedWallpaper: PropTypes.object,
+  wallpapers: PropTypes.array,
+  getWallpapers: PropTypes.func,
+  setWallpaper: PropTypes.func,
+  asyncStatus: PropTypes.object,
 };
 
 export default ColorPicker;
