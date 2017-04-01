@@ -1,8 +1,6 @@
 @import '../../scss/inc/variables';
 
-$item-s: 20px;
-
-.pg-color-picker {
+.wallpaper-picker {
   position: fixed;
   top: 0;
   right: 0;
@@ -22,59 +20,11 @@ $item-s: 20px;
     }
   }
 
-  &__list {
+  &__items {
     overflow: auto;
     width: 200px;
     border: 10px solid #fff;
     background-color: rgba(255, 255, 255, 0.7);
-
-    &__item {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-      height: 113px;
-      background-color: #373636;
-      cursor: pointer;
-      overflow: hidden;
-
-      &.active {
-        &::before {
-          position: absolute;
-          content: '';
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 10px;
-          background-color: $b-color-primary;
-        }
-      }
-
-      &:first-child {
-        margin-top: 0;
-      }
-
-      &:active {
-        z-index: 1;
-        transition: box-shadow 1s ease;
-        box-shadow: 0 0 0 1px #444, inset 0 0 0 10px #444;
-      }
-
-      &__img {
-        width: 100%;
-      }
-
-      .svg-spinner {
-        width: 25px;
-      }
-
-      .svg-tick {
-        position: absolute;
-        fill: #fff;
-        width: 24px;
-      }
-    }
   }
 
   &__toggle {
@@ -93,22 +43,5 @@ $item-s: 20px;
     .svg-wallpaper {
       width: 18px;
     }
-  }
-}
-
-.item__icons {
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-
-  .svg-heart {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 13px;
-    fill: $b-color-dark;
   }
 }

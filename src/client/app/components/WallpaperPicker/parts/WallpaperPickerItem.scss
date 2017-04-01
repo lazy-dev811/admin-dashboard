@@ -1,0 +1,60 @@
+@import 'src/client/app/scss/inc/variables';
+
+.wallpaper-picker-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  height: 113px;
+  background-color: #373636;
+  cursor: pointer;
+  overflow: hidden;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &.is-active {
+    &::before {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background-color: $b-color-primary;
+    }
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  .svg-spinner {
+    width: 25px;
+  }
+
+  .svg-tick {
+    position: absolute;
+    fill: #fff;
+    width: 24px;
+  }
+
+  &__icons {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .svg-heart {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 13px;
+      fill: $b-color-dark;
+    }
+  }
+}
