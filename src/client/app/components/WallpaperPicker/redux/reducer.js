@@ -1,5 +1,5 @@
 import {
-  SELECT_WALLPAPER,
+  SET_WALLPAPER,
 
   GET_WALLPAPERS_REQUESTED,
   GET_WALLPAPERS_SUCCEEDED,
@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   widgetIdentifier: 'widgetWallpaperPicker',
   widgetName: 'Wallpaper picker',
   selectedWallpaper: undefined,
+  selectedWallpaperId: undefined,
   wallpapers: Array(20).fill({}),
   asyncStatus: {
     inProgress: false,
@@ -20,10 +21,12 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SELECT_WALLPAPER: {
+    case SET_WALLPAPER: {
+      console.log(state.wallpapers)
+      console.log(action.wallpaperId)
       return {
         ...state,
-        selectedWallpaper: action.selectedWallpaper,
+        selectedWallpaperId: action.wallpaperId,
       };
     }
 

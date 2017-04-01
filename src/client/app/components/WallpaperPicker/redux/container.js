@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import {
-  selectWallpaper,
+  setWallpaper,
   getWallpapersRequested,
 } from './actions';
 
@@ -8,16 +8,17 @@ import WallpaperPicker from '../WallpaperPicker.jsx';
 
 const mapStateToProps = ({ widgetWallpaperPicker, config }) => ({ ...widgetWallpaperPicker, ...config });
 
-const mergeProps = ({ widgetIdentifier, colors, selectedWallpaper, wallpapers, asyncStatus }, { dispatch }) => ({
+const mergeProps = ({ widgetIdentifier, colors, selectedWallpaperId, wallpapers, loadedWallpaper, asyncStatus }, { dispatch }) => ({
   colors,
-  selectedWallpaper,
+  selectedWallpaperId,
   wallpapers,
+  loadedWallpaper,
   asyncStatus,
   getWallpapers() {
     dispatch(getWallpapersRequested());
   },
-  setWallpaper(wallpaper) {
-    dispatch(selectWallpaper(wallpaper));
+  setWallpaper(wallpaperId) {
+    dispatch(setWallpaper(wallpaperId));
   },
 });
 

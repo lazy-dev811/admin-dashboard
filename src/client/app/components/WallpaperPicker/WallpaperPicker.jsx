@@ -5,6 +5,7 @@ import Loader from '../Loader/Loader.jsx';
 import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 
 import Wallpaper from '../Icon/Wallpaper.jsx';
+import Tick from '../Icon/Tick.jsx';
 
 require('./WallpaperPicker.scss');
 
@@ -14,18 +15,20 @@ class WallpaperPicker extends React.Component {
   }
 
   render() {
-    const item = (wallpaper = {}, index, active) => {
+    const item = (wallpaper = {}, index, loaded) => {
+      const active = wallpaper.id && wallpaper.id === this.props.selectedWallpaperId;
       const itemClass = classnames('pg-color-picker__list__item', { active });
 
       return (
         <li
           className={itemClass}
           key={index}
-          onClick={() => this.props.setWallpaper(wallpaper)}
+          onClick={() => this.props.setWallpaper(wallpaper.id)}
         >
 
           {this.props.asyncStatus.inProgress && <Loader />}
           {this.props.asyncStatus.error && <ErrorMessage position="absolute" />}
+          {active && <Tick />}
 
           {
             wallpaper.thumbUrl &&
@@ -42,7 +45,7 @@ class WallpaperPicker extends React.Component {
         </div>
 
         <ul className="pg-color-picker__list">
-          {/* {item(this.props.selectedWallpaper, 1, true)} */}
+          {/* {item(this.props.loadedWallpaper, 1, true)} */}
           {this.props.wallpapers.map((wallpaper, index) => item(wallpaper, index, false))}
         </ul>
       </div>
@@ -51,7 +54,8 @@ class WallpaperPicker extends React.Component {
 }
 
 WallpaperPicker.propTypes = {
-  selectedWallpaper: PropTypes.object,
+  loadedWallpaper: PropTypes.object,
+  selectedWallpaperId: PropTypes.number,
   wallpapers: PropTypes.array,
   getWallpapers: PropTypes.func,
   setWallpaper: PropTypes.func,

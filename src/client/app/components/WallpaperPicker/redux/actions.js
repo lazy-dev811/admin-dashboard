@@ -1,12 +1,12 @@
-export const SELECT_WALLPAPER = 'SELECT_WALLPAPER';
+export const SET_WALLPAPER = 'SET_WALLPAPER';
 
 export const GET_WALLPAPERS_REQUESTED = 'GET_WALLPAPERS_REQUESTED';
 export const GET_WALLPAPERS_SUCCEEDED = 'GET_WALLPAPERS_SUCCEEDED';
 export const GET_WALLPAPERS_FAILED = 'GET_WALLPAPERS_FAILED';
 
-export const selectWallpaper = selectedWallpaper => ({
-  type: SELECT_WALLPAPER,
-  selectedWallpaper,
+export const setWallpaper = wallpaperId => ({
+  type: SET_WALLPAPER,
+  wallpaperId,
 });
 
 export const getWallpapersRequested = wallpapers => ({
