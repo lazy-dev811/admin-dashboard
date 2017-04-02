@@ -1,15 +1,20 @@
 import axios from 'axios';
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
+import { create, getAll } from 'firebase-saga';
 
 import {
+  GET_ACTIVE_WALLPAPER_REQUESTED,
+  getActiveWallpaperSucceeded,
+  getActiveWallpaperFailed,
+
   GET_WALLPAPERS_REQUESTED,
   getWallpapersSucceeded,
   getWallpapersFailed,
 
-  GET_WALLPAPER_REQUESTED,
-  getWallpaperSucceeded,
-  getWallpaperFailed,
+  SAVE_WALLPAPER_REQUESTED,
+  saveWallpaperSucceeded,
+  saveWallpaperFailed,
 } from './actions';
 
 
@@ -24,22 +29,32 @@ function* getWallpapers() {
   }
 }
 
-// function* getWallpaper() {
-  // console.log('GET WALLPAPER');
-  // const URL = 'https://api.desktoppr.co/1/wallpapers/random';
-  //
-  // try {
-  //   const wallpaperData = yield call(axios.get, URL);
-  //   yield put(getWallpaperSucceeded(wallpaperData));
-  // } catch(error) {
-  //   yield put(getWallpaperFailed(error));
-  // }
-// }
+
+function* getActiveWallpaper() {
+  try {
+    const test = yield call(getAll, 'activeWallpaperObj', 'activeWallpaperObj');
+    yield put(getActiveWallpaperSucceeded(test));
+  } catch (error) {
+    yield put(getActiveWallpaperFailed(error));
+  }
+}
+
+function* saveWallpaper(dispatch) {
+  try {
+    yield call(create, 'activeWallpaperObj', () => ({
+      activeWallpaperObj: { ...dispatch.wallpaperObj },
+    }));
+    yield put(saveWallpaperSucceeded(dispatch.wallpaperObj));
+  } catch (error) {
+    yield put(saveWallpaperFailed(error));
+  }
+}
 
 function* wallpaperSagas() {
   yield* [
+    takeEvery(GET_ACTIVE_WALLPAPER_REQUESTED, getActiveWallpaper),
     takeEvery(GET_WALLPAPERS_REQUESTED, getWallpapers),
-    // takeEvery(GET_WALLPAPER_REQUESTED, getWallpaper),
+    takeEvery(SAVE_WALLPAPER_REQUESTED, saveWallpaper),
   ];
 }
 

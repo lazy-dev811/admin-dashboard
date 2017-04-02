@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import {
-  setWallpaper,
+  getActiveWallpaperRequested,
   getWallpapersRequested,
+  setWallpaper,
+  saveWallpaperRequested,
 } from './actions';
 
 import { Component } from '../';
@@ -21,11 +23,15 @@ const mergeProps = ({
   wallpapers,
   loadedWallpaper,
   asyncStatus,
+  getActiveWallpaper() {
+    dispatch(getActiveWallpaperRequested());
+  },
   getWallpapers() {
     dispatch(getWallpapersRequested());
   },
   setWallpaper(wallpaperObj) {
     dispatch(setWallpaper(wallpaperObj));
+    dispatch(saveWallpaperRequested(wallpaperObj));
   },
 });
 

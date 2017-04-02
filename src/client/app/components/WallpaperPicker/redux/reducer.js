@@ -1,9 +1,17 @@
 import {
-  SET_WALLPAPER,
+  GET_ACTIVE_WALLPAPER_REQUESTED,
+  GET_ACTIVE_WALLPAPER_SUCCEEDED,
+  GET_ACTIVE_WALLPAPER_FAILED,
 
   GET_WALLPAPERS_REQUESTED,
   GET_WALLPAPERS_SUCCEEDED,
   GET_WALLPAPERS_FAILED,
+
+  SET_WALLPAPER,
+
+  SAVE_WALLPAPER_REQUESTED,
+  SAVE_WALLPAPER_SUCCEEDED,
+  SAVE_WALLPAPER_FAILED,
 } from './actions';
 
 const INITIAL_STATE = {
@@ -20,12 +28,40 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case SET_WALLPAPER: {
+    case GET_ACTIVE_WALLPAPER_REQUESTED: {
       return {
         ...state,
-        activeWallpaperObj: action.wallpaperObj,
+        asyncStatus: {
+          inProgress: true,
+          error: false,
+          errorMessage: undefined,
+        },
       };
     }
+
+    case GET_ACTIVE_WALLPAPER_SUCCEEDED: {
+      return {
+        ...state,
+        activeWallpaperObj: action.data,
+        asyncStatus: {
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_ACTIVE_WALLPAPER_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: false,
+          error: true,
+          errorMessage: 'Couldn\'t load image',
+        },
+      };
+    }
+
 
     case GET_WALLPAPERS_REQUESTED: {
       return {
@@ -65,6 +101,48 @@ export default (state = INITIAL_STATE, action) => {
           inProgress: false,
           error: true,
           errorMessage: 'Couldn\'t load image',
+        },
+      };
+    }
+
+
+    case SET_WALLPAPER: {
+      return {
+        ...state,
+        activeWallpaperObj: action.wallpaperObj,
+      };
+    }
+
+    case SAVE_WALLPAPER_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: true,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case SAVE_WALLPAPER_SUCCEEDED: {
+      return {
+        ...state,
+        activeWallpaperObj: action.data,
+        asyncStatus: {
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case SAVE_WALLPAPER_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: false,
+          error: true,
+          errorMessage: 'TEST ERROR',
         },
       };
     }

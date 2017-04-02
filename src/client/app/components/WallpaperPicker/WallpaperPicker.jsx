@@ -7,6 +7,7 @@ require('./WallpaperPicker.scss');
 
 class WallpaperPicker extends React.Component {
   componentDidMount() {
+    this.props.getActiveWallpaper();
     this.props.getWallpapers();
   }
 
@@ -39,6 +40,7 @@ WallpaperPicker.propTypes = {
   activeWallpaperObj: PropTypes.object,
   wallpapers: PropTypes.array,
   getWallpapers: PropTypes.func,
+  getActiveWallpaper: PropTypes.func,
   setWallpaper: PropTypes.func,
   asyncStatus: PropTypes.object,
 };
