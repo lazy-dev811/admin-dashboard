@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
+import { isEqual } from 'lodash';
 
 import Loader from '../../Loader/Loader.jsx';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage.jsx';
@@ -11,21 +12,15 @@ import './WallpaperPickerItem.scss';
 
 const WallpaperPickerItem = ({
   wallpaperObj = {},
-  selectedWallpaperId = undefined,
+  activeWallpaperObj = undefined,
   isSaved = false,
-  index = undefined,
   setWallpaper = () => {},
   asyncStatus = {},
 }) => {
-  const isActive = wallpaperObj.id && wallpaperObj.id === selectedWallpaperId;
+  const isActive = isEqual(wallpaperObj, activeWallpaperObj);
   const itemClass = classnames('wallpaper-picker-item', { 'is-active': isActive });
-
   return (
-    <li
-      className={itemClass}
-      key={index}
-    >
-
+    <li className={itemClass} key={wallpaperObj.id}>
       {asyncStatus.inProgress && <Loader />}
       {asyncStatus.error && <ErrorMessage position="absolute" />}
 
@@ -35,7 +30,7 @@ const WallpaperPickerItem = ({
 
       {
         wallpaperObj.thumbUrl &&
-        <button onClick={() => setWallpaper(wallpaperObj.id)}>
+        <button onClick={() => setWallpaper(wallpaperObj)}>
           <img
             className="wallpaper-picker-item__img"
             src={wallpaperObj.thumbUrl} alt="yeah yeah"
@@ -48,9 +43,8 @@ const WallpaperPickerItem = ({
 
 WallpaperPickerItem.propTypes = {
   wallpaperObj: PropTypes.object,
-  selectedWallpaperId: PropTypes.number,
+  activeWallpaperObj: PropTypes.object,
   isSaved: PropTypes.bool,
-  index: PropTypes.number,
   setWallpaper: PropTypes.func,
   asyncStatus: PropTypes.object,
 };

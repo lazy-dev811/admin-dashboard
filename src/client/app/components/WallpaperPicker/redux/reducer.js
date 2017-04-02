@@ -9,8 +9,7 @@ import {
 const INITIAL_STATE = {
   widgetIdentifier: 'widgetWallpaperPicker',
   widgetName: 'Wallpaper picker',
-  selectedWallpaper: undefined,
-  selectedWallpaperId: undefined,
+  activeWallpaperObj: undefined,
   wallpapers: Array(20).fill({}),
   asyncStatus: {
     inProgress: false,
@@ -22,11 +21,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_WALLPAPER: {
-      console.log(state.wallpapers)
-      console.log(action.wallpaperId)
       return {
         ...state,
-        selectedWallpaperId: action.wallpaperId,
+        activeWallpaperObj: action.wallpaperObj,
       };
     }
 

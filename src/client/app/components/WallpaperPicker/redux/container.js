@@ -8,17 +8,24 @@ import { Component } from '../';
 
 const mapStateToProps = ({ widgetWallpaperPicker, config }) => ({ ...widgetWallpaperPicker, ...config });
 
-const mergeProps = ({ widgetIdentifier, colors, selectedWallpaperId, wallpapers, loadedWallpaper, asyncStatus }, { dispatch }) => ({
+const mergeProps = ({
+  widgetIdentifier,
   colors,
-  selectedWallpaperId,
+  activeWallpaperObj,
+  wallpapers,
+  loadedWallpaper,
+  asyncStatus,
+}, { dispatch }) => ({
+  colors,
+  activeWallpaperObj,
   wallpapers,
   loadedWallpaper,
   asyncStatus,
   getWallpapers() {
     dispatch(getWallpapersRequested());
   },
-  setWallpaper(wallpaperId) {
-    dispatch(setWallpaper(wallpaperId));
+  setWallpaper(wallpaperObj) {
+    dispatch(setWallpaper(wallpaperObj));
   },
 });
 
