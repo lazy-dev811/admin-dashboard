@@ -25,6 +25,7 @@ class WallpaperPicker extends React.Component {
               wallpaperObj={wallpaperObj}
               activeWallpaperObj={this.props.activeWallpaperObj}
               key={index}
+              pinWallpaper={this.props.pinWallpaper}
               setWallpaper={this.props.setWallpaper}
               asyncStatus={this.props.asyncStatus}
             />
@@ -41,6 +42,7 @@ WallpaperPicker.propTypes = {
   wallpapers: PropTypes.array,
   getWallpapers: PropTypes.func,
   getActiveWallpaper: PropTypes.func,
+  pinWallpaper: PropTypes.func,
   setWallpaper: PropTypes.func,
   asyncStatus: PropTypes.object,
 };

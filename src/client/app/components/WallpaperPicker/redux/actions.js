@@ -6,6 +6,10 @@ export const GET_WALLPAPERS_REQUESTED = 'GET_WALLPAPERS_REQUESTED';
 export const GET_WALLPAPERS_SUCCEEDED = 'GET_WALLPAPERS_SUCCEEDED';
 export const GET_WALLPAPERS_FAILED = 'GET_WALLPAPERS_FAILED';
 
+export const PIN_WALLPAPER_REQUESTED = 'PIN_WALLPAPER_REQUESTED';
+export const PIN_WALLPAPER_SUCCEEDED = 'PIN_WALLPAPER_SUCCEEDED';
+export const PIN_WALLPAPER_FAILED = 'PIN_WALLPAPER_FAILED';
+
 export const SET_WALLPAPER = 'SET_WALLPAPER';
 
 export const SAVE_WALLPAPER_REQUESTED = 'SAVE_WALLPAPER_REQUESTED';
@@ -40,6 +44,23 @@ export const getWallpapersSucceeded = data => ({
 
 export const getWallpapersFailed = error => ({
   type: GET_WALLPAPERS_FAILED,
+  error,
+});
+
+
+export const pinWallpaperRequested = (wallpaperObj, pinnedWallpapersLength) => ({
+  type: PIN_WALLPAPER_REQUESTED,
+  wallpaperObj,
+  pinnedWallpapersLength,
+});
+
+export const pinWallpaperSucceeded = data => ({
+  type: PIN_WALLPAPER_SUCCEEDED,
+  data,
+});
+
+export const pinWallpaperFailed = error => ({
+  type: PIN_WALLPAPER_FAILED,
   error,
 });
 

@@ -7,6 +7,10 @@ import {
   GET_WALLPAPERS_SUCCEEDED,
   GET_WALLPAPERS_FAILED,
 
+  PIN_WALLPAPER_REQUESTED,
+  PIN_WALLPAPER_SUCCEEDED,
+  PIN_WALLPAPER_FAILED,
+
   SET_WALLPAPER,
 
   SAVE_WALLPAPER_REQUESTED,
@@ -19,6 +23,7 @@ const INITIAL_STATE = {
   widgetName: 'Wallpaper picker',
   activeWallpaperObj: {},
   wallpapers: Array(20).fill({}),
+  pinnedWallpapers: [],
   asyncStatus: {
     inProgress: false,
     error: false,
@@ -101,6 +106,44 @@ export default (state = INITIAL_STATE, action) => {
           inProgress: false,
           error: true,
           errorMessage: 'Couldn\'t load image',
+        },
+      };
+    }
+
+
+    case PIN_WALLPAPER_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: true,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case PIN_WALLPAPER_SUCCEEDED: {
+      return {
+        ...state,
+        pinnedWallpapers: [
+          ...state.pinnedWallpapers,
+          action.data,
+        ],
+        asyncStatus: {
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case PIN_WALLPAPER_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: false,
+          error: true,
+          errorMessage: 'TEST ERROR',
         },
       };
     }

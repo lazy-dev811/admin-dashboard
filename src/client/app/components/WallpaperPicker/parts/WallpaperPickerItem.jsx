@@ -14,6 +14,7 @@ const WallpaperPickerItem = ({
   wallpaperObj = {},
   activeWallpaperObj = undefined,
   isSaved = false,
+  pinWallpaper = () => {},
   setWallpaper = () => {},
   asyncStatus = {},
 }) => {
@@ -25,8 +26,14 @@ const WallpaperPickerItem = ({
       {asyncStatus.error && <ErrorMessage position="absolute" />}
 
       {isActive && <Tick />}
-      {!isSaved && <Heart /> }
       {isSaved && <HeartFill />}
+
+      {
+        !isSaved &&
+        <button onClick={() => pinWallpaper(wallpaperObj)}>
+          <Heart />
+        </button>
+      }
 
       {
         wallpaperObj.thumbUrl &&
@@ -46,6 +53,7 @@ WallpaperPickerItem.propTypes = {
   activeWallpaperObj: PropTypes.object,
   isSaved: PropTypes.bool,
   setWallpaper: PropTypes.func,
+  pinWallpaper: PropTypes.func,
   asyncStatus: PropTypes.object,
 };
 

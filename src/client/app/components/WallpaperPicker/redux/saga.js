@@ -12,6 +12,10 @@ import {
   getWallpapersSucceeded,
   getWallpapersFailed,
 
+  PIN_WALLPAPER_REQUESTED,
+  pinWallpaperSucceeded,
+  pinWallpaperFailed,
+
   SAVE_WALLPAPER_REQUESTED,
   saveWallpaperSucceeded,
   saveWallpaperFailed,
@@ -44,6 +48,20 @@ function* getActiveWallpaper() {
   }
 }
 
+
+function* pinWallpaper(dispatch) {
+  const pinnedWallpapersKey = `pinnedWallpapers/${dispatch.pinnedWallpapersLength}`;
+  try {
+    yield call(create, 'pinnedWallpapers', () => ({
+      [pinnedWallpapersKey]: dispatch.wallpaperObj,
+    }));
+    yield put(pinWallpaperSucceeded(dispatch.wallpaperObj));
+  } catch (error) {
+    yield put(pinWallpaperFailed(error));
+  }
+}
+
+
 function* saveWallpaper(dispatch) {
   try {
     yield call(create, 'activeWallpaperObj', () => ({
@@ -55,10 +73,12 @@ function* saveWallpaper(dispatch) {
   }
 }
 
+
 function* wallpaperSagas() {
   yield* [
     takeEvery(GET_ACTIVE_WALLPAPER_REQUESTED, getActiveWallpaper),
     takeEvery(GET_WALLPAPERS_REQUESTED, getWallpapers),
+    takeEvery(PIN_WALLPAPER_REQUESTED, pinWallpaper),
     takeEvery(SAVE_WALLPAPER_REQUESTED, saveWallpaper),
   ];
 }
