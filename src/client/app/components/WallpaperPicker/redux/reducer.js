@@ -9,7 +9,7 @@ import {
 const INITIAL_STATE = {
   widgetIdentifier: 'widgetWallpaperPicker',
   widgetName: 'Wallpaper picker',
-  activeWallpaperObj: undefined,
+  activeWallpaperObj: {},
   wallpapers: Array(20).fill({}),
   asyncStatus: {
     inProgress: false,

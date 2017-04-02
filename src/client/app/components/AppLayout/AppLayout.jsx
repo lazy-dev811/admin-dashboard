@@ -10,7 +10,6 @@ require('./AppLayout.scss');
 
 const AppLayout = ({ children }) => (
   <div className="app-content">
-    <img className="app__bg" src={require('../../assets/images/nature-1.jpg')} alt="background" />
     {children}
     <Sidebar />
     {/* <Settings /> */}

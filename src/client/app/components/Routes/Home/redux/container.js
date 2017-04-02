@@ -2,14 +2,12 @@ import { connect } from 'react-redux';
 
 import Home from '../Home.jsx';
 
-const mapStateToProps = ({ widgetSlider, config }) => ({
+
+const mapStateToProps = ({ widgetSlider, widgetWallpaperPicker, config }) => ({
   ...widgetSlider,
+  ...widgetWallpaperPicker,
   ...config,
   config,
 });
 
-const mergeProps = ({ activeWidgets }) => ({
-  activeWidgets,
-});
-
-export default connect(mapStateToProps, null, mergeProps)(Home);
+export default connect(mapStateToProps, undefined, undefined)(Home);
