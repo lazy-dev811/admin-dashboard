@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 
 import Wallpaper from '../Icon/Wallpaper.jsx';
+import Pin from '../Icon/Pin.jsx';
+import Pinned from '../Icon/Pinned.jsx';
+
 import WallpaperPickerItem from './parts/WallpaperPickerItem.jsx';
 
 require('./WallpaperPicker.scss');
@@ -18,7 +21,7 @@ class WallpaperPicker extends React.Component {
         <WallpaperPickerItem
           wallpaperObj={wallpaperObj}
           activeWallpaperObj={this.props.activeWallpaperObj}
-          isSaved={this.props.showPinnedWallpapers}
+          isPinned={this.props.showPinnedWallpapers}
           key={index}
           pinWallpaper={this.props.pinWallpaper}
           setWallpaper={this.props.setWallpaper}
@@ -31,6 +34,8 @@ class WallpaperPicker extends React.Component {
       <div className="wallpaper-picker">
         <button className="wallpaper-picker__toggle" onClick={this.props.togglePinnedWallpapers}>
           <Wallpaper />
+          {!this.props.showPinnedWallpapers && <Pin />}
+          {this.props.showPinnedWallpapers && <Pinned />}
         </button>
 
         <ul className="wallpaper-picker__items">

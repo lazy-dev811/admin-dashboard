@@ -24,7 +24,15 @@ $toggle-radius: 2px;
     transform: translateX(0);
 
     .svg-wallpaper {
-      fill: $color-primary
+      display: none;
+    }
+
+    .wallpaper-picker__toggle {
+      .svg-pin,
+      .svg-pinned {
+        display: block;
+        fill: $color-primary
+      }
     }
   }
 
@@ -46,8 +54,14 @@ $toggle-radius: 2px;
     border-bottom-left-radius: $toggle-radius;
     transform: translateY(-50%);
 
-    .svg-wallpaper {
+    .svg {
       width: 18px;
+      height: 22px;
+    }
+
+    .svg-pin,
+    .svg-pinned {
+      display: none;
     }
   }
 }

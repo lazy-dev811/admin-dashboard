@@ -5,35 +5,38 @@ import { isEqual } from 'lodash';
 import Loader from '../../Loader/Loader.jsx';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage.jsx';
 import Tick from '../../Icon/Tick.jsx';
-import Heart from '../../Icon/Heart.jsx';
-import HeartFill from '../../Icon/HeartFill.jsx';
+import Pin from '../../Icon/Pin.jsx';
+import Pinned from '../../Icon/Pinned.jsx';
 
 import './WallpaperPickerItem.scss';
 
 const WallpaperPickerItem = ({
   wallpaperObj = {},
   activeWallpaperObj = undefined,
-  isSaved = false,
+  isPinned = false,
   pinWallpaper = () => {},
   setWallpaper = () => {},
   asyncStatus = {},
 }) => {
   const isActive = isEqual(wallpaperObj, activeWallpaperObj);
   const itemClass = classnames('wallpaper-picker-item', { 'is-active': isActive });
+  const determinePinComponent = (value) => {
+    const Component = value ? <Pinned /> : <Pin />;
+    return (
+      <button onClick={() => pinWallpaper(wallpaperObj)}>
+        {Component}
+      </button>
+    );
+  };
+
   return (
     <li className={itemClass} key={wallpaperObj.id}>
       {asyncStatus.inProgress && <Loader />}
       {asyncStatus.error && <ErrorMessage position="absolute" />}
 
       {isActive && <Tick />}
-      {isSaved && <HeartFill />}
-
-      {
-        !isSaved &&
-        <button onClick={() => pinWallpaper(wallpaperObj)}>
-          <Heart />
-        </button>
-      }
+      {isPinned && determinePinComponent(true)}
+      {!isPinned && determinePinComponent(false)}
 
       {
         wallpaperObj.thumbUrl &&
@@ -51,7 +54,7 @@ const WallpaperPickerItem = ({
 WallpaperPickerItem.propTypes = {
   wallpaperObj: PropTypes.object,
   activeWallpaperObj: PropTypes.object,
-  isSaved: PropTypes.bool,
+  isPinned: PropTypes.bool,
   setWallpaper: PropTypes.func,
   pinWallpaper: PropTypes.func,
   asyncStatus: PropTypes.object,
