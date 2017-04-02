@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import {
   getActiveWallpaperRequested,
   getWallpapersRequested,
+  getPinnedWallpapersRequested,
+  togglePinnedWallpapers,
   pinWallpaperRequested,
   setWallpaper,
   saveWallpaperRequested,
@@ -16,6 +18,7 @@ const mergeProps = ({
   colors,
   activeWallpaperObj,
   wallpapers,
+  showPinnedWallpapers,
   pinnedWallpapers,
   loadedWallpaper,
   asyncStatus,
@@ -23,6 +26,7 @@ const mergeProps = ({
   colors,
   activeWallpaperObj,
   wallpapers,
+  showPinnedWallpapers,
   pinnedWallpapers,
   loadedWallpaper,
   asyncStatus,
@@ -31,6 +35,12 @@ const mergeProps = ({
   },
   getWallpapers() {
     dispatch(getWallpapersRequested());
+  },
+  getPinnedWallpapers() {
+    dispatch(getPinnedWallpapersRequested());
+  },
+  togglePinnedWallpapers() {
+    dispatch(togglePinnedWallpapers());
   },
   pinWallpaper(wallpaperObj) {
     dispatch(pinWallpaperRequested(wallpaperObj, pinnedWallpapers.length));

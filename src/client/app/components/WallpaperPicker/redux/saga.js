@@ -12,6 +12,10 @@ import {
   getWallpapersSucceeded,
   getWallpapersFailed,
 
+  GET_PINNED_WALLPAPERS_REQUESTED,
+  getPinnedWallpapersSucceeded,
+  getPinnedWallpapersFailed,
+
   PIN_WALLPAPER_REQUESTED,
   pinWallpaperSucceeded,
   pinWallpaperFailed,
@@ -35,6 +39,16 @@ function* getWallpapers() {
     yield put(getWallpapersSucceeded(data));
   } catch (error) {
     yield put(getWallpapersFailed(error));
+  }
+}
+
+
+function* getPinnedWallpapers() {
+  try {
+    const data = yield call(getAll, 'pinnedWallpapers', 'pinnedWallpapers');
+    yield put(getPinnedWallpapersSucceeded(data));
+  } catch (error) {
+    yield put(getPinnedWallpapersFailed(error));
   }
 }
 
@@ -78,6 +92,7 @@ function* wallpaperSagas() {
   yield* [
     takeEvery(GET_ACTIVE_WALLPAPER_REQUESTED, getActiveWallpaper),
     takeEvery(GET_WALLPAPERS_REQUESTED, getWallpapers),
+    takeEvery(GET_PINNED_WALLPAPERS_REQUESTED, getPinnedWallpapers),
     takeEvery(PIN_WALLPAPER_REQUESTED, pinWallpaper),
     takeEvery(SAVE_WALLPAPER_REQUESTED, saveWallpaper),
   ];

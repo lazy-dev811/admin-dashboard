@@ -19,9 +19,8 @@ $color-dark: #373636;
   height: $width / 16 * 10;
   background-color: $color-dark;
   cursor: pointer;
-  box-shadow: 0 $unit 0 $unit $color-transparent,
-              (-$width - $unit * 2) 0 0 $unit $color-white,
-              ($width + $unit * 2) 0 0 $unit $color-white;
+  box-shadow: (-$width - $unit) (-$unit) 0 0 $color-white,
+              ($width + $unit) (-$unit) 0 0 $color-white;
 
   &:first-child {
     margin-top: 0;

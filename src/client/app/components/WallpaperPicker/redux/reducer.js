@@ -7,6 +7,12 @@ import {
   GET_WALLPAPERS_SUCCEEDED,
   GET_WALLPAPERS_FAILED,
 
+  GET_PINNED_WALLPAPERS_REQUESTED,
+  GET_PINNED_WALLPAPERS_SUCCEEDED,
+  GET_PINNED_WALLPAPERS_FAILED,
+
+  TOGGLE_PINNED_WALLPAPERS,
+
   PIN_WALLPAPER_REQUESTED,
   PIN_WALLPAPER_SUCCEEDED,
   PIN_WALLPAPER_FAILED,
@@ -24,6 +30,7 @@ const INITIAL_STATE = {
   activeWallpaperObj: {},
   wallpapers: Array(20).fill({}),
   pinnedWallpapers: [],
+  showPinnedWallpapers: false,
   asyncStatus: {
     inProgress: false,
     error: false,
@@ -107,6 +114,51 @@ export default (state = INITIAL_STATE, action) => {
           error: true,
           errorMessage: 'Couldn\'t load image',
         },
+      };
+    }
+
+
+    case GET_PINNED_WALLPAPERS_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: true,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_PINNED_WALLPAPERS_SUCCEEDED: {
+      return {
+        ...state,
+        pinnedWallpapers: [
+          ...action.data,
+        ],
+        asyncStatus: {
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_PINNED_WALLPAPERS_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: false,
+          error: true,
+          errorMessage: 'Couldn\'t load pinned wallpapers',
+        },
+      };
+    }
+
+
+    case TOGGLE_PINNED_WALLPAPERS: {
+      return {
+        ...state,
+        showPinnedWallpapers: !state.showPinnedWallpapers,
       };
     }
 

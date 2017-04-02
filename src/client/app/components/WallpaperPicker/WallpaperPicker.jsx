@@ -9,27 +9,33 @@ class WallpaperPicker extends React.Component {
   componentDidMount() {
     this.props.getActiveWallpaper();
     this.props.getWallpapers();
+    this.props.getPinnedWallpapers();
   }
 
   render() {
+    const determineVisibleItems = wallpapers => (
+      wallpapers.map((wallpaperObj, index) => (
+        <WallpaperPickerItem
+          wallpaperObj={wallpaperObj}
+          activeWallpaperObj={this.props.activeWallpaperObj}
+          isSaved={this.props.showPinnedWallpapers}
+          key={index}
+          pinWallpaper={this.props.pinWallpaper}
+          setWallpaper={this.props.setWallpaper}
+          asyncStatus={this.props.asyncStatus}
+        />
+      ))
+    );
+
     return (
       <div className="wallpaper-picker">
-        <div className="wallpaper-picker__toggle is-noob">
+        <button className="wallpaper-picker__toggle" onClick={this.props.togglePinnedWallpapers}>
           <Wallpaper />
-        </div>
+        </button>
 
         <ul className="wallpaper-picker__items">
-          {/* {item(this.props.loadedWallpaper, 1, true)} */}
-          {this.props.wallpapers.map((wallpaperObj, index) => (
-            <WallpaperPickerItem
-              wallpaperObj={wallpaperObj}
-              activeWallpaperObj={this.props.activeWallpaperObj}
-              key={index}
-              pinWallpaper={this.props.pinWallpaper}
-              setWallpaper={this.props.setWallpaper}
-              asyncStatus={this.props.asyncStatus}
-            />
-          ))}
+          {this.props.showPinnedWallpapers && determineVisibleItems(this.props.pinnedWallpapers)}
+          {!this.props.showPinnedWallpapers && determineVisibleItems(this.props.wallpapers)}
         </ul>
       </div>
     );
@@ -37,11 +43,14 @@ class WallpaperPicker extends React.Component {
 }
 
 WallpaperPicker.propTypes = {
-  // loadedWallpaper: PropTypes.object,
   activeWallpaperObj: PropTypes.object,
   wallpapers: PropTypes.array,
-  getWallpapers: PropTypes.func,
+  pinnedWallpapers: PropTypes.array,
+  showPinnedWallpapers: PropTypes.bool,
   getActiveWallpaper: PropTypes.func,
+  getWallpapers: PropTypes.func,
+  getPinnedWallpapers: PropTypes.func,
+  togglePinnedWallpapers: PropTypes.func,
   pinWallpaper: PropTypes.func,
   setWallpaper: PropTypes.func,
   asyncStatus: PropTypes.object,

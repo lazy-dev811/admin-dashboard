@@ -1,11 +1,19 @@
 @import '../../scss/inc/variables';
 
+$unit: 10px;
+$color-white: #fff;
+$color-primary: $b-color-primary;
+$color-transparent: rgba(255, 255, 255, 0.7);
+
+$toggle-size: 40px;
+$toggle-radius: 2px;
+
 .wallpaper-picker {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
-  opacity: .3;
+  opacity: 0.3;
   z-index: 2;
   display: flex;
   transform: translateX(100%);
@@ -16,12 +24,13 @@
     transform: translateX(0);
 
     .svg-wallpaper {
-      fill: $b-color-primary
+      fill: $color-primary
     }
   }
 
   &__items {
     overflow: auto;
+    background-color: $color-transparent;
   }
 
   &__toggle {
@@ -30,11 +39,11 @@
     right: 100%;
     display: flex;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: #fff;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
+    width: $toggle-size;
+    height: $toggle-size;
+    background-color: $color-white;
+    border-top-left-radius: $toggle-radius;
+    border-bottom-left-radius: $toggle-radius;
     transform: translateY(-50%);
 
     .svg-wallpaper {

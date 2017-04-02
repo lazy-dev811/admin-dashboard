@@ -6,6 +6,12 @@ export const GET_WALLPAPERS_REQUESTED = 'GET_WALLPAPERS_REQUESTED';
 export const GET_WALLPAPERS_SUCCEEDED = 'GET_WALLPAPERS_SUCCEEDED';
 export const GET_WALLPAPERS_FAILED = 'GET_WALLPAPERS_FAILED';
 
+export const GET_PINNED_WALLPAPERS_REQUESTED = 'GET_PINNED_WALLPAPERS_REQUESTED';
+export const GET_PINNED_WALLPAPERS_SUCCEEDED = 'GET_PINNED_WALLPAPERS_SUCCEEDED';
+export const GET_PINNED_WALLPAPERS_FAILED = 'GET_PINNED_WALLPAPERS_FAILED';
+
+export const TOGGLE_PINNED_WALLPAPERS = 'TOGGLE_PINNED_WALLPAPERS';
+
 export const PIN_WALLPAPER_REQUESTED = 'PIN_WALLPAPER_REQUESTED';
 export const PIN_WALLPAPER_SUCCEEDED = 'PIN_WALLPAPER_SUCCEEDED';
 export const PIN_WALLPAPER_FAILED = 'PIN_WALLPAPER_FAILED';
@@ -45,6 +51,26 @@ export const getWallpapersSucceeded = data => ({
 export const getWallpapersFailed = error => ({
   type: GET_WALLPAPERS_FAILED,
   error,
+});
+
+
+export const getPinnedWallpapersRequested = () => ({
+  type: GET_PINNED_WALLPAPERS_REQUESTED,
+});
+
+export const getPinnedWallpapersSucceeded = data => ({
+  type: GET_PINNED_WALLPAPERS_SUCCEEDED,
+  data,
+});
+
+export const getPinnedWallpapersFailed = error => ({
+  type: GET_PINNED_WALLPAPERS_FAILED,
+  error,
+});
+
+
+export const togglePinnedWallpapers = () => ({
+  type: TOGGLE_PINNED_WALLPAPERS,
 });
 
 
