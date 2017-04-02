@@ -19,11 +19,16 @@ import {
 
 
 function* getWallpapers() {
-  const URL = 'https://api.desktoppr.co/1/wallpapers?page=209';
-
   try {
-    const wallpaperData = yield call(axios.get, URL);
-    yield put(getWallpapersSucceeded(wallpaperData));
+    let url = 'https://api.desktoppr.co/1/wallpapers';
+    let data = yield call(axios.get, url);
+    const amountOfPages = data.data.pagination.pages;
+    const randomPage = Math.floor(Math.random() * amountOfPages);
+
+    url = `https://api.desktoppr.co/1/wallpapers?page=${randomPage}`;
+    data = yield call(axios.get, url);
+
+    yield put(getWallpapersSucceeded(data));
   } catch (error) {
     yield put(getWallpapersFailed(error));
   }
