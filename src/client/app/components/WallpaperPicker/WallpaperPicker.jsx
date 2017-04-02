@@ -19,10 +19,12 @@ class WallpaperPicker extends React.Component {
 
         <ul className="wallpaper-picker__items">
           {/* {item(this.props.loadedWallpaper, 1, true)} */}
-          {this.props.wallpapers.map(wallpaperObj => (
+          {this.props.wallpapers.map((wallpaperObj, index) => (
             <WallpaperPickerItem
               wallpaperObj={wallpaperObj}
               selectedWallpaperId={this.props.selectedWallpaperId}
+              key={index}
+              index={index}
               setWallpaper={this.props.setWallpaper}
               asyncStatus={this.props.asyncStatus}
             />
@@ -34,7 +36,7 @@ class WallpaperPicker extends React.Component {
 }
 
 WallpaperPicker.propTypes = {
-  loadedWallpaper: PropTypes.object,
+  // loadedWallpaper: PropTypes.object,
   selectedWallpaperId: PropTypes.number,
   wallpapers: PropTypes.array,
   getWallpapers: PropTypes.func,
