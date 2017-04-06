@@ -30,11 +30,18 @@ const INITIAL_STATE = {
   activeWallpaperObj: {},
   wallpapers: Array(20).fill({}),
   pinnedWallpapers: [],
+  pinToggledWallpaper: {},
   showPinnedWallpapers: false,
   asyncStatus: {
     inProgress: false,
     error: false,
     errorMessage: undefined,
+
+    pinWallpaper: {
+      inProgress: false,
+      error: false,
+      errorMessage: undefined,
+    },
   },
 };
 
@@ -44,6 +51,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: true,
           error: false,
           errorMessage: undefined,
@@ -56,6 +64,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         activeWallpaperObj: action.data,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: false,
           errorMessage: undefined,
@@ -67,6 +76,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: true,
           errorMessage: 'Couldn\'t load image',
@@ -79,6 +89,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: true,
           error: false,
           errorMessage: undefined,
@@ -99,6 +110,7 @@ export default (state = INITIAL_STATE, action) => {
           ...mappedWallpapers,
         ],
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: false,
           errorMessage: undefined,
@@ -110,6 +122,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: true,
           errorMessage: 'Couldn\'t load image',
@@ -122,6 +135,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: true,
           error: false,
           errorMessage: undefined,
@@ -136,6 +150,7 @@ export default (state = INITIAL_STATE, action) => {
           ...action.data,
         ],
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: false,
           errorMessage: undefined,
@@ -147,6 +162,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: true,
           errorMessage: 'Couldn\'t load pinned wallpapers',
@@ -166,10 +182,14 @@ export default (state = INITIAL_STATE, action) => {
     case PIN_WALLPAPER_REQUESTED: {
       return {
         ...state,
+        pinToggledWallpaper: action.wallpaperObj,
         asyncStatus: {
-          inProgress: true,
-          error: false,
-          errorMessage: undefined,
+          ...state.asyncStatus,
+          pinWallpaper: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
@@ -182,9 +202,12 @@ export default (state = INITIAL_STATE, action) => {
           action.data,
         ],
         asyncStatus: {
-          inProgress: false,
-          error: false,
-          errorMessage: undefined,
+          ...state.asyncStatus,
+          pinWallpaper: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
@@ -193,9 +216,12 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
-          inProgress: false,
-          error: true,
-          errorMessage: 'TEST ERROR',
+          ...state.asyncStatus,
+          pinWallpaper: {
+            inProgress: false,
+            error: false,
+            errorMessage: 'Pin wallpaper failed',
+          },
         },
       };
     }
@@ -212,6 +238,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: true,
           error: false,
           errorMessage: undefined,
@@ -224,6 +251,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         activeWallpaperObj: action.data,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: false,
           errorMessage: undefined,
@@ -235,6 +263,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: true,
           errorMessage: 'TEST ERROR',

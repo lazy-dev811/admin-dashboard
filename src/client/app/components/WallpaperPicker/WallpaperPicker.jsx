@@ -21,7 +21,8 @@ class WallpaperPicker extends React.Component {
         <WallpaperPickerItem
           wallpaperObj={wallpaperObj}
           activeWallpaperObj={this.props.activeWallpaperObj}
-          isPinned={this.props.showPinnedWallpapers}
+          pinToggledWallpaper={this.props.pinToggledWallpaper}
+          isPinned={this.props.pinnedWallpapers.find(wallpaper => wallpaper.id === wallpaperObj.id) !== undefined}
           key={index}
           pinWallpaper={this.props.pinWallpaper}
           setWallpaper={this.props.setWallpaper}
@@ -50,6 +51,7 @@ class WallpaperPicker extends React.Component {
 WallpaperPicker.propTypes = {
   activeWallpaperObj: PropTypes.object,
   wallpapers: PropTypes.array,
+  pinToggledWallpaper: PropTypes.object,
   pinnedWallpapers: PropTypes.array,
   showPinnedWallpapers: PropTypes.bool,
   getActiveWallpaper: PropTypes.func,

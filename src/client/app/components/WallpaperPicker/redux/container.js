@@ -20,6 +20,7 @@ const mergeProps = ({
   wallpapers,
   showPinnedWallpapers,
   pinnedWallpapers,
+  pinToggledWallpaper,
   loadedWallpaper,
   asyncStatus,
 }, { dispatch }) => ({
@@ -28,6 +29,7 @@ const mergeProps = ({
   wallpapers,
   showPinnedWallpapers,
   pinnedWallpapers,
+  pinToggledWallpaper,
   loadedWallpaper,
   asyncStatus,
   getActiveWallpaper() {

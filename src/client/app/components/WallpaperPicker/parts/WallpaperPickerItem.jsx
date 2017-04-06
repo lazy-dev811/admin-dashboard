@@ -17,6 +17,7 @@ const WallpaperPickerItem = ({
   pinWallpaper = () => {},
   setWallpaper = () => {},
   asyncStatus = {},
+  pinToggledWallpaper = {},
 }) => {
   const isActive = isEqual(wallpaperObj, activeWallpaperObj);
   const itemClass = classnames('wallpaper-picker-item', { 'is-active': isActive });
@@ -33,6 +34,11 @@ const WallpaperPickerItem = ({
     <li className={itemClass} key={wallpaperObj.id}>
       {asyncStatus.inProgress && <Loader />}
       {asyncStatus.error && <ErrorMessage position="absolute" />}
+      {
+        asyncStatus.pinWallpaper.inProgress &&
+        isEqual(wallpaperObj, pinToggledWallpaper) &&
+        <Loader />
+      }
 
       {isActive && <Tick />}
       {isPinned && determinePinComponent(true)}
@@ -54,6 +60,7 @@ const WallpaperPickerItem = ({
 WallpaperPickerItem.propTypes = {
   wallpaperObj: PropTypes.object,
   activeWallpaperObj: PropTypes.object,
+  pinToggledWallpaper: PropTypes.object,
   isPinned: PropTypes.bool,
   setWallpaper: PropTypes.func,
   pinWallpaper: PropTypes.func,
