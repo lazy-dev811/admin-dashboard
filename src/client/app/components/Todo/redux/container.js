@@ -19,8 +19,8 @@ const mergeProps = ({ widgetIdentifier, todos, activeTodo, widgetTodo, asyncStat
   onFetchTodos(todosToFetch) {
     dispatch(fetchTodosRequested(todosToFetch));
   },
-  onRemoveTodo(todoIndex) {
-    dispatch(removeTodoRequested(todoIndex));
+  onRemoveTodo(id) {
+    dispatch(removeTodoRequested(id));
   },
   onSubmit(formValues) {
     dispatch(addTodoRequested(formValues, todos.length));

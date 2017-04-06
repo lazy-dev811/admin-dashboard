@@ -39,7 +39,7 @@ export default (state = INITIAL_STATE, action) => {
     case FETCH_TODOS_SUCCEEDED: {
       return {
         ...state,
-        todos: action.todos || [],
+        todos: Object.keys(action.todos).map(todo => action.todos[todo]) || [],
         asyncStatus: {
           inProgress: false,
           error: false,
@@ -73,6 +73,7 @@ export default (state = INITIAL_STATE, action) => {
 
     case ADD_TODO_SUCCEEDED: {
       const newTodo = Object.assign(action.formValues);
+      newTodo.id = action.id;
 
       return {
         ...state,
@@ -112,8 +113,7 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case REMOVE_TODO_SUCCEEDED: {
-      const todoIndex = action.todoIndex;
-      const todos = state.todos.filter((todo, index) => index !== todoIndex);
+      const todos = state.todos.filter(todo => todo.id !== action.id);
 
       return {
         ...state,

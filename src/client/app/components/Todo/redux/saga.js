@@ -1,3 +1,4 @@
+import uuidV1 from 'uuid/v1';
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { getAll, create, remove } from 'firebase-saga';
@@ -28,24 +29,25 @@ function* fetchTodos() {
 
 function* addTodo(dispatch) {
   const formValues = dispatch.formValues;
-  const todoKey = `todos/${dispatch.formLength}`;
+  const id = uuidV1();
+  const todoKey = `todos/${id}`;
 
   try {
     yield call(create, 'todos', () => ({
-      [todoKey]: { ...formValues },
+      [todoKey]: { ...formValues, id },
     }));
-    yield put(addTodoSucceeded(formValues));
+    yield put(addTodoSucceeded(formValues, id));
   } catch (error) {
     yield put(addTodoFailed(error));
   }
 }
 
 function* removeTodo(action) {
-  const todoIndex = action.todoIndex;
+  const id = action.id;
 
   try {
-    yield call(remove, 'todos', todoIndex);
-    yield put(removeTodoSucceeded(todoIndex));
+    yield call(remove, 'todos', id);
+    yield put(removeTodoSucceeded(id));
   } catch (error) {
     yield put(removeTodoFailed(error));
   }

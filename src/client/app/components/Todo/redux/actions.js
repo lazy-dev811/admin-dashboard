@@ -31,9 +31,10 @@ export const addTodoRequested = (formValues, formLength) => ({
   formLength,
 });
 
-export const addTodoSucceeded = formValues => ({
+export const addTodoSucceeded = (formValues, id) => ({
   type: ADD_TODO_SUCCEEDED,
   formValues,
+  id,
 });
 
 export const addTodoFailed = error => ({
@@ -42,14 +43,14 @@ export const addTodoFailed = error => ({
 });
 
 
-export const removeTodoRequested = todoIndex => ({
+export const removeTodoRequested = id => ({
   type: REMOVE_TODO_REQUESTED,
-  todoIndex,
+  id,
 });
 
-export const removeTodoSucceeded = todoIndex => ({
+export const removeTodoSucceeded = id => ({
   type: REMOVE_TODO_SUCCEEDED,
-  todoIndex,
+  id,
 });
 
 export const removeTodoFailed = error => ({
