@@ -6,6 +6,7 @@ import Greet from '../../Greet/';
 import Quote from '../../Quote';
 import SliderDetail from '../../SliderDetail';
 import YoutubePlayer from '../../YoutubePlayer';
+import NewsFeed from '../../NewsFeed';
 
 const defaultWallpaper = require('../../../assets/images/nature-1.jpg');
 
@@ -33,6 +34,10 @@ const widgets = [
   {
     name: 'youtube player',
     component: <YoutubePlayer />,
+  },
+  {
+    name: 'news feed',
+    component: <NewsFeed />,
   },
 ];
 

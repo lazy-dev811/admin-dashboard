@@ -54,6 +54,24 @@ const INITIAL_STATE = {
     // transparentBg: true,
     transparentScrollbar: true,
   },
+  widgetNewsFeed: {
+    name: 'news feed',
+    type: 'widget',
+    components: {
+      // body: true,
+      // header: true,
+    },
+    dimensions: {
+      width: 700,
+      // height: 400,
+    },
+    position: {
+      top: 100,
+      left: 100,
+    },
+    // transparentBg: true,
+    transparentScrollbar: true,
+  },
   widgetQuote: {
     name: 'quote',
     type: 'widget',

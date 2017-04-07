@@ -5,6 +5,7 @@ import { saga as quoteSagas } from '../components/Quote';
 import { saga as youtubePlayerSagas } from '../components/YoutubePlayer';
 import { saga as greetSagas } from '../components/Greet';
 import { saga as wallpaperSagas } from '../components/WallpaperPicker';
+import { saga as newsFeedSagas } from '../components/NewsFeed';
 
 function* rootSagas() {
   yield* [
@@ -13,6 +14,7 @@ function* rootSagas() {
     fork(youtubePlayerSagas),
     fork(greetSagas),
     fork(wallpaperSagas),
+    fork(newsFeedSagas),
   ];
 }
 
