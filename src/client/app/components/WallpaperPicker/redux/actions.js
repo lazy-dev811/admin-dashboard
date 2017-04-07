@@ -74,15 +74,16 @@ export const togglePinnedWallpapers = () => ({
 });
 
 
-export const pinWallpaperRequested = (wallpaperObj, pinnedWallpapersLength) => ({
+export const pinWallpaperRequested = (wallpaperObj, alreadyPinned) => ({
   type: PIN_WALLPAPER_REQUESTED,
   wallpaperObj,
-  pinnedWallpapersLength,
+  alreadyPinned,
 });
 
-export const pinWallpaperSucceeded = data => ({
+export const pinWallpaperSucceeded = (data, alreadyPinned) => ({
   type: PIN_WALLPAPER_SUCCEEDED,
   data,
+  alreadyPinned,
 });
 
 export const pinWallpaperFailed = error => ({

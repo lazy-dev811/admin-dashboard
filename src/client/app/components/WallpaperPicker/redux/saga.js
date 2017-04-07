@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
-import { create, getAll } from 'firebase-saga';
+import { create, getAll, remove } from 'firebase-saga';
 
 import {
   GET_ACTIVE_WALLPAPER_REQUESTED,
@@ -64,12 +64,19 @@ function* getActiveWallpaper() {
 
 
 function* pinWallpaper(dispatch) {
-  const pinnedWallpapersKey = `pinnedWallpapers/${dispatch.pinnedWallpapersLength}`;
+  const { wallpaperObj, alreadyPinned } = dispatch;
+  const id = wallpaperObj.id;
+  const pinnedWallpapersKey = `pinnedWallpapers/${id}`;
+
   try {
-    yield call(create, 'pinnedWallpapers', () => ({
-      [pinnedWallpapersKey]: dispatch.wallpaperObj,
-    }));
-    yield put(pinWallpaperSucceeded(dispatch.wallpaperObj));
+    if (alreadyPinned) {
+      yield call(remove, 'pinnedWallpapers', wallpaperObj.id);
+    } else {
+      yield call(create, 'pinnedWallpapers', () => ({
+        [pinnedWallpapersKey]: wallpaperObj,
+      }));
+    }
+    yield put(pinWallpaperSucceeded(wallpaperObj, alreadyPinned));
   } catch (error) {
     yield put(pinWallpaperFailed(error));
   }

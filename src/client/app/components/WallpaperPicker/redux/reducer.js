@@ -42,6 +42,12 @@ const INITIAL_STATE = {
       error: false,
       errorMessage: undefined,
     },
+
+    saveWallpaper: {
+      inProgress: false,
+      error: false,
+      errorMessage: undefined,
+    },
   },
 };
 
@@ -144,11 +150,10 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case GET_PINNED_WALLPAPERS_SUCCEEDED: {
+      const pinnedWallpapers = Object.keys(action.data).map(wallpaper => action.data[wallpaper]) || [];
       return {
         ...state,
-        pinnedWallpapers: [
-          ...action.data,
-        ],
+        pinnedWallpapers,
         asyncStatus: {
           ...state.asyncStatus,
           inProgress: false,
@@ -195,11 +200,20 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case PIN_WALLPAPER_SUCCEEDED: {
+      let newState = [];
+      if (action.alreadyPinned) {
+        newState = state.pinnedWallpapers.filter(wallpaper => wallpaper.id !== action.data.id);
+      } else {
+        newState = [
+          ...state.pinnedWallpapers,
+          action.data,
+        ];
+      }
+
       return {
         ...state,
         pinnedWallpapers: [
-          ...state.pinnedWallpapers,
-          action.data,
+          ...newState,
         ],
         asyncStatus: {
           ...state.asyncStatus,
@@ -239,9 +253,11 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         asyncStatus: {
           ...state.asyncStatus,
-          inProgress: true,
-          error: false,
-          errorMessage: undefined,
+          saveWallpaper: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
@@ -252,9 +268,11 @@ export default (state = INITIAL_STATE, action) => {
         activeWallpaperObj: action.data,
         asyncStatus: {
           ...state.asyncStatus,
-          inProgress: false,
-          error: false,
-          errorMessage: undefined,
+          saveWallpaper: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
@@ -264,9 +282,11 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         asyncStatus: {
           ...state.asyncStatus,
-          inProgress: false,
-          error: true,
-          errorMessage: 'TEST ERROR',
+          saveWallpaper: {
+            inProgress: false,
+            error: true,
+            errorMessage: 'Save wallpaper failed',
+          },
         },
       };
     }

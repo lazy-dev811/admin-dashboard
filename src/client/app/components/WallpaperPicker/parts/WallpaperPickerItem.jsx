@@ -40,7 +40,19 @@ const WallpaperPickerItem = ({
         <Loader />
       }
 
-      {isActive && <Tick />}
+      {
+        asyncStatus.saveWallpaper.inProgress &&
+        isActive &&
+        <Loader />
+      }
+
+      {
+        isActive &&
+        !asyncStatus.pinWallpaper.inProgress &&
+        !asyncStatus.saveWallpaper.inProgress &&
+        <Tick />
+      }
+
       {isPinned && determinePinComponent(true)}
       {!isPinned && determinePinComponent(false)}
 

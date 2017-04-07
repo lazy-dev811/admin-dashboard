@@ -45,7 +45,8 @@ const mergeProps = ({
     dispatch(togglePinnedWallpapers());
   },
   pinWallpaper(wallpaperObj) {
-    dispatch(pinWallpaperRequested(wallpaperObj, pinnedWallpapers.length));
+    const alreadyPinned = pinnedWallpapers.findIndex(wallpaper => wallpaper.id === wallpaperObj.id) > -1;
+    dispatch(pinWallpaperRequested(wallpaperObj, alreadyPinned));
   },
   setWallpaper(wallpaperObj) {
     dispatch(setWallpaper(wallpaperObj));
