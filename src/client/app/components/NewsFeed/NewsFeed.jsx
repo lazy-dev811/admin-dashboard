@@ -6,29 +6,39 @@ require('./NewsFeed.scss');
 
 class NewsFeed extends Component {
   componentWillMount() {
-    // this.props.gethNewsFeeds();
+    this.props.getSources();
   }
 
   render() {
-    const { newsfeeds, removeNewsFeed } = this.props;
+    const { sources, removeSource } = this.props;
 
     return (
       <div className="newsfeed">
-        hey im header
-        <List newsfeeds={newsfeeds} removeNewsFeed={removeNewsFeed} />
+        <div className="widget__header">
+          News Feed
+          <ul className="newsfeed__view-options">
+            <li className="newsfeed__view-options__option">
+              sources
+            </li>
+            <li className="newsfeed__view-options__option">
+              articles
+            </li>
+          </ul>
+        </div>
+        <List sources={sources} removeSource={removeSource} />
       </div>
     );
   }
 }
 
 NewsFeed.defaultProps = {
-  newsfeeds: [],
+  sources: [],
 };
 
 NewsFeed.propTypes = {
-  newsfeeds: PropTypes.array.isRequired,
-  gethNewsFeeds: PropTypes.func.isRequired,
-  removeNewsFeed: PropTypes.func.isRequired,
+  sources: PropTypes.array.isRequired,
+  getSources: PropTypes.func.isRequired,
+  removeSource: PropTypes.func.isRequired,
 };
 
 export default NewsFeed;

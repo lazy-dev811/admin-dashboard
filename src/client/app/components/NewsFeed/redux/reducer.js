@@ -1,21 +1,21 @@
 import {
-  GET_NEWSFEEDS_REQUESTED,
-  GET_NEWSFEEDS_SUCCEEDED,
-  GET_NEWSFEEDS_FAILED,
+  GET_SOURCES_REQUESTED,
+  GET_SOURCES_SUCCEEDED,
+  GET_SOURCES_FAILED,
 
-  ADD_NEWSFEED_REQUESTED,
-  ADD_NEWSFEED_SUCCEEDED,
-  ADD_NEWSFEED_FAILED,
+  ADD_SOURCE_REQUESTED,
+  ADD_SOURCE_SUCCEEDED,
+  ADD_SOURCE_FAILED,
 
-  REMOVE_NEWSFEED_REQUESTED,
-  REMOVE_NEWSFEED_SUCCEEDED,
-  REMOVE_NEWSFEED_FAILED,
+  REMOVE_SOURCE_REQUESTED,
+  REMOVE_SOURCE_SUCCEEDED,
+  REMOVE_SOURCE_FAILED,
 } from './actions';
 
 const INITIAL_STATE = {
   widgetIdentifier: 'widgetNewsFeed',
   widgetName: 'NewsFeed',
-  newsfeeds: [],
+  sources: [],
   asyncStatus: {
     inProgress: false,
     error: false,
@@ -25,7 +25,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_NEWSFEEDS_REQUESTED: {
+    case GET_SOURCES_REQUESTED: {
       return {
         ...state,
         asyncStatus: {
@@ -36,10 +36,10 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case GET_NEWSFEEDS_SUCCEEDED: {
+    case GET_SOURCES_SUCCEEDED: {
       return {
         ...state,
-        newsfeeds: Object.keys(action.newsfeeds).map(newsfeed => action.newsfeeds[newsfeed]) || [],
+        sources: action.payload.data.sources,
         asyncStatus: {
           inProgress: false,
           error: false,
@@ -48,7 +48,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case GET_NEWSFEEDS_FAILED: {
+    case GET_SOURCES_FAILED: {
       return {
         ...state,
         asyncStatus: {
@@ -60,7 +60,7 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case ADD_NEWSFEED_REQUESTED: {
+    case ADD_SOURCE_REQUESTED: {
       return {
         ...state,
         asyncStatus: {
@@ -71,14 +71,14 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case ADD_NEWSFEED_SUCCEEDED: {
+    case ADD_SOURCE_SUCCEEDED: {
       const newNewsFeed = Object.assign(action.formValues);
       newNewsFeed.id = action.id;
 
       return {
         ...state,
-        newsfeeds: [
-          ...state.newsfeeds,
+        sources: [
+          ...state.sources,
           newNewsFeed,
         ],
         asyncStatus: {
@@ -89,7 +89,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case ADD_NEWSFEED_FAILED: {
+    case ADD_SOURCE_FAILED: {
       return {
         ...state,
         asyncStatus: {
@@ -101,7 +101,7 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case REMOVE_NEWSFEED_REQUESTED: {
+    case REMOVE_SOURCE_REQUESTED: {
       return {
         ...state,
         asyncStatus: {
@@ -112,12 +112,12 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case REMOVE_NEWSFEED_SUCCEEDED: {
-      const newsfeeds = state.newsfeeds.filter(newsfeed => newsfeed.id !== action.id);
+    case REMOVE_SOURCE_SUCCEEDED: {
+      const sources = state.sources.filter(newsfeed => newsfeed.id !== action.id);
 
       return {
         ...state,
-        newsfeeds,
+        sources,
         asyncStatus: {
           inProgress: false,
           error: false,
@@ -126,7 +126,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case REMOVE_NEWSFEED_FAILED: {
+    case REMOVE_SOURCE_FAILED: {
       return {
         ...state,
         asyncStatus: {

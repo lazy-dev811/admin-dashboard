@@ -1,13 +1,12 @@
 import React, { PropTypes } from 'react';
 
-const List = ({ newsfeeds, removeNewsFeed }) => (
-  <ul className="newsfeeds">
+const List = ({ sources, removeSource }) => (
+  <ul className="sources">
     {
-      newsfeeds && newsfeeds.map(newsfeed => (
-        <li className="newsfeeds__item" key={newsfeed.id} onClick={() => removeNewsFeed(newsfeed.id)}>
-          <span className="newsfeeds__item__title">{newsfeed.title}</span>
-          <span className="newsfeeds__item__category">{newsfeed.categories}</span>
-          I AM A NEWS FEED BOOM BABY
+      sources && sources.map(source => (
+        <li className="sources__source" key={source.id}>
+          <button className="sources__btn" onClick={() => removeSource(source.id)} />
+          <img className="sources__source__img" src={source.urlsToLogos.small} alt="logo" />
         </li>
       ))
     }
@@ -15,8 +14,8 @@ const List = ({ newsfeeds, removeNewsFeed }) => (
 );
 
 List.propTypes = {
-  newsfeeds: PropTypes.array.isRequired,
-  removeNewsFeed: PropTypes.func.isRequired,
+  sources: PropTypes.array.isRequired,
+  removeSource: PropTypes.func.isRequired,
 };
 
 export default List;

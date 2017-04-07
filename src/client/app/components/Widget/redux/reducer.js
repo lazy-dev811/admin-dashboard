@@ -58,12 +58,12 @@ const INITIAL_STATE = {
     name: 'news feed',
     type: 'widget',
     components: {
-      // body: true,
+      body: true,
       // header: true,
     },
     dimensions: {
-      width: 700,
-      // height: 400,
+      width: 710,
+      height: 710,
     },
     position: {
       top: 100,

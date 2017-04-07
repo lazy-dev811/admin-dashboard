@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import {
-  getNewsFeedsRequested,
-  addNewsFeedRequested,
-  removeNewsFeedRequested,
+  getSourcesRequested,
+  addSourceRequested,
+  removeSourceRequested,
 } from './actions';
 
 import NewsFeed from '../NewsFeed.jsx';
@@ -10,19 +10,19 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetNewsFeed, config }) => ({ ...widgetNewsFeed, ...config });
 
-const mergeProps = ({ widgetIdentifier, newsfeeds, widgetNewsFeed, asyncStatus }, { dispatch }) => ({
+const mergeProps = ({ widgetIdentifier, sources, widgetNewsFeed, asyncStatus }, { dispatch }) => ({
   widgetIdentifier,
-  newsfeeds,
+  sources,
   config: widgetNewsFeed,
   asyncStatus,
-  gethNewsFeeds(newsfeedsToGet) {
-    dispatch(getNewsFeedsRequested(newsfeedsToGet));
+  getSources() {
+    dispatch(getSourcesRequested());
   },
-  removeNewsFeed(id) {
-    dispatch(removeNewsFeedRequested(id));
+  removeSource(id) {
+    dispatch(removeSourceRequested(id));
   },
-  addNewsFeed(newsfeed) {
-    dispatch(addNewsFeedRequested(newsfeed));
+  addSource(source) {
+    dispatch(addSourceRequested(source));
   },
 });
 

@@ -1,58 +1,58 @@
-export const GET_NEWSFEEDS_REQUESTED = 'GET_NEWSFEEDS_REQUESTED';
-export const GET_NEWSFEEDS_SUCCEEDED = 'GET_NEWSFEEDS_SUCCEEDED';
-export const GET_NEWSFEEDS_FAILED = 'GET_NEWSFEEDS_FAILED';
+export const GET_SOURCES_REQUESTED = 'GET_SOURCES_REQUESTED';
+export const GET_SOURCES_SUCCEEDED = 'GET_SOURCES_SUCCEEDED';
+export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
 
-export const ADD_NEWSFEED_REQUESTED = 'ADD_NEWSFEED_REQUESTED';
-export const ADD_NEWSFEED_SUCCEEDED = 'ADD_NEWSFEED_SUCCEEDED';
-export const ADD_NEWSFEED_FAILED = 'ADD_NEWSFEED_FAILED';
+export const ADD_SOURCE_REQUESTED = 'ADD_SOURCE_REQUESTED';
+export const ADD_SOURCE_SUCCEEDED = 'ADD_SOURCE_SUCCEEDED';
+export const ADD_SOURCE_FAILED = 'ADD_SOURCE_FAILED';
 
-export const REMOVE_NEWSFEED_REQUESTED = 'REMOVE_NEWSFEED_REQUESTED';
-export const REMOVE_NEWSFEED_SUCCEEDED = 'REMOVE_NEWSFEED_SUCCEEDED';
-export const REMOVE_NEWSFEED_FAILED = 'REMOVE_NEWSFEED_FAILED';
+export const REMOVE_SOURCE_REQUESTED = 'REMOVE_SOURCE_REQUESTED';
+export const REMOVE_SOURCE_SUCCEEDED = 'REMOVE_SOURCE_SUCCEEDED';
+export const REMOVE_SOURCE_FAILED = 'REMOVE_SOURCE_FAILED';
 
-export const getNewsFeedsRequested = () => ({
-  type: GET_NEWSFEEDS_REQUESTED,
+export const getSourcesRequested = () => ({
+  type: GET_SOURCES_REQUESTED,
 });
 
-export const getNewsFeedsSucceeded = newsfeeds => ({
-  type: GET_NEWSFEEDS_SUCCEEDED,
-  newsfeeds,
+export const getSourcesSucceeded = payload => ({
+  type: GET_SOURCES_SUCCEEDED,
+  payload,
 });
 
-export const getNewsFeedsFailed = error => ({
-  type: GET_NEWSFEEDS_FAILED,
+export const getSourcesFailed = error => ({
+  type: GET_SOURCES_FAILED,
   error,
 });
 
 
-export const addNewsFeedRequested = newsFeed => ({
-  type: ADD_NEWSFEED_REQUESTED,
-  newsFeed,
+export const addSourceRequested = source => ({
+  type: ADD_SOURCE_REQUESTED,
+  source,
 });
 
-export const addNewsFeedSucceeded = (newsFeed, id) => ({
-  type: ADD_NEWSFEED_SUCCEEDED,
-  newsFeed,
+export const addSourceSucceeded = (source, id) => ({
+  type: ADD_SOURCE_SUCCEEDED,
+  source,
   id,
 });
 
-export const addNewsFeedFailed = error => ({
-  type: ADD_NEWSFEED_FAILED,
+export const addSourceFailed = error => ({
+  type: ADD_SOURCE_FAILED,
   error,
 });
 
 
-export const removeNewsFeedRequested = id => ({
-  type: REMOVE_NEWSFEED_REQUESTED,
+export const removeSourceRequested = id => ({
+  type: REMOVE_SOURCE_REQUESTED,
   id,
 });
 
-export const removeNewsFeedSucceeded = id => ({
-  type: REMOVE_NEWSFEED_SUCCEEDED,
+export const removeSourceSucceeded = id => ({
+  type: REMOVE_SOURCE_SUCCEEDED,
   id,
 });
 
-export const removeNewsFeedFailed = error => ({
-  type: REMOVE_NEWSFEED_FAILED,
+export const removeSourceFailed = error => ({
+  type: REMOVE_SOURCE_FAILED,
   error,
 });

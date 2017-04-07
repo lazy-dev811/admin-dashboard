@@ -15,6 +15,8 @@
 }
 
 .widget__header {
+  display: flex;
+  justify-content: space-between;
   text-transform: uppercase;
   margin-bottom: 30px;
   color: #666;
@@ -46,7 +48,7 @@
   }
 
   .has-scroll {
-    padding: $spacing $spacing - 5px $spacing $spacing;
+    padding: $spacing;
     margin-right: 5px;
   }
 }

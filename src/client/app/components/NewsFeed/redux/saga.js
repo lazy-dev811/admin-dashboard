@@ -1,32 +1,36 @@
+import axios from 'axios';
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { getAll, create, remove } from 'firebase-saga';
 
 import {
-  GET_NEWSFEEDS_REQUESTED,
-  getNewsFeedsSucceeded,
-  getNewsFeedsFailed,
+  GET_SOURCES_REQUESTED,
+  getSourcesSucceeded,
+  getSourcesFailed,
 
-  ADD_NEWSFEED_REQUESTED,
-  addNewsFeedSucceeded,
-  addNewsFeedFailed,
+  ADD_SOURCE_REQUESTED,
+  addSourceSucceeded,
+  addSourceFailed,
 
-  REMOVE_NEWSFEED_REQUESTED,
-  removeNewsFeedSucceeded,
-  removeNewsFeedFailed,
+  REMOVE_SOURCE_REQUESTED,
+  removeSourceSucceeded,
+  removeSourceFailed,
 } from './actions';
 
 
-function* getNewsFeeds() {
+const API_KEY = '6210521b9db348e29061b65e272b0efd';
+const URL = 'https://newsapi.org/v1/sources?language=en';
+
+function* getSources() {
   try {
-    const newsfeeds = yield call(getAll, 'newsfeeds');
-    yield put(getNewsFeedsSucceeded(newsfeeds));
+    const payload = yield call(axios.get, URL);
+    yield put(getSourcesSucceeded(payload));
   } catch (error) {
-    yield put(getNewsFeedsFailed(error));
+    yield put(getSourcesFailed(error));
   }
 }
 
-function* addNewsFeed(dispatch) {
+function* addSource(dispatch) {
   const { newsfeed, id } = dispatch.newsfeed;
   const newsfeedKey = `newsfeeds/${id}`;
 
@@ -34,28 +38,28 @@ function* addNewsFeed(dispatch) {
     yield call(create, 'newsfeeds', () => ({
       [newsfeedKey]: { ...newsfeed, id },
     }));
-    yield put(addNewsFeedSucceeded(newsfeed, id));
+    yield put(addSourceSucceeded(newsfeed, id));
   } catch (error) {
-    yield put(addNewsFeedFailed(error));
+    yield put(addSourceFailed(error));
   }
 }
 
-function* removeNewsFeed(action) {
+function* removeSource(action) {
   const id = action.id;
 
   try {
     yield call(remove, 'newsfeeds', id);
-    yield put(removeNewsFeedSucceeded(id));
+    yield put(removeSourceSucceeded(id));
   } catch (error) {
-    yield put(removeNewsFeedFailed(error));
+    yield put(removeSourceFailed(error));
   }
 }
 
 function* newsfeedSagas() {
   yield* [
-    takeEvery(GET_NEWSFEEDS_REQUESTED, getNewsFeeds),
-    takeEvery(ADD_NEWSFEED_REQUESTED, addNewsFeed),
-    takeEvery(REMOVE_NEWSFEED_REQUESTED, removeNewsFeed),
+    takeEvery(GET_SOURCES_REQUESTED, getSources),
+    takeEvery(ADD_SOURCE_REQUESTED, addSource),
+    takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),
   ];
 }
 
