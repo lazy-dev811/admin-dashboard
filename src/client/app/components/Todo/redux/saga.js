@@ -1,7 +1,8 @@
-import uuidV1 from 'uuid/v1';
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { getAll, create, remove } from 'firebase-saga';
+
+import uuid from '../../../utils/uuid';
 
 import {
   FETCH_TODOS_REQUESTED,
@@ -29,7 +30,7 @@ function* fetchTodos() {
 
 function* addTodo(dispatch) {
   const formValues = dispatch.formValues;
-  const id = uuidV1();
+  const id = uuid();
   const todoKey = `todos/${id}`;
 
   try {
