@@ -5,12 +5,12 @@ import { call, put } from 'redux-saga/effects';
 import { FETCH_WEATHER_REQUESTED, fetchWeatherSucceeded, fetchWeatherFailed } from './actions';
 
 
-const API_KEY = '8b8fdbe46cc1b907383d8f937198939e';
-const URL = `http://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}`;
+const API_KEY = 'e5c3832111c565060419efb6267e9a2e';
+const URL = `https://api.darksky.net/forecast/${API_KEY}`;
 
 function* fetchWeather(action) {
-  const city = 'capetown';
-  const url = `${URL}&q=${city}&units=metric`;
+  const coordinates = '33.9249,18.4241';
+  const url = `${URL}/${coordinates}`;
 
   try {
     const weatherData = yield call(axios.get, url);

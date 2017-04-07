@@ -9,11 +9,9 @@ const mapStateToProps = ({ widgetGreet, config }) => ({ ...widgetGreet, ...confi
 
 const mergeProps = ({ widgetIdentifier, person, date, weatherData, widgetGreet, asyncStatus }, { dispatch }) => {
   const weatherDataFormatted = weatherData && {
-    temperature: weatherData.main.temp,
-    temperatureMin: weatherData.main.temp_min,
-    temperatureMax: weatherData.main.temp_max,
-    windSpeed: weatherData.wind.speed,
-    icon: openWeatherMapConfig.filter(config => config.id === weatherData.weather[0].id)[0].icon,
+    temperature: weatherData.currently.temperature,
+    windSpeed: weatherData.currently.windSpeed,
+    icon: openWeatherMapConfig.filter(config => config.description === weatherData.currently.icon)[0].icon,
   };
 
   return ({

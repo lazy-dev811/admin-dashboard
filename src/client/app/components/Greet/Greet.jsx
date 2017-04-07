@@ -26,12 +26,6 @@ class Greet extends React.Component {
             <this.props.weatherData.icon />
 
             <ul className="weather__details">
-              <li className="weather__details__item">Min
-                <span className="weather__details__item__detail">{this.props.weatherData.temperatureMin}&#xb0;</span>
-              </li>
-              <li className="weather__details__item">Max
-                <span className="weather__details__item__detail">{this.props.weatherData.temperatureMax}&#xb0;</span>
-              </li>
               <li className="weather__details__item">Wind
                 <span className="weather__details__item__detail">{this.props.weatherData.windSpeed}</span>
               </li>
@@ -47,7 +41,7 @@ Greet.propTypes = {
   person: PropTypes.object.isRequired,
   date: PropTypes.string.isRequired,
   weatherData: PropTypes.object,
-  getWeather: PropTypes.func,
+  // getWeather: PropTypes.func,
 };
 
 export default Greet;
