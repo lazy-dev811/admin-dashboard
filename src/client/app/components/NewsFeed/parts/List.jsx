@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
-const List = ({ sources, removeSource }) => (
+const List = ({ sources, toggleActiveSource }) => (
   <ul className="sources">
     {
       sources && sources.map(source => (
         <li className="sources__source" key={source.id}>
-          <button className="sources__btn" onClick={() => removeSource(source.id)} />
+          <button className="sources__btn" onClick={() => toggleActiveSource(source)} />
           <img className="sources__source__img" src={source.urlsToLogos.small} alt="logo" />
         </li>
       ))
@@ -15,7 +15,7 @@ const List = ({ sources, removeSource }) => (
 
 List.propTypes = {
   sources: PropTypes.array.isRequired,
-  removeSource: PropTypes.func.isRequired,
+  toggleActiveSource: PropTypes.func.isRequired,
 };
 
 export default List;

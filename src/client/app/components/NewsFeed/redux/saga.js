@@ -31,14 +31,16 @@ function* getSources() {
 }
 
 function* addSource(dispatch) {
-  const { newsfeed, id } = dispatch.newsfeed;
-  const newsfeedKey = `newsfeeds/${id}`;
+  console.log('dispatch', dispatch)
+  const { source } = dispatch;
+  const id = source.id;
+  const newsfeedKey = `newsfeed/${id}`;
 
   try {
     yield call(create, 'newsfeeds', () => ({
-      [newsfeedKey]: { ...newsfeed, id },
+      [newsfeedKey]: { ...source, id },
     }));
-    yield put(addSourceSucceeded(newsfeed, id));
+    yield put(addSourceSucceeded(source, id));
   } catch (error) {
     yield put(addSourceFailed(error));
   }

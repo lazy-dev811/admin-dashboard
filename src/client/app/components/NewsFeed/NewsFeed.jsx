@@ -10,7 +10,7 @@ class NewsFeed extends Component {
   }
 
   render() {
-    const { sources, removeSource } = this.props;
+    const { sources, toggleActiveSource } = this.props;
 
     return (
       <div className="newsfeed">
@@ -18,14 +18,18 @@ class NewsFeed extends Component {
           News Feed
           <ul className="newsfeed__view-options">
             <li className="newsfeed__view-options__option">
-              sources
+              <button>
+                sources
+              </button>
             </li>
             <li className="newsfeed__view-options__option">
-              articles
+              <button>
+                articles
+              </button>
             </li>
           </ul>
         </div>
-        <List sources={sources} removeSource={removeSource} />
+        <List sources={sources} toggleActiveSource={toggleActiveSource} />
       </div>
     );
   }
@@ -38,7 +42,7 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   sources: PropTypes.array.isRequired,
   getSources: PropTypes.func.isRequired,
-  removeSource: PropTypes.func.isRequired,
+  toggleActiveSource: PropTypes.func.isRequired,
 };
 
 export default NewsFeed;

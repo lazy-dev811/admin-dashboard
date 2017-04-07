@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   widgetIdentifier: 'widgetNewsFeed',
   widgetName: 'NewsFeed',
   sources: [],
+  activeSources: [],
   asyncStatus: {
     inProgress: false,
     error: false,
@@ -72,14 +73,11 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case ADD_SOURCE_SUCCEEDED: {
-      const newNewsFeed = Object.assign(action.formValues);
-      newNewsFeed.id = action.id;
-
       return {
         ...state,
-        sources: [
-          ...state.sources,
-          newNewsFeed,
+        activeSources: [
+          ...state.activeSources,
+          action.source,
         ],
         asyncStatus: {
           inProgress: false,
@@ -113,11 +111,11 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case REMOVE_SOURCE_SUCCEEDED: {
-      const sources = state.sources.filter(newsfeed => newsfeed.id !== action.id);
+      const activeSources = state.activeSources.filter(source => source.id !== action.id);
 
       return {
         ...state,
-        sources,
+        activeSources,
         asyncStatus: {
           inProgress: false,
           error: false,

@@ -35,6 +35,7 @@ button {
   font-family: $b-font-family;
   font-size: $b-font-size;
   cursor: pointer;
+  background-color: transparent;
 
   &:focus,
   &:active {
