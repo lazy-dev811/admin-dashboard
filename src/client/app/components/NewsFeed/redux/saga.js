@@ -16,6 +16,10 @@ import {
   addSourceSucceeded,
   addSourceFailed,
 
+  TOGGLE_ACTIVE_CATEGORY_REQUESTED,
+  toggleActiveCategorySucceeded,
+  toggleActiveCategoryFailed,
+
   REMOVE_SOURCE_REQUESTED,
   removeSourceSucceeded,
   removeSourceFailed,
@@ -44,13 +48,12 @@ function* getActiveSources() {
 }
 
 function* addSource(dispatch) {
-  console.log('dispatch', dispatch)
   const { source } = dispatch;
   const id = source.id;
   const newsfeedKey = `newsfeed/${id}`;
 
   try {
-    yield call(create, 'newsfeeds', () => ({
+    yield call(create, 'newsfeed', () => ({
       [newsfeedKey]: { ...source, id },
     }));
     yield put(addSourceSucceeded(source, id));
@@ -59,11 +62,25 @@ function* addSource(dispatch) {
   }
 }
 
+function* toggleActiveCategory(dispatch) {
+  const { category } = dispatch;
+  const id = category;
+  const activeCategoryKey = `newsfeed/activeCategories/${id}`;
+
+  try {
+    yield call(create, 'newsfeed/activeCategories', () => ({
+      [activeCategoryKey]: category,
+    }));
+    yield put(toggleActiveCategorySucceeded(category));
+  } catch (error) {
+    yield put(toggleActiveCategoryFailed(error));
+  }
+}
 function* removeSource(action) {
   const id = action.id;
 
   try {
-    yield call(remove, 'newsfeeds', id);
+    yield call(remove, 'newsfeed', id);
     yield put(removeSourceSucceeded(id));
   } catch (error) {
     yield put(removeSourceFailed(error));
@@ -74,6 +91,7 @@ function* newsfeedSagas() {
   yield* [
     takeEvery(GET_SOURCES_REQUESTED, getSources),
     takeEvery(GET_ACTIVE_SOURCES_REQUESTED, getActiveSources),
+    takeEvery(TOGGLE_ACTIVE_CATEGORY_REQUESTED, toggleActiveCategory),
     takeEvery(ADD_SOURCE_REQUESTED, addSource),
     takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),
   ];

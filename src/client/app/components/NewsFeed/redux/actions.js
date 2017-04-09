@@ -2,6 +2,10 @@ export const GET_SOURCES_REQUESTED = 'GET_SOURCES_REQUESTED';
 export const GET_SOURCES_SUCCEEDED = 'GET_SOURCES_SUCCEEDED';
 export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
 
+export const TOGGLE_ACTIVE_CATEGORY_REQUESTED = 'TOGGLE_ACTIVE_CATEGORY_REQUESTED';
+export const TOGGLE_ACTIVE_CATEGORY_SUCCEEDED = 'TOGGLE_ACTIVE_CATEGORY_SUCCEEDED';
+export const TOGGLE_ACTIVE_CATEGORY_FAILED = 'TOGGLE_ACTIVE_CATEGORY_FAILED';
+
 export const GET_ACTIVE_SOURCES_REQUESTED = 'GET_ACTIVE_SOURCES_REQUESTED';
 export const GET_ACTIVE_SOURCES_SUCCEEDED = 'GET_ACTIVE_SOURCES_SUCCEEDED';
 export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
@@ -27,6 +31,23 @@ export const getSourcesFailed = error => ({
   type: GET_SOURCES_FAILED,
   error,
 });
+
+
+export const toggleActiveCategoryRequested = category => ({
+  type: TOGGLE_ACTIVE_CATEGORY_REQUESTED,
+  category,
+});
+
+export const toggleActiveCategorySucceeded = payload => ({
+  type: TOGGLE_ACTIVE_CATEGORY_SUCCEEDED,
+  payload,
+});
+
+export const toggleActiveCategoryFailed = error => ({
+  type: TOGGLE_ACTIVE_CATEGORY_FAILED,
+  error,
+});
+
 
 export const getActiveSourcesRequested = () => ({
   type: GET_ACTIVE_SOURCES_REQUESTED,

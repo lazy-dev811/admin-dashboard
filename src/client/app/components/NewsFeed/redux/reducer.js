@@ -1,3 +1,5 @@
+import { returnUnique } from '../../../utils';
+
 import {
   GET_SOURCES_REQUESTED,
   GET_SOURCES_SUCCEEDED,
@@ -21,6 +23,8 @@ const INITIAL_STATE = {
   widgetName: 'NewsFeed',
   sources: [],
   activeSources: [],
+  categories: [],
+  activeCategories: [],
   displayArticles: true,
   asyncStatus: {
     inProgress: false,
@@ -43,9 +47,12 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case GET_SOURCES_SUCCEEDED: {
+      const { sources } = action.payload.data;
       return {
         ...state,
-        sources: action.payload.data.sources,
+        sources,
+        categories: returnUnique(sources.map(source => source.category)),
+        activeCategories: returnUnique(sources.map(source => source.category)),
         asyncStatus: {
           inProgress: false,
           error: false,

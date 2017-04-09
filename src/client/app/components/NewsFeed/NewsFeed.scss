@@ -1,19 +1,39 @@
 @import '../../scss/inc/variables';
 @import '../../scss/helpers/ellipse';
 
+$spacing-filters: 15px;
+$color-border-filters: #e6e6e6;
+
+
 .newsfeed {
   background-color: #fff;
 
-  &__view-options {
+  &__options {
+    display: flex;
+    text-transform: none;
+  }
+
+  &__views {
     display: flex;
 
-    &__option {
+    &__view {
       margin-left: 10px;
-      font-size: 11px;
 
-      &__btn {
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &__link {
+        color: inherit;
+
+        &:hover,
         &.is-active {
           color: $color;
+        }
+
+        &.is-active {
+          padding-bottom: 1px;
+          border-bottom: 1px solid $color;
         }
       }
     }
@@ -22,9 +42,16 @@
 
 .filters {
   display: flex;
+  margin-right: $spacing-filters;
+  padding-right: $spacing-filters;
+  border-right: 1px solid $color-border-filters;
 
   &__filter {
-    margin: 0 5px;
+    margin-left: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
   }
 }
 
