@@ -2,6 +2,10 @@ export const GET_SOURCES_REQUESTED = 'GET_SOURCES_REQUESTED';
 export const GET_SOURCES_SUCCEEDED = 'GET_SOURCES_SUCCEEDED';
 export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
 
+export const GET_ACTIVE_SOURCES_REQUESTED = 'GET_ACTIVE_SOURCES_REQUESTED';
+export const GET_ACTIVE_SOURCES_SUCCEEDED = 'GET_ACTIVE_SOURCES_SUCCEEDED';
+export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
+
 export const ADD_SOURCE_REQUESTED = 'ADD_SOURCE_REQUESTED';
 export const ADD_SOURCE_SUCCEEDED = 'ADD_SOURCE_SUCCEEDED';
 export const ADD_SOURCE_FAILED = 'ADD_SOURCE_FAILED';
@@ -21,6 +25,20 @@ export const getSourcesSucceeded = payload => ({
 
 export const getSourcesFailed = error => ({
   type: GET_SOURCES_FAILED,
+  error,
+});
+
+export const getActiveSourcesRequested = () => ({
+  type: GET_ACTIVE_SOURCES_REQUESTED,
+});
+
+export const getActiveSourcesSucceeded = payload => ({
+  type: GET_ACTIVE_SOURCES_SUCCEEDED,
+  payload,
+});
+
+export const getActiveSourcesFailed = error => ({
+  type: GET_ACTIVE_SOURCES_FAILED,
   error,
 });
 

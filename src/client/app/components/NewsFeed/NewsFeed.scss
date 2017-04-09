@@ -1,3 +1,4 @@
+@import '../../scss/inc/variables';
 @import '../../scss/helpers/ellipse';
 
 .newsfeed {
@@ -9,7 +10,21 @@
     &__option {
       margin-left: 10px;
       font-size: 11px;
+
+      &__btn {
+        &.is-active {
+          color: $color;
+        }
+      }
     }
+  }
+}
+
+.filters {
+  display: flex;
+
+  &__filter {
+    margin: 0 5px;
   }
 }
 
@@ -31,6 +46,10 @@
 
     &:hover {
       box-shadow: 0 0 0 2px #ccc;
+    }
+
+    &.is-active {
+      box-shadow: 0 0 0 2px #666;
     }
 
     &__img {

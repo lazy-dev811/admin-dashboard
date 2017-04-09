@@ -8,6 +8,10 @@ import {
   getSourcesSucceeded,
   getSourcesFailed,
 
+  GET_ACTIVE_SOURCES_REQUESTED,
+  getActiveSourcesSucceeded,
+  getActiveSourcesFailed,
+
   ADD_SOURCE_REQUESTED,
   addSourceSucceeded,
   addSourceFailed,
@@ -27,6 +31,15 @@ function* getSources() {
     yield put(getSourcesSucceeded(payload));
   } catch (error) {
     yield put(getSourcesFailed(error));
+  }
+}
+
+function* getActiveSources() {
+  try {
+    const payload = yield call(getAll, 'newsfeed');
+    yield put(getActiveSourcesSucceeded(payload));
+  } catch (error) {
+    yield put(getActiveSourcesFailed(error));
   }
 }
 
@@ -60,6 +73,7 @@ function* removeSource(action) {
 function* newsfeedSagas() {
   yield* [
     takeEvery(GET_SOURCES_REQUESTED, getSources),
+    takeEvery(GET_ACTIVE_SOURCES_REQUESTED, getActiveSources),
     takeEvery(ADD_SOURCE_REQUESTED, addSource),
     takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),
   ];

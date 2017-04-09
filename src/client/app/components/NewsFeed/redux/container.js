@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import {
   getSourcesRequested,
+  getActiveSourcesRequested,
   addSourceRequested,
   removeSourceRequested,
 } from './actions';
@@ -18,6 +19,7 @@ const mergeProps = ({ widgetIdentifier, sources, activeSources, widgetNewsFeed, 
   asyncStatus,
   getSources() {
     dispatch(getSourcesRequested());
+    dispatch(getActiveSourcesRequested());
   },
   toggleActiveSource(selectedSource) {
     if (activeSources.findIndex(source => source.id === selectedSource.id) > -1) {

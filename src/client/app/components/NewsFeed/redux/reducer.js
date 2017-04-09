@@ -3,6 +3,10 @@ import {
   GET_SOURCES_SUCCEEDED,
   GET_SOURCES_FAILED,
 
+  GET_ACTIVE_SOURCES_REQUESTED,
+  GET_ACTIVE_SOURCES_SUCCEEDED,
+  GET_ACTIVE_SOURCES_FAILED,
+
   ADD_SOURCE_REQUESTED,
   ADD_SOURCE_SUCCEEDED,
   ADD_SOURCE_FAILED,
@@ -17,6 +21,7 @@ const INITIAL_STATE = {
   widgetName: 'NewsFeed',
   sources: [],
   activeSources: [],
+  displayArticles: true,
   asyncStatus: {
     inProgress: false,
     error: false,
@@ -50,6 +55,42 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case GET_SOURCES_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: false,
+          error: true,
+          errorMessage: action.error.message,
+        },
+      };
+    }
+
+
+    case GET_ACTIVE_SOURCES_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          inProgress: true,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_ACTIVE_SOURCES_SUCCEEDED: {
+      const activeSources = Object.keys(action.payload).map(source => action.payload[source]);
+      return {
+        ...state,
+        activeSources,
+        asyncStatus: {
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_ACTIVE_SOURCES_FAILED: {
       return {
         ...state,
         asyncStatus: {
