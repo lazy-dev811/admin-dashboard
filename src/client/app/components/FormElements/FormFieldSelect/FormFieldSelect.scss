@@ -1,6 +1,10 @@
 @import '../base.scss';
 
-$color-border: #E8E8E8;
+$bg-options: #444;
+$color-options: #fff;
+$padding-option: 20px;
+
+$color-chevron: #373636;
 
 
 .select-field-container {
@@ -14,17 +18,23 @@ $color-border: #E8E8E8;
 
 
 .select-input {
-  text-transform: none;
-
   &:hover {
+    .select-input__title {
+      color: $color;
+    }
+
+    .svg-chevron-down {
+      fill: $color;
+    }
+
     .select-input__options-wrap {
       display: block;
     }
   }
 
   &:focus {
-    box-shadow: inset 0 -1px 0 0 $b-color-dark;
-    color: $b-color-dark;
+    box-shadow: inset 0 -1px 0 0 $color;
+    color: $color;
   }
 
   &__title {
@@ -36,7 +46,7 @@ $color-border: #E8E8E8;
       margin-top: 2px;
       margin-left: 5px;
       width: 11px;
-      fill: #373636;
+      fill: $color-chevron;
     }
   }
 
@@ -45,17 +55,34 @@ $color-border: #E8E8E8;
     display: none;
     position: absolute;
     top: 100%;
-    left: -10px;
+    left: -$padding-option;
   }
 
   &__options {
+    padding: $padding-option 0;
+    background-color: $bg-options;
+    color: $color-options;
+    cursor: default;
     margin-top: 10px;
-    padding: 10px 0;
-    background-color: #eee;
 
     &__option {
-      padding: 5px 10px;
+      display: block;
+      padding: 0 $padding-option;
       white-space: nowrap;
+
+      &:hover,
+      &.is-active {
+        color: $color;
+      }
+
+      &__btn {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        cursor: pointer;
+        color: inherit;
+      }
     }
   }
 }

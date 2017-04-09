@@ -1,14 +1,17 @@
 import React, { PropTypes } from 'react';
+import classnames from 'classnames';
 
 import ChevronDown from '../../Icon/ChevronDown';
 import './FormFieldSelect.scss';
 
 const FormFieldSelect = ({
-  label,
-  id,
-  title,
-  options,
-  className,
+  label = '',
+  id = '',
+  title = '',
+  options = [],
+  compareOptions = [],
+  className = '',
+  onChange = () => {},
 }) => (
   <div className={`select-field-container ${className}`}>
     {
@@ -28,7 +31,19 @@ const FormFieldSelect = ({
       </div>
       <div className="select-input__options-wrap">
         <ul className="select-input__options">
-          {options.map(option => <li className="select-input__options__option">{option}</li>)}
+          {options.map((option) => {
+            const optionClass = classnames('select-input__options__option', {
+              'is-active': compareOptions.findIndex(compareOption => (compareOption === option)) > -1,
+            });
+
+            return (
+              <li className={optionClass}>
+                <button className="select-input__options__option__btn" onClick={() => onChange(option)}>
+                  {option}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
@@ -40,7 +55,9 @@ FormFieldSelect.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   options: PropTypes.array.isRequired,
+  compareOptions: PropTypes.array,
   className: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default FormFieldSelect;
