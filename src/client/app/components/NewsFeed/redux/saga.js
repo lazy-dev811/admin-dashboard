@@ -12,6 +12,10 @@ import {
   getActiveSourcesSucceeded,
   getActiveSourcesFailed,
 
+  GET_ACTIVE_ARTICLES_REQUESTED,
+  getActiveArticlesSucceeded,
+  getActiveArticlesFailed,
+
   ADD_SOURCE_REQUESTED,
   addSourceSucceeded,
   addSourceFailed,
@@ -45,6 +49,28 @@ function* getActiveSources() {
   } catch (error) {
     yield put(getActiveSourcesFailed(error));
   }
+}
+
+function* getActiveArticles(dispatch) {
+  const activeSources = [
+    'recode',
+    'reddit-r-all',
+    'mashable',
+  ];
+
+  let testUrl = '';
+  function* tester(array) {
+    for (const item of array) {
+      testUrl = `https://newsapi.org/v1/articles?source=${item}&apiKey=6210521b9db348e29061b65e272b0efd`;
+      try {
+        const payload = yield call(axios.get, testUrl);
+        yield put(getActiveArticlesSucceeded(payload, item));
+      } catch (error) {
+        yield put(getActiveArticlesFailed(error));
+      }
+    }
+  }
+  yield tester(activeSources);
 }
 
 function* addSource(dispatch) {
@@ -91,6 +117,7 @@ function* newsfeedSagas() {
   yield* [
     takeEvery(GET_SOURCES_REQUESTED, getSources),
     takeEvery(GET_ACTIVE_SOURCES_REQUESTED, getActiveSources),
+    takeEvery(GET_ACTIVE_ARTICLES_REQUESTED, getActiveArticles),
     takeEvery(TOGGLE_ACTIVE_CATEGORY_REQUESTED, toggleActiveCategory),
     takeEvery(ADD_SOURCE_REQUESTED, addSource),
     takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),

@@ -1,6 +1,12 @@
+export const TOGGLE_ACTIVE_VIEW = 'TOGGLE_ACTIVE_VIEW';
+
 export const GET_SOURCES_REQUESTED = 'GET_SOURCES_REQUESTED';
 export const GET_SOURCES_SUCCEEDED = 'GET_SOURCES_SUCCEEDED';
 export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
+
+export const GET_ACTIVE_ARTICLES_REQUESTED = 'GET_ACTIVE_ARTICLES_REQUESTED';
+export const GET_ACTIVE_ARTICLES_SUCCEEDED = 'GET_ACTIVE_ARTICLES_SUCCEEDED';
+export const GET_ACTIVE_ARTICLES_FAILED = 'GET_ACTIVE_ARTICLES_FAILED';
 
 export const TOGGLE_ACTIVE_CATEGORY_REQUESTED = 'TOGGLE_ACTIVE_CATEGORY_REQUESTED';
 export const TOGGLE_ACTIVE_CATEGORY_SUCCEEDED = 'TOGGLE_ACTIVE_CATEGORY_SUCCEEDED';
@@ -18,6 +24,13 @@ export const REMOVE_SOURCE_REQUESTED = 'REMOVE_SOURCE_REQUESTED';
 export const REMOVE_SOURCE_SUCCEEDED = 'REMOVE_SOURCE_SUCCEEDED';
 export const REMOVE_SOURCE_FAILED = 'REMOVE_SOURCE_FAILED';
 
+
+export const toggleActiveView = view => ({
+  type: TOGGLE_ACTIVE_VIEW,
+  view,
+});
+
+
 export const getSourcesRequested = () => ({
   type: GET_SOURCES_REQUESTED,
 });
@@ -29,6 +42,23 @@ export const getSourcesSucceeded = payload => ({
 
 export const getSourcesFailed = error => ({
   type: GET_SOURCES_FAILED,
+  error,
+});
+
+
+export const getActiveArticlesRequested = activeSources => ({
+  type: GET_ACTIVE_ARTICLES_REQUESTED,
+  activeSources,
+});
+
+export const getActiveArticlesSucceeded = (payload, source) => ({
+  type: GET_ACTIVE_ARTICLES_SUCCEEDED,
+  payload,
+  source,
+});
+
+export const getActiveArticlesFailed = error => ({
+  type: GET_ACTIVE_ARTICLES_REQUESTED,
   error,
 });
 

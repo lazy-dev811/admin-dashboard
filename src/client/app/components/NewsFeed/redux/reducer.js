@@ -1,9 +1,15 @@
 import { returnUnique } from '../../../utils';
 
 import {
+  TOGGLE_ACTIVE_VIEW,
+
   GET_SOURCES_REQUESTED,
   GET_SOURCES_SUCCEEDED,
   GET_SOURCES_FAILED,
+
+  GET_ACTIVE_ARTICLES_REQUESTED,
+  GET_ACTIVE_ARTICLES_SUCCEEDED,
+  GET_ACTIVE_ARTICLES_FAILED,
 
   GET_ACTIVE_SOURCES_REQUESTED,
   GET_ACTIVE_SOURCES_SUCCEEDED,
@@ -23,9 +29,10 @@ const INITIAL_STATE = {
   widgetName: 'NewsFeed',
   sources: [],
   activeSources: [],
+  activeArticles: [],
   categories: [],
   activeCategories: [],
-  displayArticles: true,
+  activeView: 'articles',
   asyncStatus: {
     inProgress: false,
     error: false,
@@ -35,6 +42,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case TOGGLE_ACTIVE_VIEW: {
+      return {
+        ...state,
+        activeView: action.view,
+      };
+    }
+
     case GET_SOURCES_REQUESTED: {
       return {
         ...state,
@@ -105,6 +119,19 @@ export default (state = INITIAL_STATE, action) => {
           error: true,
           errorMessage: action.error.message,
         },
+      };
+    }
+
+    case GET_ACTIVE_ARTICLES_SUCCEEDED: {
+      return {
+        ...state,
+        activeArticles: [
+          ...state.activeArticles,
+          action.payload.data.articles.map(article => ({
+            source: action.source,
+            ...article,
+          })),
+        ],
       };
     }
 

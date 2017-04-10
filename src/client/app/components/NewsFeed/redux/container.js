@@ -2,9 +2,11 @@ import { connect } from 'react-redux';
 import {
   getSourcesRequested,
   getActiveSourcesRequested,
+  getActiveArticlesRequested,
   toggleActiveCategoryRequested,
   addSourceRequested,
   removeSourceRequested,
+  toggleActiveView,
 } from './actions';
 
 import NewsFeed from '../NewsFeed.jsx';
@@ -16,26 +18,36 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
+  activeArticles,
   categories,
   activeCategories,
-  displayArticles,
+  activeView,
   widgetNewsFeed,
   asyncStatus,
 }, { dispatch }) => ({
   widgetIdentifier,
   sources,
   activeSources,
+  activeArticles,
   categories,
   activeCategories,
+  activeView,
   config: widgetNewsFeed,
   asyncStatus,
   getSources() {
     dispatch(getSourcesRequested());
     dispatch(getActiveSourcesRequested());
   },
+  getArticles() {
+    console.log('activeSources', activeSources);
+    dispatch(getActiveArticlesRequested());
+  },
   selectCategory(category) {
     dispatch(toggleActiveCategoryRequested(category));
     console.log('category', category);
+  },
+  selectView(view) {
+    dispatch(toggleActiveView(view));
   },
   selectSort(sort) {
     console.log('sort', sort);
