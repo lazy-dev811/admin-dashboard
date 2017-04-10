@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-const List = ({ sources, activeSources, toggleActiveSource }) => {
+const Sources = ({ sources, activeSources, toggleActiveSource }) => {
 
   return (
     <ul className="sources">
@@ -23,10 +23,10 @@ const List = ({ sources, activeSources, toggleActiveSource }) => {
   );
 };
 
-List.propTypes = {
+Sources.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array,
   toggleActiveSource: PropTypes.func.isRequired,
 };
 
-export default List;
+export default Sources;
