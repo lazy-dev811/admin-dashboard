@@ -4,13 +4,13 @@ import classnames from 'classnames';
 const Views = ({ views, activeView, selectView }) => (
   <ul className="newsfeed__views">
     {views.map((view) => {
-      const viewClassname = classnames('newsfeed__views__view', {
+      const btnClassname = classnames('newsfeed__views__view__btn', {
         'is-active': view === activeView,
       });
 
       return (
-        <li className={viewClassname} key={view}>
-          <button className="newsfeed__views__view__link"
+        <li className="newsfeed__views__view" key={view}>
+          <button className={btnClassname}
             onClick={() => selectView(view)}
           >
             {view}
