@@ -9,14 +9,17 @@ require('./NewsFeed.scss');
 
 class NewsFeed extends Component {
   componentWillMount() {
-    this.props.getSources();
-    this.props.getArticles();
+    console.log('mounting');
+    this.props.getSourcesAndArticles();
   }
 
   render() {
     const {
       sources,
       activeSources,
+      toggledSource,
+
+      views,
       activeView,
       activeArticles = [],
       categories,
@@ -25,8 +28,9 @@ class NewsFeed extends Component {
       selectSort,
       selectView,
       toggleActiveSource,
+      removeArticles,
+      asyncStatus,
     } = this.props;
-    const views = ['sources', 'articles'];
     const sortOptions = ['top', 'newest', 'best'];
 
     return (
@@ -48,6 +52,7 @@ class NewsFeed extends Component {
 
             <Views
               views={views}
+              activeSources={activeSources}
               activeView={activeView}
               selectView={selectView}
             />
@@ -56,12 +61,22 @@ class NewsFeed extends Component {
 
         {
           activeView === 'sources' &&
-          <Sources sources={sources} activeSources={activeSources} toggleActiveSource={toggleActiveSource} />
+          <Sources
+            sources={sources}
+            activeSources={activeSources}
+            toggledSource={toggledSource}
+            toggleActiveSource={toggleActiveSource}
+            asyncStatus={asyncStatus}
+          />
         }
 
         {
           activeView === 'articles' &&
-          <Articles activeArticles={activeArticles} />
+          <Articles
+            activeArticles={activeArticles}
+            activeSources={activeSources}
+            removeArticles={removeArticles}
+          />
         }
       </div>
     );
@@ -75,16 +90,21 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array,
+  toggledSource: PropTypes.object,
+
   activeArticles: PropTypes.array.isRequired,
+
+  views: PropTypes.array.isRequired,
   activeView: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
   activeCategories: PropTypes.array.isRequired,
-  getSources: PropTypes.func.isRequired,
-  getArticles: PropTypes.func.isRequired,
+  getSourcesAndArticles: PropTypes.func.isRequired,
+  removeArticles: PropTypes.func.isRequired,
   selectCategory: PropTypes.func.isRequired,
   selectSort: PropTypes.func.isRequired,
   selectView: PropTypes.func.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
+  asyncStatus: PropTypes.object,
 };
 
 export default NewsFeed;

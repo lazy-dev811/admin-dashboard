@@ -3,17 +3,17 @@ import { returnUnique } from '../../../utils';
 import {
   TOGGLE_ACTIVE_VIEW,
 
-  GET_SOURCES_REQUESTED,
+  REMOVE_ARTICLES,
+
   GET_SOURCES_SUCCEEDED,
   GET_SOURCES_FAILED,
 
-  GET_ACTIVE_ARTICLES_REQUESTED,
-  GET_ACTIVE_ARTICLES_SUCCEEDED,
-  GET_ACTIVE_ARTICLES_FAILED,
-
-  GET_ACTIVE_SOURCES_REQUESTED,
   GET_ACTIVE_SOURCES_SUCCEEDED,
   GET_ACTIVE_SOURCES_FAILED,
+
+  GET_SOURCES_AND_ARTICLES_REQUESTED,
+  GET_SOURCES_AND_ARTICLES_SUCCEEDED,
+  GET_SOURCES_AND_ARTICLES_FAILED,
 
   ADD_SOURCE_REQUESTED,
   ADD_SOURCE_SUCCEEDED,
@@ -29,14 +29,22 @@ const INITIAL_STATE = {
   widgetName: 'NewsFeed',
   sources: [],
   activeSources: [],
+  toggledSource: {},
   activeArticles: [],
   categories: [],
   activeCategories: [],
-  activeView: 'articles',
+  views: ['sources', 'articles'],
+  activeView: undefined,
   asyncStatus: {
     inProgress: false,
     error: false,
     errorMessage: undefined,
+
+    toggleActiveSource: {
+      inProgress: false,
+      error: false,
+      errorMessage: undefined,
+    },
   },
 };
 
@@ -49,16 +57,23 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case GET_SOURCES_REQUESTED: {
+    case REMOVE_ARTICLES: {
       return {
         ...state,
-        asyncStatus: {
-          inProgress: true,
-          error: false,
-          errorMessage: undefined,
-        },
+        activeArticles: INITIAL_STATE.activeArticles,
       };
     }
+
+    // case GET_SOURCES_REQUESTED: {
+    //   return {
+    //     ...state,
+    //     asyncStatus: {
+    //       inProgress: true,
+    //       error: false,
+    //       errorMessage: undefined,
+    //     },
+    //   };
+    // }
 
     case GET_SOURCES_SUCCEEDED: {
       const { sources } = action.payload.data;
@@ -67,11 +82,6 @@ export default (state = INITIAL_STATE, action) => {
         sources,
         categories: returnUnique(sources.map(source => source.category)),
         activeCategories: returnUnique(sources.map(source => source.category)),
-        asyncStatus: {
-          inProgress: false,
-          error: false,
-          errorMessage: undefined,
-        },
       };
     }
 
@@ -79,6 +89,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: true,
           errorMessage: action.error.message,
@@ -87,27 +98,27 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case GET_ACTIVE_SOURCES_REQUESTED: {
-      return {
-        ...state,
-        asyncStatus: {
-          inProgress: true,
-          error: false,
-          errorMessage: undefined,
-        },
-      };
-    }
-
     case GET_ACTIVE_SOURCES_SUCCEEDED: {
-      const activeSources = Object.keys(action.payload).map(source => action.payload[source]);
+      const payload = action.payload;
+      let activeSources = [];
+      let activeView = 'sources';
+      let asyncStatus = {
+        ...state.asyncStatus,
+        inProgress: false,
+        error: false,
+        errorMessage: undefined,
+      };
+
+      if (Object.keys(payload).length > 0) {
+        activeSources = Object.keys(payload).map(source => payload[source]);
+        activeView = 'articles';
+        asyncStatus = { ...state.asyncStatus };
+      }
       return {
         ...state,
         activeSources,
-        asyncStatus: {
-          inProgress: false,
-          error: false,
-          errorMessage: undefined,
-        },
+        activeView,
+        asyncStatus,
       };
     }
 
@@ -115,6 +126,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
+          ...state.asyncStatus,
           inProgress: false,
           error: true,
           errorMessage: action.error.message,
@@ -122,16 +134,53 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case GET_ACTIVE_ARTICLES_SUCCEEDED: {
+
+    case GET_SOURCES_AND_ARTICLES_REQUESTED: {
       return {
         ...state,
-        activeArticles: [
-          ...state.activeArticles,
-          action.payload.data.articles.map(article => ({
-            source: action.source,
-            ...article,
-          })),
-        ],
+        asyncStatus: {
+          ...state.asyncStatus,
+          inProgress: true,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_SOURCES_AND_ARTICLES_SUCCEEDED: {
+      const addSource = article => ({
+        source: action.source,
+        ...article,
+      });
+
+      const sortByDate = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
+
+      const activeArticles = [
+        ...state.activeArticles,
+        ...action.payload.data.articles.map(addSource),
+      ].sort(sortByDate);
+
+      return {
+        ...state,
+        activeArticles,
+        asyncStatus: {
+          ...state.asyncStatus,
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
+      };
+    }
+
+    case GET_SOURCES_AND_ARTICLES_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          inProgress: false,
+          error: true,
+          errorMessage: action.error.message,
+        },
       };
     }
 
@@ -139,10 +188,14 @@ export default (state = INITIAL_STATE, action) => {
     case ADD_SOURCE_REQUESTED: {
       return {
         ...state,
+        toggledSource: action.source,
         asyncStatus: {
-          inProgress: true,
-          error: false,
-          errorMessage: undefined,
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
@@ -155,9 +208,12 @@ export default (state = INITIAL_STATE, action) => {
           action.source,
         ],
         asyncStatus: {
-          inProgress: false,
-          error: false,
-          errorMessage: undefined,
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
@@ -166,9 +222,12 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
-          inProgress: false,
-          error: true,
-          errorMessage: action.error.message,
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: false,
+            error: true,
+            errorMessage: action.error.message,
+          },
         },
       };
     }
@@ -177,24 +236,31 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVE_SOURCE_REQUESTED: {
       return {
         ...state,
+        toggledSource: action.source,
         asyncStatus: {
-          inProgress: true,
-          error: false,
-          errorMessage: undefined,
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
 
     case REMOVE_SOURCE_SUCCEEDED: {
-      const activeSources = state.activeSources.filter(source => source.id !== action.id);
+      const activeSources = state.activeSources.filter(source => source.id !== action.source.id);
 
       return {
         ...state,
         activeSources,
         asyncStatus: {
-          inProgress: false,
-          error: false,
-          errorMessage: undefined,
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
         },
       };
     }
@@ -203,9 +269,12 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         asyncStatus: {
-          inProgress: false,
-          error: true,
-          errorMessage: action.error.message,
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: false,
+            error: true,
+            errorMessage: action.error.message,
+          },
         },
       };
     }

@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-const Sources = ({ sources, activeSources, toggleActiveSource }) => {
+import Loader from '../../Loader/Loader';
+
+const Sources = ({ sources, activeSources, toggledSource, toggleActiveSource, asyncStatus }) => {
 
   return (
     <ul className="sources">
@@ -13,6 +15,12 @@ const Sources = ({ sources, activeSources, toggleActiveSource }) => {
 
           return (
             <li className={sourceClass} key={source.id}>
+              {
+                asyncStatus.toggleActiveSource.inProgress &&
+                source.id === toggledSource.id &&
+                <Loader />
+              }
+
               <button className="sources__btn" onClick={() => toggleActiveSource(source)} />
               <img className="sources__source__img" src={source.urlsToLogos.small} alt="logo" />
             </li>
@@ -26,7 +34,9 @@ const Sources = ({ sources, activeSources, toggleActiveSource }) => {
 Sources.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array,
+  toggledSource: PropTypes.object,
   toggleActiveSource: PropTypes.func.isRequired,
+  asyncStatus: PropTypes.object,
 };
 
 export default Sources;

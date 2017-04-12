@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
 import {
-  getSourcesRequested,
-  getActiveSourcesRequested,
-  getActiveArticlesRequested,
+  toggleActiveView,
+  removeArticles,
+  getSourcesAndArticlesRequested,
   toggleActiveCategoryRequested,
   addSourceRequested,
   removeSourceRequested,
-  toggleActiveView,
 } from './actions';
 
 import NewsFeed from '../NewsFeed.jsx';
@@ -18,9 +17,11 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
+  toggledSource,
   activeArticles,
   categories,
   activeCategories,
+  views,
   activeView,
   widgetNewsFeed,
   asyncStatus,
@@ -28,23 +29,22 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
+  toggledSource,
   activeArticles,
   categories,
   activeCategories,
+  views,
   activeView,
   config: widgetNewsFeed,
   asyncStatus,
-  getSources() {
-    dispatch(getSourcesRequested());
-    dispatch(getActiveSourcesRequested());
+  getSourcesAndArticles() {
+    dispatch(getSourcesAndArticlesRequested());
   },
-  getArticles() {
-    console.log('activeSources', activeSources);
-    dispatch(getActiveArticlesRequested());
+  removeArticles() {
+    dispatch(removeArticles());
   },
   selectCategory(category) {
     dispatch(toggleActiveCategoryRequested(category));
-    console.log('category', category);
   },
   selectView(view) {
     dispatch(toggleActiveView(view));
@@ -54,7 +54,7 @@ const mergeProps = ({
   },
   toggleActiveSource(selectedSource) {
     if (activeSources.findIndex(source => source.id === selectedSource.id) > -1) {
-      dispatch(removeSourceRequested(selectedSource.id));
+      dispatch(removeSourceRequested(selectedSource));
     } else {
       dispatch(addSourceRequested(selectedSource));
     }

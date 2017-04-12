@@ -4,17 +4,15 @@ import { call, put } from 'redux-saga/effects';
 import { getAll, create, remove } from 'firebase-saga';
 
 import {
-  GET_SOURCES_REQUESTED,
   getSourcesSucceeded,
   getSourcesFailed,
 
-  GET_ACTIVE_SOURCES_REQUESTED,
   getActiveSourcesSucceeded,
   getActiveSourcesFailed,
 
-  GET_ACTIVE_ARTICLES_REQUESTED,
-  getActiveArticlesSucceeded,
-  getActiveArticlesFailed,
+  GET_SOURCES_AND_ARTICLES_REQUESTED,
+  getSourcesAndArticlesSucceeded,
+  getSourcesAndArticlesFailed,
 
   ADD_SOURCE_REQUESTED,
   addSourceSucceeded,
@@ -31,11 +29,12 @@ import {
 
 
 const API_KEY = '6210521b9db348e29061b65e272b0efd';
-const URL = 'https://newsapi.org/v1/sources?language=en';
+const BASE_SOURCES_URL = 'https://newsapi.org/v1/sources?language=en';
+const BASE_ARTICLES_URL = 'https://newsapi.org/v1/articles';
 
 function* getSources() {
   try {
-    const payload = yield call(axios.get, URL);
+    const payload = yield call(axios.get, BASE_SOURCES_URL);
     yield put(getSourcesSucceeded(payload));
   } catch (error) {
     yield put(getSourcesFailed(error));
@@ -45,32 +44,34 @@ function* getSources() {
 function* getActiveSources() {
   try {
     const payload = yield call(getAll, 'newsfeed');
-    yield put(getActiveSourcesSucceeded(payload));
+    yield put(getActiveSourcesSucceeded(payload || []));
+    return payload;
   } catch (error) {
     yield put(getActiveSourcesFailed(error));
   }
+  return false;
 }
 
-function* getActiveArticles(dispatch) {
-  const activeSources = [
-    'recode',
-    'reddit-r-all',
-    'mashable',
-  ];
-
-  let testUrl = '';
-  function* tester(array) {
-    for (const item of array) {
-      testUrl = `https://newsapi.org/v1/articles?source=${item}&apiKey=6210521b9db348e29061b65e272b0efd`;
+function* getSourcesAndArticles() {
+  function* iterateOverActiveSources(array) {
+    for (const activeSource of array) {
+      const url = `${BASE_ARTICLES_URL}?source=${activeSource}&apiKey=${API_KEY}`;
       try {
-        const payload = yield call(axios.get, testUrl);
-        yield put(getActiveArticlesSucceeded(payload, item));
+        const payload = yield call(axios.get, url);
+        yield put(getSourcesAndArticlesSucceeded(payload, activeSource));
       } catch (error) {
-        yield put(getActiveArticlesFailed(error));
+        yield put(getSourcesAndArticlesFailed(error));
       }
     }
   }
-  yield tester(activeSources);
+
+  yield getSources();
+  const activeSources = yield getActiveSources();
+
+  if (activeSources) {
+    const activeSourcesKeys = Object.keys(activeSources);
+    yield iterateOverActiveSources(activeSourcesKeys);
+  }
 }
 
 function* addSource(dispatch) {
@@ -102,12 +103,14 @@ function* toggleActiveCategory(dispatch) {
     yield put(toggleActiveCategoryFailed(error));
   }
 }
+
 function* removeSource(action) {
-  const id = action.id;
+  const { source } = action;
+  const { id } = source;
 
   try {
     yield call(remove, 'newsfeed', id);
-    yield put(removeSourceSucceeded(id));
+    yield put(removeSourceSucceeded(source));
   } catch (error) {
     yield put(removeSourceFailed(error));
   }
@@ -115,9 +118,7 @@ function* removeSource(action) {
 
 function* newsfeedSagas() {
   yield* [
-    takeEvery(GET_SOURCES_REQUESTED, getSources),
-    takeEvery(GET_ACTIVE_SOURCES_REQUESTED, getActiveSources),
-    takeEvery(GET_ACTIVE_ARTICLES_REQUESTED, getActiveArticles),
+    takeEvery(GET_SOURCES_AND_ARTICLES_REQUESTED, getSourcesAndArticles),
     takeEvery(TOGGLE_ACTIVE_CATEGORY_REQUESTED, toggleActiveCategory),
     takeEvery(ADD_SOURCE_REQUESTED, addSource),
     takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),

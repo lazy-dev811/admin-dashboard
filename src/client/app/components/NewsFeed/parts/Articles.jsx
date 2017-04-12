@@ -5,38 +5,37 @@ import moment from 'moment';
 const Articles = ({ activeArticles = [] }) => (
   <ul className="articles">
     {
-      activeArticles.map(source => (
-        <li>
-          {source.map((article) => {
-            const sourceClass = classnames('article__source', {
-              'is-reddit': source[0].source === 'reddit-r-all',
-              'is-recode': source[0].source === 'recode',
-              'is-mashable': source[0].source === 'mashable',
-            });
-            return (
-              <div className="article">
+      activeArticles.map((article, index) => {
+        const sourceClass = classnames('article__source', {
+          'is-reddit': article.source === 'reddit-r-all',
+          'is-recode': article.source === 'recode',
+          'is-mashable': article.source === 'mashable',
+        });
+
+        return (
+          <li className="article" key={index}>
+            {
+              <div className="article__img-wrap">
+                <img className="article__img" src={article.urlToImage} alt="img" />
+                <span className={sourceClass}>{article.source}</span>
                 {
-                  article.urlToImage !== 'default' &&
-                  <div className="article__img-wrap">
-                    <img className="article__img" src={article.urlToImage} alt="img" />
-                    <span className={sourceClass}>{source[0].source}</span>
-                    <span className="article__date">
-                      {moment(article.publishedAt).format('ddd D MMM')}
-                      <span className="article__date__time">{moment(article.publishedAt).format('hA')}</span>
-                    </span>
-                  </div>
+                  article.publishedAt &&
+                  <span className="article__date">
+                    {moment(article.publishedAt).format('ddd D MMM')}
+                    <span className="article__date__time">{moment(article.publishedAt).format('hA')}</span>
+                  </span>
                 }
-                <div className="article__details">
-                  <a href={article.url} className="article__details__title">
-                    {article.title}
-                  </a>
-                  <p className="article__details__description">{article.description}</p>
-                </div>
               </div>
-            );
-          })}
-        </li>
-      ))
+            }
+            <div className="article__details">
+              <a href={article.url} className="article__details__title">
+                {article.title}
+              </a>
+              <p className="article__details__description">{article.description}</p>
+            </div>
+          </li>
+        );
+      })
     }
   </ul>
 );
