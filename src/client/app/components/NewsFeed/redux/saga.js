@@ -35,6 +35,9 @@ const API_KEY = '6210521b9db348e29061b65e272b0efd';
 const BASE_SOURCES_URL = 'https://newsapi.org/v1/sources?language=en';
 const BASE_ARTICLES_URL = 'https://newsapi.org/v1/articles';
 
+const firebaseNewsFeedRoot = 'widgets/newsfeed';
+const firebaseActiveSources = `${firebaseNewsFeedRoot}/data/active-sources`;
+
 function* getSources() {
   try {
     const payload = yield call(axios.get, BASE_SOURCES_URL);
@@ -46,7 +49,7 @@ function* getSources() {
 
 function* getActiveSources() {
   try {
-    const payload = yield call(getAll, 'newsfeed');
+    const payload = yield call(getAll, firebaseActiveSources);
     yield put(getActiveSourcesSucceeded(payload || []));
     return payload;
   } catch (error) {
@@ -57,7 +60,7 @@ function* getActiveSources() {
 
 function* getSourceLogos() {
   try {
-    const payload = yield call(getAll, 'widgets/newsfeed/assets/sources');
+    const payload = yield call(getAll, `${firebaseNewsFeedRoot}/assets/sources`);
     yield put(getSourceLogosSucceeded(payload));
   } catch (error) {
     yield put(getSourceLogosFailed(error));
@@ -90,10 +93,10 @@ function* getSourcesAndArticles() {
 function* addSource(dispatch) {
   const { source } = dispatch;
   const id = source.id;
-  const newsfeedKey = `newsfeed/${id}`;
+  const newsfeedKey = `${firebaseActiveSources}/${id}`;
 
   try {
-    yield call(create, 'newsfeed', () => ({
+    yield call(create, firebaseActiveSources, () => ({
       [newsfeedKey]: { ...source, id },
     }));
     yield put(addSourceSucceeded(source, id));
@@ -122,7 +125,7 @@ function* removeSource(action) {
   const { id } = source;
 
   try {
-    yield call(remove, 'newsfeed', id);
+    yield call(remove, firebaseActiveSources, id);
     yield put(removeSourceSucceeded(source));
   } catch (error) {
     yield put(removeSourceFailed(error));
