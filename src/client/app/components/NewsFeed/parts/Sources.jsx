@@ -29,6 +29,14 @@ const Sources = ({
 
               <button className="sources__btn" onClick={() => toggleActiveSource(source)} />
               <img className="sources__source__img" src={source.logo} alt="logo" />
+
+              <a href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sources__source__name"
+              >
+                {source.name}
+              </a>
             </li>
           );
         })
