@@ -11,6 +11,9 @@ import {
   GET_ACTIVE_SOURCES_SUCCEEDED,
   GET_ACTIVE_SOURCES_FAILED,
 
+  GET_SOURCE_LOGOS_SUCCEEDED,
+  GET_SOURCE_LOGOS_FAILED,
+
   GET_SOURCES_AND_ARTICLES_REQUESTED,
   GET_SOURCES_AND_ARTICLES_SUCCEEDED,
   GET_SOURCES_AND_ARTICLES_FAILED,
@@ -29,6 +32,7 @@ const INITIAL_STATE = {
   widgetName: 'NewsFeed',
   sources: [],
   activeSources: [],
+  sourceLogos: [],
   toggledSource: {},
   activeArticles: [],
   categories: [],
@@ -63,17 +67,6 @@ export default (state = INITIAL_STATE, action) => {
         activeArticles: INITIAL_STATE.activeArticles,
       };
     }
-
-    // case GET_SOURCES_REQUESTED: {
-    //   return {
-    //     ...state,
-    //     asyncStatus: {
-    //       inProgress: true,
-    //       error: false,
-    //       errorMessage: undefined,
-    //     },
-    //   };
-    // }
 
     case GET_SOURCES_SUCCEEDED: {
       const { sources } = action.payload.data;
@@ -131,6 +124,29 @@ export default (state = INITIAL_STATE, action) => {
           error: true,
           errorMessage: action.error.message,
         },
+      };
+    }
+
+
+    case GET_SOURCE_LOGOS_SUCCEEDED: {
+      const payload = action.payload;
+      const sourceLogos = Object.keys(payload).map(id => ({
+        id,
+        url: payload[id],
+      }));
+      // console.log('state.sources', state.sources);
+      const sources = state.sources.map(source => {
+        console.log(sourceLogos.find(logo => logo.id === source.id));
+        return ({
+          ...source,
+          logo: sourceLogos.find(logo => logo.id === source.id).url,
+        });
+      });
+
+      return {
+        ...state,
+        sources,
+        // sourceLogos,
       };
     }
 

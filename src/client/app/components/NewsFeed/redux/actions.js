@@ -2,9 +2,14 @@ export const TOGGLE_ACTIVE_VIEW = 'TOGGLE_ACTIVE_VIEW';
 
 export const REMOVE_ARTICLES = 'REMOVE_ARTICLES';
 
-export const GET_SOURCES_REQUESTED = 'GET_SOURCES_REQUESTED';
 export const GET_SOURCES_SUCCEEDED = 'GET_SOURCES_SUCCEEDED';
 export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
+
+export const GET_ACTIVE_SOURCES_SUCCEEDED = 'GET_ACTIVE_SOURCES_SUCCEEDED';
+export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
+
+export const GET_SOURCE_LOGOS_SUCCEEDED = 'GET_SOURCE_LOGOS_SUCCEEDED';
+export const GET_SOURCE_LOGOS_FAILED = 'GET_SOURCE_LOGOS_FAILED';
 
 export const GET_SOURCES_AND_ARTICLES_REQUESTED = 'GET_SOURCES_AND_ARTICLES_REQUESTED';
 export const GET_SOURCES_AND_ARTICLES_SUCCEEDED = 'GET_SOURCES_AND_ARTICLES_SUCCEEDED';
@@ -13,10 +18,6 @@ export const GET_SOURCES_AND_ARTICLES_FAILED = 'GET_SOURCES_AND_ARTICLES_FAILED'
 export const TOGGLE_ACTIVE_CATEGORY_REQUESTED = 'TOGGLE_ACTIVE_CATEGORY_REQUESTED';
 export const TOGGLE_ACTIVE_CATEGORY_SUCCEEDED = 'TOGGLE_ACTIVE_CATEGORY_SUCCEEDED';
 export const TOGGLE_ACTIVE_CATEGORY_FAILED = 'TOGGLE_ACTIVE_CATEGORY_FAILED';
-
-export const GET_ACTIVE_SOURCES_REQUESTED = 'GET_ACTIVE_SOURCES_REQUESTED';
-export const GET_ACTIVE_SOURCES_SUCCEEDED = 'GET_ACTIVE_SOURCES_SUCCEEDED';
-export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
 
 export const ADD_SOURCE_REQUESTED = 'ADD_SOURCE_REQUESTED';
 export const ADD_SOURCE_SUCCEEDED = 'ADD_SOURCE_SUCCEEDED';
@@ -38,10 +39,6 @@ export const removeArticles = () => ({
 });
 
 
-export const getSourcesRequested = () => ({
-  type: GET_SOURCES_REQUESTED,
-});
-
 export const getSourcesSucceeded = payload => ({
   type: GET_SOURCES_SUCCEEDED,
   payload,
@@ -49,6 +46,28 @@ export const getSourcesSucceeded = payload => ({
 
 export const getSourcesFailed = error => ({
   type: GET_SOURCES_FAILED,
+  error,
+});
+
+
+export const getActiveSourcesSucceeded = payload => ({
+  type: GET_ACTIVE_SOURCES_SUCCEEDED,
+  payload,
+});
+
+export const getActiveSourcesFailed = error => ({
+  type: GET_ACTIVE_SOURCES_FAILED,
+  error,
+});
+
+
+export const getSourceLogosSucceeded = payload => ({
+  type: GET_SOURCE_LOGOS_SUCCEEDED,
+  payload,
+});
+
+export const getSourceLogosFailed = error => ({
+  type: GET_SOURCE_LOGOS_FAILED,
   error,
 });
 
@@ -81,21 +100,6 @@ export const toggleActiveCategorySucceeded = payload => ({
 
 export const toggleActiveCategoryFailed = error => ({
   type: TOGGLE_ACTIVE_CATEGORY_FAILED,
-  error,
-});
-
-
-export const getActiveSourcesRequested = () => ({
-  type: GET_ACTIVE_SOURCES_REQUESTED,
-});
-
-export const getActiveSourcesSucceeded = payload => ({
-  type: GET_ACTIVE_SOURCES_SUCCEEDED,
-  payload,
-});
-
-export const getActiveSourcesFailed = error => ({
-  type: GET_ACTIVE_SOURCES_FAILED,
   error,
 });
 

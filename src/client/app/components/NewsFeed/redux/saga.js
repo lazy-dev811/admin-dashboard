@@ -10,6 +10,9 @@ import {
   getActiveSourcesSucceeded,
   getActiveSourcesFailed,
 
+  getSourceLogosSucceeded,
+  getSourceLogosFailed,
+
   GET_SOURCES_AND_ARTICLES_REQUESTED,
   getSourcesAndArticlesSucceeded,
   getSourcesAndArticlesFailed,
@@ -52,6 +55,15 @@ function* getActiveSources() {
   return false;
 }
 
+function* getSourceLogos() {
+  try {
+    const payload = yield call(getAll, 'widgets/newsfeed/assets/sources');
+    yield put(getSourceLogosSucceeded(payload));
+  } catch (error) {
+    yield put(getSourceLogosFailed(error));
+  }
+}
+
 function* getSourcesAndArticles() {
   function* iterateOverActiveSources(array) {
     for (const activeSource of array) {
@@ -66,6 +78,7 @@ function* getSourcesAndArticles() {
   }
 
   yield getSources();
+  yield getSourceLogos();
   const activeSources = yield getActiveSources();
 
   if (activeSources) {

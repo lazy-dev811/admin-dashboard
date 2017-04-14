@@ -3,7 +3,13 @@ import classnames from 'classnames';
 
 import Loader from '../../Loader/Loader';
 
-const Sources = ({ sources, activeSources, toggledSource, toggleActiveSource, asyncStatus }) => {
+const Sources = ({
+  sources,
+  activeSources,
+  toggledSource,
+  toggleActiveSource,
+  asyncStatus,
+}) => {
 
   return (
     <ul className="sources">
@@ -22,7 +28,7 @@ const Sources = ({ sources, activeSources, toggledSource, toggleActiveSource, as
               }
 
               <button className="sources__btn" onClick={() => toggleActiveSource(source)} />
-              <img className="sources__source__img" src={source.urlsToLogos.small} alt="logo" />
+              <img className="sources__source__img" src={source.logo} alt="logo" />
             </li>
           );
         })
