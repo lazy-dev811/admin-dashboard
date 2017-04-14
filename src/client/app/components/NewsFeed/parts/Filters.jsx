@@ -2,14 +2,14 @@ import React, { PropTypes } from 'react';
 
 import FormFieldSelect from '../../FormElements/FormFieldSelect/FormFieldSelect.jsx';
 
-const Filters = ({ categories, activeCategories, selectCategory }) => (
+const Filters = ({ categories, activeCategories, toggleActiveCategories }) => (
   <div className="filters">
     <FormFieldSelect
       title="filter"
       className="filters__filter"
       options={categories}
       compareOptions={activeCategories}
-      onChange={selectCategory}
+      onChange={toggleActiveCategories}
     />
   </div>
 );
@@ -17,7 +17,7 @@ const Filters = ({ categories, activeCategories, selectCategory }) => (
 Filters.propTypes = {
   categories: PropTypes.array.isRequired,
   activeCategories: PropTypes.array.isRequired,
-  selectCategory: PropTypes.func.isRequired,
+  toggleActiveCategories: PropTypes.func.isRequired,
 };
 
 export default Filters;

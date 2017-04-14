@@ -3,7 +3,8 @@ import {
   toggleActiveView,
   removeArticles,
   getSourcesAndArticlesRequested,
-  toggleActiveCategoryRequested,
+  addActiveCategoryRequested,
+  removeActiveCategoryRequested,
   addSourceRequested,
   removeSourceRequested,
 } from './actions';
@@ -17,7 +18,9 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
+  filteredSources,
   toggledSource,
+
   activeArticles,
 
   categories,
@@ -31,6 +34,7 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
+  filteredSources,
   toggledSource,
   activeArticles,
 
@@ -47,14 +51,15 @@ const mergeProps = ({
   removeArticles() {
     dispatch(removeArticles());
   },
-  selectCategory(category) {
-    dispatch(toggleActiveCategoryRequested(category));
+  toggleActiveCategories(selectedCategory) {
+    if (activeCategories.findIndex(category => category === selectedCategory) > -1) {
+      dispatch(removeActiveCategoryRequested(selectedCategory));
+    } else {
+      dispatch(addActiveCategoryRequested(selectedCategory));
+    }
   },
   selectView(view) {
     dispatch(toggleActiveView(view));
-  },
-  selectSort(sort) {
-    console.log('sort', sort);
   },
   toggleActiveSource(selectedSource) {
     if (activeSources.findIndex(source => source.id === selectedSource.id) > -1) {

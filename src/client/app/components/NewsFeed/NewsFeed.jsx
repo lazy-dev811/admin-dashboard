@@ -17,6 +17,7 @@ class NewsFeed extends Component {
     const {
       sources,
       activeSources,
+      filteredSources,
       toggledSource,
 
       views,
@@ -24,7 +25,7 @@ class NewsFeed extends Component {
       activeArticles = [],
       categories,
       activeCategories,
-      selectCategory,
+      toggleActiveCategories,
       selectView,
       toggleActiveSource,
       removeArticles,
@@ -40,7 +41,7 @@ class NewsFeed extends Component {
             <Filters
               categories={categories}
               activeCategories={activeCategories}
-              selectCategory={selectCategory}
+              toggleActiveCategories={toggleActiveCategories}
             />
 
             <Views
@@ -57,6 +58,7 @@ class NewsFeed extends Component {
           <Sources
             sources={sources}
             activeSources={activeSources}
+            filteredSources={filteredSources}
             toggledSource={toggledSource}
             toggleActiveSource={toggleActiveSource}
             asyncStatus={asyncStatus}
@@ -83,6 +85,7 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array,
+  filteredSources: PropTypes.array,
   toggledSource: PropTypes.object,
 
   activeArticles: PropTypes.array.isRequired,
@@ -92,9 +95,10 @@ NewsFeed.propTypes = {
   categories: PropTypes.array.isRequired,
   activeCategories: PropTypes.array.isRequired,
   getSourcesAndArticles: PropTypes.func.isRequired,
+
   removeArticles: PropTypes.func.isRequired,
 
-  selectCategory: PropTypes.func.isRequired,
+  toggleActiveCategories: PropTypes.func.isRequired,
   selectView: PropTypes.func.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
   asyncStatus: PropTypes.object,

@@ -11,12 +11,26 @@ import {
   GET_ACTIVE_SOURCES_SUCCEEDED,
   GET_ACTIVE_SOURCES_FAILED,
 
+  GET_ACTIVE_CATEGORIES_SUCCEEDED,
+  GET_ACTIVE_CATEGORIES_FAILED,
+
+  GET_FILTERED_SOURCES_SUCCEEDED,
+  GET_FILTERED_SOURCES_FAILED,
+
   GET_SOURCE_LOGOS_SUCCEEDED,
   GET_SOURCE_LOGOS_FAILED,
 
   GET_SOURCES_AND_ARTICLES_REQUESTED,
   GET_SOURCES_AND_ARTICLES_SUCCEEDED,
   GET_SOURCES_AND_ARTICLES_FAILED,
+
+  ADD_ACTIVE_CATEGORY_REQUESTED,
+  ADD_ACTIVE_CATEGORY_SUCCEEDED,
+  ADD_ACTIVE_CATEGORY_FAILED,
+
+  REMOVE_ACTIVE_CATEGORY_REQUESTED,
+  REMOVE_ACTIVE_CATEGORY_SUCCEEDED,
+  REMOVE_ACTIVE_CATEGORY_FAILED,
 
   ADD_SOURCE_REQUESTED,
   ADD_SOURCE_SUCCEEDED,
@@ -48,6 +62,12 @@ const INITIAL_STATE = {
     errorMessage: undefined,
 
     toggleActiveSource: {
+      inProgress: false,
+      error: false,
+      errorMessage: undefined,
+    },
+
+    toggleActiveCategory: {
       inProgress: false,
       error: false,
       errorMessage: undefined,
@@ -126,6 +146,39 @@ export default (state = INITIAL_STATE, action) => {
           error: true,
           errorMessage: action.error.message,
         },
+      };
+    }
+
+
+    case GET_ACTIVE_CATEGORIES_SUCCEEDED: {
+      const payload = action.payload || {};
+
+      const activeCategories = Object.keys(payload).map(category => payload[category]);
+      return {
+        ...state,
+        activeCategories,
+      };
+    }
+
+    // case GET_ACTIVE_CATEGORIES_FAILED: {
+    //   return {
+    //     ...state,
+    //     asyncStatus: {
+    //       ...state.asyncStatus,
+    //       inProgress: false,
+    //       error: true,
+    //       errorMessage: action.error.message,
+    //     },
+    //   };
+    // }
+
+
+    case GET_FILTERED_SOURCES_SUCCEEDED: {
+      const payload = action.payload || {};
+      const filteredSources = Object.keys(payload).map(source => payload[source]);
+      return {
+        ...state,
+        filteredSources,
       };
     }
 
@@ -237,6 +290,97 @@ export default (state = INITIAL_STATE, action) => {
         asyncStatus: {
           ...state.asyncStatus,
           toggleActiveSource: {
+            inProgress: false,
+            error: true,
+            errorMessage: action.error.message,
+          },
+        },
+      };
+    }
+
+
+    case ADD_ACTIVE_CATEGORY_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveCategory: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case ADD_ACTIVE_CATEGORY_SUCCEEDED: {
+      return {
+        ...state,
+        activeCategories: [
+          ...state.activeCategories,
+          action.payload,
+        ],
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveCategory: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case ADD_ACTIVE_CATEGORY_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveCategory: {
+            inProgress: false,
+            error: true,
+            errorMessage: action.error.message,
+          },
+        },
+      };
+    }
+
+
+    case REMOVE_ACTIVE_CATEGORY_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveCategory: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case REMOVE_ACTIVE_CATEGORY_SUCCEEDED: {
+      return {
+        ...state,
+        activeCategories: state.activeCategories.filter(category => category !== action.payload),
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveCategory: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case REMOVE_ACTIVE_CATEGORY_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveCategory: {
             inProgress: false,
             error: true,
             errorMessage: action.error.message,
