@@ -25,13 +25,11 @@ class NewsFeed extends Component {
       categories,
       activeCategories,
       selectCategory,
-      selectSort,
       selectView,
       toggleActiveSource,
       removeArticles,
       asyncStatus,
     } = this.props;
-    const sortOptions = ['top', 'newest', 'best'];
 
     return (
       <div className="newsfeed">
@@ -39,16 +37,11 @@ class NewsFeed extends Component {
           News Feed
 
           <div className="newsfeed__options">
-            {
-              activeView === 'articles' &&
-              <Filters
-                categories={categories}
-                activeCategories={activeCategories}
-                sortOptions={sortOptions}
-                selectCategory={selectCategory}
-                selectSort={selectSort}
-              />
-            }
+            <Filters
+              categories={categories}
+              activeCategories={activeCategories}
+              selectCategory={selectCategory}
+            />
 
             <Views
               views={views}
@@ -100,8 +93,8 @@ NewsFeed.propTypes = {
   activeCategories: PropTypes.array.isRequired,
   getSourcesAndArticles: PropTypes.func.isRequired,
   removeArticles: PropTypes.func.isRequired,
+
   selectCategory: PropTypes.func.isRequired,
-  selectSort: PropTypes.func.isRequired,
   selectView: PropTypes.func.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
   asyncStatus: PropTypes.object,

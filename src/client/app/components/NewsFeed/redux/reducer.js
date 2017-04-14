@@ -32,11 +32,14 @@ const INITIAL_STATE = {
   widgetName: 'NewsFeed',
   sources: [],
   activeSources: [],
+  filteredSources: [],
   sourceLogos: [],
   toggledSource: {},
   activeArticles: [],
+
   categories: [],
   activeCategories: [],
+
   views: ['sources', 'articles'],
   activeView: undefined,
   asyncStatus: {
@@ -74,7 +77,6 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         sources,
         categories: returnUnique(sources.map(source => source.category)),
-        activeCategories: returnUnique(sources.map(source => source.category)),
       };
     }
 
@@ -134,19 +136,14 @@ export default (state = INITIAL_STATE, action) => {
         id,
         url: payload[id],
       }));
-      // console.log('state.sources', state.sources);
-      const sources = state.sources.map(source => {
-        console.log(sourceLogos.find(logo => logo.id === source.id));
-        return ({
-          ...source,
-          logo: sourceLogos.find(logo => logo.id === source.id).url,
-        });
-      });
+      const sources = state.sources.map(source => ({
+        ...source,
+        logo: sourceLogos.find(logo => logo.id === source.id).url,
+      }));
 
       return {
         ...state,
         sources,
-        // sourceLogos,
       };
     }
 

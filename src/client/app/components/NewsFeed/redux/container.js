@@ -19,8 +19,10 @@ const mergeProps = ({
   activeSources,
   toggledSource,
   activeArticles,
+
   categories,
   activeCategories,
+
   views,
   activeView,
   widgetNewsFeed,
@@ -31,8 +33,10 @@ const mergeProps = ({
   activeSources,
   toggledSource,
   activeArticles,
+
   categories,
   activeCategories,
+
   views,
   activeView,
   config: widgetNewsFeed,
