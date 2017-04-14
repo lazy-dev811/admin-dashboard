@@ -13,8 +13,7 @@ import {
   getActiveCategoriesSucceeded,
   getActiveCategoriesFailed,
 
-  getFilteredSourcesSucceeded,
-  getFilteredSourcesFailed,
+  filterSources,
 
   getSourceLogosSucceeded,
   getSourceLogosFailed,
@@ -47,8 +46,6 @@ const BASE_ARTICLES_URL = 'https://newsapi.org/v1/articles';
 
 const firebaseNewsFeedRoot = 'widgets/newsfeed';
 const firebaseActiveSources = `${firebaseNewsFeedRoot}/data/active-sources`;
-const firebaseFilteredSources = `${firebaseNewsFeedRoot}/data/filtered-sources`;
-
 const firebaseActiveCategories = `${firebaseNewsFeedRoot}/data/active-categories`;
 
 function* getSources() {
@@ -80,15 +77,6 @@ function* getActiveCategories() {
   }
 }
 
-function* getFilteredSources() {
-  try {
-    const payload = yield call(getAll, firebaseFilteredSources);
-    yield put(getFilteredSourcesSucceeded(payload));
-  } catch (error) {
-    yield put(getFilteredSourcesFailed(error));
-  }
-}
-
 function* getSourceLogos() {
   try {
     const payload = yield call(getAll, `${firebaseNewsFeedRoot}/assets/sources`);
@@ -112,9 +100,9 @@ function* getSourcesAndArticles() {
   }
 
   yield getSources();
-  yield getActiveCategories();
   yield getSourceLogos();
-  yield getFilteredSources();
+  yield getActiveCategories();
+  yield put(filterSources());
   const activeSources = yield getActiveSources();
 
   if (activeSources) {
@@ -148,6 +136,7 @@ function* addActiveCategory(dispatch) {
       [activeCategoryKey]: category,
     }));
     yield put(addActiveCategorySucceeded(category));
+    yield put(filterSources());
   } catch (error) {
     yield put(addActiveCategoryFailed(error));
   }
@@ -160,6 +149,7 @@ function* removeActiveCategory(dispatch) {
   try {
     yield call(remove, firebaseActiveCategories, id);
     yield put(removeActiveCategorySucceeded(category));
+    yield put(filterSources());
   } catch (error) {
     yield put(removeActiveCategoryFailed(error));
   }

@@ -14,8 +14,7 @@ import {
   GET_ACTIVE_CATEGORIES_SUCCEEDED,
   GET_ACTIVE_CATEGORIES_FAILED,
 
-  GET_FILTERED_SOURCES_SUCCEEDED,
-  GET_FILTERED_SOURCES_FAILED,
+  FILTER_SOURCES,
 
   GET_SOURCE_LOGOS_SUCCEEDED,
   GET_SOURCE_LOGOS_FAILED,
@@ -152,8 +151,8 @@ export default (state = INITIAL_STATE, action) => {
 
     case GET_ACTIVE_CATEGORIES_SUCCEEDED: {
       const payload = action.payload || {};
-
       const activeCategories = Object.keys(payload).map(category => payload[category]);
+
       return {
         ...state,
         activeCategories,
@@ -173,9 +172,13 @@ export default (state = INITIAL_STATE, action) => {
     // }
 
 
-    case GET_FILTERED_SOURCES_SUCCEEDED: {
-      const payload = action.payload || {};
-      const filteredSources = Object.keys(payload).map(source => payload[source]);
+    case FILTER_SOURCES: {
+      const activeCategories = state.activeCategories;
+
+      const isCategoryEqual = source => category => category === source.category;
+      const filterSourcesByActiveCategory = source => activeCategories.findIndex(isCategoryEqual(source)) > -1;
+      const filteredSources = state.sources.filter(filterSourcesByActiveCategory);
+
       return {
         ...state,
         filteredSources,
@@ -314,12 +317,14 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case ADD_ACTIVE_CATEGORY_SUCCEEDED: {
+      const activeCategories = [
+        ...state.activeCategories,
+        action.payload,
+      ];
+
       return {
         ...state,
-        activeCategories: [
-          ...state.activeCategories,
-          action.payload,
-        ],
+        activeCategories,
         asyncStatus: {
           ...state.asyncStatus,
           toggleActiveCategory: {

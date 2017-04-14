@@ -4,17 +4,19 @@ import classnames from 'classnames';
 import Loader from '../../Loader/Loader';
 
 const Sources = ({
-  sources,
+  sources = [],
   activeSources,
+  filteredSources = [],
   toggledSource,
   toggleActiveSource,
   asyncStatus,
 }) => {
+  const visibleSources = filteredSources.length > 0 ? filteredSources : sources;
 
   return (
     <ul className="sources">
       {
-        sources && sources.map((source) => {
+        visibleSources.map((source) => {
           const sourceClass = classnames('sources__source', {
             'is-active': activeSources.findIndex(activeSource => activeSource.id === source.id) > -1,
           });
@@ -47,8 +49,9 @@ const Sources = ({
 
 Sources.propTypes = {
   sources: PropTypes.array.isRequired,
-  activeSources: PropTypes.array,
-  toggledSource: PropTypes.object,
+  activeSources: PropTypes.array.isRequired,
+  filteredSources: PropTypes.array.isRequired,
+  toggledSource: PropTypes.object.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
   asyncStatus: PropTypes.object,
 };

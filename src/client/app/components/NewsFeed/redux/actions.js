@@ -11,8 +11,7 @@ export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
 export const GET_ACTIVE_CATEGORIES_SUCCEEDED = 'GET_ACTIVE_CATEGORIES_SUCCEEDED';
 export const GET_ACTIVE_CATEGORIES_FAILED = 'GET_ACTIVE_CATEGORIES_FAILED';
 
-export const GET_FILTERED_SOURCES_SUCCEEDED = 'GET_FILTERED_SOURCES_SUCCEEDED';
-export const GET_FILTERED_SOURCES_FAILED = 'GET_FILTERED_SOURCES_FAILED';
+export const FILTER_SOURCES = 'FILTER_SOURCES';
 
 export const GET_SOURCE_LOGOS_SUCCEEDED = 'GET_SOURCE_LOGOS_SUCCEEDED';
 export const GET_SOURCE_LOGOS_FAILED = 'GET_SOURCE_LOGOS_FAILED';
@@ -82,14 +81,8 @@ export const getActiveCategoriesFailed = error => ({
 });
 
 
-export const getFilteredSourcesSucceeded = payload => ({
-  type: GET_FILTERED_SOURCES_SUCCEEDED,
-  payload,
-});
-
-export const getFilteredSourcesFailed = error => ({
-  type: GET_FILTERED_SOURCES_FAILED,
-  error,
+export const filterSources = () => ({
+  type: FILTER_SOURCES,
 });
 
 
