@@ -59,6 +59,8 @@ class NewsFeed extends Component {
             sources={sources}
             activeSources={activeSources}
             filteredSources={filteredSources}
+            activeCategories={activeCategories}
+            toggleActiveCategories={toggleActiveCategories}
             toggledSource={toggledSource}
             toggleActiveSource={toggleActiveSource}
             asyncStatus={asyncStatus}

@@ -110,6 +110,23 @@ $color-border-filters: #e6e6e6;
   }
 }
 
+.active-filters {
+  margin-bottom: 20px;
+}
+
+.pill {
+  display: inline-flex;
+  margin-right: 10px;
+  padding: 3px 10px;
+  color: #fff;
+  border-radius: 1px;
+  background-color: #373636;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
 .sources__btn {
   position: absolute;
   width: 100%;
