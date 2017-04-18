@@ -10,8 +10,8 @@ import {
   getActiveSourcesSucceeded,
   getActiveSourcesFailed,
 
-  getActiveCategoriesSucceeded,
-  getActiveCategoriesFailed,
+  getFilteredCategoriesSucceeded,
+  getFilteredCategoriesFailed,
 
   filterSources,
 
@@ -26,13 +26,13 @@ import {
   addSourceSucceeded,
   addSourceFailed,
 
-  ADD_ACTIVE_CATEGORY_REQUESTED,
-  addActiveCategorySucceeded,
-  addActiveCategoryFailed,
+  ADD_FILTERED_CATEGORY_REQUESTED,
+  addFilteredCategorySucceeded,
+  addFilteredCategoryFailed,
 
-  REMOVE_ACTIVE_CATEGORY_REQUESTED,
-  removeActiveCategorySucceeded,
-  removeActiveCategoryFailed,
+  REMOVE_FILTERED_CATEGORY_REQUESTED,
+  removeFilteredCategorySucceeded,
+  removeFilteredCategoryFailed,
 
   REMOVE_SOURCE_REQUESTED,
   removeSourceSucceeded,
@@ -46,7 +46,7 @@ const BASE_ARTICLES_URL = 'https://newsapi.org/v1/articles';
 
 const firebaseNewsFeedRoot = 'widgets/newsfeed';
 const firebaseActiveSources = `${firebaseNewsFeedRoot}/data/active-sources`;
-const firebaseActiveCategories = `${firebaseNewsFeedRoot}/data/active-categories`;
+const firebaseFilteredCategories = `${firebaseNewsFeedRoot}/data/filtered-categories`;
 
 function* getSources() {
   try {
@@ -68,12 +68,12 @@ function* getActiveSources() {
   return false;
 }
 
-function* getActiveCategories() {
+function* getFilteredCategories() {
   try {
-    const payload = yield call(getAll, firebaseActiveCategories);
-    yield put(getActiveCategoriesSucceeded(payload));
+    const payload = yield call(getAll, firebaseFilteredCategories);
+    yield put(getFilteredCategoriesSucceeded(payload));
   } catch (error) {
-    yield put(getActiveCategoriesFailed(error));
+    yield put(getFilteredCategoriesFailed(error));
   }
 }
 
@@ -101,7 +101,7 @@ function* getSourcesAndArticles() {
 
   yield getSources();
   yield getSourceLogos();
-  yield getActiveCategories();
+  yield getFilteredCategories();
   yield put(filterSources());
   const activeSources = yield getActiveSources();
 
@@ -126,32 +126,32 @@ function* addSource(dispatch) {
   }
 }
 
-function* addActiveCategory(dispatch) {
+function* addFilteredCategory(dispatch) {
   const { category } = dispatch;
   const id = category;
-  const activeCategoryKey = `${firebaseActiveCategories}/${id}`;
+  const filteredCategoryKey = `${firebaseFilteredCategories}/${id}`;
 
   try {
-    yield call(create, firebaseActiveCategories, () => ({
-      [activeCategoryKey]: category,
+    yield call(create, firebaseFilteredCategories, () => ({
+      [filteredCategoryKey]: category,
     }));
-    yield put(addActiveCategorySucceeded(category));
+    yield put(addFilteredCategorySucceeded(category));
     yield put(filterSources());
   } catch (error) {
-    yield put(addActiveCategoryFailed(error));
+    yield put(addFilteredCategoryFailed(error));
   }
 }
 
-function* removeActiveCategory(dispatch) {
+function* removeFilteredCategory(dispatch) {
   const { category } = dispatch;
   const id = category;
 
   try {
-    yield call(remove, firebaseActiveCategories, id);
-    yield put(removeActiveCategorySucceeded(category));
+    yield call(remove, firebaseFilteredCategories, id);
+    yield put(removeFilteredCategorySucceeded(category));
     yield put(filterSources());
   } catch (error) {
-    yield put(removeActiveCategoryFailed(error));
+    yield put(removeFilteredCategoryFailed(error));
   }
 }
 
@@ -170,8 +170,8 @@ function* removeSource(action) {
 function* newsfeedSagas() {
   yield* [
     takeEvery(GET_SOURCES_AND_ARTICLES_REQUESTED, getSourcesAndArticles),
-    takeEvery(ADD_ACTIVE_CATEGORY_REQUESTED, addActiveCategory),
-    takeEvery(REMOVE_ACTIVE_CATEGORY_REQUESTED, removeActiveCategory),
+    takeEvery(ADD_FILTERED_CATEGORY_REQUESTED, addFilteredCategory),
+    takeEvery(REMOVE_FILTERED_CATEGORY_REQUESTED, removeFilteredCategory),
     takeEvery(ADD_SOURCE_REQUESTED, addSource),
     takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),
   ];

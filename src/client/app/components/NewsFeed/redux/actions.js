@@ -8,8 +8,8 @@ export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
 export const GET_ACTIVE_SOURCES_SUCCEEDED = 'GET_ACTIVE_SOURCES_SUCCEEDED';
 export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
 
-export const GET_ACTIVE_CATEGORIES_SUCCEEDED = 'GET_ACTIVE_CATEGORIES_SUCCEEDED';
-export const GET_ACTIVE_CATEGORIES_FAILED = 'GET_ACTIVE_CATEGORIES_FAILED';
+export const GET_FILTERED_CATEGORIES_SUCCEEDED = 'GET_FILTERED_CATEGORIES_SUCCEEDED';
+export const GET_FILTERED_CATEGORIES_FAILED = 'GET_FILTERED_CATEGORIES_FAILED';
 
 export const FILTER_SOURCES = 'FILTER_SOURCES';
 
@@ -20,13 +20,13 @@ export const GET_SOURCES_AND_ARTICLES_REQUESTED = 'GET_SOURCES_AND_ARTICLES_REQU
 export const GET_SOURCES_AND_ARTICLES_SUCCEEDED = 'GET_SOURCES_AND_ARTICLES_SUCCEEDED';
 export const GET_SOURCES_AND_ARTICLES_FAILED = 'GET_SOURCES_AND_ARTICLES_FAILED';
 
-export const ADD_ACTIVE_CATEGORY_REQUESTED = 'ADD_ACTIVE_CATEGORY_REQUESTED';
-export const ADD_ACTIVE_CATEGORY_SUCCEEDED = 'ADD_ACTIVE_CATEGORY_SUCCEEDED';
-export const ADD_ACTIVE_CATEGORY_FAILED = 'ADD_ACTIVE_CATEGORY_FAILED';
+export const ADD_FILTERED_CATEGORY_REQUESTED = 'ADD_FILTERED_CATEGORY_REQUESTED';
+export const ADD_FILTERED_CATEGORY_SUCCEEDED = 'ADD_FILTERED_CATEGORY_SUCCEEDED';
+export const ADD_FILTERED_CATEGORY_FAILED = 'ADD_FILTERED_CATEGORY_FAILED';
 
-export const REMOVE_ACTIVE_CATEGORY_REQUESTED = 'REMOVE_ACTIVE_CATEGORY_REQUESTED';
-export const REMOVE_ACTIVE_CATEGORY_SUCCEEDED = 'REMOVE_ACTIVE_CATEGORY_SUCCEEDED';
-export const REMOVE_ACTIVE_CATEGORY_FAILED = 'REMOVE_ACTIVE_CATEGORY_FAILED';
+export const REMOVE_FILTERED_CATEGORY_REQUESTED = 'REMOVE_FILTERED_CATEGORY_REQUESTED';
+export const REMOVE_FILTERED_CATEGORY_SUCCEEDED = 'REMOVE_FILTERED_CATEGORY_SUCCEEDED';
+export const REMOVE_FILTERED_CATEGORY_FAILED = 'REMOVE_FILTERED_CATEGORY_FAILED';
 
 export const ADD_SOURCE_REQUESTED = 'ADD_SOURCE_REQUESTED';
 export const ADD_SOURCE_SUCCEEDED = 'ADD_SOURCE_SUCCEEDED';
@@ -70,13 +70,13 @@ export const getActiveSourcesFailed = error => ({
 });
 
 
-export const getActiveCategoriesSucceeded = payload => ({
-  type: GET_ACTIVE_CATEGORIES_SUCCEEDED,
+export const getFilteredCategoriesSucceeded = payload => ({
+  type: GET_FILTERED_CATEGORIES_SUCCEEDED,
   payload,
 });
 
-export const getActiveCategoriesFailed = error => ({
-  type: GET_ACTIVE_CATEGORIES_FAILED,
+export const getFilteredCategoriesFailed = error => ({
+  type: GET_FILTERED_CATEGORIES_FAILED,
   error,
 });
 
@@ -113,34 +113,34 @@ export const getSourcesAndArticlesFailed = error => ({
 });
 
 
-export const addActiveCategoryRequested = category => ({
-  type: ADD_ACTIVE_CATEGORY_REQUESTED,
+export const addFilteredCategoryRequested = category => ({
+  type: ADD_FILTERED_CATEGORY_REQUESTED,
   category,
 });
 
-export const addActiveCategorySucceeded = payload => ({
-  type: ADD_ACTIVE_CATEGORY_SUCCEEDED,
+export const addFilteredCategorySucceeded = payload => ({
+  type: ADD_FILTERED_CATEGORY_SUCCEEDED,
   payload,
 });
 
-export const addActiveCategoryFailed = error => ({
-  type: ADD_ACTIVE_CATEGORY_FAILED,
+export const addFilteredCategoryFailed = error => ({
+  type: ADD_FILTERED_CATEGORY_FAILED,
   error,
 });
 
 
-export const removeActiveCategoryRequested = category => ({
-  type: REMOVE_ACTIVE_CATEGORY_REQUESTED,
+export const removeFilteredCategoryRequested = category => ({
+  type: REMOVE_FILTERED_CATEGORY_REQUESTED,
   category,
 });
 
-export const removeActiveCategorySucceeded = payload => ({
-  type: REMOVE_ACTIVE_CATEGORY_SUCCEEDED,
+export const removeFilteredCategorySucceeded = payload => ({
+  type: REMOVE_FILTERED_CATEGORY_SUCCEEDED,
   payload,
 });
 
-export const removeActiveCategoryFailed = error => ({
-  type: REMOVE_ACTIVE_CATEGORY_FAILED,
+export const removeFilteredCategoryFailed = error => ({
+  type: REMOVE_FILTERED_CATEGORY_FAILED,
   error,
 });
 

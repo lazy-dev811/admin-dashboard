@@ -3,8 +3,8 @@ import {
   toggleActiveView,
   removeArticles,
   getSourcesAndArticlesRequested,
-  addActiveCategoryRequested,
-  removeActiveCategoryRequested,
+  addFilteredCategoryRequested,
+  removeFilteredCategoryRequested,
   addSourceRequested,
   removeSourceRequested,
 } from './actions';
@@ -26,7 +26,7 @@ const mergeProps = ({
   activeArticles,
 
   categories,
-  activeCategories,
+  filteredCategories,
 
   views,
   activeView,
@@ -41,7 +41,7 @@ const mergeProps = ({
   activeArticles,
 
   categories,
-  activeCategories,
+  filteredCategories,
 
   views,
   activeView,
@@ -54,11 +54,11 @@ const mergeProps = ({
   removeArticles() {
     dispatch(removeArticles());
   },
-  toggleActiveCategories(selectedCategory) {
-    if (activeCategories.findIndex(category => category === selectedCategory) > -1) {
-      dispatch(removeActiveCategoryRequested(selectedCategory));
+  toggleFilteredCategories(selectedCategory) {
+    if (filteredCategories.findIndex(category => category === selectedCategory) > -1) {
+      dispatch(removeFilteredCategoryRequested(selectedCategory));
     } else {
-      dispatch(addActiveCategoryRequested(selectedCategory));
+      dispatch(addFilteredCategoryRequested(selectedCategory));
     }
   },
   selectView(view) {

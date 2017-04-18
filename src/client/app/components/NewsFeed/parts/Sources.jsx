@@ -7,21 +7,21 @@ const Sources = ({
   sources = [],
   activeSources,
   filteredSources = [],
-  activeCategories = [],
+  filteredCategories = [],
   toggleActiveCategories = () => {},
   toggledSource,
   toggleActiveSource,
   asyncStatus,
 }) => {
   const visibleSources = filteredSources.length > 0 ? filteredSources : sources;
-  const activeCategoryPills = activeCategories.map(activeCategory => (
+  const activeCategoryPills = filteredCategories.map(activeCategory => (
     <button className="pill" onClick={() => toggleActiveCategories(activeCategory)}>{activeCategory}</button>
   ));
 
   return (
     <div>
       {
-        activeCategories &&
+        filteredCategories &&
         <div className="active-filters">
           {activeCategoryPills}
         </div>
@@ -65,7 +65,7 @@ Sources.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array.isRequired,
   filteredSources: PropTypes.array.isRequired,
-  activeCategories: PropTypes.array.isRequired,
+  filteredCategories: PropTypes.array.isRequired,
   toggleActiveCategories: PropTypes.func.isRequired,
   toggledSource: PropTypes.object.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,

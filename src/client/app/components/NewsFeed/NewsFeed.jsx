@@ -29,8 +29,8 @@ class NewsFeed extends Component {
       removeArticles,
 
       categories,
-      activeCategories,
-      toggleActiveCategories,
+      filteredCategories,
+      toggleFilteredCategories,
 
       logoColors,
 
@@ -45,8 +45,9 @@ class NewsFeed extends Component {
           <div className="newsfeed__options">
             <Filters
               categories={categories}
-              activeCategories={activeCategories}
-              toggleActiveCategories={toggleActiveCategories}
+              filteredCategories={filteredCategories}
+              toggleFilteredCategories={toggleFilteredCategories}
+              activeView={activeView}
             />
 
             <Views
@@ -64,8 +65,8 @@ class NewsFeed extends Component {
             sources={sources}
             activeSources={activeSources}
             filteredSources={filteredSources}
-            activeCategories={activeCategories}
-            toggleActiveCategories={toggleActiveCategories}
+            filteredCategories={filteredCategories}
+            toggleFilteredCategories={toggleFilteredCategories}
             toggledSource={toggledSource}
             toggleActiveSource={toggleActiveSource}
             asyncStatus={asyncStatus}
@@ -101,12 +102,12 @@ NewsFeed.propTypes = {
   views: PropTypes.array.isRequired,
   activeView: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
-  activeCategories: PropTypes.array.isRequired,
+  filteredCategories: PropTypes.array.isRequired,
   getSourcesAndArticles: PropTypes.func.isRequired,
 
   removeArticles: PropTypes.func.isRequired,
 
-  toggleActiveCategories: PropTypes.func.isRequired,
+  toggleFilteredCategories: PropTypes.func.isRequired,
   selectView: PropTypes.func.isRequired,
   logoColors: PropTypes.object.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
