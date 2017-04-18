@@ -8,21 +8,24 @@ const Filters = ({
   toggleFilteredCategories,
   activeSources,
   filteredSources,
-  // toggleFilteredSources,
+  toggleFilteredSources,
   activeView,
  }) => {
   let title = '';
   let options = [];
   let compareOptions = [];
+  let onChange;
 
   if (activeView === 'sources') {
     title = 'filter by categories';
     options = categories;
     compareOptions = filteredCategories;
+    onChange = toggleFilteredCategories;
   } else {
-    title = 'filter by sources';
+    title = 'filter by active sources';
     options = activeSources;
     compareOptions = filteredSources;
+    onChange = toggleFilteredSources;
   }
 
   return (
@@ -32,7 +35,7 @@ const Filters = ({
         className="filters__filter"
         options={options}
         compareOptions={compareOptions}
-        onChange={toggleFilteredCategories}
+        onChange={onChange}
       />
     </div>
   );
@@ -44,7 +47,7 @@ Filters.propTypes = {
   toggleFilteredCategories: PropTypes.func.isRequired,
   activeSources: PropTypes.array.isRequired,
   filteredSources: PropTypes.array.isRequired,
-  // toggleFilteredSources: PropTypes.func.isRequired,
+  toggleFilteredSources: PropTypes.func.isRequired,
   activeView: PropTypes.string.isRequired,
 };
 

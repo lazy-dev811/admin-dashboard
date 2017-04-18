@@ -16,6 +16,8 @@ export const GET_FILTERED_CATEGORIES_FAILED = 'GET_FILTERED_CATEGORIES_FAILED';
 
 export const SET_VISIBLE_SOURCES = 'SET_VISIBLE_SOURCES';
 
+export const SET_VISIBLE_ARTICLES = 'SET_VISIBLE_ARTICLES';
+
 export const GET_SOURCE_LOGOS_SUCCEEDED = 'GET_SOURCE_LOGOS_SUCCEEDED';
 export const GET_SOURCE_LOGOS_FAILED = 'GET_SOURCE_LOGOS_FAILED';
 
@@ -109,6 +111,11 @@ export const getFilteredSourcesFailed = error => ({
 
 export const setVisibleSources = () => ({
   type: SET_VISIBLE_SOURCES,
+});
+
+
+export const setVisibleArticles = () => ({
+  type: SET_VISIBLE_ARTICLES,
 });
 
 

@@ -18,6 +18,8 @@ import {
 
   setVisibleSources,
 
+  setVisibleArticles,
+
   getSourceLogosSucceeded,
   getSourceLogosFailed,
 
@@ -122,6 +124,7 @@ function* getSourcesAndArticles() {
 
   yield getSources();
   yield getFilteredSources();
+  yield put(setVisibleArticles());
   yield getSourceLogos();
   yield getFilteredCategories();
   yield put(setVisibleSources());
@@ -187,7 +190,7 @@ function* addFilteredSource(dispatch) {
       [filteredSourceKey]: source,
     }));
     yield put(addFilteredSourceSucceeded(source));
-    yield put(setVisibleSources());
+    yield put(setVisibleArticles());
   } catch (error) {
     yield put(addFilteredSourceFailed(error));
   }
@@ -200,7 +203,7 @@ function* removeFilteredSource(dispatch) {
   try {
     yield call(remove, firebaseFilteredSources, id);
     yield put(removeFilteredSourceSucceeded(source));
-    yield put(setVisibleSources());
+    yield put(setVisibleArticles());
   } catch (error) {
     yield put(removeFilteredSourceFailed(error));
   }

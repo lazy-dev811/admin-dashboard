@@ -5,6 +5,8 @@ import {
   getSourcesAndArticlesRequested,
   addFilteredCategoryRequested,
   removeFilteredCategoryRequested,
+  addFilteredSourceRequested,
+  removeFilteredSourceRequested,
   addSourceRequested,
   removeSourceRequested,
 } from './actions';
@@ -21,9 +23,11 @@ const mergeProps = ({
   sources,
   activeSources,
   visibleSources,
+  filteredSources,
   toggledSource,
 
   activeArticles,
+  visibleArticles,
 
   categories,
   filteredCategories,
@@ -37,8 +41,11 @@ const mergeProps = ({
   sources,
   activeSources,
   visibleSources,
+  filteredSources,
   toggledSource,
+
   activeArticles,
+  visibleArticles,
 
   categories,
   filteredCategories,
@@ -59,6 +66,13 @@ const mergeProps = ({
       dispatch(removeFilteredCategoryRequested(selectedCategory));
     } else {
       dispatch(addFilteredCategoryRequested(selectedCategory));
+    }
+  },
+  toggleFilteredSources(selectedSource) {
+    if (filteredSources.findIndex(source => source === selectedSource) > -1) {
+      dispatch(removeFilteredSourceRequested(selectedSource));
+    } else {
+      dispatch(addFilteredSourceRequested(selectedSource));
     }
   },
   selectView(view) {

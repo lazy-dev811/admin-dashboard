@@ -19,6 +19,8 @@ import {
 
   SET_VISIBLE_SOURCES,
 
+  SET_VISIBLE_ARTICLES,
+
   GET_SOURCE_LOGOS_SUCCEEDED,
   GET_SOURCE_LOGOS_FAILED,
 
@@ -61,7 +63,9 @@ const INITIAL_STATE = {
   visibleSources: [],
   sourceLogos: [],
   toggledSource: {},
+
   activeArticles: [],
+  visibleArticles: [],
 
   categories: [],
   filteredCategories: [],
@@ -200,12 +204,26 @@ export default (state = INITIAL_STATE, action) => {
       const filteredCategories = state.filteredCategories;
 
       const isCategoryEqual = source => category => category === source.category;
-      const filterSourcesByActiveCategory = source => filteredCategories.findIndex(isCategoryEqual(source)) > -1;
-      const visibleSources = state.sources.filter(filterSourcesByActiveCategory);
+      const filterSourcesByCategory = source => filteredCategories.findIndex(isCategoryEqual(source)) > -1;
+      const visibleSources = state.sources.filter(filterSourcesByCategory);
 
       return {
         ...state,
         visibleSources,
+      };
+    }
+
+
+    case SET_VISIBLE_ARTICLES: {
+      const filteredSources = state.filteredSources;
+
+      const isSourceEqual = activeArticle => source => source === activeArticle.source;
+      const filterArtlcesBySource = activeArticle => filteredSources.findIndex(isSourceEqual(activeArticle)) > -1;
+      const visibleArticles = state.activeArticles.filter(filterArtlcesBySource);
+
+      return {
+        ...state,
+        visibleArticles,
       };
     }
 

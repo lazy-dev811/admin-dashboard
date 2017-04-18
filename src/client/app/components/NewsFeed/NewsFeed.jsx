@@ -21,12 +21,14 @@ class NewsFeed extends Component {
       visibleSources,
       toggledSource,
       toggleActiveSource,
+      toggleFilteredSources,
 
       views,
       activeView,
       selectView,
 
       activeArticles = [],
+      visibleArticles = [],
       removeArticles,
 
       categories,
@@ -50,7 +52,7 @@ class NewsFeed extends Component {
               toggleFilteredCategories={toggleFilteredCategories}
               activeSources={activeSources.map(source => source.id)}
               filteredSources={filteredSources}
-              // toggleFilteredSources={toggleFilteredSources}
+              toggleFilteredSources={toggleFilteredSources}
               activeView={activeView}
             />
 
@@ -81,6 +83,7 @@ class NewsFeed extends Component {
           activeView === 'articles' &&
           <Articles
             activeArticles={activeArticles}
+            visibleArticles={visibleArticles}
             activeSources={activeSources}
             logoColors={logoColors}
             removeArticles={removeArticles}
@@ -101,8 +104,10 @@ NewsFeed.propTypes = {
   filteredSources: PropTypes.array.isRequired,
   visibleSources: PropTypes.array,
   toggledSource: PropTypes.object,
+  toggleFilteredSources: PropTypes.func.isRequired,
 
   activeArticles: PropTypes.array.isRequired,
+  visibleArticles: PropTypes.array.isRequired,
 
   views: PropTypes.array.isRequired,
   activeView: PropTypes.string.isRequired,
