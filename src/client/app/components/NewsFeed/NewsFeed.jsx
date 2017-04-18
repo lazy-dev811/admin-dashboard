@@ -19,16 +19,21 @@ class NewsFeed extends Component {
       activeSources,
       filteredSources,
       toggledSource,
+      toggleActiveSource,
 
       views,
       activeView,
+      selectView,
+
       activeArticles = [],
+      removeArticles,
+
       categories,
       activeCategories,
       toggleActiveCategories,
-      selectView,
-      toggleActiveSource,
-      removeArticles,
+
+      logoColors,
+
       asyncStatus,
     } = this.props;
 
@@ -72,6 +77,7 @@ class NewsFeed extends Component {
           <Articles
             activeArticles={activeArticles}
             activeSources={activeSources}
+            logoColors={logoColors}
             removeArticles={removeArticles}
           />
         }
@@ -102,6 +108,7 @@ NewsFeed.propTypes = {
 
   toggleActiveCategories: PropTypes.func.isRequired,
   selectView: PropTypes.func.isRequired,
+  logoColors: PropTypes.object.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
   asyncStatus: PropTypes.object,
 };

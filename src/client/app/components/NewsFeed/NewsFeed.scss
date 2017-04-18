@@ -168,18 +168,6 @@ $color-border-filters: #e6e6e6;
     padding: 8px 15px;
     background-color: $color;
     color: #fff;
-
-    &.is-recode {
-      background-color: #ee2c24;
-    }
-
-    &.is-reddit {
-      background-color: #000;
-    }
-
-    &.is-mashable {
-      background-color: #3e85c3;
-    }
   }
 
   &__date {

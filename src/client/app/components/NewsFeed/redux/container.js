@@ -12,6 +12,8 @@ import {
 import NewsFeed from '../NewsFeed.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
+import logoColors from '../config.js';
+
 const mapStateToProps = ({ widgetNewsFeed, config }) => ({ ...widgetNewsFeed, ...config });
 
 const mergeProps = ({
@@ -43,6 +45,7 @@ const mergeProps = ({
 
   views,
   activeView,
+  logoColors,
   config: widgetNewsFeed,
   asyncStatus,
   getSourcesAndArticles() {
