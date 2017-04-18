@@ -152,12 +152,25 @@ $color-border-filters: #e6e6e6;
     background-color: whitesmoke;
   }
 
+  &:hover {
+    .article__img {
+      opacity: 1;
+    }
+  }
+
   &__img-wrap {
     position: relative;
     margin-right: 20px;
+
+    &:hover {
+      .article__date {
+        display: block;
+      }
+    }
   }
 
   &__img {
+    opacity: 0.7;
     width: 170px;
   }
 
@@ -200,12 +213,6 @@ $color-border-filters: #e6e6e6;
 
     &__description {
       color: #999;
-    }
-  }
-
-  &:hover {
-    .article__date {
-      display: block;
     }
   }
 }
