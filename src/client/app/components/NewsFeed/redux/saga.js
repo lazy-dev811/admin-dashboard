@@ -10,10 +10,13 @@ import {
   getActiveSourcesSucceeded,
   getActiveSourcesFailed,
 
+  getFilteredSourcesSucceeded,
+  getFilteredSourcesFailed,
+
   getFilteredCategoriesSucceeded,
   getFilteredCategoriesFailed,
 
-  filterSources,
+  setVisibleSources,
 
   getSourceLogosSucceeded,
   getSourceLogosFailed,
@@ -46,6 +49,7 @@ const BASE_ARTICLES_URL = 'https://newsapi.org/v1/articles';
 
 const firebaseNewsFeedRoot = 'widgets/newsfeed';
 const firebaseActiveSources = `${firebaseNewsFeedRoot}/data/active-sources`;
+const firebaseFilteredSources = `${firebaseNewsFeedRoot}/data/filtered-sources`;
 const firebaseFilteredCategories = `${firebaseNewsFeedRoot}/data/filtered-categories`;
 
 function* getSources() {
@@ -66,6 +70,15 @@ function* getActiveSources() {
     yield put(getActiveSourcesFailed(error));
   }
   return false;
+}
+
+function* getFilteredSources() {
+  try {
+    const payload = yield call(getAll, firebaseFilteredSources);
+    yield put(getFilteredSourcesSucceeded(payload));
+  } catch (error) {
+    yield put(getFilteredSourcesFailed(error));
+  }
 }
 
 function* getFilteredCategories() {
@@ -102,7 +115,7 @@ function* getSourcesAndArticles() {
   yield getSources();
   yield getSourceLogos();
   yield getFilteredCategories();
-  yield put(filterSources());
+  yield put(setVisibleSources());
   const activeSources = yield getActiveSources();
 
   if (activeSources) {
@@ -136,7 +149,7 @@ function* addFilteredCategory(dispatch) {
       [filteredCategoryKey]: category,
     }));
     yield put(addFilteredCategorySucceeded(category));
-    yield put(filterSources());
+    yield put(setVisibleSources());
   } catch (error) {
     yield put(addFilteredCategoryFailed(error));
   }
@@ -149,7 +162,7 @@ function* removeFilteredCategory(dispatch) {
   try {
     yield call(remove, firebaseFilteredCategories, id);
     yield put(removeFilteredCategorySucceeded(category));
-    yield put(filterSources());
+    yield put(setVisibleSources());
   } catch (error) {
     yield put(removeFilteredCategoryFailed(error));
   }

@@ -20,7 +20,7 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
-  filteredSources,
+  visibleSources,
   toggledSource,
 
   activeArticles,
@@ -36,7 +36,7 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
-  filteredSources,
+  visibleSources,
   toggledSource,
   activeArticles,
 

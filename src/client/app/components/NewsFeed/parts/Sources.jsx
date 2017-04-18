@@ -6,16 +6,16 @@ import Loader from '../../Loader/Loader';
 const Sources = ({
   sources = [],
   activeSources,
-  filteredSources = [],
+  visibleSources = [],
   filteredCategories = [],
-  toggleActiveCategories = () => {},
+  toggleFilteredCategories = () => {},
   toggledSource,
   toggleActiveSource,
   asyncStatus,
 }) => {
-  const visibleSources = filteredSources.length > 0 ? filteredSources : sources;
-  const activeCategoryPills = filteredCategories.map(activeCategory => (
-    <button className="pill" onClick={() => toggleActiveCategories(activeCategory)}>{activeCategory}</button>
+  const displayedSources = visibleSources.length > 0 ? visibleSources : sources;
+  const filteredCategoryPills = filteredCategories.map(filteredCategory => (
+    <button className="pill" onClick={() => toggleFilteredCategories(filteredCategory)}>{filteredCategory}</button>
   ));
 
   return (
@@ -23,13 +23,13 @@ const Sources = ({
       {
         filteredCategories &&
         <div className="active-filters">
-          {activeCategoryPills}
+          {filteredCategoryPills}
         </div>
       }
 
       <ul className="sources">
         {
-          visibleSources.map((source) => {
+          displayedSources.map((source) => {
             const sourceClass = classnames('sources__source', {
               'is-active': activeSources.findIndex(activeSource => activeSource.id === source.id) > -1,
             });
@@ -64,9 +64,9 @@ const Sources = ({
 Sources.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array.isRequired,
-  filteredSources: PropTypes.array.isRequired,
+  visibleSources: PropTypes.array.isRequired,
   filteredCategories: PropTypes.array.isRequired,
-  toggleActiveCategories: PropTypes.func.isRequired,
+  toggleFilteredCategories: PropTypes.func.isRequired,
   toggledSource: PropTypes.object.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
   asyncStatus: PropTypes.object,

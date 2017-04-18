@@ -14,7 +14,7 @@ import {
   GET_FILTERED_CATEGORIES_SUCCEEDED,
   GET_FILTERED_CATEGORIES_FAILED,
 
-  FILTER_SOURCES,
+  SET_VISIBLE_SOURCES,
 
   GET_SOURCE_LOGOS_SUCCEEDED,
   GET_SOURCE_LOGOS_FAILED,
@@ -45,7 +45,7 @@ const INITIAL_STATE = {
   widgetName: 'NewsFeed',
   sources: [],
   activeSources: [],
-  filteredSources: [],
+  visibleSources: [],
   sourceLogos: [],
   toggledSource: {},
   activeArticles: [],
@@ -172,16 +172,16 @@ export default (state = INITIAL_STATE, action) => {
     // }
 
 
-    case FILTER_SOURCES: {
+    case SET_VISIBLE_SOURCES: {
       const filteredCategories = state.filteredCategories;
 
       const isCategoryEqual = source => category => category === source.category;
       const filterSourcesByActiveCategory = source => filteredCategories.findIndex(isCategoryEqual(source)) > -1;
-      const filteredSources = state.sources.filter(filterSourcesByActiveCategory);
+      const visibleSources = state.sources.filter(filterSourcesByActiveCategory);
 
       return {
         ...state,
-        filteredSources,
+        visibleSources,
       };
     }
 

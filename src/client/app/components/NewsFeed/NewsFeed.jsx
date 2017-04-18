@@ -17,7 +17,7 @@ class NewsFeed extends Component {
     const {
       sources,
       activeSources,
-      filteredSources,
+      visibleSources,
       toggledSource,
       toggleActiveSource,
 
@@ -64,7 +64,7 @@ class NewsFeed extends Component {
           <Sources
             sources={sources}
             activeSources={activeSources}
-            filteredSources={filteredSources}
+            visibleSources={visibleSources}
             filteredCategories={filteredCategories}
             toggleFilteredCategories={toggleFilteredCategories}
             toggledSource={toggledSource}
@@ -94,7 +94,7 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array,
-  filteredSources: PropTypes.array,
+  visibleSources: PropTypes.array,
   toggledSource: PropTypes.object,
 
   activeArticles: PropTypes.array.isRequired,
