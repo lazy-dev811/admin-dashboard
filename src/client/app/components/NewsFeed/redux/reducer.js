@@ -14,6 +14,9 @@ import {
   GET_FILTERED_CATEGORIES_SUCCEEDED,
   GET_FILTERED_CATEGORIES_FAILED,
 
+  GET_FILTERED_SOURCES_SUCCEEDED,
+  GET_FILTERED_SOURCES_FAILED,
+
   SET_VISIBLE_SOURCES,
 
   GET_SOURCE_LOGOS_SUCCEEDED,
@@ -31,6 +34,14 @@ import {
   REMOVE_FILTERED_CATEGORY_SUCCEEDED,
   REMOVE_FILTERED_CATEGORY_FAILED,
 
+  ADD_FILTERED_SOURCE_REQUESTED,
+  ADD_FILTERED_SOURCE_SUCCEEDED,
+  ADD_FILTERED_SOURCE_FAILED,
+
+  REMOVE_FILTERED_SOURCE_REQUESTED,
+  REMOVE_FILTERED_SOURCE_SUCCEEDED,
+  REMOVE_FILTERED_SOURCE_FAILED,
+
   ADD_SOURCE_REQUESTED,
   ADD_SOURCE_SUCCEEDED,
   ADD_SOURCE_FAILED,
@@ -43,8 +54,10 @@ import {
 const INITIAL_STATE = {
   widgetIdentifier: 'widgetNewsFeed',
   widgetName: 'NewsFeed',
+
   sources: [],
   activeSources: [],
+  filteredSources: [],
   visibleSources: [],
   sourceLogos: [],
   toggledSource: {},
@@ -159,6 +172,17 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
+
+    case GET_FILTERED_SOURCES_SUCCEEDED: {
+      const payload = action.payload || {};
+      const filteredSources = Object.keys(payload).map(source => payload[source]);
+
+      return {
+        ...state,
+        filteredSources,
+      };
+    }
+
     // case GET_FILTERED_CATEGORIES_FAILED: {
     //   return {
     //     ...state,
@@ -254,54 +278,6 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case ADD_SOURCE_REQUESTED: {
-      return {
-        ...state,
-        toggledSource: action.source,
-        asyncStatus: {
-          ...state.asyncStatus,
-          toggleActiveSource: {
-            inProgress: true,
-            error: false,
-            errorMessage: undefined,
-          },
-        },
-      };
-    }
-
-    case ADD_SOURCE_SUCCEEDED: {
-      return {
-        ...state,
-        activeSources: [
-          ...state.activeSources,
-          action.source,
-        ],
-        asyncStatus: {
-          ...state.asyncStatus,
-          toggleActiveSource: {
-            inProgress: false,
-            error: false,
-            errorMessage: undefined,
-          },
-        },
-      };
-    }
-
-    case ADD_SOURCE_FAILED: {
-      return {
-        ...state,
-        asyncStatus: {
-          ...state.asyncStatus,
-          toggleActiveSource: {
-            inProgress: false,
-            error: true,
-            errorMessage: action.error.message,
-          },
-        },
-      };
-    }
-
-
     case ADD_FILTERED_CATEGORY_REQUESTED: {
       return {
         ...state,
@@ -386,6 +362,147 @@ export default (state = INITIAL_STATE, action) => {
         asyncStatus: {
           ...state.asyncStatus,
           toggleFilteredCategory: {
+            inProgress: false,
+            error: true,
+            errorMessage: action.error.message,
+          },
+        },
+      };
+    }
+
+
+    case ADD_FILTERED_SOURCE_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleFilteredSource: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case ADD_FILTERED_SOURCE_SUCCEEDED: {
+      const filteredSources = [
+        ...state.filteredSources,
+        action.payload,
+      ];
+
+      return {
+        ...state,
+        filteredSources,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleFilteredSource: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case ADD_FILTERED_SOURCE_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleFilteredSource: {
+            inProgress: false,
+            error: true,
+            errorMessage: action.error.message,
+          },
+        },
+      };
+    }
+
+
+    case REMOVE_FILTERED_SOURCE_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleFilteredSource: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case REMOVE_FILTERED_SOURCE_SUCCEEDED: {
+      return {
+        ...state,
+        filteredSources: state.filteredSources.filter(source => source !== action.payload),
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleFilteredSource: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case REMOVE_FILTERED_SOURCE_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleFilteredSource: {
+            inProgress: false,
+            error: true,
+            errorMessage: action.error.message,
+          },
+        },
+      };
+    }
+
+
+    case ADD_SOURCE_REQUESTED: {
+      return {
+        ...state,
+        toggledSource: action.source,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: true,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case ADD_SOURCE_SUCCEEDED: {
+      return {
+        ...state,
+        activeSources: [
+          ...state.activeSources,
+          action.source,
+        ],
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveSource: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
+
+    case ADD_SOURCE_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleActiveSource: {
             inProgress: false,
             error: true,
             errorMessage: action.error.message,

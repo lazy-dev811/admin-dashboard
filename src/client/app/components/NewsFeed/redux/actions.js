@@ -8,6 +8,9 @@ export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
 export const GET_ACTIVE_SOURCES_SUCCEEDED = 'GET_ACTIVE_SOURCES_SUCCEEDED';
 export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
 
+export const GET_FILTERED_SOURCES_SUCCEEDED = 'GET_FILTERED_SOURCES_SUCCEEDED';
+export const GET_FILTERED_SOURCES_FAILED = 'GET_FILTERED_SOURCES_FAILED';
+
 export const GET_FILTERED_CATEGORIES_SUCCEEDED = 'GET_FILTERED_CATEGORIES_SUCCEEDED';
 export const GET_FILTERED_CATEGORIES_FAILED = 'GET_FILTERED_CATEGORIES_FAILED';
 
@@ -24,9 +27,21 @@ export const ADD_FILTERED_CATEGORY_REQUESTED = 'ADD_FILTERED_CATEGORY_REQUESTED'
 export const ADD_FILTERED_CATEGORY_SUCCEEDED = 'ADD_FILTERED_CATEGORY_SUCCEEDED';
 export const ADD_FILTERED_CATEGORY_FAILED = 'ADD_FILTERED_CATEGORY_FAILED';
 
+export const ADD_FILTERED_SOURCES_REQUESTED = 'ADD_FILTERED_SOURCES_REQUESTED';
+export const ADD_FILTERED_SOURCES_SUCCEEDED = 'ADD_FILTERED_SOURCES_SUCCEEDED';
+export const ADD_FILTERED_SOURCES_FAILED = 'ADD_FILTERED_SOURCES_FAILED';
+
 export const REMOVE_FILTERED_CATEGORY_REQUESTED = 'REMOVE_FILTERED_CATEGORY_REQUESTED';
 export const REMOVE_FILTERED_CATEGORY_SUCCEEDED = 'REMOVE_FILTERED_CATEGORY_SUCCEEDED';
 export const REMOVE_FILTERED_CATEGORY_FAILED = 'REMOVE_FILTERED_CATEGORY_FAILED';
+
+export const ADD_FILTERED_SOURCE_REQUESTED = 'ADD_FILTERED_SOURCE_REQUESTED';
+export const ADD_FILTERED_SOURCE_SUCCEEDED = 'ADD_FILTERED_SOURCE_SUCCEEDED';
+export const ADD_FILTERED_SOURCE_FAILED = 'ADD_FILTERED_SOURCE_FAILED';
+
+export const REMOVE_FILTERED_SOURCE_REQUESTED = 'REMOVE_FILTERED_SOURCE_REQUESTED';
+export const REMOVE_FILTERED_SOURCE_SUCCEEDED = 'REMOVE_FILTERED_SOURCE_SUCCEEDED';
+export const REMOVE_FILTERED_SOURCE_FAILED = 'REMOVE_FILTERED_SOURCE_FAILED';
 
 export const ADD_SOURCE_REQUESTED = 'ADD_SOURCE_REQUESTED';
 export const ADD_SOURCE_SUCCEEDED = 'ADD_SOURCE_SUCCEEDED';
@@ -77,6 +92,17 @@ export const getFilteredCategoriesSucceeded = payload => ({
 
 export const getFilteredCategoriesFailed = error => ({
   type: GET_FILTERED_CATEGORIES_FAILED,
+  error,
+});
+
+
+export const getFilteredSourcesSucceeded = payload => ({
+  type: GET_FILTERED_SOURCES_SUCCEEDED,
+  payload,
+});
+
+export const getFilteredSourcesFailed = error => ({
+  type: GET_FILTERED_SOURCES_FAILED,
   error,
 });
 
@@ -141,6 +167,38 @@ export const removeFilteredCategorySucceeded = payload => ({
 
 export const removeFilteredCategoryFailed = error => ({
   type: REMOVE_FILTERED_CATEGORY_FAILED,
+  error,
+});
+
+
+export const addFilteredSourceRequested = source => ({
+  type: ADD_FILTERED_SOURCE_REQUESTED,
+  source,
+});
+
+export const addFilteredSourceSucceeded = payload => ({
+  type: ADD_FILTERED_SOURCE_SUCCEEDED,
+  payload,
+});
+
+export const addFilteredSourceFailed = error => ({
+  type: ADD_FILTERED_SOURCE_FAILED,
+  error,
+});
+
+
+export const removeFilteredSourceRequested = source => ({
+  type: REMOVE_FILTERED_SOURCE_REQUESTED,
+  source,
+});
+
+export const removeFilteredSourceSucceeded = payload => ({
+  type: REMOVE_FILTERED_SOURCE_SUCCEEDED,
+  payload,
+});
+
+export const removeFilteredSourceFailed = error => ({
+  type: REMOVE_FILTERED_SOURCE_FAILED,
   error,
 });
 

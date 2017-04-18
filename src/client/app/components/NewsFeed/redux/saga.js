@@ -37,6 +37,14 @@ import {
   removeFilteredCategorySucceeded,
   removeFilteredCategoryFailed,
 
+  ADD_FILTERED_SOURCE_REQUESTED,
+  addFilteredSourceSucceeded,
+  addFilteredSourceFailed,
+
+  REMOVE_FILTERED_SOURCE_REQUESTED,
+  removeFilteredSourceSucceeded,
+  removeFilteredSourceFailed,
+
   REMOVE_SOURCE_REQUESTED,
   removeSourceSucceeded,
   removeSourceFailed,
@@ -113,6 +121,7 @@ function* getSourcesAndArticles() {
   }
 
   yield getSources();
+  yield getFilteredSources();
   yield getSourceLogos();
   yield getFilteredCategories();
   yield put(setVisibleSources());
@@ -168,6 +177,35 @@ function* removeFilteredCategory(dispatch) {
   }
 }
 
+function* addFilteredSource(dispatch) {
+  const { source } = dispatch;
+  const id = source;
+  const filteredSourceKey = `${firebaseFilteredSources}/${id}`;
+
+  try {
+    yield call(create, firebaseFilteredSources, () => ({
+      [filteredSourceKey]: source,
+    }));
+    yield put(addFilteredSourceSucceeded(source));
+    yield put(setVisibleSources());
+  } catch (error) {
+    yield put(addFilteredSourceFailed(error));
+  }
+}
+
+function* removeFilteredSource(dispatch) {
+  const { source } = dispatch;
+  const id = source;
+
+  try {
+    yield call(remove, firebaseFilteredSources, id);
+    yield put(removeFilteredSourceSucceeded(source));
+    yield put(setVisibleSources());
+  } catch (error) {
+    yield put(removeFilteredSourceFailed(error));
+  }
+}
+
 function* removeSource(action) {
   const { source } = action;
   const { id } = source;
@@ -185,6 +223,8 @@ function* newsfeedSagas() {
     takeEvery(GET_SOURCES_AND_ARTICLES_REQUESTED, getSourcesAndArticles),
     takeEvery(ADD_FILTERED_CATEGORY_REQUESTED, addFilteredCategory),
     takeEvery(REMOVE_FILTERED_CATEGORY_REQUESTED, removeFilteredCategory),
+    takeEvery(REMOVE_FILTERED_SOURCE_REQUESTED, removeFilteredSource),
+    takeEvery(ADD_FILTERED_SOURCE_REQUESTED, addFilteredSource),
     takeEvery(ADD_SOURCE_REQUESTED, addSource),
     takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),
   ];
