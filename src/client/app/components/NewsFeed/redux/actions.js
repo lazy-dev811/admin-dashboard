@@ -18,6 +18,8 @@ export const SET_VISIBLE_SOURCES = 'SET_VISIBLE_SOURCES';
 
 export const SET_VISIBLE_ARTICLES = 'SET_VISIBLE_ARTICLES';
 
+export const SET_SOURCES = 'SET_SOURCES';
+
 export const GET_SOURCE_LOGOS_SUCCEEDED = 'GET_SOURCE_LOGOS_SUCCEEDED';
 export const GET_SOURCE_LOGOS_FAILED = 'GET_SOURCE_LOGOS_FAILED';
 
@@ -119,6 +121,12 @@ export const setVisibleArticles = () => ({
 });
 
 
+export const setSources = data => ({
+  type: SET_SOURCES,
+  data,
+});
+
+
 export const getSourceLogosSucceeded = payload => ({
   type: GET_SOURCE_LOGOS_SUCCEEDED,
   payload,
@@ -134,10 +142,9 @@ export const getSourcesAndArticlesRequested = () => ({
   type: GET_SOURCES_AND_ARTICLES_REQUESTED,
 });
 
-export const getSourcesAndArticlesSucceeded = (payload, source) => ({
+export const getSourcesAndArticlesSucceeded = payload => ({
   type: GET_SOURCES_AND_ARTICLES_SUCCEEDED,
   payload,
-  source,
 });
 
 export const getSourcesAndArticlesFailed = error => ({

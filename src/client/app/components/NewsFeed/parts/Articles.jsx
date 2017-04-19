@@ -1,23 +1,21 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 
-import { returnUnique } from '../../../utils';
-
 const Articles = ({
   activeArticles = [],
   visibleArticles,
-  activeSources,
+  filteredSources,
   logoColors = {},
 }) => {
   const displayedArticles = visibleArticles.length > 0 ? visibleArticles : activeArticles;
-  const filteredSourcePills = activeSources.map(filteredSources => (
-    <button className="pill">{filteredSources.name}</button>
+  const filteredSourcePills = filteredSources.map(filteredSource => (
+    <button className="pill">{filteredSource}</button>
   ));
 
   return (
     <div>
       {
-        activeSources &&
+        filteredSources &&
         <div className="active-filters">
           {filteredSourcePills}
         </div>
@@ -62,7 +60,7 @@ const Articles = ({
 Articles.propTypes = {
   activeArticles: PropTypes.array.isRequired,
   visibleArticles: PropTypes.array.isRequired,
-  activeSources: PropTypes.array.isRequired,
+  filteredSources: PropTypes.array.isRequired,
   logoColors: PropTypes.object.isRequired,
 };
 

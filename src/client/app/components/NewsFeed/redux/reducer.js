@@ -21,6 +21,8 @@ import {
 
   SET_VISIBLE_ARTICLES,
 
+  SET_SOURCES,
+
   GET_SOURCE_LOGOS_SUCCEEDED,
   GET_SOURCE_LOGOS_FAILED,
 
@@ -107,14 +109,38 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case GET_SOURCES_SUCCEEDED: {
-      const { sources } = action.payload.data;
+    // case GET_SOURCES_SUCCEEDED: {
+    //   const { sources } = action.payload.data;
+    //   return {
+    //     ...state,
+    //     sources,
+    //     categories: returnUnique(sources.map(source => source.category)),
+    //   };
+    // }
+
+    case SET_SOURCES: {
+      console.log(action.data);
+      const { sources, filteredSources, sourceLogos, filteredCategories } = action.data;
+      const filteredSources2 = Object.keys(filteredSources).map(source => filteredSources[source]);
+      const sourceLogos2 = Object.keys(sourceLogos).map(id => ({
+        id,
+        url: sourceLogos[id],
+      }));
+      const sourcesMapped = sources.data.sources.map(source => ({
+        ...source,
+        logo: sourceLogos2.find(logo => logo.id === source.id).url,
+      }));
+      const filteredCategories2 = Object.keys(filteredCategories).map(category => filteredCategories[category]);
+
       return {
         ...state,
-        sources,
-        categories: returnUnique(sources.map(source => source.category)),
+        sources: sourcesMapped,
+        filteredSources: filteredSources2,
+        categories: returnUnique(sources.data.sources.map(source => source.category)),
+        filteredCategories: filteredCategories2,
       };
     }
+
 
     case GET_SOURCES_FAILED: {
       return {
@@ -133,23 +159,15 @@ export default (state = INITIAL_STATE, action) => {
       const payload = action.payload;
       let activeSources = [];
       let activeView = 'sources';
-      let asyncStatus = {
-        ...state.asyncStatus,
-        inProgress: false,
-        error: false,
-        errorMessage: undefined,
-      };
 
       if (Object.keys(payload).length > 0) {
         activeSources = Object.keys(payload).map(source => payload[source]);
-        activeView = 'articles';
-        asyncStatus = { ...state.asyncStatus };
+        activeView = 'sources';
       }
       return {
         ...state,
         activeSources,
         activeView,
-        asyncStatus,
       };
     }
 
@@ -166,26 +184,26 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case GET_FILTERED_CATEGORIES_SUCCEEDED: {
-      const payload = action.payload || {};
-      const filteredCategories = Object.keys(payload).map(category => payload[category]);
+    // case GET_FILTERED_CATEGORIES_SUCCEEDED: {
+    //   const payload = action.payload || {};
+    //   const filteredCategories = Object.keys(payload).map(category => payload[category]);
 
-      return {
-        ...state,
-        filteredCategories,
-      };
-    }
+    //   return {
+    //     ...state,
+    //     filteredCategories,
+    //   };
+    // }
 
 
-    case GET_FILTERED_SOURCES_SUCCEEDED: {
-      const payload = action.payload || {};
-      const filteredSources = Object.keys(payload).map(source => payload[source]);
+    // case GET_FILTERED_SOURCES_SUCCEEDED: {
+    //   const payload = action.payload || {};
+    //   const filteredSources = Object.keys(payload).map(source => payload[source]);
 
-      return {
-        ...state,
-        filteredSources,
-      };
-    }
+    //   return {
+    //     ...state,
+    //     filteredSources,
+    //   };
+    // }
 
     // case GET_FILTERED_CATEGORIES_FAILED: {
     //   return {
@@ -228,22 +246,22 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case GET_SOURCE_LOGOS_SUCCEEDED: {
-      const payload = action.payload;
-      const sourceLogos = Object.keys(payload).map(id => ({
-        id,
-        url: payload[id],
-      }));
-      const sources = state.sources.map(source => ({
-        ...source,
-        logo: sourceLogos.find(logo => logo.id === source.id).url,
-      }));
+    // case GET_SOURCE_LOGOS_SUCCEEDED: {
+    //   const payload = action.payload;
+    //   const sourceLogos = Object.keys(payload).map(id => ({
+    //     id,
+    //     url: payload[id],
+    //   }));
+    //   const sources = state.sources.map(source => ({
+    //     ...source,
+    //     logo: sourceLogos.find(logo => logo.id === source.id).url,
+    //   }));
 
-      return {
-        ...state,
-        sources,
-      };
-    }
+    //   return {
+    //     ...state,
+    //     sources,
+    //   };
+    // }
 
 
     case GET_SOURCES_AND_ARTICLES_REQUESTED: {
@@ -259,16 +277,20 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case GET_SOURCES_AND_ARTICLES_SUCCEEDED: {
-      const addSource = article => ({
-        source: action.source,
-        ...article,
-      });
+      // const addSource = article => ({
+      //   source: article.source,
+      //   ...article.articles,
+      // });
 
       const sortByDate = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
+      const articles = action.payload.map(obj => obj.articles.map(article => ({
+        source: obj.source,
+        ...article,
+      }))).join();
 
       const activeArticles = [
-        ...state.activeArticles,
-        ...action.payload.data.articles.map(addSource),
+        // ...state.activeArticles,
+        ...articles,
       ].sort(sortByDate);
 
       return {
@@ -310,25 +332,25 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case ADD_FILTERED_CATEGORY_SUCCEEDED: {
-      const filteredCategories = [
-        ...state.filteredCategories,
-        action.payload,
-      ];
-
-      return {
-        ...state,
-        filteredCategories,
-        asyncStatus: {
-          ...state.asyncStatus,
-          toggleFilteredCategory: {
-            inProgress: false,
-            error: false,
-            errorMessage: undefined,
-          },
-        },
-      };
-    }
+    // case ADD_FILTERED_CATEGORY_SUCCEEDED: {
+    //   const filteredCategories = [
+    //     ...state.filteredCategories,
+    //     action.payload,
+    //   ];
+    //
+    //   return {
+    //     ...state,
+    //     filteredCategories,
+    //     asyncStatus: {
+    //       ...state.asyncStatus,
+    //       toggleFilteredCategory: {
+    //         inProgress: false,
+    //         error: false,
+    //         errorMessage: undefined,
+    //       },
+    //     },
+    //   };
+    // }
 
     case ADD_FILTERED_CATEGORY_FAILED: {
       return {

@@ -20,6 +20,8 @@ import {
 
   setVisibleArticles,
 
+  setSources,
+
   getSourceLogosSucceeded,
   getSourceLogosFailed,
 
@@ -64,10 +66,9 @@ const firebaseFilteredCategories = `${firebaseNewsFeedRoot}/data/filtered-catego
 
 function* getSources() {
   try {
-    const payload = yield call(axios.get, BASE_SOURCES_URL);
-    yield put(getSourcesSucceeded(payload));
+    return yield call(axios.get, BASE_SOURCES_URL);
   } catch (error) {
-    yield put(getSourcesFailed(error));
+    return yield put(getSourcesFailed(error));
   }
 }
 
@@ -84,49 +85,55 @@ function* getActiveSources() {
 
 function* getFilteredSources() {
   try {
-    const payload = yield call(getAll, firebaseFilteredSources);
-    yield put(getFilteredSourcesSucceeded(payload));
+    return yield call(getAll, firebaseFilteredSources);
   } catch (error) {
-    yield put(getFilteredSourcesFailed(error));
+    return yield put(getFilteredSourcesFailed(error));
   }
 }
 
 function* getFilteredCategories() {
   try {
-    const payload = yield call(getAll, firebaseFilteredCategories);
-    yield put(getFilteredCategoriesSucceeded(payload));
+    return yield call(getAll, firebaseFilteredCategories);
   } catch (error) {
-    yield put(getFilteredCategoriesFailed(error));
+    return yield put(getFilteredCategoriesFailed(error));
   }
 }
 
 function* getSourceLogos() {
   try {
-    const payload = yield call(getAll, `${firebaseNewsFeedRoot}/assets/sources`);
-    yield put(getSourceLogosSucceeded(payload));
+    return yield call(getAll, `${firebaseNewsFeedRoot}/assets/sources`);
   } catch (error) {
-    yield put(getSourceLogosFailed(error));
+    return yield put(getSourceLogosFailed(error));
   }
 }
 
 function* getSourcesAndArticles() {
   function* iterateOverActiveSources(array) {
+    let arr = [];
     for (const activeSource of array) {
+      console.log(activeSource, array);
       const url = `${BASE_ARTICLES_URL}?source=${activeSource}&apiKey=${API_KEY}`;
       try {
         const payload = yield call(axios.get, url);
-        yield put(getSourcesAndArticlesSucceeded(payload, activeSource));
+        arr.push({ source: activeSource, articles: payload.data.articles });
+        if (activeSource === array[array.length - 1]) {
+          yield put(getSourcesAndArticlesSucceeded(arr));
+        }
       } catch (error) {
         yield put(getSourcesAndArticlesFailed(error));
       }
     }
   }
 
-  yield getSources();
-  yield getFilteredSources();
   yield put(setVisibleArticles());
-  yield getSourceLogos();
-  yield getFilteredCategories();
+  const sourcesData = {
+    sources: yield getSources(),
+    filteredSources: yield getFilteredSources(),
+    sourceLogos: yield getSourceLogos(),
+    filteredCategories: yield getFilteredCategories(),
+  };
+
+  yield put(setSources(sourcesData));
   yield put(setVisibleSources());
   const activeSources = yield getActiveSources();
 
