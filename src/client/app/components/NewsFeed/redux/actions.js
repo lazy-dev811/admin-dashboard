@@ -18,6 +18,10 @@ export const SET_VISIBLE_SOURCES = 'SET_VISIBLE_SOURCES';
 
 export const SET_VISIBLE_ARTICLES = 'SET_VISIBLE_ARTICLES';
 
+export const GET_ARTICLES_REQUESTED = 'GET_ARTICLES_REQUESTED';
+export const GET_ARTICLES_SUCCEEDED = 'GET_ARTICLES_SUCCEEDED';
+export const GET_ARTICLES_FAILED = 'GET_ARTICLES_FAILED';
+
 export const GET_SOURCES_AND_FILTERS_REQUESTED = 'GET_SOURCES_AND_FILTERS_REQUESTED';
 export const GET_SOURCES_AND_FILTERS_SUCCEEDED = 'GET_SOURCES_AND_FILTERS_SUCCEEDED';
 export const GET_SOURCES_AND_FILTERS_FAILED = 'GET_SOURCES_AND_FILTERS_FAILED';
@@ -108,6 +112,21 @@ export const getSourceLogosFailed = error => ({
 });
 
 
+export const getArticlesRequested = () => ({
+  type: GET_ARTICLES_REQUESTED,
+});
+
+export const getArticlesSucceeded = payload => ({
+  type: GET_ARTICLES_SUCCEEDED,
+  payload,
+});
+
+export const getArticlesFailed = error => ({
+  type: GET_ARTICLES_FAILED,
+  error,
+});
+
+
 export const getSourcesAndFiltersRequested = () => ({
   type: GET_SOURCES_AND_FILTERS_REQUESTED,
 });
@@ -193,9 +212,9 @@ export const addSourceRequested = (source, activeSources) => ({
   activeSources,
 });
 
-export const addSourceSucceeded = id => ({
+export const addSourceSucceeded = source => ({
   type: ADD_SOURCE_SUCCEEDED,
-  id,
+  source,
 });
 
 export const addSourceFailed = error => ({
@@ -210,9 +229,9 @@ export const removeSourceRequested = (source, activeSources) => ({
   activeSources,
 });
 
-export const removeSourceSucceeded = source => ({
+export const removeSourceSucceeded = id => ({
   type: REMOVE_SOURCE_SUCCEEDED,
-  source,
+  id,
 });
 
 export const removeSourceFailed = error => ({

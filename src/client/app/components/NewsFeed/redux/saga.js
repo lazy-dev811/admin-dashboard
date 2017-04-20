@@ -20,9 +20,11 @@ import {
 
   setSources,
 
+  GET_ARTICLES_REQUESTED,
+  getArticlesSucceeded,
+  getArticlesFailed,
+
   GET_SOURCES_AND_FILTERS_REQUESTED,
-  getSourcesAndFiltersSucceeded,
-  getSourcesAndFiltersFailed,
 
   ADD_SOURCE_REQUESTED,
   addSourceSucceeded,
@@ -99,23 +101,23 @@ function* getSourceLogos() {
   }
 }
 
-function* getSourcesAndFilters() {
-  function* iterateOverActiveSources(array) {
-    const data = [];
-    for (const activeSource of array) {
-      const url = `${BASE_ARTICLES_URL}?source=${activeSource}&apiKey=${API_KEY}`;
-      try {
-        const payload = yield call(axios.get, url);
-        data.push({ source: activeSource, articles: payload.data.articles });
-        if (activeSource === array[array.length - 1]) {
-          yield put(getSourcesAndFiltersSucceeded(data));
-        }
-      } catch (error) {
-        yield put(getSourcesAndFiltersFailed(error));
+function* getArticles(array) {
+  const data = [];
+  for (const activeSource of array) {
+    const url = `${BASE_ARTICLES_URL}?source=${activeSource}&apiKey=${API_KEY}`;
+    try {
+      const payload = yield call(axios.get, url);
+      data.push({ source: activeSource, articles: payload.data.articles });
+      if (activeSource === array[array.length - 1]) {
+        yield put(getArticlesSucceeded(data));
       }
+    } catch (error) {
+      yield put(getArticlesFailed(error));
     }
   }
+}
 
+function* getSourcesAndFilters() {
   const sourcesData = {
     sources: yield getSources(),
     activeSources: yield getActiveSources(),
@@ -129,20 +131,26 @@ function* getSourcesAndFilters() {
 
   if (sourcesData.activeSources) {
     const activeSourcesKeys = Object.keys(sourcesData.activeSources);
-    yield iterateOverActiveSources(activeSourcesKeys);
+    yield getArticles(activeSourcesKeys);
     yield put(setVisibleArticles());
   }
 }
 
 function* addSource(dispatch) {
-  const { source: { id, name }, activeSources } = dispatch;
+  const { source, activeSources } = dispatch;
+  const { id, name } = source;
   const newsfeedKey = `${firebaseActiveSources}/${id}`;
+  const activeSourcesIds = [
+    ...activeSources.map(activeSource => activeSource.id),
+    id,
+  ];
 
   try {
     yield call(create, firebaseActiveSources, () => ({
       [newsfeedKey]: { id, name },
     }));
-    yield put(addSourceSucceeded(id));
+    yield put(addSourceSucceeded(source));
+    yield getArticles(activeSourcesIds);
   } catch (error) {
     yield put(addSourceFailed(error));
   }
@@ -150,10 +158,15 @@ function* addSource(dispatch) {
 
 function* removeSource(dispatch) {
   const { source: { id }, activeSources } = dispatch;
+  const activeSourcesIds = [
+    ...activeSources.map(activeSource => activeSource.id),
+    id,
+  ];
 
   try {
     yield call(remove, firebaseActiveSources, id);
     yield put(removeSourceSucceeded(id));
+    yield getArticles(activeSourcesIds);
   } catch (error) {
     yield put(removeSourceFailed(error));
   }
@@ -219,6 +232,7 @@ function* removeFilteredSource(dispatch) {
 
 function* newsfeedSagas() {
   yield* [
+    takeEvery(GET_ARTICLES_REQUESTED, getArticles),
     takeEvery(GET_SOURCES_AND_FILTERS_REQUESTED, getSourcesAndFilters),
     takeEvery(ADD_FILTERED_CATEGORY_REQUESTED, addFilteredCategory),
     takeEvery(REMOVE_FILTERED_CATEGORY_REQUESTED, removeFilteredCategory),
