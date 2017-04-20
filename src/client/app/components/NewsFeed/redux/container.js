@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import {
   toggleActiveView,
   removeArticles,
-  getSourcesAndArticlesRequested,
+  getSourcesAndFiltersRequested,
   addFilteredCategoryRequested,
   removeFilteredCategoryRequested,
   addFilteredSourceRequested,
@@ -55,8 +55,8 @@ const mergeProps = ({
   logoColors,
   config: widgetNewsFeed,
   asyncStatus,
-  getSourcesAndArticles() {
-    dispatch(getSourcesAndArticlesRequested());
+  getSourcesAndFilters() {
+    dispatch(getSourcesAndFiltersRequested());
   },
   removeArticles() {
     dispatch(removeArticles());

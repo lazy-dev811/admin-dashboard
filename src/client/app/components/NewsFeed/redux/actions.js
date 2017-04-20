@@ -18,9 +18,9 @@ export const SET_VISIBLE_SOURCES = 'SET_VISIBLE_SOURCES';
 
 export const SET_VISIBLE_ARTICLES = 'SET_VISIBLE_ARTICLES';
 
-export const GET_SOURCES_AND_ARTICLES_REQUESTED = 'GET_SOURCES_AND_ARTICLES_REQUESTED';
-export const GET_SOURCES_AND_ARTICLES_SUCCEEDED = 'GET_SOURCES_AND_ARTICLES_SUCCEEDED';
-export const GET_SOURCES_AND_ARTICLES_FAILED = 'GET_SOURCES_AND_ARTICLES_FAILED';
+export const GET_SOURCES_AND_FILTERS_REQUESTED = 'GET_SOURCES_AND_FILTERS_REQUESTED';
+export const GET_SOURCES_AND_FILTERS_SUCCEEDED = 'GET_SOURCES_AND_FILTERS_SUCCEEDED';
+export const GET_SOURCES_AND_FILTERS_FAILED = 'GET_SOURCES_AND_FILTERS_FAILED';
 
 export const ADD_FILTERED_CATEGORY_REQUESTED = 'ADD_FILTERED_CATEGORY_REQUESTED';
 export const ADD_FILTERED_CATEGORY_SUCCEEDED = 'ADD_FILTERED_CATEGORY_SUCCEEDED';
@@ -108,17 +108,17 @@ export const getSourceLogosFailed = error => ({
 });
 
 
-export const getSourcesAndArticlesRequested = () => ({
-  type: GET_SOURCES_AND_ARTICLES_REQUESTED,
+export const getSourcesAndFiltersRequested = () => ({
+  type: GET_SOURCES_AND_FILTERS_REQUESTED,
 });
 
-export const getSourcesAndArticlesSucceeded = payload => ({
-  type: GET_SOURCES_AND_ARTICLES_SUCCEEDED,
+export const getSourcesAndFiltersSucceeded = payload => ({
+  type: GET_SOURCES_AND_FILTERS_SUCCEEDED,
   payload,
 });
 
-export const getSourcesAndArticlesFailed = error => ({
-  type: GET_SOURCES_AND_ARTICLES_FAILED,
+export const getSourcesAndFiltersFailed = error => ({
+  type: GET_SOURCES_AND_FILTERS_FAILED,
   error,
 });
 

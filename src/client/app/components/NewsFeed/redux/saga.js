@@ -20,9 +20,9 @@ import {
 
   setSources,
 
-  GET_SOURCES_AND_ARTICLES_REQUESTED,
-  getSourcesAndArticlesSucceeded,
-  getSourcesAndArticlesFailed,
+  GET_SOURCES_AND_FILTERS_REQUESTED,
+  getSourcesAndFiltersSucceeded,
+  getSourcesAndFiltersFailed,
 
   ADD_SOURCE_REQUESTED,
   addSourceSucceeded,
@@ -99,7 +99,7 @@ function* getSourceLogos() {
   }
 }
 
-function* getSourcesAndArticles() {
+function* getSourcesAndFilters() {
   function* iterateOverActiveSources(array) {
     const data = [];
     for (const activeSource of array) {
@@ -108,10 +108,10 @@ function* getSourcesAndArticles() {
         const payload = yield call(axios.get, url);
         data.push({ source: activeSource, articles: payload.data.articles });
         if (activeSource === array[array.length - 1]) {
-          yield put(getSourcesAndArticlesSucceeded(data));
+          yield put(getSourcesAndFiltersSucceeded(data));
         }
       } catch (error) {
-        yield put(getSourcesAndArticlesFailed(error));
+        yield put(getSourcesAndFiltersFailed(error));
       }
     }
   }
@@ -135,7 +135,7 @@ function* getSourcesAndArticles() {
 }
 
 function* addSource(dispatch) {
-  const { source: { id, name } } = dispatch;
+  const { source: { id, name }, activeSources } = dispatch;
   const newsfeedKey = `${firebaseActiveSources}/${id}`;
 
   try {
@@ -148,13 +148,12 @@ function* addSource(dispatch) {
   }
 }
 
-function* removeSource(action) {
-  const { source } = action;
-  const { id } = source;
+function* removeSource(dispatch) {
+  const { source: { id }, activeSources } = dispatch;
 
   try {
     yield call(remove, firebaseActiveSources, id);
-    yield put(removeSourceSucceeded(source));
+    yield put(removeSourceSucceeded(id));
   } catch (error) {
     yield put(removeSourceFailed(error));
   }
@@ -220,7 +219,7 @@ function* removeFilteredSource(dispatch) {
 
 function* newsfeedSagas() {
   yield* [
-    takeEvery(GET_SOURCES_AND_ARTICLES_REQUESTED, getSourcesAndArticles),
+    takeEvery(GET_SOURCES_AND_FILTERS_REQUESTED, getSourcesAndFilters),
     takeEvery(ADD_FILTERED_CATEGORY_REQUESTED, addFilteredCategory),
     takeEvery(REMOVE_FILTERED_CATEGORY_REQUESTED, removeFilteredCategory),
     takeEvery(REMOVE_FILTERED_SOURCE_REQUESTED, removeFilteredSource),

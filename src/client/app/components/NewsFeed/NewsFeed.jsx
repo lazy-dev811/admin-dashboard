@@ -9,8 +9,7 @@ require('./NewsFeed.scss');
 
 class NewsFeed extends Component {
   componentWillMount() {
-    console.log('mounting');
-    this.props.getSourcesAndArticles();
+    this.props.getSourcesAndFilters();
   }
 
   render() {
@@ -113,7 +112,7 @@ NewsFeed.propTypes = {
   activeView: PropTypes.string.isRequired,
   categories: PropTypes.array.isRequired,
   filteredCategories: PropTypes.array.isRequired,
-  getSourcesAndArticles: PropTypes.func.isRequired,
+  getSourcesAndFilters: PropTypes.func.isRequired,
 
   removeArticles: PropTypes.func.isRequired,
 

@@ -21,9 +21,9 @@ import {
 
   GET_SOURCE_LOGOS_FAILED,
 
-  GET_SOURCES_AND_ARTICLES_REQUESTED,
-  GET_SOURCES_AND_ARTICLES_SUCCEEDED,
-  GET_SOURCES_AND_ARTICLES_FAILED,
+  GET_SOURCES_AND_FILTERS_REQUESTED,
+  GET_SOURCES_AND_FILTERS_SUCCEEDED,
+  GET_SOURCES_AND_FILTERS_FAILED,
 
   ADD_FILTERED_CATEGORY_REQUESTED,
   ADD_FILTERED_CATEGORY_SUCCEEDED,
@@ -186,7 +186,7 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case GET_SOURCES_AND_ARTICLES_REQUESTED: {
+    case GET_SOURCES_AND_FILTERS_REQUESTED: {
       return {
         ...state,
         asyncStatus: {
@@ -198,7 +198,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case GET_SOURCES_AND_ARTICLES_SUCCEEDED: {
+    case GET_SOURCES_AND_FILTERS_SUCCEEDED: {
       const sortByDate = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
       const mapToModel = obj => obj.articles.map(article => ({
         source: obj.source,
@@ -222,7 +222,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    case GET_SOURCES_AND_ARTICLES_FAILED: {
+    case GET_SOURCES_AND_FILTERS_FAILED: {
       return {
         ...state,
         asyncStatus: {
