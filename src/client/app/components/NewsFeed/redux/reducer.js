@@ -1,20 +1,16 @@
-import { returnUnique } from '../../../utils';
+import { returnUnique, objectKeys } from '../../../utils';
 
 import {
   TOGGLE_ACTIVE_VIEW,
 
   REMOVE_ARTICLES,
 
-  GET_SOURCES_SUCCEEDED,
   GET_SOURCES_FAILED,
 
-  GET_ACTIVE_SOURCES_SUCCEEDED,
   GET_ACTIVE_SOURCES_FAILED,
 
-  GET_FILTERED_CATEGORIES_SUCCEEDED,
   GET_FILTERED_CATEGORIES_FAILED,
 
-  GET_FILTERED_SOURCES_SUCCEEDED,
   GET_FILTERED_SOURCES_FAILED,
 
   SET_VISIBLE_SOURCES,
@@ -23,7 +19,6 @@ import {
 
   SET_SOURCES,
 
-  GET_SOURCE_LOGOS_SUCCEEDED,
   GET_SOURCE_LOGOS_FAILED,
 
   GET_SOURCES_AND_ARTICLES_REQUESTED,
@@ -102,6 +97,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
+
     case REMOVE_ARTICLES: {
       return {
         ...state,
@@ -109,35 +105,30 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    // case GET_SOURCES_SUCCEEDED: {
-    //   const { sources } = action.payload.data;
-    //   return {
-    //     ...state,
-    //     sources,
-    //     categories: returnUnique(sources.map(source => source.category)),
-    //   };
-    // }
 
     case SET_SOURCES: {
-      console.log(action.data);
-      const { sources, filteredSources, sourceLogos, filteredCategories } = action.data;
-      const filteredSources2 = Object.keys(filteredSources).map(source => filteredSources[source]);
-      const sourceLogos2 = Object.keys(sourceLogos).map(id => ({
-        id,
-        url: sourceLogos[id],
-      }));
-      const sourcesMapped = sources.data.sources.map(source => ({
-        ...source,
-        logo: sourceLogos2.find(logo => logo.id === source.id).url,
-      }));
-      const filteredCategories2 = Object.keys(filteredCategories).map(category => filteredCategories[category]);
+      const { sources, filteredSources, activeSources, sourceLogos, filteredCategories } = action.data;
+      const sourcesMapped = sources.data.sources.map(source => ({ ...source, logo: sourceLogos[source.id] }));
+      const activeSourcesMapped = objectKeys(activeSources).map(source => activeSources[source]);
+      const filteredSourcesMapped = objectKeys(filteredSources).map(source => filteredSources[source]);
+      const categoriesMapped = returnUnique(sources.data.sources.map(source => source.category));
+      const filteredCategoriesMapped = objectKeys(filteredCategories).map(category => filteredCategories[category]);
+      const activeView = activeSourcesMapped.length ? 'articles' : 'sources';
 
       return {
         ...state,
         sources: sourcesMapped,
-        filteredSources: filteredSources2,
-        categories: returnUnique(sources.data.sources.map(source => source.category)),
-        filteredCategories: filteredCategories2,
+        activeSources: activeSourcesMapped,
+        filteredSources: filteredSourcesMapped,
+        categories: categoriesMapped,
+        filteredCategories: filteredCategoriesMapped,
+        activeView,
+        asyncStatus: {
+          ...state.asyncStatus,
+          inProgress: false,
+          error: false,
+          errorMessage: undefined,
+        },
       };
     }
 
@@ -154,23 +145,6 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-
-    case GET_ACTIVE_SOURCES_SUCCEEDED: {
-      const payload = action.payload;
-      let activeSources = [];
-      let activeView = 'sources';
-
-      if (Object.keys(payload).length > 0) {
-        activeSources = Object.keys(payload).map(source => payload[source]);
-        activeView = 'sources';
-      }
-      return {
-        ...state,
-        activeSources,
-        activeView,
-      };
-    }
-
     case GET_ACTIVE_SOURCES_FAILED: {
       return {
         ...state,
@@ -182,40 +156,6 @@ export default (state = INITIAL_STATE, action) => {
         },
       };
     }
-
-
-    // case GET_FILTERED_CATEGORIES_SUCCEEDED: {
-    //   const payload = action.payload || {};
-    //   const filteredCategories = Object.keys(payload).map(category => payload[category]);
-
-    //   return {
-    //     ...state,
-    //     filteredCategories,
-    //   };
-    // }
-
-
-    // case GET_FILTERED_SOURCES_SUCCEEDED: {
-    //   const payload = action.payload || {};
-    //   const filteredSources = Object.keys(payload).map(source => payload[source]);
-
-    //   return {
-    //     ...state,
-    //     filteredSources,
-    //   };
-    // }
-
-    // case GET_FILTERED_CATEGORIES_FAILED: {
-    //   return {
-    //     ...state,
-    //     asyncStatus: {
-    //       ...state.asyncStatus,
-    //       inProgress: false,
-    //       error: true,
-    //       errorMessage: action.error.message,
-    //     },
-    //   };
-    // }
 
 
     case SET_VISIBLE_SOURCES: {
@@ -244,24 +184,6 @@ export default (state = INITIAL_STATE, action) => {
         visibleArticles,
       };
     }
-
-
-    // case GET_SOURCE_LOGOS_SUCCEEDED: {
-    //   const payload = action.payload;
-    //   const sourceLogos = Object.keys(payload).map(id => ({
-    //     id,
-    //     url: payload[id],
-    //   }));
-    //   const sources = state.sources.map(source => ({
-    //     ...source,
-    //     logo: sourceLogos.find(logo => logo.id === source.id).url,
-    //   }));
-
-    //   return {
-    //     ...state,
-    //     sources,
-    //   };
-    // }
 
 
     case GET_SOURCES_AND_ARTICLES_REQUESTED: {
@@ -327,25 +249,25 @@ export default (state = INITIAL_STATE, action) => {
       };
     }
 
-    // case ADD_FILTERED_CATEGORY_SUCCEEDED: {
-    //   const filteredCategories = [
-    //     ...state.filteredCategories,
-    //     action.payload,
-    //   ];
-    //
-    //   return {
-    //     ...state,
-    //     filteredCategories,
-    //     asyncStatus: {
-    //       ...state.asyncStatus,
-    //       toggleFilteredCategory: {
-    //         inProgress: false,
-    //         error: false,
-    //         errorMessage: undefined,
-    //       },
-    //     },
-    //   };
-    // }
+    case ADD_FILTERED_CATEGORY_SUCCEEDED: {
+      const filteredCategories = [
+        ...state.filteredCategories,
+        action.payload,
+      ];
+
+      return {
+        ...state,
+        filteredCategories,
+        asyncStatus: {
+          ...state.asyncStatus,
+          toggleFilteredCategory: {
+            inProgress: false,
+            error: false,
+            errorMessage: undefined,
+          },
+        },
+      };
+    }
 
     case ADD_FILTERED_CATEGORY_FAILED: {
       return {

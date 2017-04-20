@@ -4,26 +4,21 @@ import { call, put } from 'redux-saga/effects';
 import { getAll, create, remove } from 'firebase-saga';
 
 import {
-  getSourcesSucceeded,
   getSourcesFailed,
 
-  getActiveSourcesSucceeded,
   getActiveSourcesFailed,
 
-  getFilteredSourcesSucceeded,
   getFilteredSourcesFailed,
 
-  getFilteredCategoriesSucceeded,
   getFilteredCategoriesFailed,
+
+  getSourceLogosFailed,
 
   setVisibleSources,
 
   setVisibleArticles,
 
   setSources,
-
-  getSourceLogosSucceeded,
-  getSourceLogosFailed,
 
   GET_SOURCES_AND_ARTICLES_REQUESTED,
   getSourcesAndArticlesSucceeded,
@@ -74,13 +69,10 @@ function* getSources() {
 
 function* getActiveSources() {
   try {
-    const payload = yield call(getAll, firebaseActiveSources);
-    yield put(getActiveSourcesSucceeded(payload || []));
-    return payload;
+    return yield call(getAll, firebaseActiveSources);
   } catch (error) {
-    yield put(getActiveSourcesFailed(error));
+    return yield put(getActiveSourcesFailed(error));
   }
-  return false;
 }
 
 function* getFilteredSources() {
@@ -109,15 +101,14 @@ function* getSourceLogos() {
 
 function* getSourcesAndArticles() {
   function* iterateOverActiveSources(array) {
-    let arr = [];
+    const data = [];
     for (const activeSource of array) {
-      console.log(activeSource, array);
       const url = `${BASE_ARTICLES_URL}?source=${activeSource}&apiKey=${API_KEY}`;
       try {
         const payload = yield call(axios.get, url);
-        arr.push({ source: activeSource, articles: payload.data.articles });
+        data.push({ source: activeSource, articles: payload.data.articles });
         if (activeSource === array[array.length - 1]) {
-          yield put(getSourcesAndArticlesSucceeded(arr));
+          yield put(getSourcesAndArticlesSucceeded(data));
         }
       } catch (error) {
         yield put(getSourcesAndArticlesFailed(error));
@@ -125,9 +116,9 @@ function* getSourcesAndArticles() {
     }
   }
 
-  yield put(setVisibleArticles());
   const sourcesData = {
     sources: yield getSources(),
+    activeSources: yield getActiveSources(),
     filteredSources: yield getFilteredSources(),
     sourceLogos: yield getSourceLogos(),
     filteredCategories: yield getFilteredCategories(),
@@ -135,10 +126,10 @@ function* getSourcesAndArticles() {
 
   yield put(setSources(sourcesData));
   yield put(setVisibleSources());
-  const activeSources = yield getActiveSources();
+  yield put(setVisibleArticles());
 
-  if (activeSources) {
-    const activeSourcesKeys = Object.keys(activeSources);
+  if (sourcesData.activeSources) {
+    const activeSourcesKeys = Object.keys(sourcesData.activeSources);
     yield iterateOverActiveSources(activeSourcesKeys);
   }
 }

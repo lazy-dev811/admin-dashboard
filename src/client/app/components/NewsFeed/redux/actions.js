@@ -2,26 +2,21 @@ export const TOGGLE_ACTIVE_VIEW = 'TOGGLE_ACTIVE_VIEW';
 
 export const REMOVE_ARTICLES = 'REMOVE_ARTICLES';
 
-export const GET_SOURCES_SUCCEEDED = 'GET_SOURCES_SUCCEEDED';
 export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
 
-export const GET_ACTIVE_SOURCES_SUCCEEDED = 'GET_ACTIVE_SOURCES_SUCCEEDED';
 export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
 
-export const GET_FILTERED_SOURCES_SUCCEEDED = 'GET_FILTERED_SOURCES_SUCCEEDED';
 export const GET_FILTERED_SOURCES_FAILED = 'GET_FILTERED_SOURCES_FAILED';
 
-export const GET_FILTERED_CATEGORIES_SUCCEEDED = 'GET_FILTERED_CATEGORIES_SUCCEEDED';
 export const GET_FILTERED_CATEGORIES_FAILED = 'GET_FILTERED_CATEGORIES_FAILED';
+
+export const GET_SOURCE_LOGOS_FAILED = 'GET_SOURCE_LOGOS_FAILED';
+
+export const SET_SOURCES = 'SET_SOURCES';
 
 export const SET_VISIBLE_SOURCES = 'SET_VISIBLE_SOURCES';
 
 export const SET_VISIBLE_ARTICLES = 'SET_VISIBLE_ARTICLES';
-
-export const SET_SOURCES = 'SET_SOURCES';
-
-export const GET_SOURCE_LOGOS_SUCCEEDED = 'GET_SOURCE_LOGOS_SUCCEEDED';
-export const GET_SOURCE_LOGOS_FAILED = 'GET_SOURCE_LOGOS_FAILED';
 
 export const GET_SOURCES_AND_ARTICLES_REQUESTED = 'GET_SOURCES_AND_ARTICLES_REQUESTED';
 export const GET_SOURCES_AND_ARTICLES_SUCCEEDED = 'GET_SOURCES_AND_ARTICLES_SUCCEEDED';
@@ -67,21 +62,11 @@ export const removeArticles = () => ({
 });
 
 
-export const getSourcesSucceeded = payload => ({
-  type: GET_SOURCES_SUCCEEDED,
-  payload,
-});
-
 export const getSourcesFailed = error => ({
   type: GET_SOURCES_FAILED,
   error,
 });
 
-
-export const getActiveSourcesSucceeded = payload => ({
-  type: GET_ACTIVE_SOURCES_SUCCEEDED,
-  payload,
-});
 
 export const getActiveSourcesFailed = error => ({
   type: GET_ACTIVE_SOURCES_FAILED,
@@ -89,21 +74,11 @@ export const getActiveSourcesFailed = error => ({
 });
 
 
-export const getFilteredCategoriesSucceeded = payload => ({
-  type: GET_FILTERED_CATEGORIES_SUCCEEDED,
-  payload,
-});
-
 export const getFilteredCategoriesFailed = error => ({
   type: GET_FILTERED_CATEGORIES_FAILED,
   error,
 });
 
-
-export const getFilteredSourcesSucceeded = payload => ({
-  type: GET_FILTERED_SOURCES_SUCCEEDED,
-  payload,
-});
 
 export const getFilteredSourcesFailed = error => ({
   type: GET_FILTERED_SOURCES_FAILED,
@@ -126,11 +101,6 @@ export const setSources = data => ({
   data,
 });
 
-
-export const getSourceLogosSucceeded = payload => ({
-  type: GET_SOURCE_LOGOS_SUCCEEDED,
-  payload,
-});
 
 export const getSourceLogosFailed = error => ({
   type: GET_SOURCE_LOGOS_FAILED,
