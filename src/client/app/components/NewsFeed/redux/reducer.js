@@ -277,21 +277,16 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case GET_SOURCES_AND_ARTICLES_SUCCEEDED: {
-      // const addSource = article => ({
-      //   source: article.source,
-      //   ...article.articles,
-      // });
-
       const sortByDate = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
-      const articles = action.payload.map(obj => obj.articles.map(article => ({
+      const mapToModel = obj => obj.articles.map(article => ({
         source: obj.source,
         ...article,
-      }))).join();
+      }));
 
-      const activeArticles = [
-        // ...state.activeArticles,
-        ...articles,
-      ].sort(sortByDate);
+      const activeArticles = action.payload
+        .map(mapToModel)
+        .reduce((acc, val) => acc.concat(val))
+        .sort(sortByDate);
 
       return {
         ...state,
