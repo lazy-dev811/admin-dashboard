@@ -126,26 +126,37 @@ function* getSourcesAndArticles() {
 
   yield put(setSources(sourcesData));
   yield put(setVisibleSources());
-  yield put(setVisibleArticles());
 
   if (sourcesData.activeSources) {
     const activeSourcesKeys = Object.keys(sourcesData.activeSources);
     yield iterateOverActiveSources(activeSourcesKeys);
+    yield put(setVisibleArticles());
   }
 }
 
 function* addSource(dispatch) {
-  const { source } = dispatch;
-  const id = source.id;
+  const { source: { id, name } } = dispatch;
   const newsfeedKey = `${firebaseActiveSources}/${id}`;
 
   try {
     yield call(create, firebaseActiveSources, () => ({
-      [newsfeedKey]: { ...source, id },
+      [newsfeedKey]: { id, name },
     }));
-    yield put(addSourceSucceeded(source, id));
+    yield put(addSourceSucceeded(id));
   } catch (error) {
     yield put(addSourceFailed(error));
+  }
+}
+
+function* removeSource(action) {
+  const { source } = action;
+  const { id } = source;
+
+  try {
+    yield call(remove, firebaseActiveSources, id);
+    yield put(removeSourceSucceeded(source));
+  } catch (error) {
+    yield put(removeSourceFailed(error));
   }
 }
 
@@ -204,18 +215,6 @@ function* removeFilteredSource(dispatch) {
     yield put(setVisibleArticles());
   } catch (error) {
     yield put(removeFilteredSourceFailed(error));
-  }
-}
-
-function* removeSource(action) {
-  const { source } = action;
-  const { id } = source;
-
-  try {
-    yield call(remove, firebaseActiveSources, id);
-    yield put(removeSourceSucceeded(source));
-  } catch (error) {
-    yield put(removeSourceFailed(error));
   }
 }
 

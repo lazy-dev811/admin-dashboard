@@ -441,7 +441,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         activeSources: [
           ...state.activeSources,
-          action.source,
+          action.id,
         ],
         asyncStatus: {
           ...state.asyncStatus,
@@ -485,7 +485,7 @@ export default (state = INITIAL_STATE, action) => {
     }
 
     case REMOVE_SOURCE_SUCCEEDED: {
-      const activeSources = state.activeSources.filter(source => source.id !== action.source.id);
+      const activeSources = state.activeSources.filter(source => source.id !== action.id);
 
       return {
         ...state,

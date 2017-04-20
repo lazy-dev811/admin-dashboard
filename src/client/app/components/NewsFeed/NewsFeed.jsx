@@ -50,7 +50,7 @@ class NewsFeed extends Component {
               categories={categories}
               filteredCategories={filteredCategories}
               toggleFilteredCategories={toggleFilteredCategories}
-              activeSources={activeSources.map(source => source.id)}
+              activeSources={activeSources}
               filteredSources={filteredSources}
               toggleFilteredSources={toggleFilteredSources}
               activeView={activeView}

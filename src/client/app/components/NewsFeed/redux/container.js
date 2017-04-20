@@ -80,9 +80,9 @@ const mergeProps = ({
   },
   toggleActiveSource(selectedSource) {
     if (activeSources.findIndex(source => source.id === selectedSource.id) > -1) {
-      dispatch(removeSourceRequested(selectedSource));
+      dispatch(removeSourceRequested(selectedSource, activeSources));
     } else {
-      dispatch(addSourceRequested(selectedSource));
+      dispatch(addSourceRequested(selectedSource, activeSources));
     }
   },
 });

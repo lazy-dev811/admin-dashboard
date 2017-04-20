@@ -187,14 +187,14 @@ export const removeFilteredSourceFailed = error => ({
 });
 
 
-export const addSourceRequested = source => ({
+export const addSourceRequested = (source, activeSources) => ({
   type: ADD_SOURCE_REQUESTED,
   source,
+  activeSources,
 });
 
-export const addSourceSucceeded = (source, id) => ({
+export const addSourceSucceeded = id => ({
   type: ADD_SOURCE_SUCCEEDED,
-  source,
   id,
 });
 
@@ -204,9 +204,10 @@ export const addSourceFailed = error => ({
 });
 
 
-export const removeSourceRequested = source => ({
+export const removeSourceRequested = (source, activeSources) => ({
   type: REMOVE_SOURCE_REQUESTED,
   source,
+  activeSources,
 });
 
 export const removeSourceSucceeded = source => ({

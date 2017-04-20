@@ -23,7 +23,7 @@ const Filters = ({
     onChange = toggleFilteredCategories;
   } else {
     title = 'filter by active sources';
-    options = activeSources;
+    options = activeSources.map(source => source.id);
     compareOptions = filteredSources;
     onChange = toggleFilteredSources;
   }
