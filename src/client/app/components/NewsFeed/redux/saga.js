@@ -77,9 +77,11 @@ function* getActiveSources() {
   }
 }
 
-function* getFilteredSources() {
+function* getFilteredSources(dispatcOnSuccess) {
   try {
-    return yield call(getAll, firebaseFilteredSources);
+    const payload = yield call(getAll, firebaseFilteredSources);
+    if (dispatcOnSuccess) yield put(payload);
+    return payload;
   } catch (error) {
     return yield put(getFilteredSourcesFailed(error));
   }

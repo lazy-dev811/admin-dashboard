@@ -79,8 +79,14 @@ const mergeProps = ({
     dispatch(toggleActiveView(view));
   },
   toggleActiveSource(selectedSource) {
-    if (activeSources.findIndex(source => source.id === selectedSource.id) > -1) {
+    const selectedSourceId = selectedSource.id;
+
+    if (activeSources.findIndex(source => source.id === selectedSourceId) > -1) {
       dispatch(removeSourceRequested(selectedSource, activeSources));
+
+      if (filteredSources.findIndex(sourceName => sourceName === selectedSourceId) > -1) {
+        dispatch(removeFilteredSourceRequested(selectedSourceId));
+      }
     } else {
       dispatch(addSourceRequested(selectedSource, activeSources));
     }
