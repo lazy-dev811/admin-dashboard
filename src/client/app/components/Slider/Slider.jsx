@@ -51,16 +51,16 @@ class Slider extends React.Component {
         </div>
 
         <ul className="slider" style={sliderStyle}>
-          {this.props.sliderItems.map((widgetName, index) => {
-            const determineSlideClass = name => (
+          {this.props.sliderItems.map((sliderItem, index) => {
+            const determineSlideClass = id => (
               classnames('slider__slide', {
-                'is-active': this.props.activeWidgets.includes(name),
+                'is-active': this.props.activeWidgets.includes(id),
               })
             );
             return (
-              <li className={determineSlideClass(widgetName)} key={index}>
-                <div className="slider__slide__title" onClick={() => this.props.slideItemSelect(widgetName)}>
-                  {widgetName}
+              <li className={determineSlideClass(sliderItem.id)} key={index}>
+                <div className="slider__slide__title" onClick={() => this.props.slideItemSelect(sliderItem.id)}>
+                  {sliderItem.name}
                 </div>
               </li>
             );
