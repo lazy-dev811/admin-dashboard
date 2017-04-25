@@ -12,31 +12,31 @@ const defaultWallpaper = require('../../../assets/images/nature-1.jpg');
 
 const widgets = [
   {
-    name: 'todo',
+    id: 'todo',
     component: <Todo />,
   },
   {
-    name: 'bookmarks',
+    id: 'bookmarks',
     component: <Bookmarks />,
   },
   {
-    name: 'slider detail',
+    id: 'slider detail',
     component: <SliderDetail />,
   },
   {
-    name: 'greet',
+    id: 'greet',
     component: <Greet />,
   },
   {
-    name: 'quote',
+    id: 'quote',
     component: <Quote />,
   },
   {
-    name: 'youtube player',
+    id: 'youtube player',
     component: <YoutubePlayer />,
   },
   {
-    name: 'news feed',
+    id: 'newsfeed',
     component: <NewsFeed />,
   },
 ];
@@ -47,7 +47,7 @@ const Home = ({ activeWidgets, activeWallpaperObj: { url } }) => {
   return (
     <div className="page">
       <img className="app__bg" src={wallpaperUrl} alt="background" />
-      {widgets.map((widget, i) => activeWidgets.includes(widget.name) && <div key={i}>{widget.component}</div>)}
+      {widgets.map((widget, i) => activeWidgets.includes(widget.id) && <div key={i}>{widget.component}</div>)}
     </div>
   );
 };
