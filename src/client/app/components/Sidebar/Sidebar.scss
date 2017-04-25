@@ -2,10 +2,9 @@
 $item-h: 40px;
 $item-spacing: 20px;
 
-.pgSidebar {
+.sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   z-index: 1;
   position: fixed;
   top: 0;
@@ -18,11 +17,19 @@ $item-spacing: 20px;
   transition: transform .3s ease, background-color .3s ease;
 
   &:hover {
+    z-index: 3;
     transform: translateY(0);
     background-color: #fff;
   }
 
+  &__logo {
+    padding: 20px;
+    line-height: 1;
+    font-size: 30px;
+  }
+
   &__list {
+    flex-grow: 1;
     padding: 10px 0;
 
     &__item {
@@ -36,11 +43,11 @@ $item-spacing: 20px;
       }
 
       &:hover {
-        .pgSidebar__list__item__link {
+        .sidebar__list__item__link {
           color: $color;
         }
 
-        .pgSidebar__sublist {
+        .sidebar__sublist {
           opacity: 1;
           visibility: visible;
           color: #fff;
@@ -82,12 +89,24 @@ $item-spacing: 20px;
   }
 }
 
-.pgSidebar__login-options {
-  padding: 10px 0;
-}
-
-.pgSidebar__login-option {
+.sidebar__acknowledgements {
   padding: 0 20px;
-  line-height: 40px;
-  color: #999;
+  font-size: 12px;
+}
+.sidebar__apis {
+  margin-top: 10px;
+  padding: 10px 0;
+
+  &__api {
+    display: block;
+    line-height: 30px;
+
+    &__link {
+      color: #999;
+
+      &:hover {
+        color: $color;
+      }
+    }
+  }
 }
