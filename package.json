@@ -10,6 +10,7 @@
     "test": "npm run lint && mocha-webpack",
     "test:watch": "mocha-webpack --watch",
     "postinstall": "webpack --config webpack.prod.config.js",
+    "deploy": "firebase deploy",
     "start": "node server.js"
   },
   "jest": {
@@ -34,7 +35,7 @@
     "enzyme": "^2.8.0",
     "eslint": "^3.5.0",
     "eslint-config-airbnb": "^11.1.0",
-    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.2.1",
     "express": "^4.15.2",
@@ -60,6 +61,7 @@
     "redux-devtools": "^3.3.1",
     "redux-form": "^6.2.0",
     "redux-saga": "^0.12.0",
+    "styled-components": "^1.4.5",
     "uuid": "^3.0.1",
     "webpack": "^2.3.2",
     "webpack-dev-middleware": "^1.8.3",

@@ -12,32 +12,6 @@ $color-border-filters: #e6e6e6;
     display: flex;
     text-transform: none;
   }
-
-  &__views {
-    display: flex;
-
-    &__view {
-      margin-left: 10px;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &__btn {
-        color: inherit;
-
-        &:hover,
-        &.is-active {
-          color: $color;
-        }
-
-        &.is-active {
-          padding-bottom: 1px;
-          border-bottom: 1px solid $color;
-        }
-      }
-    }
-  }
 }
 
 .filters {
