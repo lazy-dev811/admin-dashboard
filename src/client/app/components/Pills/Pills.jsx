@@ -32,7 +32,7 @@ const Pills = ({ label, list, onClick }) => (
     }
     <ul>
       {
-        list.map(item => <Pill onClick={() => onClick(item)}>{item}</Pill>)
+        list.map((item, index) => <Pill onClick={() => onClick(item)} key={index}>{item}</Pill>)
       }
     </ul>
   </PillsWrap>

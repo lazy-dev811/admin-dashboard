@@ -82,7 +82,7 @@ const Time = styled.span`
   color: ${COLOR_WHITE_2};
 `;
 
-const Title = styled.div`
+const Title = styled.a`
   display: block;
   margin-bottom: ${UNIT_SM};
   font-size: 17px;

@@ -54,7 +54,7 @@ const Views = ({ views, activeSources, activeView, selectView }) => (
 Views.propTypes = {
   views: PropTypes.array.isRequired,
   activeSources: PropTypes.array.isRequired,
-  activeView: PropTypes.string.isRequired,
+  activeView: PropTypes.string,
   selectView: PropTypes.func.isRequired,
 };
 

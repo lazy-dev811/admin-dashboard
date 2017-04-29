@@ -31,13 +31,13 @@ const FormFieldSelect = ({
       </div>
       <div className="select-input__options-wrap">
         <ul className="select-input__options">
-          {options.map((option) => {
+          {options.map((option, index) => {
             const optionClass = classnames('select-input__options__option', {
               'is-active': compareOptions.findIndex(compareOption => (compareOption === option)) > -1,
             });
 
             return (
-              <li className={optionClass}>
+              <li className={optionClass} key={index}>
                 <button className="select-input__options__option__btn" onClick={() => onChange(option)}>
                   {option}
                 </button>

@@ -120,7 +120,7 @@ NewsFeed.propTypes = {
   visibleArticles: PropTypes.array.isRequired,
 
   views: PropTypes.array.isRequired,
-  activeView: PropTypes.string.isRequired,
+  activeView: PropTypes.string,
   categories: PropTypes.array.isRequired,
   filteredCategories: PropTypes.array.isRequired,
   getSourcesAndFilters: PropTypes.func.isRequired,

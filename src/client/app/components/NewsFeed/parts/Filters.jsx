@@ -65,7 +65,7 @@ Filters.propTypes = {
   activeSources: PropTypes.array.isRequired,
   filteredSources: PropTypes.array.isRequired,
   toggleFilteredSources: PropTypes.func.isRequired,
-  activeView: PropTypes.string.isRequired,
+  activeView: PropTypes.string,
 };
 
 export default Filters;
