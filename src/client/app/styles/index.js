@@ -10,6 +10,7 @@ export const COLOR_BG_ALT = '#373636';
 export const COLOR_WHITE = '#fff';
 export const COLOR_WHITE_1 = '#e6e6e6';
 export const COLOR_WHITE_2 = '#a7a7a7';
+export const COLOR_WHITE_4 = '#ccc';
 export const COLOR_WHITE_5 = '#999';
 
 export const COLOR_BLACK = '#000';

@@ -1,11 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
 
 import Filters from './parts/Filters.jsx';
 import Views from './parts/Views';
 import Sources from './parts/Sources.jsx';
 import Articles from './parts/Articles.jsx';
 
-require('./NewsFeed.scss');
+import { COLOR_WHITE } from '../../styles';
+
+const NewsFeedWrap = styled.div`
+  background-color: ${COLOR_WHITE};
+`;
+
+const Options = styled.div`
+  display: flex;
+  text-transform: none;
+`;
 
 class NewsFeed extends Component {
   componentWillMount() {
@@ -40,11 +50,11 @@ class NewsFeed extends Component {
     } = this.props;
 
     return (
-      <div className="newsfeed">
+      <NewsFeedWrap>
         <div className="widget__header">
           News Feed
 
-          <div className="newsfeed__options">
+          <Options>
             <Filters
               categories={categories}
               filteredCategories={filteredCategories}
@@ -61,7 +71,7 @@ class NewsFeed extends Component {
               activeView={activeView}
               selectView={selectView}
             />
-          </div>
+          </Options>
         </div>
 
         {
@@ -88,7 +98,7 @@ class NewsFeed extends Component {
             removeArticles={removeArticles}
           />
         }
-      </div>
+      </NewsFeedWrap>
     );
   }
 }
