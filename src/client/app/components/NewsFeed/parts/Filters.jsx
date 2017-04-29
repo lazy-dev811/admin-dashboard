@@ -1,6 +1,24 @@
 import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 
+import { U, COLOR_GRAY_1 } from '../../../styles';
 import FormFieldSelect from '../../FormElements/FormFieldSelect/FormFieldSelect.jsx';
+
+
+const FiltersWrap = styled.div`
+  display: flex;
+  margin-right: ${() => U * 3}px;
+  padding-right: ${() => U * 3}px;
+  border-right: 1px solid ${COLOR_GRAY_1};
+`;
+
+const Filter = styled(FormFieldSelect)`
+  margin-left: 10px;
+
+  &:first-child {
+    margin-left: 0;
+  }
+`;
 
 const Filters = ({
   categories,
@@ -29,15 +47,14 @@ const Filters = ({
   }
 
   return (
-    <div className="filters">
-      <FormFieldSelect
+    <FiltersWrap>
+      <Filter
         title={title}
-        className="filters__filter"
         options={options}
         compareOptions={compareOptions}
         onChange={onChange}
       />
-    </div>
+    </FiltersWrap>
   );
 };
 
