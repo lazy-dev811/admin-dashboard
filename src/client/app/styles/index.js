@@ -1,16 +1,21 @@
 // colors
 export const COLOR_BLUE = '#0ad';
-export const COLOR_TEAL = '#12C3E4';
+export const COLOR_TEAL = '#12C3E4'; // $color
 export const COLOR_TEXT = '#373636';
 export const COLOR_LINK = '#373636';
 export const COLOR_PLACEHOLDER = '#eee';
 export const COLOR_BG = '#006237';
 export const COLOR_BG_ALT = '#373636';
 
-export const COLOR_GRAY = '#373636';
 export const COLOR_WHITE = '#fff';
-export const COLOR_GRAY_1 = '#e6e6e6';
-export const COLOR_GRAY_5 = '#999';
+export const COLOR_WHITE_1 = '#e6e6e6';
+export const COLOR_WHITE_2 = '#a7a7a7';
+export const COLOR_WHITE_5 = '#999';
+
+export const COLOR_BLACK = '#000';
+export const COLOR_BLACK_2 = '#373636';
+export const COLOR_BLACK_3 = '#444';
+
 
 // layout
 export const U = 5;
