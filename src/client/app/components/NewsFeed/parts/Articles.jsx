@@ -100,6 +100,7 @@ const Articles = ({
   activeArticles = [],
   visibleArticles,
   filteredSources,
+  toggleFilteredSources = () => {},
   logoColors = {},
 }) => {
   const displayedArticles = visibleArticles.length > 0 ? visibleArticles : activeArticles;
@@ -111,7 +112,7 @@ const Articles = ({
         <Pills
           label="active sources"
           list={filteredSources}
-          onClick={(pill) => { console.log('sdsd', pill); }}
+          onClick={pill => toggleFilteredSources(pill)}
         />
       }
       <ArticlesList className="articles">
@@ -154,6 +155,7 @@ Articles.propTypes = {
   activeArticles: PropTypes.array.isRequired,
   visibleArticles: PropTypes.array.isRequired,
   filteredSources: PropTypes.array.isRequired,
+  toggleFilteredSources: PropTypes.func.isRequired,
   logoColors: PropTypes.object.isRequired,
 };
 

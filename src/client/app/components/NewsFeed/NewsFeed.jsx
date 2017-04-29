@@ -94,6 +94,7 @@ class NewsFeed extends Component {
             activeArticles={activeArticles}
             visibleArticles={visibleArticles}
             filteredSources={filteredSources}
+            toggleFilteredSources={toggleFilteredSources}
             logoColors={logoColors}
             removeArticles={removeArticles}
           />
