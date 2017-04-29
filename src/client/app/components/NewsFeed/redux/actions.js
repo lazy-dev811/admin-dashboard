@@ -1,3 +1,5 @@
+export const SET_FILTERS = 'SET_FILTERS';
+
 export const TOGGLE_ACTIVE_VIEW = 'TOGGLE_ACTIVE_VIEW';
 
 export const REMOVE_ARTICLES = 'REMOVE_ARTICLES';
@@ -12,6 +14,8 @@ export const GET_FILTERED_CATEGORIES_FAILED = 'GET_FILTERED_CATEGORIES_FAILED';
 
 export const GET_SOURCE_LOGOS_FAILED = 'GET_SOURCE_LOGOS_FAILED';
 
+export const SET_ACTIVE_VIEW = 'SET_ACTIVE_VIEW';
+
 export const SET_SOURCES = 'SET_SOURCES';
 
 export const SET_VISIBLE_SOURCES = 'SET_VISIBLE_SOURCES';
@@ -23,8 +27,8 @@ export const GET_ARTICLES_SUCCEEDED = 'GET_ARTICLES_SUCCEEDED';
 export const GET_ARTICLES_FAILED = 'GET_ARTICLES_FAILED';
 
 export const GET_SOURCES_AND_FILTERS_REQUESTED = 'GET_SOURCES_AND_FILTERS_REQUESTED';
-export const GET_SOURCES_AND_FILTERS_SUCCEEDED = 'GET_SOURCES_AND_FILTERS_SUCCEEDED';
-export const GET_SOURCES_AND_FILTERS_FAILED = 'GET_SOURCES_AND_FILTERS_FAILED';
+// export const GET_SOURCES_AND_FILTERS_SUCCEEDED = 'GET_SOURCES_AND_FILTERS_SUCCEEDED';
+// export const GET_SOURCES_AND_FILTERS_FAILED = 'GET_SOURCES_AND_FILTERS_FAILED';
 
 export const ADD_FILTERED_CATEGORY_REQUESTED = 'ADD_FILTERED_CATEGORY_REQUESTED';
 export const ADD_FILTERED_CATEGORY_SUCCEEDED = 'ADD_FILTERED_CATEGORY_SUCCEEDED';
@@ -53,6 +57,12 @@ export const ADD_SOURCE_FAILED = 'ADD_SOURCE_FAILED';
 export const REMOVE_SOURCE_REQUESTED = 'REMOVE_SOURCE_REQUESTED';
 export const REMOVE_SOURCE_SUCCEEDED = 'REMOVE_SOURCE_SUCCEEDED';
 export const REMOVE_SOURCE_FAILED = 'REMOVE_SOURCE_FAILED';
+
+
+export const setFilters = filters => ({
+  type: SET_FILTERS,
+  filters,
+});
 
 
 export const toggleActiveView = view => ({
@@ -87,6 +97,12 @@ export const getFilteredCategoriesFailed = error => ({
 export const getFilteredSourcesFailed = error => ({
   type: GET_FILTERED_SOURCES_FAILED,
   error,
+});
+
+
+export const setActiveView = activeSourcesKeys => ({
+  type: SET_ACTIVE_VIEW,
+  activeSourcesKeys,
 });
 
 
@@ -131,15 +147,15 @@ export const getSourcesAndFiltersRequested = () => ({
   type: GET_SOURCES_AND_FILTERS_REQUESTED,
 });
 
-export const getSourcesAndFiltersSucceeded = payload => ({
-  type: GET_SOURCES_AND_FILTERS_SUCCEEDED,
-  payload,
-});
+// export const getSourcesAndFiltersSucceeded = payload => ({
+//   type: GET_SOURCES_AND_FILTERS_SUCCEEDED,
+//   payload,
+// });
 
-export const getSourcesAndFiltersFailed = error => ({
-  type: GET_SOURCES_AND_FILTERS_FAILED,
-  error,
-});
+// export const getSourcesAndFiltersFailed = error => ({
+//   type: GET_SOURCES_AND_FILTERS_FAILED,
+//   error,
+// });
 
 
 export const addFilteredCategoryRequested = category => ({

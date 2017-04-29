@@ -1,6 +1,8 @@
 import { returnUnique, objectKeys } from '../../../utils';
 
 import {
+  SET_FILTERS,
+
   TOGGLE_ACTIVE_VIEW,
 
   REMOVE_ARTICLES,
@@ -13,6 +15,8 @@ import {
 
   GET_FILTERED_SOURCES_FAILED,
 
+  SET_ACTIVE_VIEW,
+
   SET_VISIBLE_SOURCES,
 
   SET_VISIBLE_ARTICLES,
@@ -22,8 +26,6 @@ import {
   GET_SOURCE_LOGOS_FAILED,
 
   GET_SOURCES_AND_FILTERS_REQUESTED,
-  GET_SOURCES_AND_FILTERS_SUCCEEDED,
-  GET_SOURCES_AND_FILTERS_FAILED,
 
   GET_ARTICLES_REQUESTED,
   GET_ARTICLES_SUCCEEDED,
@@ -78,22 +80,74 @@ const INITIAL_STATE = {
     error: false,
     errorMessage: undefined,
 
+    getFilteredSources: {
+      inProgress: false,
+    },
+
+    getFilteredCategories: {
+      inProgress: false,
+    },
+
     toggleActiveSource: {
       inProgress: false,
-      error: false,
-      errorMessage: undefined,
     },
 
     toggleFilteredCategory: {
       inProgress: false,
-      error: false,
-      errorMessage: undefined,
     },
   },
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case SET_FILTERS: {
+      const { filteredSources, filteredCategories } = action.filters;
+      const filteredSourcesMapped = objectKeys(filteredSources).map(source => filteredSources[source]);
+      const filteredCategoriesMapped = objectKeys(filteredCategories).map(category => filteredCategories[category]);
+
+      return {
+        ...state,
+        filteredSources: filteredSourcesMapped,
+        filteredCategories: filteredCategoriesMapped,
+      };
+    }
+
+    case GET_FILTERED_SOURCES_FAILED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          error: true,
+          errorMessage: 'Could not load filtered sources',
+          getFilteredSources: {
+            inProgress: false,
+          },
+        },
+      };
+    }
+
+
+    case GET_SOURCES_AND_FILTERS_REQUESTED: {
+      return {
+        ...state,
+        asyncStatus: {
+          ...state.asyncStatus,
+          inProgress: true,
+        },
+      };
+    }
+
+
+    case SET_ACTIVE_VIEW: {
+      const activeView = action.activeSourcesKeys.length ? 'articles' : 'sources';
+
+      return {
+        ...state,
+        activeView,
+      };
+    }
+
+
     case TOGGLE_ACTIVE_VIEW: {
       return {
         ...state,
@@ -111,27 +165,19 @@ export default (state = INITIAL_STATE, action) => {
 
 
     case SET_SOURCES: {
-      const { sources, filteredSources, activeSources, sourceLogos, filteredCategories } = action.data;
+      const { sources, activeSources, sourceLogos } = action.data;
       const sourcesMapped = sources.data.sources.map(source => ({ ...source, logo: sourceLogos[source.id] }));
       const activeSourcesMapped = objectKeys(activeSources).map(source => activeSources[source]);
-      const filteredSourcesMapped = objectKeys(filteredSources).map(source => filteredSources[source]);
       const categoriesMapped = returnUnique(sources.data.sources.map(source => source.category));
-      const filteredCategoriesMapped = objectKeys(filteredCategories).map(category => filteredCategories[category]);
-      const activeView = activeSourcesMapped.length ? 'articles' : 'sources';
 
       return {
         ...state,
         sources: sourcesMapped,
         activeSources: activeSourcesMapped,
-        filteredSources: filteredSourcesMapped,
         categories: categoriesMapped,
-        filteredCategories: filteredCategoriesMapped,
-        activeView,
         asyncStatus: {
           ...state.asyncStatus,
           inProgress: false,
-          error: false,
-          errorMessage: undefined,
         },
       };
     }
@@ -177,11 +223,9 @@ export default (state = INITIAL_STATE, action) => {
 
 
     case SET_VISIBLE_ARTICLES: {
-      const filteredSources = state.filteredSources;
-
-      const isSourceEqual = activeArticle => source => source === activeArticle.source;
-      const filterArtlcesBySource = activeArticle => filteredSources.findIndex(isSourceEqual(activeArticle)) > -1;
-      const visibleArticles = state.activeArticles.filter(filterArtlcesBySource);
+      const isSourceEqual = article => source => source === article.source;
+      const filterArtlces = article => state.filteredSources.findIndex(isSourceEqual(article)) > -1;
+      const visibleArticles = state.activeArticles.filter(filterArtlces);
 
       return {
         ...state,
@@ -190,19 +234,22 @@ export default (state = INITIAL_STATE, action) => {
     }
 
 
-    case GET_ARTICLES_REQUESTED: {
-      return {
-        ...state,
-        asyncStatus: {
-          ...state.asyncStatus,
-          inProgress: true,
-          error: false,
-          errorMessage: undefined,
-        },
-      };
-    }
+    // case GET_ARTICLES_REQUESTED: {
+    //   return {
+    //     ...state,
+    //     asyncStatus: {
+    //       ...state.asyncStatus,
+    //       inProgress: true,
+    //       error: false,
+    //       errorMessage: undefined,
+    //     },
+    //   };
+    // }
 
     case GET_ARTICLES_SUCCEEDED: {
+      const isSourceEqual = article => source => source === article.source;
+      const filterArtlces = article => state.filteredSources.findIndex(isSourceEqual(article)) > -1;
+
       const sortByDate = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
       const mapToModel = obj => obj.articles.map(article => ({
         source: obj.source,
@@ -212,6 +259,7 @@ export default (state = INITIAL_STATE, action) => {
       const activeArticles = action.payload
         .map(mapToModel)
         .reduce((acc, val) => acc.concat(val))
+        .filter(filterArtlces)
         .sort(sortByDate);
 
       return {
@@ -220,8 +268,6 @@ export default (state = INITIAL_STATE, action) => {
         asyncStatus: {
           ...state.asyncStatus,
           inProgress: false,
-          error: false,
-          errorMessage: undefined,
         },
       };
     }
@@ -266,8 +312,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleFilteredCategory: {
             inProgress: false,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -295,8 +339,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleFilteredCategory: {
             inProgress: true,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -310,8 +352,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleFilteredCategory: {
             inProgress: false,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -339,8 +379,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleFilteredSource: {
             inProgress: true,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -359,8 +397,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleFilteredSource: {
             inProgress: false,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -388,8 +424,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleFilteredSource: {
             inProgress: true,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -403,8 +437,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleFilteredSource: {
             inProgress: false,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -433,8 +465,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleActiveSource: {
             inProgress: true,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -451,8 +481,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleActiveSource: {
             inProgress: false,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -481,8 +509,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleActiveSource: {
             inProgress: true,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };
@@ -498,8 +524,6 @@ export default (state = INITIAL_STATE, action) => {
           ...state.asyncStatus,
           toggleActiveSource: {
             inProgress: false,
-            error: false,
-            errorMessage: undefined,
           },
         },
       };

@@ -14,6 +14,10 @@ import {
 
   getSourceLogosFailed,
 
+  setActiveView,
+
+  setFilters,
+
   setVisibleSources,
 
   setVisibleArticles,
@@ -65,40 +69,45 @@ function* getSources() {
   try {
     return yield call(axios.get, BASE_SOURCES_URL);
   } catch (error) {
-    return yield put(getSourcesFailed(error));
+    yield put(getSourcesFailed(error));
   }
+  return undefined;
 }
 
 function* getActiveSources() {
   try {
     return yield call(getAll, firebaseActiveSources);
   } catch (error) {
-    return yield put(getActiveSourcesFailed(error));
+    yield put(getActiveSourcesFailed(error));
   }
+  return undefined;
 }
 
 function* getFilteredSources() {
   try {
     return yield call(getAll, firebaseFilteredSources);
   } catch (error) {
-    return yield put(getFilteredSourcesFailed(error));
+    yield put(getFilteredSourcesFailed(error));
   }
+  return undefined;
 }
 
 function* getFilteredCategories() {
   try {
     return yield call(getAll, firebaseFilteredCategories);
   } catch (error) {
-    return yield put(getFilteredCategoriesFailed(error));
+    yield put(getFilteredCategoriesFailed(error));
   }
+  return undefined;
 }
 
 function* getSourceLogos() {
   try {
     return yield call(getAll, `${firebaseNewsFeedRoot}/assets/sources`);
   } catch (error) {
-    return yield put(getSourceLogosFailed(error));
+    yield put(getSourceLogosFailed(error));
   }
+  return undefined;
 }
 
 function* getArticles(array) {
@@ -118,22 +127,27 @@ function* getArticles(array) {
 }
 
 function* getSourcesAndFilters() {
+  const filters = {
+    filteredSources: yield* getFilteredSources(),
+    filteredCategories: yield* getFilteredCategories(),
+  };
+  yield put(setFilters(filters));
+  const activeSources = yield* getActiveSources();
+  yield put(setActiveView(Object.keys(activeSources || {})));
+
+  if (activeSources) {
+    const activeSourcesKeys = Object.keys(activeSources);
+    yield getArticles(activeSourcesKeys);
+  }
+
   const sourcesData = {
-    sources: yield getSources(),
-    activeSources: yield getActiveSources(),
-    filteredSources: yield getFilteredSources(),
-    sourceLogos: yield getSourceLogos(),
-    filteredCategories: yield getFilteredCategories(),
+    sources: yield* getSources(),
+    activeSources,
+    sourceLogos: yield* getSourceLogos(),
   };
 
   yield put(setSources(sourcesData));
   yield put(setVisibleSources());
-
-  if (sourcesData.activeSources) {
-    const activeSourcesKeys = Object.keys(sourcesData.activeSources);
-    yield getArticles(activeSourcesKeys);
-    yield put(setVisibleArticles());
-  }
 }
 
 function* addSource(dispatch) {
@@ -150,7 +164,7 @@ function* addSource(dispatch) {
       [newsfeedKey]: { id, name },
     }));
     yield put(addSourceSucceeded(source));
-    yield getArticles(activeSourcesIds);
+    yield* getArticles(activeSourcesIds);
   } catch (error) {
     yield put(addSourceFailed(error));
   }
@@ -166,7 +180,7 @@ function* removeSource(dispatch) {
   try {
     yield call(remove, firebaseActiveSources, id);
     yield put(removeSourceSucceeded(id));
-    yield getArticles(activeSourcesIds);
+    yield* getArticles(activeSourcesIds);
   } catch (error) {
     yield put(removeSourceFailed(error));
   }
