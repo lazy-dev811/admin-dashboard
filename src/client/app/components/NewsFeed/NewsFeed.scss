@@ -14,21 +14,6 @@ $color-border-filters: #e6e6e6;
   }
 }
 
-.filters {
-  display: flex;
-  margin-right: $spacing-filters;
-  padding-right: $spacing-filters;
-  border-right: 1px solid $color-border-filters;
-
-  &__filter {
-    margin-left: 10px;
-
-    &:first-child {
-      margin-left: 0;
-    }
-  }
-}
-
 .sources {
   display: flex;
   flex-wrap: wrap;
@@ -81,23 +66,6 @@ $color-border-filters: #e6e6e6;
         box-shadow: 0 0 0 2px $color;
       }
     }
-  }
-}
-
-.active-filters {
-  margin-bottom: 20px;
-}
-
-.pill {
-  display: inline-flex;
-  margin-right: 10px;
-  padding: 3px 10px;
-  color: #fff;
-  border-radius: 1px;
-  background-color: #373636;
-
-  &:last-child {
-    margin-right: 0;
   }
 }
 
