@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
+import styled from 'styled-components';
 import moment from 'moment';
+
+import Pills from '../../Pills';
 
 const Articles = ({
   activeArticles = [],
@@ -8,17 +11,16 @@ const Articles = ({
   logoColors = {},
 }) => {
   const displayedArticles = visibleArticles.length > 0 ? visibleArticles : activeArticles;
-  const filteredSourcePills = filteredSources.map(filteredSource => (
-    <button className="pill">{filteredSource}</button>
-  ));
 
   return (
     <div>
       {
         filteredSources &&
-        <div className="active-filters">
-          {filteredSourcePills}
-        </div>
+        <Pills
+          label="active sources"
+          list={filteredSources}
+          onClick={(pill) => { console.log('sdsd', pill); }}
+        />
       }
       <ul className="articles">
         {

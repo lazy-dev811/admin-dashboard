@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 import Loader from '../../Loader/Loader';
+import Pills from '../../Pills';
 
 const Sources = ({
   sources = [],
@@ -14,17 +15,16 @@ const Sources = ({
   asyncStatus,
 }) => {
   const displayedSources = visibleSources.length > 0 ? visibleSources : sources;
-  const filteredCategoryPills = filteredCategories.map(filteredCategory => (
-    <button className="pill" onClick={() => toggleFilteredCategories(filteredCategory)}>{filteredCategory}</button>
-  ));
 
   return (
     <div>
       {
         filteredCategories &&
-        <div className="active-filters">
-          {filteredCategoryPills}
-        </div>
+        <Pills
+          label="active categories"
+          list={filteredCategories}
+          onClick={toggleFilteredCategories}
+        />
       }
 
       <ul className="sources">
