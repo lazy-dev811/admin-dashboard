@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 
-import { U, COLOR_GRAY_1 } from '../../../styles';
+import { UNIT_MD, COLOR_WHITE_1 } from '../../../styles';
 import FormFieldSelect from '../../FormElements/FormFieldSelect/FormFieldSelect.jsx';
 
 
 const FiltersWrap = styled.div`
   display: flex;
-  margin-right: ${() => U * 3}px;
-  padding-right: ${() => U * 3}px;
-  border-right: 1px solid ${COLOR_GRAY_1};
+  margin-right: ${UNIT_MD};
+  padding-right: ${UNIT_MD};
+  border-right: 1px solid ${COLOR_WHITE_1};
 `;
 
 const Filter = styled(FormFieldSelect)`
