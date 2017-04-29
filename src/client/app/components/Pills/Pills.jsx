@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 
-import { UNIT_SM, UNIT_LG, COLOR_GRAY_5, COLOR_TEAL } from '../../styles';
+import { UNIT_SM, UNIT_LG, COLOR_WHITE_5, COLOR_TEAL } from '../../styles';
 
 const PillsWrap = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const PillsWrap = styled.div`
 const Label = styled.span`
   display: inline-flex;
   margin-right: ${UNIT_SM}
-  color: ${COLOR_GRAY_5};
+  color: ${COLOR_WHITE_5};
 `;
 
 const Pill = styled.button`
