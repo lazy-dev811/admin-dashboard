@@ -17,6 +17,7 @@ export const COLOR_BLACK = '#000';
 export const COLOR_BLACK_2 = '#373636';
 export const COLOR_BLACK_3 = '#444';
 
+export const COLOR_TRANSPARENT = 'rgba(255, 255, 255, 0.7)';
 
 // layout
 export const U = 5;
