@@ -248,7 +248,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case GET_ARTICLES_SUCCEEDED: {
       const isSourceEqual = article => source => source === article.source;
-      const filterArtlces = article => state.filteredSources.findIndex(isSourceEqual(article)) > -1;
+      const filterArtlces = article => (
+        state.filteredSources.length ? state.filteredSources.findIndex(isSourceEqual(article)) > -1 : article
+      );
 
       const sortByDate = (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt);
       const mapToModel = obj => obj.articles.map(article => ({
@@ -259,12 +261,13 @@ export default (state = INITIAL_STATE, action) => {
       const activeArticles = action.payload
         .map(mapToModel)
         .reduce((acc, val) => acc.concat(val))
-        .filter(filterArtlces)
         .sort(sortByDate);
+      const visibleArticles = activeArticles.filter(filterArtlces);
 
       return {
         ...state,
         activeArticles,
+        visibleArticles,
         asyncStatus: {
           ...state.asyncStatus,
           inProgress: false,
