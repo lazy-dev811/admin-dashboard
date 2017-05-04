@@ -102,6 +102,7 @@ const Articles = ({
   filteredSources,
   toggleFilteredSources = () => {},
   logoColors = {},
+  asyncStatus = {},
 }) => {
   const displayedArticles = visibleArticles.length > 0 ? visibleArticles : activeArticles;
 
@@ -113,6 +114,7 @@ const Articles = ({
           label="active sources"
           list={filteredSources}
           onClick={pill => toggleFilteredSources(pill)}
+          asyncStatus={asyncStatus.toggleFilteredSource}
         />
       }
       <ArticlesList className="articles">
@@ -157,6 +159,7 @@ Articles.propTypes = {
   filteredSources: PropTypes.array.isRequired,
   toggleFilteredSources: PropTypes.func.isRequired,
   logoColors: PropTypes.object.isRequired,
+  asyncStatus: PropTypes.object.isRequired,
 };
 
 export default Articles;

@@ -97,6 +97,7 @@ class NewsFeed extends Component {
             toggleFilteredSources={toggleFilteredSources}
             logoColors={logoColors}
             removeArticles={removeArticles}
+            asyncStatus={asyncStatus}
           />
         }
       </NewsFeedWrap>
