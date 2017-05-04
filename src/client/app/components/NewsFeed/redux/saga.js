@@ -4,35 +4,51 @@ import { call, put } from 'redux-saga/effects';
 import { getAll, create, remove } from 'firebase-saga';
 
 import {
-  getSourcesSucceeded,
   getSourcesFailed,
 
-  getActiveSourcesSucceeded,
   getActiveSourcesFailed,
 
-  getActiveCategoriesSucceeded,
-  getActiveCategoriesFailed,
+  getFilteredSourcesFailed,
 
-  filterSources,
+  getFilteredCategoriesFailed,
 
-  getSourceLogosSucceeded,
   getSourceLogosFailed,
 
-  GET_SOURCES_AND_ARTICLES_REQUESTED,
-  getSourcesAndArticlesSucceeded,
-  getSourcesAndArticlesFailed,
+  setActiveView,
+
+  setFilters,
+
+  setVisibleSources,
+
+  setVisibleArticles,
+
+  setSources,
+
+  GET_ARTICLES_REQUESTED,
+  getArticlesSucceeded,
+  getArticlesFailed,
+
+  GET_SOURCES_AND_FILTERS_REQUESTED,
 
   ADD_SOURCE_REQUESTED,
   addSourceSucceeded,
   addSourceFailed,
 
-  ADD_ACTIVE_CATEGORY_REQUESTED,
-  addActiveCategorySucceeded,
-  addActiveCategoryFailed,
+  ADD_FILTERED_CATEGORY_REQUESTED,
+  addFilteredCategorySucceeded,
+  addFilteredCategoryFailed,
 
-  REMOVE_ACTIVE_CATEGORY_REQUESTED,
-  removeActiveCategorySucceeded,
-  removeActiveCategoryFailed,
+  REMOVE_FILTERED_CATEGORY_REQUESTED,
+  removeFilteredCategorySucceeded,
+  removeFilteredCategoryFailed,
+
+  ADD_FILTERED_SOURCE_REQUESTED,
+  addFilteredSourceSucceeded,
+  addFilteredSourceFailed,
+
+  REMOVE_FILTERED_SOURCE_REQUESTED,
+  removeFilteredSourceSucceeded,
+  removeFilteredSourceFailed,
 
   REMOVE_SOURCE_REQUESTED,
   removeSourceSucceeded,
@@ -46,132 +62,196 @@ const BASE_ARTICLES_URL = 'https://newsapi.org/v1/articles';
 
 const firebaseNewsFeedRoot = 'widgets/newsfeed';
 const firebaseActiveSources = `${firebaseNewsFeedRoot}/data/active-sources`;
-const firebaseActiveCategories = `${firebaseNewsFeedRoot}/data/active-categories`;
+const firebaseFilteredSources = `${firebaseNewsFeedRoot}/data/filtered-sources`;
+const firebaseFilteredCategories = `${firebaseNewsFeedRoot}/data/filtered-categories`;
 
 function* getSources() {
   try {
-    const payload = yield call(axios.get, BASE_SOURCES_URL);
-    yield put(getSourcesSucceeded(payload));
+    return yield call(axios.get, BASE_SOURCES_URL);
   } catch (error) {
     yield put(getSourcesFailed(error));
   }
+  return undefined;
 }
 
 function* getActiveSources() {
   try {
-    const payload = yield call(getAll, firebaseActiveSources);
-    yield put(getActiveSourcesSucceeded(payload || []));
-    return payload;
+    return yield call(getAll, firebaseActiveSources);
   } catch (error) {
     yield put(getActiveSourcesFailed(error));
   }
-  return false;
+  return undefined;
 }
 
-function* getActiveCategories() {
+function* getFilteredSources() {
   try {
-    const payload = yield call(getAll, firebaseActiveCategories);
-    yield put(getActiveCategoriesSucceeded(payload));
+    return yield call(getAll, firebaseFilteredSources);
   } catch (error) {
-    yield put(getActiveCategoriesFailed(error));
+    yield put(getFilteredSourcesFailed(error));
   }
+  return undefined;
+}
+
+function* getFilteredCategories() {
+  try {
+    return yield call(getAll, firebaseFilteredCategories);
+  } catch (error) {
+    yield put(getFilteredCategoriesFailed(error));
+  }
+  return undefined;
 }
 
 function* getSourceLogos() {
   try {
-    const payload = yield call(getAll, `${firebaseNewsFeedRoot}/assets/sources`);
-    yield put(getSourceLogosSucceeded(payload));
+    return yield call(getAll, `${firebaseNewsFeedRoot}/assets/sources`);
   } catch (error) {
     yield put(getSourceLogosFailed(error));
   }
+  return undefined;
 }
 
-function* getSourcesAndArticles() {
-  function* iterateOverActiveSources(array) {
-    for (const activeSource of array) {
-      const url = `${BASE_ARTICLES_URL}?source=${activeSource}&apiKey=${API_KEY}`;
-      try {
-        const payload = yield call(axios.get, url);
-        yield put(getSourcesAndArticlesSucceeded(payload, activeSource));
-      } catch (error) {
-        yield put(getSourcesAndArticlesFailed(error));
+function* getArticles(array) {
+  const data = [];
+  for (const activeSource of array) {
+    const url = `${BASE_ARTICLES_URL}?source=${activeSource}&apiKey=${API_KEY}`;
+    try {
+      const payload = yield call(axios.get, url);
+      data.push({ source: activeSource, articles: payload.data.articles });
+      if (activeSource === array[array.length - 1]) {
+        yield put(getArticlesSucceeded(data));
       }
+    } catch (error) {
+      yield put(getArticlesFailed(error));
     }
   }
+}
 
-  yield getSources();
-  yield getSourceLogos();
-  yield getActiveCategories();
-  yield put(filterSources());
-  const activeSources = yield getActiveSources();
+function* getSourcesAndFilters() {
+  const filters = {
+    filteredSources: yield* getFilteredSources(),
+    filteredCategories: yield* getFilteredCategories(),
+  };
+  yield put(setFilters(filters));
+  const activeSources = yield* getActiveSources();
+  yield put(setActiveView(Object.keys(activeSources || {})));
 
   if (activeSources) {
     const activeSourcesKeys = Object.keys(activeSources);
-    yield iterateOverActiveSources(activeSourcesKeys);
+    yield getArticles(activeSourcesKeys);
   }
+
+  const sourcesData = {
+    sources: yield* getSources(),
+    activeSources,
+    sourceLogos: yield* getSourceLogos(),
+  };
+
+  yield put(setSources(sourcesData));
+  yield put(setVisibleSources());
 }
 
 function* addSource(dispatch) {
-  const { source } = dispatch;
-  const id = source.id;
+  const { source, activeSources } = dispatch;
+  const { id, name } = source;
   const newsfeedKey = `${firebaseActiveSources}/${id}`;
+  const activeSourcesIds = [
+    ...activeSources.map(activeSource => activeSource.id),
+    id,
+  ];
 
   try {
     yield call(create, firebaseActiveSources, () => ({
-      [newsfeedKey]: { ...source, id },
+      [newsfeedKey]: { id, name },
     }));
-    yield put(addSourceSucceeded(source, id));
+    yield put(addSourceSucceeded(source));
+    yield* getArticles(activeSourcesIds);
   } catch (error) {
     yield put(addSourceFailed(error));
   }
 }
 
-function* addActiveCategory(dispatch) {
-  const { category } = dispatch;
-  const id = category;
-  const activeCategoryKey = `${firebaseActiveCategories}/${id}`;
-
-  try {
-    yield call(create, firebaseActiveCategories, () => ({
-      [activeCategoryKey]: category,
-    }));
-    yield put(addActiveCategorySucceeded(category));
-    yield put(filterSources());
-  } catch (error) {
-    yield put(addActiveCategoryFailed(error));
-  }
-}
-
-function* removeActiveCategory(dispatch) {
-  const { category } = dispatch;
-  const id = category;
-
-  try {
-    yield call(remove, firebaseActiveCategories, id);
-    yield put(removeActiveCategorySucceeded(category));
-    yield put(filterSources());
-  } catch (error) {
-    yield put(removeActiveCategoryFailed(error));
-  }
-}
-
-function* removeSource(action) {
-  const { source } = action;
-  const { id } = source;
+function* removeSource(dispatch) {
+  const { source: { id }, activeSources } = dispatch;
+  const activeSourcesIds = [
+    ...activeSources.map(activeSource => activeSource.id),
+    id,
+  ];
 
   try {
     yield call(remove, firebaseActiveSources, id);
-    yield put(removeSourceSucceeded(source));
+    yield put(removeSourceSucceeded(id));
+    yield* getArticles(activeSourcesIds);
   } catch (error) {
     yield put(removeSourceFailed(error));
   }
 }
 
+function* addFilteredCategory(dispatch) {
+  const { category } = dispatch;
+  const id = category;
+  const filteredCategoryKey = `${firebaseFilteredCategories}/${id}`;
+
+  try {
+    yield call(create, firebaseFilteredCategories, () => ({
+      [filteredCategoryKey]: category,
+    }));
+    yield put(addFilteredCategorySucceeded(category));
+    yield put(setVisibleSources());
+  } catch (error) {
+    yield put(addFilteredCategoryFailed(error));
+  }
+}
+
+function* removeFilteredCategory(dispatch) {
+  const { category } = dispatch;
+  const id = category;
+
+  try {
+    yield call(remove, firebaseFilteredCategories, id);
+    yield put(removeFilteredCategorySucceeded(category));
+    yield put(setVisibleSources());
+  } catch (error) {
+    yield put(removeFilteredCategoryFailed(error));
+  }
+}
+
+function* addFilteredSource(dispatch) {
+  const { source } = dispatch;
+  const id = source;
+  const filteredSourceKey = `${firebaseFilteredSources}/${id}`;
+
+  try {
+    yield call(create, firebaseFilteredSources, () => ({
+      [filteredSourceKey]: source,
+    }));
+    yield put(addFilteredSourceSucceeded(source));
+    yield put(setVisibleArticles());
+  } catch (error) {
+    yield put(addFilteredSourceFailed(error));
+  }
+}
+
+function* removeFilteredSource(dispatch) {
+  const { source } = dispatch;
+  const id = source;
+
+  try {
+    yield call(remove, firebaseFilteredSources, id);
+    yield put(removeFilteredSourceSucceeded(source));
+    yield put(setVisibleArticles());
+  } catch (error) {
+    yield put(removeFilteredSourceFailed(error));
+  }
+}
+
 function* newsfeedSagas() {
   yield* [
-    takeEvery(GET_SOURCES_AND_ARTICLES_REQUESTED, getSourcesAndArticles),
-    takeEvery(ADD_ACTIVE_CATEGORY_REQUESTED, addActiveCategory),
-    takeEvery(REMOVE_ACTIVE_CATEGORY_REQUESTED, removeActiveCategory),
+    takeEvery(GET_ARTICLES_REQUESTED, getArticles),
+    takeEvery(GET_SOURCES_AND_FILTERS_REQUESTED, getSourcesAndFilters),
+    takeEvery(ADD_FILTERED_CATEGORY_REQUESTED, addFilteredCategory),
+    takeEvery(REMOVE_FILTERED_CATEGORY_REQUESTED, removeFilteredCategory),
+    takeEvery(REMOVE_FILTERED_SOURCE_REQUESTED, removeFilteredSource),
+    takeEvery(ADD_FILTERED_SOURCE_REQUESTED, addFilteredSource),
     takeEvery(ADD_SOURCE_REQUESTED, addSource),
     takeEvery(REMOVE_SOURCE_REQUESTED, removeSource),
   ];

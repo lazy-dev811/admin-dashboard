@@ -12,6 +12,11 @@ const INITIAL_STATE = {
     },
     activeState: true,
   },
+  asyncStatus: {
+    inProgress: false,
+    error: false,
+    errorMessage: undefined,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {

@@ -4,6 +4,7 @@ import {
 
 const INITIAL_STATE = {
   widgetTodo: {
+    id: 'todo',
     name: 'todo',
     type: 'widget',
     components: {
@@ -23,6 +24,7 @@ const INITIAL_STATE = {
     displaySettings: true,
   },
   widgetGreet: {
+    id: 'greet',
     name: 'greet',
     type: 'widget',
     components: {
@@ -37,6 +39,7 @@ const INITIAL_STATE = {
     displaySettings: true,
   },
   widgetBookmarks: {
+    id: 'bookmarks',
     name: 'bookmarks',
     type: 'widget',
     components: {
@@ -45,7 +48,7 @@ const INITIAL_STATE = {
     },
     dimensions: {
       width: 700,
-      // height: 400,
+      height: 400,
     },
     position: {
       top: 100,
@@ -55,6 +58,7 @@ const INITIAL_STATE = {
     transparentScrollbar: true,
   },
   widgetNewsFeed: {
+    id: 'newsfeed',
     name: 'news feed',
     type: 'widget',
     components: {
@@ -73,6 +77,7 @@ const INITIAL_STATE = {
     transparentScrollbar: true,
   },
   widgetQuote: {
+    id: 'quote',
     name: 'quote',
     type: 'widget',
     position: {
@@ -83,6 +88,7 @@ const INITIAL_STATE = {
     dimensions: {},
   },
   widgetSettings: {
+    id: 'settings',
     name: 'settings',
     type: 'component',
     components: {
@@ -95,6 +101,7 @@ const INITIAL_STATE = {
     dimensions: {},
   },
   widgetSliderDetail: {
+    id: 'slider-detail',
     name: 'slider detail',
     type: 'widget',
     components: {
@@ -113,6 +120,7 @@ const INITIAL_STATE = {
     displaySettings: false,
   },
   widgetYoutubePlayer: {
+    id: 'youtube-player',
     name: 'youtube player',
     type: 'widget',
     components: {

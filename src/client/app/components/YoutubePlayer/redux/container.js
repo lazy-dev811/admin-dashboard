@@ -6,9 +6,10 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetYoutubePlayer, config }) => ({ ...widgetYoutubePlayer, ...config });
 
-const mergeProps = ({ videos, activeVideo, widgetYoutubePlayer }, { dispatch }) => ({
+const mergeProps = ({ videos, activeVideo, widgetYoutubePlayer, asyncStatus }, { dispatch }) => ({
   videos,
   activeVideo,
+  asyncStatus,
   config: widgetYoutubePlayer,
   onChange(searchQuery) {
     dispatch(youtubeSearchRequested(searchQuery));

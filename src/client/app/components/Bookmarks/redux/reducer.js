@@ -98,7 +98,7 @@ const INITIAL_STATE = {
               favicon: 'FAV',
             },
             {
-              title: 'Liberal hippy bs',
+              title: 'Some title',
               url: 'https://www.google.com',
               favicon: 'FAV',
             },
@@ -133,7 +133,7 @@ const INITIAL_STATE = {
               favicon: 'FAV',
             },
             {
-              title: 'Liberal hippy bs',
+              title: 'Some title',
               url: 'https://www.google.com',
               favicon: 'FAV',
             },
@@ -168,7 +168,7 @@ const INITIAL_STATE = {
               favicon: 'FAV',
             },
             {
-              title: 'Liberal hippy bs',
+              title: 'Some title',
               url: 'https://www.google.com',
               favicon: 'FAV',
             },
@@ -203,7 +203,7 @@ const INITIAL_STATE = {
               favicon: 'FAV',
             },
             {
-              title: 'Liberal hippy bs',
+              title: 'Some title',
               url: 'https://www.google.com',
               favicon: 'FAV',
             },
@@ -238,7 +238,7 @@ const INITIAL_STATE = {
               favicon: 'FAV',
             },
             {
-              title: 'Liberal hippy bs',
+              title: 'Some title',
               url: 'https://www.google.com',
               favicon: 'FAV',
             },
@@ -273,7 +273,7 @@ const INITIAL_STATE = {
               favicon: 'FAV',
             },
             {
-              title: 'Liberal hippy bs',
+              title: 'Some title',
               url: 'https://www.google.com',
               favicon: 'FAV',
             },
@@ -297,6 +297,11 @@ const INITIAL_STATE = {
       ],
     },
   ],
+  asyncStatus: {
+    inProgress: false,
+    error: false,
+    errorMessage: undefined,
+  },
 };
 
 export default (state = INITIAL_STATE, action) => {

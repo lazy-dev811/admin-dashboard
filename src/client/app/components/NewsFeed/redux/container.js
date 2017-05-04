@@ -2,9 +2,11 @@ import { connect } from 'react-redux';
 import {
   toggleActiveView,
   removeArticles,
-  getSourcesAndArticlesRequested,
-  addActiveCategoryRequested,
-  removeActiveCategoryRequested,
+  getSourcesAndFiltersRequested,
+  addFilteredCategoryRequested,
+  removeFilteredCategoryRequested,
+  addFilteredSourceRequested,
+  removeFilteredSourceRequested,
   addSourceRequested,
   removeSourceRequested,
 } from './actions';
@@ -12,19 +14,23 @@ import {
 import NewsFeed from '../NewsFeed.jsx';
 import widgetHOC from '../../Widget/Widget.jsx';
 
+import logoColors from '../config.js';
+
 const mapStateToProps = ({ widgetNewsFeed, config }) => ({ ...widgetNewsFeed, ...config });
 
 const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
+  visibleSources,
   filteredSources,
   toggledSource,
 
   activeArticles,
+  visibleArticles,
 
   categories,
-  activeCategories,
+  filteredCategories,
 
   views,
   activeView,
@@ -34,38 +40,55 @@ const mergeProps = ({
   widgetIdentifier,
   sources,
   activeSources,
+  visibleSources,
   filteredSources,
   toggledSource,
+
   activeArticles,
+  visibleArticles,
 
   categories,
-  activeCategories,
+  filteredCategories,
 
   views,
   activeView,
+  logoColors,
   config: widgetNewsFeed,
   asyncStatus,
-  getSourcesAndArticles() {
-    dispatch(getSourcesAndArticlesRequested());
+  getSourcesAndFilters() {
+    dispatch(getSourcesAndFiltersRequested());
   },
   removeArticles() {
     dispatch(removeArticles());
   },
-  toggleActiveCategories(selectedCategory) {
-    if (activeCategories.findIndex(category => category === selectedCategory) > -1) {
-      dispatch(removeActiveCategoryRequested(selectedCategory));
+  toggleFilteredCategories(selectedCategory) {
+    if (filteredCategories.findIndex(category => category === selectedCategory) > -1) {
+      dispatch(removeFilteredCategoryRequested(selectedCategory));
     } else {
-      dispatch(addActiveCategoryRequested(selectedCategory));
+      dispatch(addFilteredCategoryRequested(selectedCategory));
+    }
+  },
+  toggleFilteredSources(selectedSource) {
+    if (filteredSources.findIndex(source => source === selectedSource) > -1) {
+      dispatch(removeFilteredSourceRequested(selectedSource));
+    } else {
+      dispatch(addFilteredSourceRequested(selectedSource));
     }
   },
   selectView(view) {
     dispatch(toggleActiveView(view));
   },
   toggleActiveSource(selectedSource) {
-    if (activeSources.findIndex(source => source.id === selectedSource.id) > -1) {
-      dispatch(removeSourceRequested(selectedSource));
+    const selectedSourceId = selectedSource.id;
+
+    if (activeSources.findIndex(source => source.id === selectedSourceId) > -1) {
+      dispatch(removeSourceRequested(selectedSource, activeSources));
+
+      if (filteredSources.findIndex(sourceName => sourceName === selectedSourceId) > -1) {
+        dispatch(removeFilteredSourceRequested(selectedSourceId));
+      }
     } else {
-      dispatch(addSourceRequested(selectedSource));
+      dispatch(addSourceRequested(selectedSource, activeSources));
     }
   },
 });

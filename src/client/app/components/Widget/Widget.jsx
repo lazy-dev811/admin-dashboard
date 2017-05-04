@@ -135,7 +135,7 @@ const component2 = (Component) => {
                 {asyncStatus && asyncStatus.inProgress && <Loader showOverlay={body} />}
                 {asyncStatus && asyncStatus.error && <ErrorMessage />}
 
-                <Component {...this.state} {...this.props} />
+                {asyncStatus && !asyncStatus.error && <Component {...this.state} {...this.props} />}
 
                 {footer && <Footer />}
               </div>

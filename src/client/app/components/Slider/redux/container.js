@@ -12,7 +12,10 @@ const mergeProps = ({ sliderItems, activeWidgets, config }, { dispatch }) => {
   const widgetNames = Object
     .keys(config)
     .filter(widget => config[widget].type === 'widget')
-    .map(index => config[index].name);
+    .map(index => ({
+      name: config[index].name,
+      id: config[index].id,
+    }));
 
   return ({
     sliderItems: widgetNames,

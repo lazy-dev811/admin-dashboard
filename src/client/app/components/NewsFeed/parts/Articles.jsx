@@ -1,47 +1,165 @@
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
+import styled from 'styled-components';
 import moment from 'moment';
 
-const Articles = ({ activeArticles = [] }) => (
-  <ul className="articles">
-    {
-      activeArticles.map((article, index) => {
-        const sourceClass = classnames('article__source', {
-          'is-reddit': article.source === 'reddit-r-all',
-          'is-recode': article.source === 'recode',
-          'is-mashable': article.source === 'mashable',
-        });
+import Pills from '../../Pills';
+import {
+  UNIT_XSM,
+  UNIT_SM,
+  UNIT_MD,
+  UNIT_LG,
+  COLOR_WHITE,
+  COLOR_WHITE_1,
+  COLOR_WHITE_2,
+  COLOR_WHITE_5,
+  COLOR_BLACK_3,
+} from '../../../styles';
 
-        return (
-          <li className="article" key={index}>
-            {
-              <div className="article__img-wrap">
-                <img className="article__img" src={article.urlToImage} alt="img" />
-                <span className={sourceClass}>{article.source}</span>
-                {
-                  article.publishedAt &&
-                  <span className="article__date">
-                    {moment(article.publishedAt).format('ddd D MMM')}
-                    <span className="article__date__time">{moment(article.publishedAt).format('hA')}</span>
-                  </span>
-                }
-              </div>
-            }
-            <div className="article__details">
-              <a href={article.url} className="article__details__title">
-                {article.title}
-              </a>
-              <p className="article__details__description">{article.description}</p>
-            </div>
-          </li>
-        );
-      })
+const ArticlesList = styled.ul`
+  margin: 0 -${UNIT_LG}; // TODO: update widget component padding logic
+`;
+
+const Article = styled.li`
+  display: flex;
+  position: relative;
+  padding: ${UNIT_SM} ${UNIT_LG};
+  line-height: 1.2;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:nth-child(2n) {
+    background-color: whitesmoke;
+  }
+
+  &:hover {
+    .img {
+      opacity: 1;
     }
-  </ul>
-);
+  }
+`;
+
+const ImgWrap = styled.div`
+  position: relative;
+  margin-right: ${UNIT_LG};
+
+  &:hover {
+    .date {
+      display: block;
+    }
+  }
+`;
+
+const Img = styled.img`
+  opacity: 0.7;
+  width: 170px;
+`;
+
+const Source = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px ${UNIT_MD};
+  background-color: ${props => props.logoColors[props.article.source]};
+  color: ${COLOR_WHITE};
+`;
+
+const Date = styled.span`
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 8px ${UNIT_MD};
+  font-size: 10px;
+  background-color: ${COLOR_BLACK_3};
+  color: ${COLOR_WHITE_1};
+  white-space: nowrap;
+`;
+
+const Time = styled.span`
+  margin-left: ${UNIT_XSM};
+  color: ${COLOR_WHITE_2};
+`;
+
+const Title = styled.a`
+  display: block;
+  margin-bottom: ${UNIT_SM};
+  font-size: 17px;
+
+  &:hover {
+    color: $color;
+  }
+`;
+
+const Description = styled.p`
+  color: ${COLOR_WHITE_5};
+`;
+
+const Articles = ({
+  activeArticles = [],
+  visibleArticles,
+  filteredSources,
+  toggleFilteredSources = () => {},
+  logoColors = {},
+  asyncStatus = {},
+}) => {
+  const displayedArticles = visibleArticles.length > 0 ? visibleArticles : activeArticles;
+
+  return (
+    <div>
+      {
+        filteredSources &&
+        <Pills
+          label="active sources"
+          list={filteredSources}
+          onClick={pill => toggleFilteredSources(pill)}
+          asyncStatus={asyncStatus.toggleFilteredSource}
+        />
+      }
+      <ArticlesList className="articles">
+        {
+          displayedArticles.map((article, index) => (
+            <Article key={index}>
+              {
+                <ImgWrap>
+                  <Img src={article.urlToImage} className="img" alt="img" />
+                  <Source
+                    logoColors={logoColors}
+                    article={article}
+                  >
+                    {article.source}
+                  </Source>
+                  {
+                    article.publishedAt &&
+                    <Date className="date">
+                      {moment(article.publishedAt).format('ddd D MMM')}
+                      <Time>{moment(article.publishedAt).format('hA')}</Time>
+                    </Date>
+                  }
+                </ImgWrap>
+              }
+              <div>
+                <Title href={article.url}>
+                  {article.title}
+                </Title>
+                <Description>{article.description}</Description>
+              </div>
+            </Article>
+          ))
+        }
+      </ArticlesList>
+    </div>
+  );
+};
 
 Articles.propTypes = {
-  activeArticles: PropTypes.array,
+  activeArticles: PropTypes.array.isRequired,
+  visibleArticles: PropTypes.array.isRequired,
+  filteredSources: PropTypes.array.isRequired,
+  toggleFilteredSources: PropTypes.func.isRequired,
+  logoColors: PropTypes.object.isRequired,
+  asyncStatus: PropTypes.object.isRequired,
 };
 
 export default Articles;

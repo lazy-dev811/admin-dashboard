@@ -1,16 +1,25 @@
 import React, { Component, PropTypes } from 'react';
+import styled from 'styled-components';
 
 import Filters from './parts/Filters.jsx';
 import Views from './parts/Views';
 import Sources from './parts/Sources.jsx';
 import Articles from './parts/Articles.jsx';
 
-require('./NewsFeed.scss');
+import { COLOR_WHITE } from '../../styles';
+
+const NewsFeedWrap = styled.div`
+  background-color: ${COLOR_WHITE};
+`;
+
+const Options = styled.div`
+  display: flex;
+  text-transform: none;
+`;
 
 class NewsFeed extends Component {
   componentWillMount() {
-    console.log('mounting');
-    this.props.getSourcesAndArticles();
+    this.props.getSourcesAndFilters();
   }
 
   render() {
@@ -18,30 +27,42 @@ class NewsFeed extends Component {
       sources,
       activeSources,
       filteredSources,
+      visibleSources,
       toggledSource,
+      toggleActiveSource,
+      toggleFilteredSources,
 
       views,
       activeView,
-      activeArticles = [],
-      categories,
-      activeCategories,
-      toggleActiveCategories,
       selectView,
-      toggleActiveSource,
+
+      activeArticles = [],
+      visibleArticles = [],
       removeArticles,
+
+      categories,
+      filteredCategories,
+      toggleFilteredCategories,
+
+      logoColors,
+
       asyncStatus,
     } = this.props;
 
     return (
-      <div className="newsfeed">
+      <NewsFeedWrap>
         <div className="widget__header">
           News Feed
 
-          <div className="newsfeed__options">
+          <Options>
             <Filters
               categories={categories}
-              activeCategories={activeCategories}
-              toggleActiveCategories={toggleActiveCategories}
+              filteredCategories={filteredCategories}
+              toggleFilteredCategories={toggleFilteredCategories}
+              activeSources={activeSources}
+              filteredSources={filteredSources}
+              toggleFilteredSources={toggleFilteredSources}
+              activeView={activeView}
             />
 
             <Views
@@ -50,7 +71,7 @@ class NewsFeed extends Component {
               activeView={activeView}
               selectView={selectView}
             />
-          </div>
+          </Options>
         </div>
 
         {
@@ -58,9 +79,9 @@ class NewsFeed extends Component {
           <Sources
             sources={sources}
             activeSources={activeSources}
-            filteredSources={filteredSources}
-            activeCategories={activeCategories}
-            toggleActiveCategories={toggleActiveCategories}
+            visibleSources={visibleSources}
+            filteredCategories={filteredCategories}
+            toggleFilteredCategories={toggleFilteredCategories}
             toggledSource={toggledSource}
             toggleActiveSource={toggleActiveSource}
             asyncStatus={asyncStatus}
@@ -71,11 +92,15 @@ class NewsFeed extends Component {
           activeView === 'articles' &&
           <Articles
             activeArticles={activeArticles}
-            activeSources={activeSources}
+            visibleArticles={visibleArticles}
+            filteredSources={filteredSources}
+            toggleFilteredSources={toggleFilteredSources}
+            logoColors={logoColors}
             removeArticles={removeArticles}
+            asyncStatus={asyncStatus}
           />
         }
-      </div>
+      </NewsFeedWrap>
     );
   }
 }
@@ -87,21 +112,25 @@ NewsFeed.defaultProps = {
 NewsFeed.propTypes = {
   sources: PropTypes.array.isRequired,
   activeSources: PropTypes.array,
-  filteredSources: PropTypes.array,
+  filteredSources: PropTypes.array.isRequired,
+  visibleSources: PropTypes.array,
   toggledSource: PropTypes.object,
+  toggleFilteredSources: PropTypes.func.isRequired,
 
   activeArticles: PropTypes.array.isRequired,
+  visibleArticles: PropTypes.array.isRequired,
 
   views: PropTypes.array.isRequired,
-  activeView: PropTypes.string.isRequired,
+  activeView: PropTypes.string,
   categories: PropTypes.array.isRequired,
-  activeCategories: PropTypes.array.isRequired,
-  getSourcesAndArticles: PropTypes.func.isRequired,
+  filteredCategories: PropTypes.array.isRequired,
+  getSourcesAndFilters: PropTypes.func.isRequired,
 
   removeArticles: PropTypes.func.isRequired,
 
-  toggleActiveCategories: PropTypes.func.isRequired,
+  toggleFilteredCategories: PropTypes.func.isRequired,
   selectView: PropTypes.func.isRequired,
+  logoColors: PropTypes.object.isRequired,
   toggleActiveSource: PropTypes.func.isRequired,
   asyncStatus: PropTypes.object,
 };
