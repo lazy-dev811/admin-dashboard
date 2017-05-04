@@ -7,10 +7,11 @@ import widgetHOC from '../../Widget/Widget.jsx';
 
 const mapStateToProps = ({ widgetBookmarks, config }) => ({ ...widgetBookmarks, ...config });
 
-const mergeProps = ({ widgetIdentifier, categories, widgetBookmarks }, { dispatch }) => ({
+const mergeProps = ({ widgetIdentifier, categories, widgetBookmarks, asyncStatus }, { dispatch }) => ({
   widgetIdentifier,
   categories,
   onTabChange: label => dispatch(onTabChange(label)),
+  asyncStatus,
   config: widgetBookmarks,
 });
 

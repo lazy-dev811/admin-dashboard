@@ -48,7 +48,7 @@ const INITIAL_STATE = {
     },
     dimensions: {
       width: 700,
-      // height: 400,
+      height: 400,
     },
     position: {
       top: 100,

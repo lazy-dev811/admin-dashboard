@@ -20,7 +20,7 @@ const widgets = [
     component: <Bookmarks />,
   },
   {
-    id: 'slider detail',
+    id: 'slider-detail',
     component: <SliderDetail />,
   },
   {
@@ -32,7 +32,7 @@ const widgets = [
     component: <Quote />,
   },
   {
-    id: 'youtube player',
+    id: 'youtube-player',
     component: <YoutubePlayer />,
   },
   {
