@@ -104,12 +104,13 @@ const Articles = ({
   logoColors = {},
   asyncStatus = {},
 }) => {
+  const displayFilters = filteredSources.length > -1;
   const displayedArticles = visibleArticles.length > 0 ? visibleArticles : activeArticles;
 
   return (
     <div>
       {
-        filteredSources &&
+        displayFilters &&
         <Pills
           label="active sources"
           list={filteredSources}

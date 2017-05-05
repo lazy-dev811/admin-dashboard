@@ -78,12 +78,13 @@ const Sources = ({
   toggleActiveSource,
   asyncStatus,
 }) => {
+  const displayFilters = filteredCategories.length > -1;
   const displayedSources = visibleSources.length > 0 ? visibleSources : sources;
 
   return (
     <div>
       {
-        filteredCategories &&
+        displayFilters &&
         <Pills
           label="active categories"
           list={filteredCategories}
