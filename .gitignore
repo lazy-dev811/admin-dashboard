@@ -31,5 +31,6 @@ coverage
 *.swo
 *.swp
 *.vi
+.tmp
 *~
 *.sass-cache
