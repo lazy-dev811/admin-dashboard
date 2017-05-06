@@ -16,6 +16,12 @@ const config = {
     filename: 'bundle.js',
   },
 
+  externals: {
+    cheerio: 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  },
+
   devServer: {
     inline: true,
     port: 7777,

@@ -1,0 +1,5 @@
+--colors
+--require test/babel-hook
+--require test/js-dom
+--webpack-config webpack.config-test.js
+src/**/*.test.js

@@ -1,1 +1,0 @@
-require('./webpack.config.js');
