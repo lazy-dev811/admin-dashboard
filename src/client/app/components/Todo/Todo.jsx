@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import List from './parts/List.jsx';
 import reduxForm from './parts/Form.jsx';
 
-require('./Todo.scss');
+import './Todo.scss';
 
 class Todo extends Component {
   componentWillMount() {

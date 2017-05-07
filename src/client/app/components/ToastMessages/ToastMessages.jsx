@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Close from '../Icon/Close.jsx';
 
-require('./ToastMessages.scss');
+import './ToastMessages.scss';
 
 class ToastMessages extends React.Component {
   componentDidMount() {

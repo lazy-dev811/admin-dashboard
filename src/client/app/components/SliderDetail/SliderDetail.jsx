@@ -5,7 +5,7 @@ import Navigation from './parts/Navigation.jsx';
 import Stats from './parts/Stats.jsx';
 import reduxForm from './parts/Chart.jsx';
 
-require('./SliderDetail.scss');
+import './SliderDetail.scss';
 
 const SliderDetail = ({ data: { selectedPerson, activeState } }) => {
   const sliderDetailClass = classnames('slider-detail', { 'is-active': activeState });

@@ -6,7 +6,7 @@ import Pinned from '../Icon/Pinned.jsx';
 
 import WallpaperPickerItem from './parts/WallpaperPickerItem.jsx';
 
-require('./WallpaperPicker.scss');
+import './WallpaperPicker.scss';
 
 class WallpaperPicker extends React.Component {
   componentDidMount() {

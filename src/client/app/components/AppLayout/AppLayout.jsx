@@ -6,7 +6,7 @@ import Sidebar from '../Sidebar';
 import Slider from '../Slider';
 import ToastMessages from '../ToastMessages';
 
-require('./AppLayout.scss');
+import './AppLayout.scss';
 
 const AppLayout = ({ children }) => (
   <div className="app-content">

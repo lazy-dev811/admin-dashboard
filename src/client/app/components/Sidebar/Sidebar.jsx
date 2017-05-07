@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-require('./Sidebar.scss');
+import './Sidebar.scss';
 
 const Sidebar = ({ sidebarItems }) => (
   <div className="sidebar">

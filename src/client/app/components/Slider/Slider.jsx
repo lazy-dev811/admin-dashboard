@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import ChevronLeft from '../Icon/ChevronLeft.jsx';
 import ChevronRight from '../Icon/ChevronRight.jsx';
 
-require('./Slider.scss');
+import './Slider.scss';
 
 class Slider extends React.Component {
   constructor(props) {

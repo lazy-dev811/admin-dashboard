@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 import settingsForm from './parts/Form.jsx';
 
-require('./Settings.scss');
+import './Settings.scss';
 
 const Settings = ({ settings, initialValues, handleChange, handleSubmit }) => (
   <div className="pg-settings">

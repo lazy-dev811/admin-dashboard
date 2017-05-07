@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-require('./Button.scss');
+import './Button.scss';
 
 const Button = ({ label, isDisabled, handleSubmit }) => {
   const buttonClass = classnames('btn', { 'is-disabled': isDisabled });
