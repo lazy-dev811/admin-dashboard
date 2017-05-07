@@ -8,3 +8,5 @@ export const WIDGET_QUOTE = 'widgetQuote';
 export const WIDGET_SLIDER_DETAIL = 'widgetSliderDetail';
 
 export const DATE_FORMAT = 'DD MMM YYYY';
+export const DATE_FORMAT_DAY_MONTH = 'ddd D MMM'; // Sun 7 May
+export const DATE_FORMAT_TIME = 'hA'; // 12AM
