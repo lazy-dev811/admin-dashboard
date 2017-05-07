@@ -1,10 +1,20 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Filters from './parts/Filters.jsx';
 import Views from './parts/Views';
 import Sources from './parts/Sources.jsx';
 import Articles from './parts/Articles.jsx';
+
+import {
+  SHAPE_SOURCE,
+  SHAPE_ACTIVE_SOURCE,
+  SHAPE_VISIBLE_SOURCE,
+  SHAPE_TOGGLED_SOURCE,
+  SHAPE_ARTICLE,
+  SHAPE_VISIBLE_ARTICLE,
+} from './prop-shapes';
 
 import { COLOR_WHITE } from '../../styles';
 
@@ -38,7 +48,6 @@ class NewsFeed extends Component {
 
       activeArticles = [],
       visibleArticles = [],
-      removeArticles,
 
       categories,
       filteredCategories,
@@ -96,7 +105,6 @@ class NewsFeed extends Component {
             filteredSources={filteredSources}
             toggleFilteredSources={toggleFilteredSources}
             logoColors={logoColors}
-            removeArticles={removeArticles}
             asyncStatus={asyncStatus}
           />
         }
@@ -110,23 +118,21 @@ NewsFeed.defaultProps = {
 };
 
 NewsFeed.propTypes = {
-  sources: PropTypes.array.isRequired,
-  activeSources: PropTypes.array,
-  filteredSources: PropTypes.array.isRequired,
-  visibleSources: PropTypes.array,
-  toggledSource: PropTypes.object,
+  sources: PropTypes.arrayOf(SHAPE_SOURCE).isRequired,
+  activeSources: PropTypes.arrayOf(SHAPE_ACTIVE_SOURCE).isRequired,
+  filteredSources: PropTypes.arrayOf(PropTypes.string).isRequired,
+  visibleSources: PropTypes.arrayOf(SHAPE_VISIBLE_SOURCE).isRequired,
+  toggledSource: SHAPE_TOGGLED_SOURCE.isRequired,
   toggleFilteredSources: PropTypes.func.isRequired,
 
-  activeArticles: PropTypes.array.isRequired,
-  visibleArticles: PropTypes.array.isRequired,
+  activeArticles: PropTypes.arrayOf(SHAPE_ARTICLE).isRequired,
+  visibleArticles: PropTypes.arrayOf(SHAPE_VISIBLE_ARTICLE).isRequired,
 
   views: PropTypes.array.isRequired,
   activeView: PropTypes.string,
   categories: PropTypes.array.isRequired,
   filteredCategories: PropTypes.array.isRequired,
   getSourcesAndFilters: PropTypes.func.isRequired,
-
-  removeArticles: PropTypes.func.isRequired,
 
   toggleFilteredCategories: PropTypes.func.isRequired,
   selectView: PropTypes.func.isRequired,

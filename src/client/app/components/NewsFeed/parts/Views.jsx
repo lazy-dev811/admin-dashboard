@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 import { COLOR_TEAL } from '../../../styles';
 
-const List = styled.ul`
+export const List = styled.ul`
   display: flex;
 `;
 
-const Item = styled.li`
+export const Item = styled.li`
   margin-left: 10px;
 
   &:first-child {
@@ -15,7 +15,7 @@ const Item = styled.li`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   padding-bottom: 1px;
 
   ${props => props.view === props.activeView && (`

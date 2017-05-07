@@ -1,18 +1,21 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { UNIT_MD, COLOR_WHITE_1 } from '../../../styles';
+import { SHAPE_ACTIVE_SOURCE } from '../prop-shapes';
 import FormFieldSelect from '../../FormElements/FormFieldSelect/FormFieldSelect.jsx';
 
+import { UNIT_MD, COLOR_WHITE_1 } from '../../../styles';
 
-const FiltersWrap = styled.div`
+
+export const FiltersWrap = styled.div`
   display: flex;
   margin-right: ${UNIT_MD};
   padding-right: ${UNIT_MD};
   border-right: 1px solid ${COLOR_WHITE_1};
 `;
 
-const Filter = styled(FormFieldSelect)`
+export const Filter = styled(FormFieldSelect)`
   margin-left: 10px;
 
   &:first-child {
@@ -59,11 +62,11 @@ const Filters = ({
 };
 
 Filters.propTypes = {
-  categories: PropTypes.array.isRequired,
-  filteredCategories: PropTypes.array.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filteredCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
   toggleFilteredCategories: PropTypes.func.isRequired,
-  activeSources: PropTypes.array.isRequired,
-  filteredSources: PropTypes.array.isRequired,
+  activeSources: PropTypes.arrayOf(SHAPE_ACTIVE_SOURCE).isRequired,
+  filteredSources: PropTypes.arrayOf(PropTypes.string).isRequired,
   toggleFilteredSources: PropTypes.func.isRequired,
   activeView: PropTypes.string,
 };
