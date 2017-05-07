@@ -46,7 +46,7 @@ Pills.propTypes = {
   label: PropTypes.string,
   list: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
-  asyncStatus: PropTypes.object.isRequired,
+  asyncStatus: PropTypes.object,
 };
 
 export default Pills;
