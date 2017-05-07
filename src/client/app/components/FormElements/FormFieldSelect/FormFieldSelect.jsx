@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
-import ChevronDown from '../../Icon/ChevronDown';
+import ChevronDown from '../../Icon/ChevronDown.jsx';
 import './FormFieldSelect.scss';
 
 const FormFieldSelect = ({

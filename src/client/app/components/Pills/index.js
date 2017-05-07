@@ -1,1 +1,1 @@
-export { default } from './Pills';
+export { default } from './Pills.jsx';
