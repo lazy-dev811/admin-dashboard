@@ -2,8 +2,6 @@ export const SET_FILTERS = 'SET_FILTERS';
 
 export const TOGGLE_ACTIVE_VIEW = 'TOGGLE_ACTIVE_VIEW';
 
-export const REMOVE_ARTICLES = 'REMOVE_ARTICLES';
-
 export const GET_SOURCES_FAILED = 'GET_SOURCES_FAILED';
 
 export const GET_ACTIVE_SOURCES_FAILED = 'GET_ACTIVE_SOURCES_FAILED';
@@ -68,11 +66,6 @@ export const setFilters = filters => ({
 export const toggleActiveView = view => ({
   type: TOGGLE_ACTIVE_VIEW,
   view,
-});
-
-
-export const removeArticles = () => ({
-  type: REMOVE_ARTICLES,
 });
 
 

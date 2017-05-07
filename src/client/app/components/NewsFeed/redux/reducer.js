@@ -5,8 +5,6 @@ import {
 
   TOGGLE_ACTIVE_VIEW,
 
-  REMOVE_ARTICLES,
-
   GET_SOURCES_FAILED,
 
   GET_ACTIVE_SOURCES_FAILED,
@@ -152,14 +150,6 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         activeView: action.view,
-      };
-    }
-
-
-    case REMOVE_ARTICLES: {
-      return {
-        ...state,
-        activeArticles: INITIAL_STATE.activeArticles,
       };
     }
 
