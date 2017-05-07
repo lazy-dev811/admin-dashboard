@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 require('./Sidebar.scss');
 
-const Sidebar = ({ loggedIn, sidebarItems }) => (
+const Sidebar = ({ sidebarItems }) => (
   <div className="sidebar">
     <p className="sidebar__logo">
       openTab
@@ -26,7 +26,14 @@ const Sidebar = ({ loggedIn, sidebarItems }) => (
       ))}
     </ul>
     <div className="sidebar__acknowledgements">
-      Powered by these great APIs
+      <a
+        href="https://github.com/vincentbollaert/react-dashboard"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </a>
+
       <ul className="sidebar__apis">
         <li className="sidebar__apis__api">
           <a
@@ -64,7 +71,6 @@ const Sidebar = ({ loggedIn, sidebarItems }) => (
 );
 
 Sidebar.propTypes = {
-  loggedIn: PropTypes.bool,
   sidebarItems: PropTypes.array.isRequired,
 };
 
