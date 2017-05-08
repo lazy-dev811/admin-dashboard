@@ -40,6 +40,15 @@ const article = {
   publishedAt: string,
 };
 
+const articleNotRequired = {
+  source: string,
+  title: string,
+  description: string,
+  url: string,
+  urlToImage: string,
+  publishedAt: string,
+};
+
 const asyncStatus = {
   inProgress: bool,
   error: bool,
@@ -60,6 +69,10 @@ const asyncStatus = {
   toggleFilteredCategory: shape({
     inProgress: bool,
   }),
+
+  toggleFilteredSource: shape({
+    inProgress: bool,
+  }),
 };
 
 export const SHAPE_SOURCE = shape(source);
@@ -67,5 +80,5 @@ export const SHAPE_ACTIVE_SOURCE = shape(activeSource);
 export const SHAPE_VISIBLE_SOURCE = shape(sourceNotRequired);
 export const SHAPE_TOGGLED_SOURCE = shape(sourceNotRequired);
 export const SHAPE_ARTICLE = shape(article);
-export const SHAPE_VISIBLE_ARTICLE = shape(article);
+export const SHAPE_VISIBLE_ARTICLE = shape(articleNotRequired);
 export const SHAPE_ASYNC_STATUS = shape(asyncStatus);
