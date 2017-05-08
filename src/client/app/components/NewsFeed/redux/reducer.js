@@ -93,6 +93,10 @@ const INITIAL_STATE = {
     toggleFilteredCategory: {
       inProgress: false,
     },
+
+    toggleFilteredSource: {
+      inProgress: false,
+    },
   },
 };
 
