@@ -34,3 +34,5 @@ coverage
 .tmp
 *~
 *.sass-cache
+
+public/
