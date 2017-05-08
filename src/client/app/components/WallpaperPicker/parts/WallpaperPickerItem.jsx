@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
+import { ThemeProvider } from 'styled-components';
 import classnames from 'classnames';
 import { isEqual } from 'lodash';
+
+import { light } from '../../../themes';
 
 import Loader from '../../Loader/Loader.jsx';
 import ErrorMessage from '../../ErrorMessage/ErrorMessage.jsx';
@@ -32,18 +35,32 @@ const WallpaperPickerItem = ({
 
   return (
     <li className={itemClass} key={wallpaperObj.id}>
-      {asyncStatus.inProgress && <Loader />}
-      {asyncStatus.error && <ErrorMessage position="absolute" />}
+      {
+        asyncStatus.inProgress &&
+        <ThemeProvider theme={light}>
+          <Loader />
+        </ThemeProvider>
+      }
+
+      {
+        asyncStatus.error &&
+        <ErrorMessage position="absolute" />
+      }
+
       {
         asyncStatus.pinWallpaper.inProgress &&
         isEqual(wallpaperObj, pinToggledWallpaper) &&
-        <Loader />
+        <ThemeProvider theme={light}>
+          <Loader />
+        </ThemeProvider>
       }
 
       {
         asyncStatus.saveWallpaper.inProgress &&
         isActive &&
-        <Loader />
+        <ThemeProvider theme={light}>
+          <Loader />
+        </ThemeProvider>
       }
 
       {
