@@ -1,18 +1,27 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { string, func, arrayOf } from 'prop-types';
 import styled from 'styled-components';
 
-import Loader from '../../Loader/Loader';
+import {
+  SHAPE_SOURCE,
+  SHAPE_ACTIVE_SOURCE,
+  SHAPE_VISIBLE_SOURCE,
+  SHAPE_TOGGLED_SOURCE,
+  SHAPE_ASYNC_STATUS,
+} from '../prop-shapes';
+
+import Loader from '../../Loader';
 import Pills from '../../Pills';
 
 import { UNIT_XSM, COLOR_TEAL, COLOR_WHITE, COLOR_WHITE_4, COLOR_BLACK_3 } from '../../../styles';
 
-const SourcesList = styled.ul`
+export const SourcesList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   margin: -${UNIT_XSM};
 `;
 
-const Source = styled.li`
+export const Source = styled.li`
   position: relative;
   display: flex;
   justify-content: center;
@@ -36,12 +45,12 @@ const Source = styled.li`
   `)}
 `;
 
-const Img = styled.img`
+export const Img = styled.img`
   max-width: 100%;
   max-height: 100%;
 `;
 
-const Name = styled.a`
+export const Name = styled.a`
   display: none;
   position: absolute;
   bottom: 0;
@@ -61,7 +70,7 @@ const Name = styled.a`
   }
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -70,7 +79,7 @@ const Button = styled.button`
 
 const Sources = ({
   sources = [],
-  activeSources,
+  activeSources = [],
   visibleSources = [],
   filteredCategories = [],
   toggleFilteredCategories = () => {},
@@ -89,6 +98,7 @@ const Sources = ({
           label="active categories"
           list={filteredCategories}
           onClick={toggleFilteredCategories}
+          asyncStatus={asyncStatus}
         />
       }
 
@@ -125,14 +135,46 @@ const Sources = ({
 };
 
 Sources.propTypes = {
-  sources: PropTypes.array.isRequired,
-  activeSources: PropTypes.array.isRequired,
-  visibleSources: PropTypes.array.isRequired,
-  filteredCategories: PropTypes.array.isRequired,
-  toggleFilteredCategories: PropTypes.func.isRequired,
-  toggledSource: PropTypes.object.isRequired,
-  toggleActiveSource: PropTypes.func.isRequired,
-  asyncStatus: PropTypes.object,
+  sources: arrayOf(SHAPE_SOURCE).isRequired,
+  activeSources: arrayOf(SHAPE_ACTIVE_SOURCE),
+  visibleSources: arrayOf(SHAPE_VISIBLE_SOURCE),
+  filteredCategories: arrayOf(string),
+  toggleFilteredCategories: func.isRequired,
+  toggledSource: SHAPE_TOGGLED_SOURCE,
+  toggleActiveSource: func.isRequired,
+  asyncStatus: SHAPE_ASYNC_STATUS,
+};
+
+Sources.defaultProps = {
+  sources: [],
+  activeSources: [],
+  visibleSources: [],
+  filteredCategories: [],
+  toggleFilteredCategories() {},
+  toggledSource: {},
+  toggleActiveSource() {},
+  asyncStatus: {
+    inProgress: false,
+    error: false,
+    errorMessage: undefined,
+
+    getFilteredSources: {
+      inProgress: false,
+    },
+
+    getFilteredCategories: {
+      inProgress: false,
+    },
+
+    toggleActiveSource: {
+      inProgress: false,
+    },
+
+    toggleFilteredCategory: {
+      inProgress: false,
+    },
+  },
 };
 
 export default Sources;
+export const defaultProps = Sources.defaultProps;

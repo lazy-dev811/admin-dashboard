@@ -1,49 +1,71 @@
-import PropTypes from 'prop-types';
+import { object, array, string, bool, shape } from 'prop-types';
 
 const source = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  language: PropTypes.string.isRequired,
-  country: PropTypes.string.isRequired,
-  urlsToLogos: PropTypes.object.isRequired,
-  sortBysAvailable: PropTypes.array.isRequired,
-  logo: PropTypes.string.isRequired,
+  id: string.isRequired,
+  name: string.isRequired,
+  description: string.isRequired,
+  url: string.isRequired,
+  category: string.isRequired,
+  language: string.isRequired,
+  country: string.isRequired,
+  urlsToLogos: object.isRequired,
+  sortBysAvailable: array.isRequired,
+  logo: string.isRequired,
 };
 
 const sourceNotRequired = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  description: PropTypes.string,
-  url: PropTypes.string,
-  category: PropTypes.string,
-  language: PropTypes.string,
-  country: PropTypes.string,
-  urlsToLogos: PropTypes.object,
-  sortBysAvailable: PropTypes.array,
-  logo: PropTypes.string,
+  id: string,
+  name: string,
+  description: string,
+  url: string,
+  category: string,
+  language: string,
+  country: string,
+  urlsToLogos: object,
+  sortBysAvailable: array,
+  logo: string,
 };
 
 const activeSource = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  id: string.isRequired,
+  name: string.isRequired,
 };
 
 const article = {
-  source: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  urlToImage: PropTypes.string.isRequired,
-  publishedAt: PropTypes.string.isRequired,
+  source: string.isRequired,
+  title: string.isRequired,
+  description: string,
+  url: string.isRequired,
+  urlToImage: string,
+  publishedAt: string,
 };
 
+const asyncStatus = {
+  inProgress: bool,
+  error: bool,
+  errorMessage: string,
 
-export const SHAPE_SOURCE = PropTypes.shape(source);
-export const SHAPE_ACTIVE_SOURCE = PropTypes.shape(activeSource);
-export const SHAPE_VISIBLE_SOURCE = PropTypes.shape(activeSource);
-export const SHAPE_TOGGLED_SOURCE = PropTypes.shape(sourceNotRequired);
-export const SHAPE_ARTICLE = PropTypes.shape(article);
-export const SHAPE_VISIBLE_ARTICLE = PropTypes.shape(article);
+  getFilteredSources: shape({
+    inProgress: bool,
+  }),
+
+  getFilteredCategories: shape({
+    inProgress: bool,
+  }),
+
+  toggleActiveSource: shape({
+    inProgress: bool,
+  }),
+
+  toggleFilteredCategory: shape({
+    inProgress: bool,
+  }),
+};
+
+export const SHAPE_SOURCE = shape(source);
+export const SHAPE_ACTIVE_SOURCE = shape(activeSource);
+export const SHAPE_VISIBLE_SOURCE = shape(sourceNotRequired);
+export const SHAPE_TOGGLED_SOURCE = shape(sourceNotRequired);
+export const SHAPE_ARTICLE = shape(article);
+export const SHAPE_VISIBLE_ARTICLE = shape(article);
+export const SHAPE_ASYNC_STATUS = shape(asyncStatus);
