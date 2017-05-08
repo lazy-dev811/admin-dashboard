@@ -53,7 +53,7 @@ const wrapper = additionalProps => shallow(<Sources {...defaultProps} {...additi
 
 describe('<Sources />', () => {
   describe('<Pills />', () => {
-    const filteredCategories = ['recode'];
+    const filteredCategories = ['technology'];
 
     it('renders', () => {
       expect(wrapper().find(Pills)).to.not.exist;
@@ -73,7 +73,9 @@ describe('<Sources />', () => {
       sandbox.restore();
     });
     it('renders asyncStatus prop', () => {
-      expect(wrapper({ filteredCategories }).find(Pills)).to.have.prop('asyncStatus', defaultProps.asyncStatus);
+      expect(wrapper({ filteredCategories }).find(Pills)).to.have.prop(
+        'asyncStatus', defaultProps.asyncStatus.toggleFilteredCategory
+      );
     });
   });
 

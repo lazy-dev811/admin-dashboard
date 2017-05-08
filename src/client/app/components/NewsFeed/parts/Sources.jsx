@@ -98,7 +98,7 @@ const Sources = ({
           label="active categories"
           list={filteredCategories}
           onClick={toggleFilteredCategories}
-          asyncStatus={asyncStatus}
+          asyncStatus={asyncStatus.toggleFilteredCategory}
         />
       }
 
@@ -171,6 +171,10 @@ Sources.defaultProps = {
     },
 
     toggleFilteredCategory: {
+      inProgress: false,
+    },
+
+    toggleFilteredSource: {
       inProgress: false,
     },
   },
