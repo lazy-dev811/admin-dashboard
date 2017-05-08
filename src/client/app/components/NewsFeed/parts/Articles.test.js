@@ -3,16 +3,19 @@ import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import moment from 'moment';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 
 import { DATE_FORMAT_DAY_MONTH, DATE_FORMAT_TIME } from '../../../constants';
 
 import Articles, {
+  defaultProps,
   ArticlesList,
   Article,
   ImgWrap,
   Img,
   Source,
-  Date,
+  DateDayOfMonth,
   Time,
   Title,
   Description,
@@ -21,126 +24,125 @@ import Articles, {
 import Pills from '../../Pills';
 
 chai.use(chaiEnzyme());
+chai.use(sinonChai);
 
 
-const defaultProps = {
-  activeArticles: [],
-  visibleArticles: [],
-  filteredSources: [],
-  toggleFilteredSources() {},
-  logoColors: {},
-  asyncStatus: {
-    inProgress: false,
-    error: false,
-    errorMessage: undefined,
-
-    getFilteredSources: {
-      inProgress: false,
-    },
-
-    getFilteredCategories: {
-      inProgress: false,
-    },
-
-    toggleActiveSource: {
-      inProgress: false,
-    },
-
-    toggleFilteredCategory: {
-      inProgress: false,
-    },
+const activeArticles = [
+  {
+    source: 'hacker-news',
+    author: 'https://www.facebook.com/jlachenbach',
+    title: 'U.S. life expectancy',
+    description: 'The District of Columbia',
+    url: 'https://www.url',
+    urlToImage: 'https://urlToImage',
+    publishedAt: '2017-05-08T17:30:00Z',
   },
-};
+];
 
-const propsArticle = {
-  source: 'article source',
-  title: 'article title',
-  description: 'article description',
-  url: 'https://google.com',
-  urlToImage: 'https://google.com/images',
-  publishedAt: '2017-01-01',
-};
-
-const propsArticles = {
-  activeArticles: Array(1).fill(propsArticle),
-};
-
-const propsVisibleArticle = {
-  source: 'visible article source',
-  title: 'visible article title',
-  description: 'visible article description',
-  url: 'https://google.com/visible',
-  urlToImage: 'https://google.com/images/visible',
-  publishedAt: '2020-01-01',
-};
-
-const propsVisibleArticles = {
-  activeArticles: Array(1).fill(propsVisibleArticle),
-};
+const visibleArticles = [
+  {
+    source: 'visible article source',
+    title: 'visible article title',
+    description: 'visible article description',
+    url: 'https://google.com/visible',
+    urlToImage: 'https://google.com/images/visible',
+    publishedAt: '2020-01-01',
+  },
+];
 
 const wrapper = additionalProps => shallow(<Articles {...defaultProps} {...additionalProps} />);
 
 describe('<Articles />', () => {
+  describe('<Pills />', () => {
+    const filteredSources = ['recode'];
+
+    it('renders', () => {
+      expect(wrapper().find(Pills)).to.not.exist;
+      expect(wrapper({ filteredSources }).find(Pills)).to.exist;
+    });
+    it('renders label prop', () => {
+      expect(wrapper({ filteredSources }).find(Pills)).to.have.prop('label', 'active sources');
+    });
+    it('renders list prop', () => {
+      expect(wrapper({ filteredSources }).find(Pills)).to.have.prop('list', filteredSources);
+    });
+    it('renders onClick prop', () => {
+      const sandbox = sinon.sandbox.create();
+      const spyClick = sandbox.spy(defaultProps, 'toggleFilteredSources');
+      wrapper({ filteredSources }).find(Pills).simulate('click');
+      expect(spyClick).to.have.been.calledOnce;
+      sandbox.restore();
+    });
+    it('renders asyncStatus prop', () => {
+      expect(wrapper({ filteredSources }).find(Pills)).to.have.prop(
+        'asyncStatus', defaultProps.asyncStatus.toggleFilteredSource
+      );
+    });
+  });
+
   it('<ArticlesList />', () => {
-    expect(wrapper()).to.have.descendants(ArticlesList);
+    expect(wrapper().find(ArticlesList)).to.exist;
   });
 
-  it('<Article /> displays activeArticles if !visibleArticles', () => {
-    expect(wrapper().find(Article)).to.not.exist;
-    expect(wrapper(propsArticles).find(Article)).to.exist;
-  });
+  describe('<Article />', () => {
+    it('displays activeArticles if !visibleArticles', () => {
+      expect(wrapper().find(Article)).to.not.exist;
+      expect(wrapper({ activeArticles }).find(Article)).to.exist;
+    });
 
-  it('<Article /> displays visibleArticles if exist', () => {
-    expect(wrapper(propsVisibleArticles).find(Title)).to.have.props({
-      href: propsVisibleArticle.url, children: propsVisibleArticle.title,
+    it('displays visibleArticles if exist', () => {
+      expect(wrapper({ visibleArticles }).find(Title)).to.have.props({
+        href: visibleArticles[0].url, children: visibleArticles[0].title,
+      });
     });
   });
 
   it('<ImgWrap />', () => {
-    expect(wrapper(propsArticles).find(ImgWrap)).to.exist;
+    expect(wrapper({ activeArticles }).find(ImgWrap)).to.exist;
   });
 
   it('<Img />', () => {
-    expect(wrapper(propsArticles).find(Img)).to.have.prop('src', propsArticle.urlToImage);
+    expect(wrapper({ activeArticles }).find(Img)).to.have.prop('src', activeArticles[0].urlToImage);
   });
 
-  it('<Source />', () => {
-    expect(wrapper(propsArticles).find(Source)).to.have.props({
-      logoColors: defaultProps.logoColors, article: propsArticle, children: propsArticle.source,
+  describe('<Source />', () => {
+    it('renders logoColors prop', () => {
+      expect(wrapper({ activeArticles }).find(Source)).to.have.prop('logoColors', defaultProps.logoColors);
+    });
+    it('renders article prop', () => {
+      expect(wrapper({ activeArticles }).find(Source)).to.have.prop('article', activeArticles[0]);
+    });
+    it('renders children prop', () => {
+      expect(wrapper({ activeArticles }).find(Source)).to.have.prop('children', activeArticles[0].source);
     });
   });
 
-  it('<Date />', () => {
-    const dateFormatted = moment(propsArticle.publishedAt).format(DATE_FORMAT_DAY_MONTH);
-    const timeFormatted = moment(propsArticle.publishedAt).format(DATE_FORMAT_TIME);
-    expect(wrapper(propsArticles).find(Date)).to.have.prop('children').to.deep.equal(
-      [dateFormatted, <Time>{timeFormatted}</Time>]
-    );
+  describe('<DateDayOfMonth />', () => {
+    it('renders children prop', () => {
+      const dateString = moment(activeArticles[0].publishedAt).format(DATE_FORMAT_DAY_MONTH);
+      expect(wrapper({ activeArticles }).find(DateDayOfMonth)).to.have.prop('children', dateString);
+    });
   });
 
-  it('<Time />', () => {
-    const timeFormatted = moment(propsArticle.publishedAt).format(DATE_FORMAT_TIME);
-    expect(wrapper(propsArticles).find(Time)).to.have.prop('children', timeFormatted);
+  describe('<Time />', () => {
+    it('renders children prop', () => {
+      const timeString = moment(activeArticles[0].publishedAt).format(DATE_FORMAT_TIME);
+      expect(wrapper({ activeArticles }).find(Time)).to.have.prop('children', timeString);
+    });
   });
 
-  it('<Title />', () => {
-    expect(wrapper(propsArticles).find(Title)).to.have.props({ href: propsArticle.url, children: propsArticle.title });
+  describe('<Title />', () => {
+    it('renders href prop', () => {
+      expect(wrapper({ activeArticles }).find(Title)).to.have.prop('href', activeArticles[0].url);
+    });
+    it('renders children prop', () => {
+      expect(wrapper({ activeArticles }).find(Title)).to.have.prop('children', activeArticles[0].title);
+    });
   });
 
-  it('<Description />', () => {
-    expect(wrapper(propsArticles).find(Description)).to.have.prop('children', propsArticle.description);
-  });
-
-  it('<Pills /> displays filteredSources if exist', () => {
-    const newProps = {
-      filteredSources: ['recode'],
-    };
-    expect(wrapper().find(Pills)).to.not.exist;
-    expect(wrapper(newProps).find(Pills)).to.have.props({
-      label: 'active sources',
-      list: newProps.filteredSources,
-      // onClick: () => {},
-      asyncStatus: defaultProps.asyncStatus.toggleFilteredSource,
+  describe('<Description />', () => {
+    it('renders children prop', () => {
+      expect(wrapper({ activeArticles }).find(Description)).to.have.prop('children', activeArticles[0].description);
     });
   });
 });

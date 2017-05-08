@@ -1,6 +1,13 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
+
+import {
+  SHAPE_ARTICLE,
+  SHAPE_VISIBLE_ARTICLE,
+  SHAPE_ASYNC_STATUS,
+} from '../prop-shapes';
 
 import { DATE_FORMAT_DAY_MONTH, DATE_FORMAT_TIME } from '../../../constants';
 import Pills from '../../Pills';
@@ -78,6 +85,8 @@ export const Date = styled.span`
   white-space: nowrap;
 `;
 
+export const DateDayOfMonth = styled.span``;
+
 export const Time = styled.span`
   margin-left: ${UNIT_XSM};
   color: ${COLOR_WHITE_2};
@@ -135,7 +144,7 @@ const Articles = ({
                   {
                     article.publishedAt &&
                     <Date className="date">
-                      {moment(article.publishedAt).format(DATE_FORMAT_DAY_MONTH)}
+                      <DateDayOfMonth>{moment(article.publishedAt).format(DATE_FORMAT_DAY_MONTH)}</DateDayOfMonth>
                       <Time>{moment(article.publishedAt).format(DATE_FORMAT_TIME)}</Time>
                     </Date>
                   }
@@ -156,12 +165,46 @@ const Articles = ({
 };
 
 Articles.propTypes = {
-  activeArticles: PropTypes.array.isRequired,
-  visibleArticles: PropTypes.array.isRequired,
-  filteredSources: PropTypes.array.isRequired,
+  activeArticles: PropTypes.arrayOf(SHAPE_ARTICLE).isRequired,
+  visibleArticles: PropTypes.arrayOf(SHAPE_VISIBLE_ARTICLE).isRequired,
+  filteredSources: PropTypes.arrayOf(PropTypes.string).isRequired,
   toggleFilteredSources: PropTypes.func.isRequired,
   logoColors: PropTypes.object.isRequired,
-  asyncStatus: PropTypes.object.isRequired,
+  asyncStatus: SHAPE_ASYNC_STATUS.isRequired,
+};
+
+Articles.defaultProps = {
+  activeArticles: [],
+  visibleArticles: [],
+  filteredSources: [],
+  toggleFilteredSources() {},
+  logoColors: {},
+  asyncStatus: {
+    inProgress: false,
+    error: false,
+    errorMessage: undefined,
+
+    getFilteredSources: {
+      inProgress: false,
+    },
+
+    getFilteredCategories: {
+      inProgress: false,
+    },
+
+    toggleActiveSource: {
+      inProgress: false,
+    },
+
+    toggleFilteredCategory: {
+      inProgress: false,
+    },
+
+    toggleFilteredSource: {
+      inProgress: false,
+    },
+  },
 };
 
 export default Articles;
+export const defaultProps = Articles.defaultProps;
