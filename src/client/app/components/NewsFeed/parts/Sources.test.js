@@ -51,8 +51,8 @@ const activeSources = [
 
 const wrapper = additionalProps => shallow(<Sources {...defaultProps} {...additionalProps} />);
 
-describe('<Sources />', () => {
-  describe('<Pills />', () => {
+describe('<SOURCES>', () => {
+  describe('<Pills>', () => {
     const filteredCategories = ['technology'];
 
     it('renders', () => {
@@ -79,11 +79,11 @@ describe('<Sources />', () => {
     });
   });
 
-  it('<SourceList />', () => {
+  it('<SourceList>', () => {
     expect(wrapper().find(SourcesList)).to.exist;
   });
 
-  describe('<Source />', () => {
+  describe('<Source>', () => {
     it('renders activeSources prop', () => {
       expect(wrapper({ sources }).find(Source)).to.prop('activeSources').to.deep.equal([]);
       expect(wrapper({ sources, activeSources }).find(Source)).to.prop('activeSources', activeSources);
@@ -93,7 +93,7 @@ describe('<Sources />', () => {
     });
   });
 
-  describe('<Button />', () => {
+  describe('<Button>', () => {
     it('renders onClick prop method', () => {
       const sandbox = sinon.sandbox.create();
       const spyClick = sandbox.spy(defaultProps, 'toggleActiveSource');
@@ -103,7 +103,7 @@ describe('<Sources />', () => {
     });
   });
 
-  describe('<Img />', () => {
+  describe('<Img>', () => {
     it('renders', () => {
       expect(wrapper().find(Img)).to.not.exist;
       expect(wrapper({ sources }).find(Img)).to.exist;
@@ -113,7 +113,7 @@ describe('<Sources />', () => {
     });
   });
 
-  describe('<Name />', () => {
+  describe('<Name>', () => {
     it('renders', () => {
       expect(wrapper().find(Name)).to.not.exist;
       expect(wrapper({ sources }).find(Name)).to.exist;

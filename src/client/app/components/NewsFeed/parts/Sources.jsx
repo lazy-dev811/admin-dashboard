@@ -9,6 +9,7 @@ import {
   SHAPE_TOGGLED_SOURCE,
   SHAPE_ASYNC_STATUS,
 } from '../prop-shapes';
+import { ASYNC_STATUS } from '../default-props';
 
 import Loader from '../../Loader';
 import Pills from '../../Pills';
@@ -153,32 +154,8 @@ Sources.defaultProps = {
   toggleFilteredCategories() {},
   toggledSource: {},
   toggleActiveSource() {},
-  asyncStatus: {
-    inProgress: false,
-    error: false,
-    errorMessage: undefined,
-
-    getFilteredSources: {
-      inProgress: false,
-    },
-
-    getFilteredCategories: {
-      inProgress: false,
-    },
-
-    toggleActiveSource: {
-      inProgress: false,
-    },
-
-    toggleFilteredCategory: {
-      inProgress: false,
-    },
-
-    toggleFilteredSource: {
-      inProgress: false,
-    },
-  },
+  asyncStatus: ASYNC_STATUS,
 };
 
 export default Sources;
-export const defaultProps = Sources.defaultProps;
+export const { defaultProps } = Sources;

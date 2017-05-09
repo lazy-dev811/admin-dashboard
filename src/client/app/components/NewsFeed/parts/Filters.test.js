@@ -13,20 +13,20 @@ chai.use(chaiEnzyme());
 
 
 const wrapper = newProps => shallow(<Filters {...defaultProps} {...newProps} />);
-describe('<Filters />', () => {
+describe('<FILTERS>', () => {
   const sourceView = { activeView: 'sources' };
 
-  it('<FiltersWrap />', () => {
+  it('<FiltersWrap>', () => {
     expect(wrapper().find(FiltersWrap)).to.exist;
   });
 
-  describe('<Filter /> display activeView filter. default to articles', () => {
+  describe('<Filter> display activeView filter. default to articles', () => {
     it('renders title prop', () => {
       expect(wrapper().find(Filter)).to.have.prop('title', 'filter by active sources');
       expect(wrapper(sourceView).find(Filter)).to.have.prop('title', 'filter by categories');
     });
     it('renders options prop', () => {
-      const activeSources = [{ id: 'recode' }];
+      const activeSources = [{ id: 'recode', name: 'recode' }];
       const categories = ['technology'];
       expect(wrapper({ activeSources }).find(Filter)).to.have.prop('options').deep.equal(activeSources.map(a => a.id));
       expect(wrapper({ ...sourceView, categories }).find(Filter)).to.have.prop('options', categories);

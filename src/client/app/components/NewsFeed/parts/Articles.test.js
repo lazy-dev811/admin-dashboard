@@ -52,8 +52,8 @@ const visibleArticles = [
 
 const wrapper = additionalProps => shallow(<Articles {...defaultProps} {...additionalProps} />);
 
-describe('<Articles />', () => {
-  describe('<Pills />', () => {
+describe('<ARTICLES>', () => {
+  describe('<Pills>', () => {
     const filteredSources = ['recode'];
 
     it('renders', () => {
@@ -80,11 +80,11 @@ describe('<Articles />', () => {
     });
   });
 
-  it('<ArticlesList />', () => {
+  it('<ArticlesList>', () => {
     expect(wrapper().find(ArticlesList)).to.exist;
   });
 
-  describe('<Article />', () => {
+  describe('<Article>', () => {
     it('displays activeArticles if !visibleArticles', () => {
       expect(wrapper().find(Article)).to.not.exist;
       expect(wrapper({ activeArticles }).find(Article)).to.exist;
@@ -97,15 +97,15 @@ describe('<Articles />', () => {
     });
   });
 
-  it('<ImgWrap />', () => {
+  it('<ImgWrap>', () => {
     expect(wrapper({ activeArticles }).find(ImgWrap)).to.exist;
   });
 
-  it('<Img />', () => {
+  it('<Img>', () => {
     expect(wrapper({ activeArticles }).find(Img)).to.have.prop('src', activeArticles[0].urlToImage);
   });
 
-  describe('<Source />', () => {
+  describe('<Source>', () => {
     it('renders logoColors prop', () => {
       expect(wrapper({ activeArticles }).find(Source)).to.have.prop('logoColors', defaultProps.logoColors);
     });
@@ -117,21 +117,21 @@ describe('<Articles />', () => {
     });
   });
 
-  describe('<DateDayOfMonth />', () => {
+  describe('<DateDayOfMonth>', () => {
     it('renders children prop', () => {
       const dateString = moment(activeArticles[0].publishedAt).format(DATE_FORMAT_DAY_MONTH);
       expect(wrapper({ activeArticles }).find(DateDayOfMonth)).to.have.prop('children', dateString);
     });
   });
 
-  describe('<Time />', () => {
+  describe('<Time>', () => {
     it('renders children prop', () => {
       const timeString = moment(activeArticles[0].publishedAt).format(DATE_FORMAT_TIME);
       expect(wrapper({ activeArticles }).find(Time)).to.have.prop('children', timeString);
     });
   });
 
-  describe('<Title />', () => {
+  describe('<Title>', () => {
     it('renders href prop', () => {
       expect(wrapper({ activeArticles }).find(Title)).to.have.prop('href', activeArticles[0].url);
     });

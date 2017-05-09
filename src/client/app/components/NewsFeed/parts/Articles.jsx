@@ -8,6 +8,7 @@ import {
   SHAPE_VISIBLE_ARTICLE,
   SHAPE_ASYNC_STATUS,
 } from '../prop-shapes';
+import { ASYNC_STATUS } from '../default-props';
 
 import { DATE_FORMAT_DAY_MONTH, DATE_FORMAT_TIME } from '../../../constants';
 import Pills from '../../Pills';
@@ -107,12 +108,12 @@ export const Description = styled.p`
 `;
 
 const Articles = ({
-  activeArticles = [],
+  activeArticles,
   visibleArticles,
   filteredSources,
-  toggleFilteredSources = () => {},
-  logoColors = {},
-  asyncStatus = {},
+  toggleFilteredSources,
+  logoColors,
+  asyncStatus,
 }) => {
   const displayFilters = filteredSources.length > 0;
   const displayedArticles = visibleArticles.length > 0 ? visibleArticles : activeArticles;
@@ -179,32 +180,8 @@ Articles.defaultProps = {
   filteredSources: [],
   toggleFilteredSources() {},
   logoColors: {},
-  asyncStatus: {
-    inProgress: false,
-    error: false,
-    errorMessage: undefined,
-
-    getFilteredSources: {
-      inProgress: false,
-    },
-
-    getFilteredCategories: {
-      inProgress: false,
-    },
-
-    toggleActiveSource: {
-      inProgress: false,
-    },
-
-    toggleFilteredCategory: {
-      inProgress: false,
-    },
-
-    toggleFilteredSource: {
-      inProgress: false,
-    },
-  },
+  asyncStatus: ASYNC_STATUS,
 };
 
 export default Articles;
-export const defaultProps = Articles.defaultProps;
+export const { defaultProps } = Articles;

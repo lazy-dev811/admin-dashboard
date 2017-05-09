@@ -19,16 +19,16 @@ chai.use(sinonChai);
 
 
 const wrapper = additionalProps => shallow(<Views {...defaultProps} {...additionalProps} />);
-describe('<Views />', () => {
-  it('<List />', () => {
+describe('<VIEWS>', () => {
+  it('<List>', () => {
     expect(wrapper().find(List)).to.exist;
   });
 
-  it('<Item />', () => {
+  it('<Item>', () => {
     expect(wrapper().find(Item)).to.exist;
   });
 
-  describe('<Button />', () => {
+  describe('<Button>', () => {
     it('renders view prop', () => {
       expect(wrapper().find(Button).at(0)).to.have.prop('view', VIEW_SOURCES);
       expect(wrapper().find(Button).at(1)).to.have.prop('view', VIEW_ARTICLES);

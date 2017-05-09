@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { object, array, string, func, arrayOf } from 'prop-types';
 import styled from 'styled-components';
 
-import Filters from './parts/Filters.jsx';
-import Views from './parts/Views';
-import Sources from './parts/Sources.jsx';
-import Articles from './parts/Articles.jsx';
-
 import {
   SHAPE_SOURCE,
   SHAPE_ACTIVE_SOURCE,
@@ -15,8 +10,15 @@ import {
   SHAPE_ARTICLE,
   SHAPE_VISIBLE_ARTICLE,
 } from './prop-shapes';
+import { VIEW_SOURCES, VIEW_ARTICLES, ASYNC_STATUS } from './default-props';
+
+import Filters from './parts/Filters.jsx';
+import Views from './parts/Views';
+import Sources from './parts/Sources.jsx';
+import Articles from './parts/Articles.jsx';
 
 import { COLOR_WHITE } from '../../styles';
+
 
 const NewsFeedWrap = styled.div`
   background-color: ${COLOR_WHITE};
@@ -46,8 +48,8 @@ class NewsFeed extends Component {
       activeView,
       selectView,
 
-      activeArticles = [],
-      visibleArticles = [],
+      activeArticles,
+      visibleArticles,
 
       categories,
       filteredCategories,
@@ -84,7 +86,7 @@ class NewsFeed extends Component {
         </div>
 
         {
-          activeView === 'sources' &&
+          activeView === VIEW_SOURCES &&
           <Sources
             sources={sources}
             activeSources={activeSources}
@@ -98,7 +100,7 @@ class NewsFeed extends Component {
         }
 
         {
-          activeView === 'articles' &&
+          activeView === VIEW_ARTICLES &&
           <Articles
             activeArticles={activeArticles}
             visibleArticles={visibleArticles}
@@ -112,10 +114,6 @@ class NewsFeed extends Component {
     );
   }
 }
-
-NewsFeed.defaultProps = {
-  sources: [],
-};
 
 NewsFeed.propTypes = {
   sources: arrayOf(SHAPE_SOURCE).isRequired,
@@ -139,6 +137,10 @@ NewsFeed.propTypes = {
   logoColors: object.isRequired,
   toggleActiveSource: func.isRequired,
   asyncStatus: object,
+};
+
+NewsFeed.defaultProps = {
+  asyncStatus: ASYNC_STATUS,
 };
 
 export default NewsFeed;
