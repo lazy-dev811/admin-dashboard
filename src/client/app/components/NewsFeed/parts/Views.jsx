@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 
+import { VIEW_ARTICLES, VIEWS } from '../default-props';
+
 import { COLOR_TEAL } from '../../../styles';
 
 export const List = styled.ul`
@@ -32,15 +34,15 @@ const Views = ({ views, activeSources, activeView, selectView }) => (
   <List>
     {
       views.map((view) => {
-        const isDisabled = !activeSources.length && view === 'articles';
+        const isDisabled = !activeSources.length && view === VIEW_ARTICLES;
 
         return (
           <Item key={view}>
             <Button
-              onClick={() => selectView(view)}
-              disabled={isDisabled}
               view={view}
               activeView={activeView}
+              disabled={isDisabled}
+              onClick={() => selectView(view)}
             >
               {view}
             </Button>
@@ -57,5 +59,12 @@ Views.propTypes = {
   activeView: PropTypes.string,
   selectView: PropTypes.func.isRequired,
 };
+Views.defaultProps = {
+  views: VIEWS,
+  activeSources: [],
+  activeView: undefined,
+  selectView() {},
+};
 
 export default Views;
+export const { defaultProps } = Views;
