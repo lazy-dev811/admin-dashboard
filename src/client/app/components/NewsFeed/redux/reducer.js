@@ -1,4 +1,5 @@
 import { returnUnique, objectKeys } from '../../../utils';
+import { VIEW_SOURCES, VIEW_ARTICLES, VIEWS, ASYNC_STATUS } from '../default-props';
 
 import {
   SET_FILTERS,
@@ -71,33 +72,9 @@ const INITIAL_STATE = {
   categories: [],
   filteredCategories: [],
 
-  views: ['sources', 'articles'],
+  views: VIEWS,
   activeView: undefined,
-  asyncStatus: {
-    inProgress: false,
-    error: false,
-    errorMessage: undefined,
-
-    getFilteredSources: {
-      inProgress: false,
-    },
-
-    getFilteredCategories: {
-      inProgress: false,
-    },
-
-    toggleActiveSource: {
-      inProgress: false,
-    },
-
-    toggleFilteredCategory: {
-      inProgress: false,
-    },
-
-    toggleFilteredSource: {
-      inProgress: false,
-    },
-  },
+  asyncStatus: ASYNC_STATUS,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -141,7 +118,7 @@ export default (state = INITIAL_STATE, action) => {
 
 
     case SET_ACTIVE_VIEW: {
-      const activeView = action.activeSourcesKeys.length ? 'articles' : 'sources';
+      const activeView = action.activeSourcesKeys.length ? VIEW_ARTICLES : VIEW_SOURCES;
 
       return {
         ...state,
