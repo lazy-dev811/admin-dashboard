@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { SHAPE_ACTIVE_SOURCE } from '../prop-shapes';
+import { VIEW_SOURCES } from '../default-props';
 import FormFieldSelect from '../../FormElements/FormFieldSelect/FormFieldSelect.jsx';
 
 import { UNIT_MD, COLOR_WHITE_1 } from '../../../styles';
@@ -37,7 +38,7 @@ const Filters = ({
   let compareOptions = [];
   let onChange;
 
-  if (activeView === 'sources') {
+  if (activeView === VIEW_SOURCES) {
     title = 'filter by categories';
     options = categories;
     compareOptions = filteredCategories;
@@ -70,5 +71,15 @@ Filters.propTypes = {
   toggleFilteredSources: PropTypes.func.isRequired,
   activeView: PropTypes.string,
 };
+Filters.defaultProps = {
+  categories: [],
+  filteredCategories: [],
+  toggleFilteredCategories() {},
+  activeSources: [],
+  filteredSources: [],
+  toggleFilteredSources() {},
+  activeView: undefined,
+};
 
 export default Filters;
+export const { defaultProps } = Filters;
