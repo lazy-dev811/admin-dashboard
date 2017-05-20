@@ -53,23 +53,18 @@ const asyncStatus = {
   inProgress: bool,
   error: bool,
   errorMessage: string,
-
   getFilteredSources: shape({
     inProgress: bool,
   }),
-
   getFilteredCategories: shape({
     inProgress: bool,
   }),
-
   toggleActiveSource: shape({
     inProgress: bool,
   }),
-
   toggleFilteredCategory: shape({
     inProgress: bool,
   }),
-
   toggleFilteredSource: shape({
     inProgress: bool,
   }),
