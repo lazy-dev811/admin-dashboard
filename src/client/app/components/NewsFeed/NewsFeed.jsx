@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { object, array, string, func, arrayOf } from 'prop-types';
+import { object, string, func, arrayOf } from 'prop-types';
 import styled from 'styled-components';
 
 import {
@@ -9,22 +9,23 @@ import {
   SHAPE_TOGGLED_SOURCE,
   SHAPE_ARTICLE,
   SHAPE_VISIBLE_ARTICLE,
+  SHAPE_ASYNC_STATUS,
 } from './prop-shapes';
-import { VIEW_SOURCES, VIEW_ARTICLES, ASYNC_STATUS } from './default-props';
+import { VIEW_SOURCES, VIEW_ARTICLES, VIEWS, ASYNC_STATUS } from './constants';
 
 import Filters from './parts/Filters.jsx';
-import Views from './parts/Views';
+import Views from './parts/Views.jsx';
 import Sources from './parts/Sources.jsx';
 import Articles from './parts/Articles.jsx';
 
 import { COLOR_WHITE } from '../../styles';
 
 
-const NewsFeedWrap = styled.div`
+export const NewsFeedWrap = styled.div`
   background-color: ${COLOR_WHITE};
 `;
 
-const Options = styled.div`
+export const Options = styled.div`
   display: flex;
   text-transform: none;
 `;
@@ -126,21 +127,43 @@ NewsFeed.propTypes = {
   activeArticles: arrayOf(SHAPE_ARTICLE).isRequired,
   visibleArticles: arrayOf(SHAPE_VISIBLE_ARTICLE).isRequired,
 
-  views: array.isRequired,
+  views: arrayOf(string).isRequired,
   activeView: string,
-  categories: array.isRequired,
-  filteredCategories: array.isRequired,
+  categories: arrayOf(string).isRequired,
+  filteredCategories: arrayOf(string),
   getSourcesAndFilters: func.isRequired,
 
   toggleFilteredCategories: func.isRequired,
   selectView: func.isRequired,
   logoColors: object.isRequired,
   toggleActiveSource: func.isRequired,
-  asyncStatus: object,
+  asyncStatus: SHAPE_ASYNC_STATUS,
 };
 
 NewsFeed.defaultProps = {
+  sources: [],
+  activeSources: [],
+  filteredSources: [],
+  visibleSources: [],
+  toggledSource: {},
+  getSourcesAndFilters() {},
+  toggleActiveSource() {},
+  toggleFilteredSources() {},
+
+  activeArticles: [],
+  visibleArticles: [],
+
+  categories: [],
+  filteredCategories: [],
+  toggleFilteredCategories() {},
+
+  views: VIEWS,
+  activeView: undefined,
+  selectView() {},
+
+  logoColors: {},
   asyncStatus: ASYNC_STATUS,
 };
 
 export default NewsFeed;
+export const { defaultProps } = NewsFeed;
