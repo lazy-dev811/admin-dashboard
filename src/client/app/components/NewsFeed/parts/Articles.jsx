@@ -8,7 +8,7 @@ import {
   SHAPE_VISIBLE_ARTICLE,
   SHAPE_ASYNC_STATUS,
 } from '../prop-shapes';
-import { ASYNC_STATUS } from '../default-props';
+import { ASYNC_STATUS } from '../constants';
 
 import { DATE_FORMAT_DAY_MONTH, DATE_FORMAT_TIME } from '../../../constants';
 import Pills from '../../Pills';

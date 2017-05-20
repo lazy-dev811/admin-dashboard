@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { SHAPE_ACTIVE_SOURCE } from '../prop-shapes';
-import { VIEW_SOURCES } from '../default-props';
+import { VIEW_SOURCES } from '../constants';
 import FormFieldSelect from '../../FormElements/FormFieldSelect/FormFieldSelect.jsx';
 
 import { UNIT_MD, COLOR_WHITE_1 } from '../../../styles';

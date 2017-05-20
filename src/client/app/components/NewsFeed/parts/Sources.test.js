@@ -5,6 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
+import { SOURCES as sources, ACTIVE_SOURCES as activeSources } from '../constants';
 import Sources, {
   defaultProps,
   SourcesList,
@@ -18,36 +19,6 @@ import Pills from '../../Pills';
 chai.use(chaiEnzyme());
 chai.use(sinonChai);
 
-
-const sources = [
-  {
-    id: 'recode',
-    name: 'Recode',
-    description: 'source description',
-    url: 'http://www.recode.net',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: { small: '', medium: '', large: '' },
-    sortBysAvailable: ['top'],
-    logo: 'source logo',
-  },
-];
-
-const activeSources = [
-  {
-    id: 'engadget',
-    name: 'Engadget',
-    description: 'source description.',
-    url: 'https://www.engadget.com',
-    category: 'technology',
-    language: 'en',
-    country: 'us',
-    urlsToLogos: { small: '', medium: '', large: '' },
-    sortBysAvailable: ['top', 'latest'],
-    logo: 'logoUrl',
-  },
-];
 
 const wrapper = additionalProps => shallow(<Sources {...defaultProps} {...additionalProps} />);
 

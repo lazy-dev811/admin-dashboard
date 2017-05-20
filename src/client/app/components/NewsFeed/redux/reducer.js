@@ -1,5 +1,5 @@
 import { returnUnique, objectKeys } from '../../../utils';
-import { VIEW_SOURCES, VIEW_ARTICLES, VIEWS, ASYNC_STATUS } from '../default-props';
+import { VIEW_SOURCES, VIEW_ARTICLES, VIEWS, ASYNC_STATUS } from '../constants';
 
 import {
   SET_FILTERS,

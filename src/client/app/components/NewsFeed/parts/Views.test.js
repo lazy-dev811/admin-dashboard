@@ -5,7 +5,7 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import { VIEW_SOURCES, VIEW_ARTICLES } from '../default-props';
+import { VIEW_SOURCES, VIEW_ARTICLES } from '../constants';
 
 import Views, {
   defaultProps,

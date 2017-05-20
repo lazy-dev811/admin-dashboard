@@ -9,7 +9,7 @@ import {
   SHAPE_TOGGLED_SOURCE,
   SHAPE_ASYNC_STATUS,
 } from '../prop-shapes';
-import { ASYNC_STATUS } from '../default-props';
+import { ASYNC_STATUS } from '../constants';
 
 import Loader from '../../Loader';
 import Pills from '../../Pills';

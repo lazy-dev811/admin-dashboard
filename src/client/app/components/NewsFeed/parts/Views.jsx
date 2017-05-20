@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 
-import { VIEW_ARTICLES, VIEWS } from '../default-props';
+import { VIEW_ARTICLES, VIEWS } from '../constants';
 
 import { COLOR_TEAL } from '../../../styles';
 

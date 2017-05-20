@@ -7,6 +7,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 import { DATE_FORMAT_DAY_MONTH, DATE_FORMAT_TIME } from '../../../constants';
+import { ACTIVE_ARTICLES as activeArticles, VISIBLE_ARTICLES as visibleArticles } from '../constants';
 
 import Articles, {
   defaultProps,
@@ -25,30 +26,6 @@ import Pills from '../../Pills';
 
 chai.use(chaiEnzyme());
 chai.use(sinonChai);
-
-
-const activeArticles = [
-  {
-    source: 'hacker-news',
-    author: 'https://www.facebook.com/jlachenbach',
-    title: 'U.S. life expectancy',
-    description: 'The District of Columbia',
-    url: 'https://www.url',
-    urlToImage: 'https://urlToImage',
-    publishedAt: '2017-05-08T17:30:00Z',
-  },
-];
-
-const visibleArticles = [
-  {
-    source: 'visible article source',
-    title: 'visible article title',
-    description: 'visible article description',
-    url: 'https://google.com/visible',
-    urlToImage: 'https://google.com/images/visible',
-    publishedAt: '2020-01-01',
-  },
-];
 
 const wrapper = additionalProps => shallow(<Articles {...defaultProps} {...additionalProps} />);
 
