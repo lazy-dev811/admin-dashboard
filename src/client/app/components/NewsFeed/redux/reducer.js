@@ -3,30 +3,16 @@ import { VIEW_SOURCES, VIEW_ARTICLES, VIEWS, ASYNC_STATUS } from '../constants';
 
 import {
   SET_FILTERS,
-
   TOGGLE_ACTIVE_VIEW,
-
   GET_SOURCES_FAILED,
-
   GET_ACTIVE_SOURCES_FAILED,
-
-  GET_FILTERED_CATEGORIES_FAILED,
-
   GET_FILTERED_SOURCES_FAILED,
-
   SET_ACTIVE_VIEW,
-
   SET_VISIBLE_SOURCES,
-
   SET_VISIBLE_ARTICLES,
-
   SET_SOURCES,
-
-  GET_SOURCE_LOGOS_FAILED,
-
   GET_SOURCES_AND_FILTERS_REQUESTED,
 
-  GET_ARTICLES_REQUESTED,
   GET_ARTICLES_SUCCEEDED,
   GET_ARTICLES_FAILED,
 
@@ -81,25 +67,14 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_FILTERS: return setFilters(state, action);
     case GET_FILTERED_SOURCES_FAILED: return getFilteredSourcesFailed(state);
-    case GET_SOURCES_AND_FILTERS_REQUESTED: return getSourcesAndFiltersRquested(state);
-    case SET_ACTIVE_VIEW: return selectActiveView(state, action);
+    case GET_SOURCES_AND_FILTERS_REQUESTED: return getSourcesAndFiltersRequested(state);
+    case SET_ACTIVE_VIEW: return setActiveView(state, action);
     case TOGGLE_ACTIVE_VIEW: return toggleActiveView(state, action);
     case SET_SOURCES: return setSources(state, action);
     case GET_SOURCES_FAILED: return getSourcesFailed(state, action);
     case GET_ACTIVE_SOURCES_FAILED: return getActiveSourcesFailed(state, action);
     case SET_VISIBLE_SOURCES: return setVisibleSources(state);
     case SET_VISIBLE_ARTICLES: return setVisibleArticles(state);
-    // case GET_ARTICLES_REQUESTED: {
-    //   return {
-    //     ...state,
-    //     asyncStatus: {
-    //       ...state.asyncStatus,
-    //       inProgress: true,
-    //       error: false,
-    //       errorMessage: undefined,
-    //     },
-    //   };
-    // }
     case GET_ARTICLES_SUCCEEDED: return getArticlesSucceeded(state, action);
     case GET_ARTICLES_FAILED: return getArticlesFailed(state, action);
     case ADD_FILTERED_CATEGORY_REQUESTED: return addFilteredCategoryRequested(state);
@@ -153,7 +128,7 @@ export function getFilteredSourcesFailed(state) {
   };
 }
 
-export function getSourcesAndFiltersRquested(state) {
+export function getSourcesAndFiltersRequested(state) {
   return {
     ...state,
     asyncStatus: {
@@ -163,7 +138,7 @@ export function getSourcesAndFiltersRquested(state) {
   };
 }
 
-export function selectActiveView(state, action) {
+export function setActiveView(state, action) {
   const activeView = action.activeSourcesKeys.length ? VIEW_ARTICLES : VIEW_SOURCES;
 
   return {
