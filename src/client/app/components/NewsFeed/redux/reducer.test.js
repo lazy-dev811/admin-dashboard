@@ -72,7 +72,7 @@ import reducer, {
   removeSourceFailed,
 } from './reducer';
 
-describe.only('reducer', () => {
+describe('reducer', () => {
   it('setFilters', () => {
     const action = {
       filters: {
