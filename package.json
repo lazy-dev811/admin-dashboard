@@ -37,7 +37,7 @@
     "firebase-saga": "^1.1.2",
     "image-webpack-loader": "^2.0.0",
     "jsdom": "^10.1.0",
-    "lodash": "^4.16.2",
+    "lodash": "^4.17.13",
     "moment": "^2.18.0",
     "null-loader": "^0.1.1",
     "optimize-js-plugin": "^0.0.4",
