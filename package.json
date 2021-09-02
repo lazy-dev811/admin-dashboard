@@ -16,7 +16,7 @@
   "author": "Vincent Bollaert <vincentbollaert@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.15.0",
+    "axios": "^0.21.1",
     "babel-plugin-transform-react-inline-elements": "^6.22.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.23.0",
